@@ -17,16 +17,19 @@
 
 <div class="flex flex-wrap mt-4 -mx-2">
   <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="h-12 shadow rounded"></div>
+    <div class="shadow rounded text-gray-600">
+      <v-icon name="user" scale="3"/>
+      <p>username</p>
+    </div>
   </div>
   <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="h-12 shadow rounded"></div>
+    <div class="shadow rounded"></div>
   </div>
   <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="h-12 shadow rounded"></div>
+    <div class="shadow rounded"></div>
   </div>
   <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="h-12 shadow rounded"></div>
+    <div class="shadow rounded"></div>
   </div>
   
 </div>

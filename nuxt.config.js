@@ -29,7 +29,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vue-fuse'
+    '~/plugins/vue-fuse',
+    '~/plugins/vue-awesome',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -47,6 +48,7 @@ export default {
   ** Build configuration
   */
   build: {
+    transpile: [/^vue-awesome/],
     /*
     ** You can extend webpack config here
     */

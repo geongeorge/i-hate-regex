@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "nuxt": "^2.0.0",
+    "vue-awesome": "^3.5.4",
     "vue-fuse": "^2.1.0"
   },
   "devDependencies": {
