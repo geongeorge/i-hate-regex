@@ -11,7 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue-fuse": "^2.1.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0",
