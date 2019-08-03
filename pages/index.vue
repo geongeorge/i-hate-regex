@@ -1,77 +1,27 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        ihateregex
-      </h1>
-      <h2 class="subtitle">
-        a regex cheatsheet
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+<div>
+  <div class="container mx-auto md:mt-5 lg:mt-20 px-4 max-w-2xl">
+    <div class="text-center">
+      <Logo></Logo>
+      <p
+        class="text-gray-600 mt-4"
+      >
+      <!-- <a href="">#metoo</a> -->
+      <input class="bg-gray-200 text-3xl appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-200" id="inline-full-name" type="text" placeholder="Search">
+      </p>
     </div>
+  </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+import Logo from '~/components/Logo'
 export default {
   components: {
     Logo
   }
-}
+};
 </script>
 
 <style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>
