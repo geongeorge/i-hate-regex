@@ -13,6 +13,24 @@
 
       </SearchResult>
       </div>
+      <div v-else>
+
+<div class="flex flex-wrap mt-4 -mx-2">
+  <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
+    <div class="h-12 shadow rounded"></div>
+  </div>
+  <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
+    <div class="h-12 shadow rounded"></div>
+  </div>
+  <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
+    <div class="h-12 shadow rounded"></div>
+  </div>
+  <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
+    <div class="h-12 shadow rounded"></div>
+  </div>
+  
+</div>
+      </div>
       
 
     </div>
@@ -43,6 +61,7 @@ export default {
   methods: {
     searchAction(event) {
       this.query = event
+      this.$router.push({path: this.$route.path, query: { q: this.query }})
       this.fuseSearch()
     },
     fuseSearch() {
