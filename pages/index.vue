@@ -1,54 +1,26 @@
 <template>
 <div>
-  <div class="container mx-auto md:mt-5 lg:mt-20 px-4 max-w-2xl">
+  <div class="container mx-auto md:pt-5 lg:pt-20 px-4 max-w-2xl">
     <div class="text-center">
       <Logo></Logo>
       <p class="text-gray-600 my-4">
-      You too huh? I thought you code well
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit.{{searchResults.length}}
       </p>
-      <SearchBox @changed="searchAction"></SearchBox>
+      <SearchBox :initQuery="query" @changed="searchAction"></SearchBox>
       <div v-if="query">
         <SearchResult v-for="(item, key) in searchResults" :key="key" :title="item.key">
         {{item.description}}
+        </SearchResult>
 
-      </SearchResult>
+        <NoResults v-if="searchResults.length < 1">
+        </NoResults>
       </div>
       <div v-else>
-
-<div class="flex flex-wrap mt-4 -mx-2">
-  <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="text-gray-600">
-      <p>username</p>
-    </div>
-  </div>
-  <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="text-gray-600">
-      <p>phone number</p>
-    </div>
-  </div>
-  <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="text-gray-600">
-      <p>email</p>
-    </div>
-  </div>
-  <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="text-gray-600">
-      <p>date</p>
-    </div>
-  </div>
-   <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="text-gray-600">
-      <p>ASCII</p>
-    </div>
-  </div>
-   <div class="w-1/2 sm:w-1/3 md:w-1/3 px-2 mt-2">
-    <div class="text-gray-600">
-      <p>Credit Card</p>
-    </div>
-  </div>
-  
-</div>
+          <CommonResults></CommonResults>
       </div>
+      <p class="text-gray-600 mt-5">
+            <a href="#" class="hover:underline">see all</a>
+        </p>
       
 
     </div>
@@ -60,6 +32,8 @@
 import Logo from '~/components/utils/Logo'
 import SearchBox from '~/components/utils/SearchBox'
 import SearchResult from '~/components/utils/SearchResult'
+import NoResults from '~/components/utils/NoResults'
+import CommonResults from '~/components/utils/CommonResults'
 
 import jsonData from '~/static/regdata.json'
 
@@ -67,7 +41,9 @@ export default {
   components: {
     Logo,
     SearchBox,
-    SearchResult
+    SearchResult,
+    NoResults,
+    CommonResults
   },
   data() {
     return {
@@ -107,6 +83,12 @@ export default {
         return post.key.toLowerCase().includes(this.query.toLowerCase())
       })
     }
+  },
+  created() {
+    console.log(this.$route.query.q)
+    this.query = this.$route.query.q?this.$route.query.q:this.query
+    console.log(this.query)
+    this.$forceUpdate()
   }
 };
 </script>

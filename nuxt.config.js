@@ -31,6 +31,7 @@ export default {
   plugins: [
     '~/plugins/vue-fuse',
     '~/plugins/vue-awesome',
+    { src: '~/plugins/regex-colorize', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -48,7 +49,10 @@ export default {
   ** Build configuration
   */
   build: {
-    transpile: [/^vue-awesome/],
+    transpile: [
+      /^vue-awesome/,
+      'regex-colorize'
+    ],
     /*
     ** You can extend webpack config here
     */

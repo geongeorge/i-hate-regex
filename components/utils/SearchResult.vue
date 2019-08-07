@@ -1,6 +1,8 @@
 <template>
     <div class=" mt-6 p-3 rounded text-gray-600 text-left">
-        <h2 class="text-black text-lg">{{title}}</h2>
+        <a href="#">
+        <h2 class="text-black text-lg hover:underline">{{title}}</h2>
+        </a>
        <slot></slot>
     </div>
 </template>

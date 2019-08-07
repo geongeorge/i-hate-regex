@@ -6035,6 +6035,11 @@ regenerator-transform@^0.14.0:
   dependencies:
     private "^0.1.6"
 
+regex-colorize@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/regex-colorize/-/regex-colorize-0.0.3.tgz#33aabc607b08aa45f26e70c03b7f4066d6fff441"
+  integrity sha512-y+GIlZUqhLQ48T1dZ/FRax14lkVZD1NE3/f7xKuBaasiiMLF5T26Ahjym+vswKPDrtMSfElRr+XPAIHx0AT2Hw==
+
 regex-not@^1.0.0, regex-not@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/regex-not/-/regex-not-1.0.2.tgz#1f4ece27e00b0b65e0247a6810e6a85d83a5752c"
