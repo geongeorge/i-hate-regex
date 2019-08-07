@@ -8,14 +8,8 @@
         <div class="mt-8">
                 <CodeBox>/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/</CodeBox>
         </div>
-        <div class="flex w-full flex-row">
-            <div class="text-sm float-right mr-2">
-                <a href="#" class="text-gray-500 hover:underline">show matches</a>
-                </div>
-        </div>
-        <div class="tracking-wide text-gray-600 text-md font-bold mb-2" contenteditable="true">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, cupiditate.
-        </div>
+        
+        <MatchBox></MatchBox>
         
         
 
@@ -28,12 +22,14 @@
 <script>
 import Logo from '~/components/utils/Logo'
 import CodeBox from '~/components/post-components/CodeBox'
+import MatchBox from '~/components/post-components/MatchBox'
 
 export default {
     layout:"post",
     components: {
         Logo,
-        CodeBox
+        CodeBox,
+        MatchBox
     }
 }
 </script>
