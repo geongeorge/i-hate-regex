@@ -31,12 +31,19 @@ import TransitionExpand from './TransitionExpand'
 export default {
   data() {
     return {
-      showText: "show matches",
       displayMatches: false
     };
   },
   components:{
       TransitionExpand
+  },
+  computed: {
+    showText() {
+        if(this.displayMatches) 
+            return "hide matches";
+        else
+            return "show matches";
+    }  
   }
 }
 </script>
