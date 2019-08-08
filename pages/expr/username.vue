@@ -6,10 +6,10 @@
         </a>
         <p class="text-sm text-gray-500">match a valid username</p>
         <div class="mt-8">
-                <CodeBox>/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/</CodeBox>
+                <CodeBox>{{regex}}</CodeBox>
         </div>
         
-        <MatchBox></MatchBox>
+        <MatchBox :regex="regex"></MatchBox>
         
         
 
@@ -30,6 +30,12 @@ export default {
         Logo,
         CodeBox,
         MatchBox
+    },
+    data() {
+        return {
+            regex: /\w+/gm,
+
+        }
     }
 }
 </script>
