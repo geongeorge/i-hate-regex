@@ -21,12 +21,12 @@
         id="matchbox"
         @keyup="matchedKW"
       >
-      <text-highlight 
-      :queries="queries"
-      :highlightClass="['bg-red-200', 'rounded']"
-      >
-      {{sampleText}}
-      </text-highlight>
+        <div v-for="(txt,key) in sampleText" :key="key">
+            <text-highlight 
+            :queries="queries"
+            :highlightClass="['bg-red-200', 'rounded']"
+            >{{txt}}</text-highlight>
+        </div>
       </div>
       </div>
     </transition-expand>
@@ -37,16 +37,13 @@
 import TransitionExpand from './TransitionExpand'
 export default {
     props: {
-        regex : {default: "/(?:)/"}
+        regex : {default: "/(?:)/"},
+        sampleText: {default: ["Lorem ipsum"]}
     },
   data() {
     return {
       displayMatches: false,
       queries: [],
-      sampleText: `Lorem 
-      sdfsdf 
-      ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, cupiditate.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, cupiditate.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, cupiditate.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, 
-      cupiditate`
     };
   },
   methods: {
@@ -61,16 +58,18 @@ export default {
         let reg = this.regex
 
         let queries = [];
-
-        let match = reg.exec(this.sampleText);
-        while (match != null) {
-        // matched text: match[0]
-        // match start: match.index
-        // capturing group n: match[n]
-        console.log(match[0])
-        queries.push(match[0])
-        match = reg.exec(this.sampleText);
-        }
+        this.sampleText.forEach(element => {
+          let match = reg.exec(element);
+            while (match != null) {
+            // matched text: match[0]
+            // match start: match.index
+            // capturing group n: match[n]
+            console.log(match[0])
+            queries.push(match[0])
+            match = reg.exec(this.element);
+            }  
+        });
+        
         // console.log(reg)
         console.log("queries", queries)
         if(queries != null)
@@ -90,6 +89,12 @@ export default {
             return "show matches";
     }
   },
+  watch: {
+      regex : (oldv,newv) => {
+          console.log("changed")
+          matchedKW()
+      }
+  },
   mounted() {
       this.matchedKW()
   }
@@ -97,4 +102,9 @@ export default {
 </script>
 
 <style>
+.text__highlight {
+    white-space: pre-line;
+    margin:2px;
+    background: hsla(160, 100%, 73%, 0.3)!important;
+}
 </style>

@@ -6,15 +6,15 @@
         </a>
         <p class="text-sm text-gray-500">match a valid username</p>
         <div class="mt-8">
-                <CodeBox>{{regex}}</CodeBox>
+                <CodeBox :regex="regex"></CodeBox>
         </div>
         
-        <MatchBox :regex="regex"></MatchBox>
+        <MatchBox :regex="regex" :sampleText="matchText"></MatchBox>
         
         
 
       <p class="mt-8">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus rerum sunt maiores animi, iure eum nulla voluptates. Quos ducimus ipsum tenetur itaque? Eligendi natus porro fuga nulla atque ratione autem omnis, doloribus amet architecto earum. Error porro dignissimos fugiat tenetur?
+         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae ea commodi, consectetur sint labore, reiciendis reprehenderit quaerat quam provident accusamus numquam, harum quo praesentium corrupti. Ab aspernatur architecto ipsum accusantium.
       </p>
     </div>
 </template>
@@ -33,8 +33,19 @@ export default {
     },
     data() {
         return {
-            regex: /\w+/gm,
-
+            regex: /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{3,29}$/gm,
+            matchText: [
+                'lorem',
+                'geon',
+                'gr3at',
+                'a',
+                'ab',
+                'abc',
+                'abcd',
+                'yo yossj',
+                'mahga',
+                'abcdefghijklmnopqrst'
+            ]
         }
     }
 }

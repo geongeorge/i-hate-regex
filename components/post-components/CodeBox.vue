@@ -1,9 +1,11 @@
 <template>
-  <div class="my-1 p-4 text-1xl rounded bg-gray-200">
+  <div class="my-1 p-4 text-2xl rounded bg-gray-200">
     <no-ssr>
-      <code class="w-full regex">
-        <slot></slot>
-      </code>
+      <div 
+      class="w-full regex"
+      >
+        {{regex}}
+      </div>
       </no-ssr>
   </div>
 </template>
@@ -21,6 +23,9 @@ if (process.client) {
   // RegexColorize.addStyleSheet();
 }
 export default {
+  props:{
+    regex: RegExp
+  },
   components: {
     // VueRegexColorize
   },
