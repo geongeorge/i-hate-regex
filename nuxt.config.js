@@ -32,7 +32,6 @@ export default {
     '~/plugins/vue-fuse',
     '~/plugins/vue-awesome',
     { src: '~/plugins/regex-colorize', mode: 'client' },
-    { src: '~/plugins/vue-highlight', mode: 'client'}
   ],
   /*
   ** Nuxt.js dev-modules
