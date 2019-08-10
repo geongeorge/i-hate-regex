@@ -70,8 +70,8 @@ export default {
       }
       typeTimeout = setTimeout(()=> {
         this.boxEdited();
-      },2000)
-      
+      },2000)  
+    },
     // getCursorPos() {
     //   var cursorPos;
     //   if (window.getSelection) {
