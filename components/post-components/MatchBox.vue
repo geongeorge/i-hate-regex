@@ -5,29 +5,24 @@
         <a
           href="#"
           class="text-gray-500 hover:underline"
-          @click="displayMatches =! displayMatches"
+          @click="toggleMatches"
         >{{ showText }}</a>
       </div>
     </div>
     <transition-expand>
-    <div v-if="displayMatches">
+    <div v-show="displayMatches">
       <div
-        class="text-gray-600 text-lg p-3 rounded focus:outline-none bg-blue-100 mb-2 shadow-inner"
+        class="text-gray-600 text-lg p-3 rounded focus:outline-none bg-blue-100 mb-2 shadow-inner whitespace-pre"
         contenteditable="true"
         autocomplete="off"
         autocorrect="off"
         autocapitalize="off"
         spellcheck="false"
         id="matchbox"
-        @keyup="matchedKW"
-      >
-        <div v-for="(txt,key) in sampleText" :key="key">
-            <text-highlight 
-            :queries="queries"
-            :highlightClass="['bg-red-200', 'rounded']"
-            >{{txt}}</text-highlight>
-        </div>
-      </div>
+        @keyup="boxEdited"
+        ref="matchbox"
+        v-html="dataText"
+      ></div>
       </div>
     </transition-expand>
   </div>
@@ -43,39 +38,25 @@ export default {
   data() {
     return {
       displayMatches: false,
+      dataText:"",
       queries: [],
     };
   },
   methods: {
-      matchedKW(){
-        // let flags = this.regex.replace(/.*\/([gimy]*)$/, '$1');
-        // let pattern = this.regex.replace(new RegExp('^/(.*?)/'+flags+'$'), '$1');
-
-        // console.log(flags,pattern)
-
-        // let reg = new RegExp(pattern, flags);
-
-        let reg = this.regex
-
-        let queries = [];
-        this.sampleText.forEach(element => {
-          let match = reg.exec(element);
-            while (match != null) {
-            // matched text: match[0]
-            // match start: match.index
-            // capturing group n: match[n]
-            console.log(match[0])
-            queries.push(match[0])
-            match = reg.exec(this.element);
-            }  
-        });
-        
-        // console.log(reg)
-        console.log("queries", queries)
-        if(queries != null)
-         this.queries = queries
-        else 
-            this.queries = [];
+    toggleMatches() {
+      this.displayMatches =! this.displayMatches
+      this.boxEdited()
+    },
+    boxEdited() {
+      if (process.client) {
+        //when box edited
+        let element = this.$refs.matchbox
+        let text = element.innerText || element.textContent || ""
+        text = text.replace(this.regex, '<span style="background-color: yellow">$&</span>');
+        setTimeout(()=> {
+          this.dataText = text
+        },200)
+      }
     }
   },
   components:{
@@ -87,16 +68,20 @@ export default {
             return "hide matches";
         else
             return "show matches";
-    }
+    },
   },
   watch: {
       regex : (oldv,newv) => {
           console.log("changed")
-          matchedKW()
+          this.nextTick(()=>{
+              this.boxEdited()
+          })
+          
       }
   },
   mounted() {
-      this.matchedKW()
+    this.dataText = this.sampleText.join('\n')
+    // this.boxEdited()
   }
 }
 </script>
