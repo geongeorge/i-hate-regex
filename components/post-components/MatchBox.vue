@@ -53,51 +53,36 @@ export default {
         //somehow need to locate the cursor location and place it there
         let element = this.$refs.matchbox;
         let text = element.innerText || element.textContent || "";
+        console.log(text)
         text = text.replace(
           this.regex,
           '<span class="bg-green-200 rounded px-1">$&</span>'
         );
+        console.log(text)
+        let match = this.regex.exec(text);
+        while (match != null) {
+          console.log(match)
+          // matched text: match[0]
+          // match start: match.index
+          // capturing group n: match[n]
+          console.log(match[0]);
+          match = this.regex.exec(text);
+        }
         setTimeout(() => {
           this.dataText = text;
         }, 200);
-      }
+      } 
     },
     matchboxChanged(event) {
       var node = this.$refs.matchbox;
-      console.log(typeTimeout)
-      if(typeTimeout) {
-        clearTimeout(typeTimeout)
+      // console.log(typeTimeout);
+      if (typeTimeout) {
+        clearTimeout(typeTimeout);
       }
-      typeTimeout = setTimeout(()=> {
+      typeTimeout = setTimeout(() => {
         this.boxEdited();
-      },2000)  
-    },
-    // getCursorPos() {
-    //   var cursorPos;
-    //   if (window.getSelection) {
-    //     var selObj = window.getSelection();
-    //     var selRange = selObj.getRangeAt(0);
-    //     cursorPos =
-    //       this.findNode(selObj.anchorNode.parentNode.childNodes, selObj.anchorNode) +
-    //       selObj.anchorOffset;
-    //     /* FIXME the following works wrong in Opera when the document is longer than 32767 chars */
-    //     return cursorPos;
-    //   } else if (document.selection) {
-    //     var range = document.selection.createRange();
-    //     var bookmark = range.getBookmark();
-    //     /* FIXME the following works wrong when the document is longer than 65535 chars */
-    //     cursorPos = bookmark.charCodeAt(2) - 11; /* Undocumented function [3] */
-    //     return cursorPos;
-    //   }
-    // },
-    // findNode(list, node) {
-    //   for (var i = 0; i < list.length; i++) {
-    //     if (list[i] == node) {
-    //       return i;
-    //     }
-    //   }
-    //   return -1;
-    // }
+      }, 2000);
+    }
   },
   components: {
     TransitionExpand
@@ -109,11 +94,9 @@ export default {
     }
   },
   watch: {
-    regex: (oldv, newv) => {
-      console.log("changed");
-      this.nextTick(() => {
-        this.boxEdited();
-      });
+    'regex': function(oldv, newv) {
+      console.log("changed yo",this.regex);
+      this.boxEdited();
     }
   },
   mounted() {

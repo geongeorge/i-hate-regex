@@ -3,8 +3,8 @@
   <div class="container mx-auto md:pt-5 lg:pt-20 px-4 max-w-2xl">
     <div class="text-center">
       <Logo></Logo>
-      <p class="text-gray-600 my-4">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit.{{searchResults.length}}
+      <p class="text-gray-600 italic my-4">
+      Now you have two problems. 
       </p>
       <SearchBox :initQuery="query" @changed="searchAction"></SearchBox>
       <div v-if="query">
