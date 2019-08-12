@@ -52,13 +52,13 @@ export default {
         //when box edited
         //somehow need to locate the cursor location and place it there
         let element = this.$refs.matchbox;
-        let text = element.innerText || element.textContent || "";
-        console.log(text)
+        let text = element.innerText || element.textContent || ""; //get inner text without html
+        // replace text with highlight html included
         text = text.replace(
           this.regex,
           '<span class="bg-green-200 rounded px-1">$&</span>'
         );
-        console.log(text)
+        // the below part to be fixed : match inner groups of regex
         let match = this.regex.exec(text);
         while (match != null) {
           console.log(match)

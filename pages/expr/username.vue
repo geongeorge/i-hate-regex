@@ -6,7 +6,7 @@
         </a>
         <p class="text-sm text-gray-500">match a valid username</p>
         <div class="mt-8">
-                <CodeBox :regex="regex" @regexChanged="regexChanged"></CodeBox>
+                <CodeBox :regex="regex" :flag="flag" @regexChanged="regexChanged"></CodeBox>
         </div>
         
         <MatchBox :regex="regex" :sampleText="matchText"></MatchBox>
@@ -34,6 +34,7 @@ export default {
     data() {
         return {
             regex: /^[a-z0-9_-]{3,15}$/gm,
+            flag: 'gm',
             matchText: [
                 'lorem',
                 'geon',
@@ -50,7 +51,7 @@ export default {
     },
     methods: {
         regexChanged(event) {
-            this.regex=new RegExp(event,'gm');
+            this.regex=new RegExp(event.regex,event.flag);
         }
     }
 }
