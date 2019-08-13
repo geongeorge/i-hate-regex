@@ -67,7 +67,6 @@ export default {
         // replace text with highlight html included
 
         // the below part to be fixed : match inner groups of regex
-        let classesForLevels = ['bg-green-200','bg-purple-200']
         let matches;
         let i = 0;
         let temptext = text;
@@ -83,7 +82,29 @@ export default {
           let lastPart = text.substr(endPos)
           //string matched
           let matchStr = text.substr(startPos,matches[0].length)
-          console.log(beginPart+"!"+matchStr+'!'+lastPart)
+
+          matchStr = "<span class='bg-green-200 rounded border border-green-200 hover:border-blue-400'>"+matchStr+"</span>"
+
+          // text from begining to match string (including)
+          let textTillStr = beginPart + matchStr;
+
+          text = textTillStr  + lastPart;
+
+          // Add lastIndex the length of begin part + matchStr
+
+          this.regex.lastIndex = textTillStr.length
+
+          // the below logic is to match inner groups
+          // currently Geon has no idea how to achieve this 
+          // since inner groups do not provide an index 
+          // if(matches.length>1){
+          //   // for(let i=1; i<matches.length; i++) {
+          //   //   console.log(matchStr);
+          //   // }
+          // }
+
+          console.log(matches)
+          // console.log(beginPart+"!"+matchStr+'!'+lastPart)
           // console.log(matches);
          
          i++;

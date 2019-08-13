@@ -8,7 +8,8 @@ module.exports = {
   theme: {},
   variants: {
     textColor: ['group-hover','hover'],
-    opacity: ['group-hover']
+    opacity: ['group-hover'],
+    border: ['hover']
   },
   plugins: []
 }
