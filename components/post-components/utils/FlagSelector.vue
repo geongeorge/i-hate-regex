@@ -8,7 +8,7 @@
       @click="closeModelEmit"
     ></div>
     <div
-      class="absolute w-full md:w-1/2 bg-white rounded-sm shadow-lg flex flex-col text-2xl p-3 md:px-5"
+      class="absolute w-full md:w-1/2 bg-white rounded-sm shadow-lg flex flex-col text-2xl p-3 md:px-5 z-20"
     >
       <div v-for="(flag,key) in flaglist" :key="key">
         <label class="font-bold">

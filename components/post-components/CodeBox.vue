@@ -8,6 +8,7 @@
       <div
       class="w-5/6 focus:outline-none regex"
       contenteditable="true"
+      @paste.prevent="onPaste"
       @keyup="regexChanged"
       ref="codebox"
       >{{regex.source}}</div>
@@ -33,6 +34,7 @@
 // import VueRegexColorize from "~/plugins/vue-regex-colorize";
 import "regex-colorize/themes/sweetest.css";
 import FlagSelector from '~/components/post-components/utils/FlagSelector'
+import pastePlainText from '~/mixins/pastePlainText.js';
 // 
 var rgx;
 if (process.client) {
@@ -43,6 +45,8 @@ if (process.client) {
   // RegexColorize.addStyleSheet();
 }
 export default {
+
+  mixins:[pastePlainText],
   components: {
     FlagSelector
   },
@@ -85,7 +89,6 @@ export default {
       this.changeTimer = setTimeout(() => {
         rgx.colorizeAll();
       }, 3000);
-      console.log(isValid,reg)
       if(isValid) {
         this.$emit('regexChanged',{
           regex: reg,

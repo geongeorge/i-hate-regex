@@ -18,6 +18,7 @@
           @keyup="matchboxChanged"
           ref="matchbox"
           v-html="dataText"
+          @paste.prevent="onPaste"
         ></div>
       </div>
     </transition-expand>
@@ -26,10 +27,11 @@
 
 <script>
 import TransitionExpand from "./TransitionExpand";
-
+import pastePlainText from '~/mixins/pastePlainText.js';
 var typeTimeout;
 
 export default {
+  mixins:[pastePlainText],
   props: {
     regex: { default: "/(?:)/" },
     sampleText: { default: ["Lorem ipsum"] }
@@ -47,31 +49,50 @@ export default {
       this.displayMatches = !this.displayMatches;
       this.boxEdited();
     },
+    getMatchTextOnly() {
+      let element = this.$refs.matchbox;
+      let text = element.innerText || element.textContent || ""; //get inner text without html
+      return text;
+    },
     boxEdited() {
       if (process.client) {
         //when box edited
         //somehow need to locate the cursor location and place it there
-        let element = this.$refs.matchbox;
-        let text = element.innerText || element.textContent || ""; //get inner text without html
+        let text = this.getMatchTextOnly(); //get inner text without html
         // replace text with highlight html included
-        text = text.replace(
-          this.regex,
-          '<span class="bg-green-200 rounded px-1">$&</span>'
-        );
+        // text = text.replace(
+        //   this.regex,
+        //   '<span class="bg-green-200 rounded px-1">$&</span>'
+        // );
+        // replace text with highlight html included
+
         // the below part to be fixed : match inner groups of regex
-        let match = this.regex.exec(text);
-        while (match != null) {
-          console.log(match)
-          // matched text: match[0]
-          // match start: match.index
-          // capturing group n: match[n]
-          console.log(match[0]);
-          match = this.regex.exec(text);
+        let classesForLevels = ['bg-green-200','bg-purple-200']
+        let matches;
+        let i = 0;
+        let temptext = text;
+        while ((matches = this.regex.exec(text)) !== null) {
+          // some text...[s]match[e]..end text
+          // s-> start pos = index
+          // e-> end pos = index+length
+          // we will change the match and re-concatinate
+          let startPos = matches.index
+          let endPos= matches.index+ matches[0].length
+
+          let beginPart = text.substr(0,startPos)
+          let lastPart = text.substr(endPos)
+          //string matched
+          let matchStr = text.substr(startPos,matches[0].length)
+          console.log(beginPart+"!"+matchStr+'!'+lastPart)
+          // console.log(matches);
+         
+         i++;
         }
+
         setTimeout(() => {
           this.dataText = text;
         }, 200);
-      } 
+      }
     },
     matchboxChanged(event) {
       var node = this.$refs.matchbox;
@@ -94,12 +115,12 @@ export default {
     }
   },
   watch: {
-    'regex': function(oldv, newv) {
-      console.log("changed yo",this.regex);
+    regex: function(oldv, newv) {
       this.boxEdited();
     }
   },
   mounted() {
+    // set datatext to sample text array from props
     this.dataText = this.sampleText.join("\n");
     // this.boxEdited()
   }
