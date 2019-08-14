@@ -21,7 +21,7 @@
     ><slot name="firstdescr"></slot>
     </p>
     <div>
-      <RegvizEmbed :regex="regex" :height="eheight"></RegvizEmbed>
+      <RegvizEmbed :regex="regex" :height="eHeight"></RegvizEmbed>
     </div>
     <p
       class="mt-8"
@@ -54,7 +54,7 @@ export default {
       iregex: {default: / /}, //input regex
       iflag: {default: 'gm'}, //input flags
       imatchText: {default: ['lorem ipsum']}, //input text
-      eheight: {default: 400} //embed regviz height
+      eHeight: {default: 400} //embed regviz height
   },
   data() {
     return {
@@ -68,7 +68,7 @@ export default {
       this.regex = new RegExp(event.regex, event.flag);
     }
   },
-  mounted() {
+  created() {
       this.regex = this.iregex
       this.flag = this.iflag
       this.matchText = this.imatchText
