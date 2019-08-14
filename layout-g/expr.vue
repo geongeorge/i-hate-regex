@@ -1,5 +1,5 @@
 <template>
-<post>
+<section>
   <div>
     <a href="#">
       <h1 class="text-2xl group">
@@ -16,19 +16,19 @@
 
     <MatchBox :regex="regex" :sampleText="matchText"></MatchBox>
 
-    <p
+    <div
       class="mt-8"
     ><slot name="firstdescr"></slot>
-    </p>
+    </div>
     <div>
       <RegvizEmbed :regex="regex" :height="eHeight"></RegvizEmbed>
     </div>
-    <p
+    <div
       class="mt-8"
     ><slot name="seconddescr"></slot>
-    </p>
+    </div>
   </div>
-  </post>
+  </section>
 </template>
 
 <script>
@@ -58,7 +58,7 @@ export default {
   },
   data() {
     return {
-      regex: / /gm,
+      regex: / /,
       flag: "gm",
       matchText: []
     };
@@ -69,10 +69,11 @@ export default {
     }
   },
   created() {
-      this.regex = this.iregex
-      this.flag = this.iflag
-      this.matchText = this.imatchText
+    this.regex = this.iregex
+    this.flag = this.iflag
+    this.matchText = this.imatchText
   }
+
 };
 </script>
 

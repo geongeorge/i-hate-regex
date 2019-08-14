@@ -16,10 +16,12 @@ export default {
     data() {
         return {
             timer: null,
+            initialLoad:true,
         }
     },
     mounted() {
-      this.reload()
+    //   this.reload()
+    // handeled in watch
     },
     methods: {
         reload() {
@@ -28,10 +30,17 @@ export default {
         }
     },
     watch:{
-        regex: function() {
-         if(this.timer){
-             clearTimeout(this.timer)
-         }
+        
+        regex() {
+            //needed to ignore initial watch on init load
+            if(this.initialLoad) {
+                this.reload()
+                this.initialLoad = false 
+                return;
+            }
+            if(this.timer){
+                clearTimeout(this.timer)
+            }
           this.timer = setTimeout(()=>{
              this.reload()
             },1000)

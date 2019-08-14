@@ -1,23 +1,18 @@
 <template>
-  <expr 
-  :iregex='regex'
-  :iflag='flag'
-  :imatchText='matchText'
-  :eHeight='embedHeight'
-  >
-    <template slot="title">username</template>
+  <expr :iregex="regex" :iflag="flag" :imatchText="matchText" :eHeight="embedHeight">
+    <span slot="title">username</span>
 
-    <template slot="tagline">match a username</template>
+    <span slot="tagline">match a username</span>
 
-    <template
+    <p
       slot="firstdescr"
-    >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, reiciendis officiis harum quas tempora cupiditate laborum aliquid cumque magni voluptatum.</template>
+    >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, reiciendis officiis harum quas tempora cupiditate laborum aliquid cumque magni voluptatum.</p>
 
-    <template slot="seconddescr">
+    <div slot="seconddescr">
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, reiciendis officiis harum quas tempora cupiditate laborum aliquid cumque magni voluptatum.</p>
       <br />
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, dolore minus. Mollitia eius, voluptatem optio delectus repudiandae cupiditate, perferendis corporis culpa veritatis suscipit eligendi? Hic fugiat esse quae quos pariatur.</p>
-    </template>
+    </div>
   </expr>
 </template>
 
@@ -29,7 +24,7 @@ export default {
   },
   data() {
     return {
-      regex: /^[a-z0-9_-]{3,15}$/gm,
+      regex: /^[a-z0-9_-]{3,15}$/,
       flag: "gm",
       matchText: [
         "lorem",
