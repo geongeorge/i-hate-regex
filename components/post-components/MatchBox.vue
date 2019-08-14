@@ -54,7 +54,21 @@ export default {
       let text = element.innerText || element.textContent || ""; //get inner text without html
       return text;
     },
-    boxEdited() {
+     boxEdited() {
+      if (process.client) {
+        //when box edited
+        //somehow need to locate the cursor location and place it there
+        let text = this.getMatchTextOnly(); //get inner text without html
+        // replace text with highlight html included
+        text = text.replace(
+          this.regex,
+          '<span class="bg-green-200 rounded px-1">$&</span>'
+        );
+
+        this.dataText = text
+      }
+     },
+    boxEditedNew() {
       if (process.client) {
         //when box edited
         //somehow need to locate the cursor location and place it there
