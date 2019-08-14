@@ -16,7 +16,7 @@
       class="mt-8"
     >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae ea commodi, consectetur sint labore, reiciendis reprehenderit quaerat quam provident accusamus numquam, harum quo praesentium corrupti. Ab aspernatur architecto ipsum accusantium.</p>
     <div>
-      <RegvizEmbed :regex="regex"></RegvizEmbed>
+      <RegvizEmbed :regex="regex" :height="300"></RegvizEmbed>
     </div>
   </div>
 </template>
