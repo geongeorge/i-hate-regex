@@ -1,11 +1,15 @@
 <template>
+<post>
   <div>
     <a href="#">
       <h1 class="text-2xl group">
-        <span class="group-hover:text-red-600">#</span> username
+        <span class="group-hover:text-red-600">#</span> 
+        <slot name="title"></slot>
       </h1>
     </a>
-    <p class="text-sm text-gray-500">match a valid username</p>
+    <p class="text-sm text-gray-500">
+        <slot name="tagline"></slot>
+    </p>
     <div class="mt-8">
       <CodeBox :regex="regex" :flag="flag" @regexChanged="regexChanged"></CodeBox>
     </div>
@@ -14,14 +18,23 @@
 
     <p
       class="mt-8"
-    >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae ea commodi, consectetur sint labore, reiciendis reprehenderit quaerat quam provident accusamus numquam, harum quo praesentium corrupti. Ab aspernatur architecto ipsum accusantium.</p>
+    ><slot name="firstdescr"></slot>
+    </p>
     <div>
-      <RegvizEmbed :regex="regex" :height="300"></RegvizEmbed>
+      <RegvizEmbed :regex="regex" :height="eheight"></RegvizEmbed>
     </div>
+    <p
+      class="mt-8"
+    ><slot name="seconddescr"></slot>
+    </p>
   </div>
+  </post>
 </template>
 
 <script>
+//base layout
+import post from '~/layout-g/base/post'
+
 import Logo from "~/components/utils/Logo";
 import CodeBox from "~/components/post-components/CodeBox";
 import MatchBox from "~/components/post-components/MatchBox";
@@ -31,33 +44,34 @@ import RegvizEmbed from "~/components/post-components/RegvizEmbed";
 export default {
   layout: "post",
   components: {
+    post,
     Logo,
     CodeBox,
     MatchBox,
     RegvizEmbed
   },
+  props: {
+      iregex: {default: / /}, //input regex
+      iflag: {default: 'gm'}, //input flags
+      imatchText: {default: ['lorem ipsum']}, //input text
+      eheight: {default: 400} //embed regviz height
+  },
   data() {
     return {
-      regex: /^[a-z0-9_-]{3,15}$/gm,
+      regex: / /gm,
       flag: "gm",
-      matchText: [
-        "lorem",
-        "geon",
-        "gr3at",
-        "a",
-        "ab",
-        "abc",
-        "abcd",
-        "yo yossj",
-        "mahga",
-        "abcdefghijklmnopqrst"
-      ]
+      matchText: []
     };
   },
   methods: {
     regexChanged(event) {
       this.regex = new RegExp(event.regex, event.flag);
     }
+  },
+  mounted() {
+      this.regex = this.iregex
+      this.flag = this.iflag
+      this.matchText = this.imatchText
   }
 };
 </script>

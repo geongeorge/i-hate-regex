@@ -9,7 +9,7 @@
     </div>
     <div class="flex-1 bg-white text-gray-700">
         <div class="container mx-auto md:mt-5 lg:mt-20 px-2 max-w-4xl text-left">
-            <nuxt />
+            <slot></slot>
         </div>
     </div>
     </div>
