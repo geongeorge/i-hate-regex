@@ -11,16 +11,14 @@ export default {
     props: {
         height: {default: 400},
         regex: {default: / /},
-        embedRoot: {default: 'http://localhost:3300/make/'},
+        embedRoot: {default: 'https://embed.ihateregex.io/make/'},
     },
     data() {
         return {
-            timer: null,
-            initialLoad:true,
         }
     },
     mounted() {
-    //   this.reload()
+      this.reload()
     // handeled in watch
     },
     methods: {
@@ -32,18 +30,7 @@ export default {
     watch:{
         
         regex() {
-            //needed to ignore initial watch on init load
-            if(this.initialLoad) {
-                this.reload()
-                this.initialLoad = false 
-                return;
-            }
-            if(this.timer){
-                clearTimeout(this.timer)
-            }
-          this.timer = setTimeout(()=>{
-             this.reload()
-            },1000)
+            this.reload()
         }
     }
 };

@@ -1,5 +1,5 @@
 <template>
-<section>
+<post>
   <div>
     <a href="#">
       <h1 class="text-2xl group">
@@ -28,7 +28,7 @@
     ><slot name="seconddescr"></slot>
     </div>
   </div>
-  </section>
+  </post>
 </template>
 
 <script>
