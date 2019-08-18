@@ -1,5 +1,6 @@
 <template>
-    <div class=" mt-6 p-3 rounded text-gray-600 text-left">
+    <div class="p-3 rounded text-gray-600 text-left"
+    :class="addclass">
         <a href="#">
         <h2 class="text-black text-lg hover:underline">{{title}}</h2>
         </a>
@@ -10,7 +11,8 @@
 <script>
     export default {
         props: {
-            title: {default:""}
+            title: {default:""},
+            addclass: {default: ['mt-6']}
         }
 }
 </script>

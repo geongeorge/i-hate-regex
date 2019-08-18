@@ -1,6 +1,6 @@
 <template>
   <div
-    class="modal absolute w-full h-full top-0 left-0 flex items-center justify-center z-10"
+    class="modal absolute w-full h-full top-0 left-0 flex items-center justify-center z-40"
     :class="{'opacity-0 pointer-events-none' : !modelShow}"
   >
     <div

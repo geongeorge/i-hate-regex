@@ -1,20 +1,46 @@
 <template>
+<div>
+  <NavBar @sidebarStateChanged="toggleSidebar"></NavBar>
   <div class="min-h-screen md:flex">
-    <div class="flex-none w-full md:w-1/5 bg-gray-200 text-gray-700">
-        <div class="text-center pt-2">
+    <div class="fixed lg:static lg:h-auto  inset-0 h-full bg-gray-100 z-20 flex-none w-full lg:w-1/5 bg-gray-200 text-gray-700"
+    :class="{'hidden lg:block': !sidebar}">
+        <div class="text-center mt-5 pt-2">
           <a href="#" class="group">
             <h2 class="text-2xl">i<span class="font-bold group-hover:text-red-600">Hate</span>Regex</h2>
           </a>
         </div>
+        <div class='mt-5 px-2'>
+          <SideBarSearch></SideBarSearch>
+        </div>
     </div>
-    <div class="flex-1 bg-white text-gray-700">
+    <div class="flex-1 bg-white lg:w-4/5 lg:static text-gray-700">
         <div class="container mx-auto md:mt-5 lg:mt-20 px-2 max-w-4xl text-left">
             <slot></slot>
         </div>
     </div>
     </div>
+    </div>
 </template>
-
+<script>
+import SideBarSearch from '~/components/utils/SideBarSearch'
+import NavBar from './navbar'
+export default {
+  components: {
+    SideBarSearch,
+    NavBar
+  },
+  data() {
+    return {
+      sidebar: false
+    }
+  },
+  methods : {
+  toggleSidebar(evt) {
+    this.sidebar = evt
+  }
+  }
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
