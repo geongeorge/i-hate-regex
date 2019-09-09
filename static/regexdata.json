@@ -26,7 +26,8 @@
             "/[a-zA-Z0-9]/",
             "/(hello){1,3}/"
         ],
-        "embedHeight": 300
+        "embedHeight": 300,
+        "tags" : ["name", "slug"]
     },
     {
         "id": "password",
@@ -55,6 +56,7 @@
             "/[a-zA-Z0-9]/",
             "/(hello){1,3}/"
         ],
-        "embedHeight": 300
+        "embedHeight": 300,
+        "tags" : ["password", "secret"]
     }
 ]

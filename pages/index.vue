@@ -8,8 +8,8 @@
       </p>
       <SearchBox :initQuery="query" @changed="searchAction"></SearchBox>
       <div v-if="query">
-        <SearchResult v-for="(item, key) in searchResults" :key="key" :title="item.key">
-        {{item.description}}
+        <SearchResult v-for="(item, key) in searchResults" :key="key" :id="item.id" :title="item.title">
+        {{item.firstdescr}}
         </SearchResult>
 
         <NoResults v-if="searchResults.length < 1">
@@ -35,7 +35,7 @@ import SearchResult from '~/components/utils/SearchResult'
 import NoResults from '~/components/utils/NoResults'
 import CommonResults from '~/components/utils/CommonResults'
 
-import jsonData from '~/static/regdata.json'
+import jsonData from '~/static/regexdata.json'
 
 export default {
   components: {
@@ -66,11 +66,7 @@ export default {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: [
-          "key",
-          "description",
-          "tags"
-        ]
+        keys: ["title", "firstdescr", "tags"]
       }
       this.$search(this.query, this.catalog, options).then(results => {
         this.searchResults = results

@@ -13,8 +13,8 @@
       </form>
     </div>
     <div class="" v-if="query">
-      <SearchResult v-for="(item, key) in searchResults" :key="key" :title="item.key" :addclass="['mt-0']">
-        {{item.description.substring(0,15) + '...'}}
+      <SearchResult v-for="(item, key) in searchResults" :key="key" :id="item.id" :title="item.title" :addclass="['mt-0']">
+        {{item.firstdescr.substring(0,15) + '...'}}
         </SearchResult>
     </div>
     <div class="mx-2 mt-5" v-else>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import jsonData from "~/static/regdata.json";
+import jsonData from "~/static/regexdata.json";
 import SearchResult from '~/components/utils/SearchResult'
 export default {
     components: {
@@ -47,7 +47,7 @@ export default {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: ["key", "description", "tags"]
+        keys: ["title", "firstdescr", "tags"]
       };
       this.$search(this.query, this.catalog, options).then(results => {
         this.searchResults = results;
