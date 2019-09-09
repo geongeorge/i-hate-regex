@@ -62,7 +62,7 @@ export default {
         // replace text with highlight html included
         text = text.replace(
           this.regex,
-          '<span class="bg-green-200 rounded px-1">$&</span>'
+          '<span class="bg-green-200 rounded px-1 hover:bg-teal-200">$&</span>'
         );
 
         this.dataText = text
@@ -97,7 +97,7 @@ export default {
           //string matched
           let matchStr = text.substr(startPos,matches[0].length)
 
-          matchStr = "<span class='bg-green-200 rounded border border-green-200 hover:border-blue-400'>"+matchStr+"</span>"
+          matchStr = "<span class='bg-green-200 border rounded hover:bg-teal-200'>"+matchStr+"</span>"
 
           // text from begining to match string (including)
           let textTillStr = beginPart + matchStr;

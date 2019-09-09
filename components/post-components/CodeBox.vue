@@ -6,31 +6,36 @@
     >
       <no-ssr>
         <div class="w-5/6 flex content-center flex-wrap">
-        <div
-          class="content-center w-full focus:outline-none regex"
-          contenteditable="true"
-          @paste.prevent="onPaste"
-          @keyup="regexChanged"
-          ref="codebox"
-        >{{regex.source}}</div>
+          <div
+            class="content-center w-full focus:outline-none regex"
+            contenteditable="true"
+            @paste.prevent="onPaste"
+            @keyup="regexChanged"
+            ref="codebox"
+          >{{regex.source}}</div>
         </div>
       </no-ssr>
       <div class="w-1/6 flex flex-col content-center text-gray-400">
-      <div class="w-full text-right">
-          <a href="#" class="text-3xl text-gray-500 hover:text-green-500" @click.prevent="toggleFlagSelect">/{{myflag}}</a>
+        <div class="w-full text-right">
+          <a
+            href="#"
+            class="text-3xl text-gray-500 hover:text-green-500"
+            @click.prevent="toggleFlagSelect"
+          >/{{myflag}}</a>
         </div>
         <div class="w-full relative flex content-start text-right">
-          <a href="#" class="text-base w-full hover:text-blue-400" 
-          :class="{'opacity-0': ifCopy}"
-          @click.prevent="copyRegex">copy</a>
+          <a
+            href="#"
+            class="text-base w-full hover:text-blue-400"
+            :class="{'opacity-0': ifCopy}"
+            @click.prevent="copyRegex"
+          >copy</a>
           <transition name="fade">
             <span
               v-show="ifCopy"
               class="absolute top-0 left-0 w-full h-full text-base"
-              >
-              &lt; copied /&gt;
-            </span>
-        </transition>
+            >&lt; copied /&gt;</span>
+          </transition>
         </div>
       </div>
     </div>
@@ -70,7 +75,7 @@ export default {
       changeTimer: null,
       regexError: false,
       myflag: "",
-      ifCopy:false, //Variable to show copied message
+      ifCopy: false, //Variable to show copied message
       flagSelectorShow: false
     };
   },
@@ -133,11 +138,11 @@ export default {
       try {
         var successful = document.execCommand("copy");
         var msg = successful ? "successful" : "unsuccessful";
-        
+
         this.ifCopy = true;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.ifCopy = false;
-        },300);
+        }, 300);
       } catch (err) {
         alert("Oops, unable to copy");
       }
@@ -145,7 +150,13 @@ export default {
       /* unselect the range */
       // regexToCopy.setAttribute('type', 'hidden')
       window.getSelection().removeAllRanges();
-    }
+    },
+    onPaste(e) {
+      var text = (e.originalEvent || e).clipboardData.getData('text/plain');
+
+        document.execCommand("insertHTML", false, text);
+    },
+   
   }
 };
 </script>
@@ -155,8 +166,9 @@ export default {
   transition: all 0.5s ease;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: all .3s ease-in-out;
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease-in-out;
   transform: scale(1.5);
 }
 .fade-enter /* .fade-leave-active below version 2.1.8 */ {
