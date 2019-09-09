@@ -9,7 +9,7 @@
     >{{myregex.firstdescr}}</p>
 
     <div slot="seconddescr">
-      <p>{{myregex.seconddescr}}</p>
+      <p v-html="myregex.seconddescr"></p>
       <br />
       <CheatTable :inputRegex="myregex.cheatRegex"></CheatTable>
     </div>
@@ -37,6 +37,9 @@ export default {
               return val.id == this.id
           })
       }
+  },
+  mounted() {
+
   }
 };
 </script>
