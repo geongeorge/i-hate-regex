@@ -11,18 +11,22 @@
     </p>
 
     <div slot="seconddescr">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus, reiciendis officiis harum quas tempora cupiditate laborum aliquid cumque magni voluptatum.</p>
+      <p>
+        This expression can be used to find or validate a username field. You may edit the regex to your liking for number of characters and/or types of values
+      </p>
       <br />
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque, dolore minus. Mollitia eius, voluptatem optio delectus repudiandae cupiditate, perferendis corporis culpa veritatis suscipit eligendi? Hic fugiat esse quae quos pariatur.</p>
+        <CheatTable  :inputRegex="cheatRegex"></CheatTable>
     </div>
   </expr>
 </template>
 
 <script>
 import expr from "~/layout-g/expr.vue";
+import CheatTable from '~/components/post-components/CheatTable'
 export default {
   components: {
-    expr
+    expr,
+    CheatTable
   },
   data() {
     return {
@@ -30,15 +34,22 @@ export default {
       flag: "gm",
       matchText: [
         "lorem",
-        "geon",
+        "ipsum",
         "gr3at",
         "a",
         "ab",
         "abc",
         "abcd",
-        "yo yossj",
-        "mahga",
+        "abcde",
+        "john doe",
+        "johnny",
         "abcdefghijklmnopqrst"
+      ],
+      cheatRegex:[
+        "/^/",
+        "/$/",
+        "/[a-zA-Z0-9]/",
+        "/(hello){1,3}/"        
       ],
       embedHeight: 300
     };

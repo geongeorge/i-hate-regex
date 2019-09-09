@@ -1,0 +1,153 @@
+[
+    {
+        "regex": "/hello/",
+        "usage": "looks for the string between the forward slashes (case-sensitive)"
+    },
+    {
+        "regex": "/hello/i",
+        "usage": "looks for the string between the forward slashes (case-insensitive)"
+    },
+    {
+        "regex": "/hello/g",
+        "usage": "looks for multiple occurrences of string between the forward slashes"
+    },
+    {
+        "regex": "/h.llo/",
+        "usage": "the '.' matches any one character other than a new line character... matches 'hello', 'hallo' but not 'h\nllo'"
+    },
+    {
+        "regex": "/h.*llo/",
+        "usage": "the \"*\" matches any character(s) zero or more times... matches \"hello\", \"heeeeeello\", \"hllo\", \"hwarwareallo\""
+    },
+
+
+
+    {
+        "regex": "/\\d/",
+        "usage": "matches any digit"
+    },
+    {
+        "regex": "/\\D/",
+        "usage": "matches any non-digit"
+    },
+    {
+        "regex": "/\\w/",
+        "usage": "matches any word character (a-z, A-Z, 0-9, _)"
+    },
+    {
+        "regex": "/\\W/",
+        "usage": "matches any non-word character"
+    },
+    {
+        "regex": "/\\s/",
+        "usage": "matches any white space character (\\r (carriage return),\\n (new line), \\t (tab), \\f (form feed))"
+    },
+    {
+        "regex": "/\\S/",
+        "usage": "matches any non-white space character"
+    },
+
+
+    {
+        "regex": "/[abcd]/",
+        "usage": "matches any character in square brackets"
+    },
+    {
+        "regex": "/[ch]at/",
+        "usage": "matches cat or hat"
+    },
+    {
+        "regex": "/[^abcd]/",
+        "usage": "matches anything except the characters in square brackets"
+    },
+
+
+
+    {
+        "regex": "/[a-z]/",
+        "usage": "matches all lowercase letters"
+    },
+    {
+        "regex": "/[A-Z]/",
+        "usage": "matches all uppercase letters"
+    },
+    {
+        "regex": "/[0-9]/",
+        "usage": "matches all digits"
+    },
+    {
+        "regex": "/[a-zA-Z]/",
+        "usage": "matches all lowercase and uppercase letters"
+    },
+    {
+        "regex": "/[^a-zA-Z]/",
+        "usage": "matches non-letters"
+    },
+    {
+        "regex": "/[a-zA-Z0-9]/",
+        "usage": "matches all lowercase, uppercase letters and numbers"
+    },
+
+
+    
+    {
+        "regex": "/(hello){4}/",
+        "usage": "matches \"hellohellohellohello\""
+    },
+    {
+        "regex": "/hello{3}/",
+        "usage": "matches \"hellooo\" and \"helloooo\" but not \"helloo\""
+    },
+    {
+        "regex": "/(hello){1,3}/",
+        "usage": "matches \"hello\" that occur between 1 and 3 times (inclusive)"
+    },
+    {
+        "regex": "/(hello){3,}/",
+        "usage": "matches \"hello\" that occur atleast 3 times"
+    },
+
+
+
+
+
+    {
+        "regex": "/ab*c/",
+        "usage": "matches zero or more repetitions of \"b\" (matches \"abc\", \"abbbbc\", \"ac\")"
+    },
+    {
+        "regex": "/ab+c/",
+        "usage": "matches one or more repetitions of \"b\" (matches \"abc\", \"abbbbc\", but not \"ac\")"
+    },
+    {
+        "regex": "/^/",
+        "usage": "matches beginning of a line"
+    },
+    {
+        "regex": "/$/",
+        "usage": "matches end of a line"
+    },
+
+
+
+
+
+    {
+        "regex": "/(hard)?work/",
+        "usage": "matches \"work\" or \"hardwork\""
+    },
+    {
+        "regex": "/(?:hard)?work/",
+        "usage": "matches \"work\" or \"hardwork\" but is a non-capturing group"
+    },
+
+
+
+
+    {
+        "regex": "/i am a (cat|dog|whale) person/",
+        "usage": "matches \"i am a cat person\", \"i am a dog person\" and \"i am a whale person\""
+    }
+    
+   
+]
