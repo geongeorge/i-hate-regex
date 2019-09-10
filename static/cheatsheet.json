@@ -147,7 +147,25 @@
     {
         "regex": "/i am a (cat|dog|whale) person/",
         "usage": "matches \"i am a cat person\", \"i am a dog person\" and \"i am a whale person\""
-    }
+    },
     
+
+
+    {
+        "regex": "/z(?=a)/",
+        "usage": "positive lookahead... matches the \"z\" before the \"a\" in pizza but not the first \"z\""
+    },
+    {
+        "regex": "/z(?!a)/",
+        "usage": "negative lookahead... matches the first \"z\" but not the \"z\" before the \"a\""
+    },
+    {
+        "regex": "/(?<=[aeiou])\\w/",
+        "usage": "positive lookbehind... matches any word character that is preceded by a vowel"
+    },
+    {
+        "regex": "/(?<![aeiou])\\w/",
+        "usage": "negative lookbehind... matches any word character that is not preceded by a vowel"
+    }
    
 ]

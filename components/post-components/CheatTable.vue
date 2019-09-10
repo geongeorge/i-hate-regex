@@ -9,7 +9,7 @@
       </thead>
       <tbody v-if="!showAll">
         <tr v-for="(reg,key) in regexes" :key="key">
-          <td><code>{{reg.regex}}</code></td>
+          <td><code class='text-green-600'>{{reg.regex}}</code></td>
           <td>{{reg.usage}}</td>
         </tr>
       </tbody>

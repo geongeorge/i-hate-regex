@@ -3,7 +3,7 @@
         "id": "username",
         "title": "username",
         "tagline": "match a username",
-        "firstdescr": " Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
+        "firstdescr": "Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
         "seconddescr": "This expression can be used to find or validate a username field. You may edit the regex to your liking for number of characters and/or types of values",
         "regex": "^[a-z0-9_-]{3,15}$",
         "flag": "gm",
@@ -33,9 +33,9 @@
         "id": "password",
         "title": "password",
         "tagline": "match a password",
-        "firstdescr": "Minimum eight characters, at least one letter and one number",
-        "seconddescr": "<ul><li>At least one upper case English letter, (?=.*?[A-Z])</li><li>At least one lower case English letter, (?=.*?[a-z])</li><li>At least one digit, (?=.*?[0-9])</li><li>At least one special character, (?=.*?[#?!@$%^&*-])</li><li>Minimum eight in length .{8,} (with the anchors)</li></ul>",
-        "regex": "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
+        "firstdescr": "Minimum eight characters, at least one upper case English letter, one lower case English letter, one number and one special character",
+        "seconddescr": "<ul class='list-disc'><li>At least one upper case English letter, <code>(?=.*?[A-Z])</code></li><li>At least one lower case English letter, <code>(?=.*?[a-z])</code></li><li>At least one digit, <code>(?=.*?[0-9])</code></li><li>At least one special character or space, <code>(?=.*?[#?!@$ %^&*-])</code></li><li>Minimum eight in length <code>.{8,}</code></li></ul><br> The <code>(?=.*?[A-Z])</code> lookahead is used to check if after some characters if there is an occurance of an upper case letter. Similarly all the other lookaheads(lower, numbers, etc) are checked to complete the whole regex.",
+        "regex": "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$",
         "flag": "gm",
         "matchText": [
             "lorem",
@@ -53,10 +53,93 @@
         "cheatRegex": [
             "/^/",
             "/$/",
-            "/[a-zA-Z0-9]/",
+            "/(?:hard)?work/",
+            "/[abcd]/",
+            "/[a-z]/",
+            "/[0-9]/",
+            "/h.*llo/",
+            "/(hello){3,}/",
+            "/z(?=a)/"
+        ],
+        "embedHeight": 500,
+        "tags" : ["password", "secret"]
+    },
+    {
+        "id": "email",
+        "title": "email simple",
+        "tagline": "match a email",
+        "firstdescr": "Simple email regex that works most of the times",
+        "seconddescr": "Validate or scrape email ids using this regular expression.<br><code class='text-green-600'>\\S+</code> checks for <strong>one or more</strong> repetitions of a non-whitespace character.<br><br>**This expression also matches <code class='text-red-600'>test@test@gmail.com</code> as you can see in the matches field",
+        "regex": "\\S+@\\S+\\.\\S+",
+        "flag": "gm",
+        "matchText": [
+            "geon@ihateregex.io",
+            "test@gmail.com mail@test.org",
+            "mail@testing.com",
+            "hello@",
+            "@test",
+            "email@gmail",
+            "theproblem@test@gmail.com"
+
+        ],
+        "cheatRegex": [
+            "/\\S/",
+            "/ab+c/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["email", "mail"]
+    },
+    {
+        "id": "email-2",
+        "title": "email complicated",
+        "tagline": "match a email more accurately",
+        "firstdescr": "Unnecessarily complicated email regex that works \"more than\" most of the times",
+        "seconddescr": "You're on your own with this. I have no idea how to explain this.<br>Credits: <a href='https://emailregex.com/' target='_blank'>emailregex</a>",
+        "regex": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+        "flag": "gm",
+        "matchText": [
+            "geon@ihateregex.io",
+            "test@gmail.com mail@test.org",
+            "mail@testing.com",
+            "hello@",
+            "@test",
+            "email@gmail",
+            "theproblem@test@gmail.com"
+
+        ],
+        "cheatRegex": [
+            "/[abcd]/",
+            "/[a-z]/",
+            "/[0-9]/"
+        ],
+        "embedHeight": 600,
+        "tags" : ["email", "mail"]
+    },
+    {
+        "id": "phone",
+        "title": "phone number",
+        "tagline": "match a phone number",
+        "firstdescr": "Match a phone number with \"-\" and/or country code.",
+        "seconddescr": "This is a generalized expression which works most of the time. There are too many variables to make this work around the world. Do try with the phone numbers in your country before using",
+        "regex": "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$",
+        "flag": "im",
+        "matchText": [
+            "+919367788755",
+            "8989829304",
+            "+16308520397",
+            "786-307-3615",
+            "789",
+            "123765",
+            "1-1-1",
+            "+982"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[0-9]/",
             "/(hello){1,3}/"
         ],
         "embedHeight": 300,
-        "tags" : ["password", "secret"]
+        "tags" : ["name", "slug"]
     }
 ]
