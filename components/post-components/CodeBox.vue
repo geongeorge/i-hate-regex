@@ -44,6 +44,7 @@
         :modelShow="flagSelectorShow"
         @closeModal="toggleFlagSelect"
         @selected="flagsChange"
+        :selections="myflag.split('')"
       ></FlagSelector>
     </no-ssr>
     <input type="text" class="hidden" ref="regexCopy" v-model="regex" />
@@ -74,7 +75,7 @@ export default {
       myRegex: null,
       changeTimer: null,
       regexError: false,
-      myflag: "",
+      myflag: "gm",
       ifCopy: false, //Variable to show copied message
       flagSelectorShow: false
     };

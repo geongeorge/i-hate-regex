@@ -122,7 +122,7 @@
         "firstdescr": "Match a phone number with \"-\" and/or country code.",
         "seconddescr": "This is a generalized expression which works most of the time. There are too many variables to make this work around the world. Do try with the phone numbers in your country before using",
         "regex": "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$",
-        "flag": "im",
+        "flag": "gmi",
         "matchText": [
             "+919367788755",
             "8989829304",

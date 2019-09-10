@@ -11,7 +11,7 @@
         <slot name="tagline"></slot>
     </p>
     <div class="mt-8">
-      <CodeBox :regex="regex" :flag="iflag" @regexChanged="regexChanged"></CodeBox>
+      <CodeBox :regex="regex" :flag="flag" @regexChanged="regexChanged"></CodeBox>
     </div>
 
     <MatchBox :regex="regex" :sampleText="matchText"></MatchBox>
@@ -59,7 +59,7 @@ export default {
   data() {
     return {
       regex: / /,
-      flag: "gm",
+      flag: "",
       matchText: []
     };
   },
