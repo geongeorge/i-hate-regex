@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="flex flex-col h-full">
     <div>
       <form autocomplete="off" method="post" action>
         <input
@@ -12,13 +12,21 @@
         />
       </form>
     </div>
-    <div class="" v-if="query">
-      <SearchResult v-for="(item, key) in searchResults" :key="key" :id="item.id" :title="item.title" :addclass="['mt-0']">
-        {{item.firstdescr.substring(0,25) + '...'}}
-        </SearchResult>
+    <div class="overflow-y-scroll">
+      <div class="" v-if="query">
+        <SearchResult v-for="(item, key) in searchResults" :key="key" :id="item.id" :title="item.title" :addclass="['mt-0']">
+          {{item.firstdescr.substring(0,25) + '...'}}
+          </SearchResult>
+      </div>
+      <div class="mx-2 mt-5" v-if="!query && related.length!=0">
+          <h3 class="font-bold">Related:</h3>
+      </div>
     </div>
-    <div class="mx-2 mt-5" v-if="!query && related.length!=0">
-        <h3 class="font-bold">Related:</h3>
+    
+    <div class="w-full absolute bottom-0 border-t py-3 px-2 bg-gray-200 left-0">
+      <p class="my-2">Feedback</p>
+      <p class="my-2">Submit regex</p>
+      <p class="my-2">Contribute</p>
     </div>
   </div>
 </template>
