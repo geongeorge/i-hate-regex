@@ -14,10 +14,10 @@
     </div>
     <div class="" v-if="query">
       <SearchResult v-for="(item, key) in searchResults" :key="key" :id="item.id" :title="item.title" :addclass="['mt-0']">
-        {{item.firstdescr.substring(0,15) + '...'}}
+        {{item.firstdescr.substring(0,25) + '...'}}
         </SearchResult>
     </div>
-    <div class="mx-2 mt-5" v-else>
+    <div class="mx-2 mt-5" v-if="!query && related.length!=0">
         <h3 class="font-bold">Related:</h3>
     </div>
   </div>
@@ -34,7 +34,8 @@ export default {
     return {
       query: "",
       catalog: jsonData,
-      searchResults: []
+      searchResults: [],
+      related:[]
     };
   },
   mounted() {},

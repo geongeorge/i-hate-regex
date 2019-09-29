@@ -94,7 +94,7 @@
         "title": "email complicated",
         "tagline": "match a email more accurately",
         "firstdescr": "Unnecessarily complicated email regex that works \"more than\" most of the times",
-        "seconddescr": "You're on your own with this. I have no idea how to explain this.<br>Credits: <a href='https://emailregex.com/' target='_blank'>emailregex</a>",
+        "seconddescr": "You're on your own with this. I have no idea how to explain this.<br>sauce: <a href='https://emailregex.com/' target='_blank'>emailregex</a>",
         "regex": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
         "flag": "gm",
         "matchText": [
@@ -138,6 +138,191 @@
             "/$/",
             "/[0-9]/",
             "/(hello){1,3}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["phone", "mobile","number"]
+    },
+    {
+        "id": "ip",
+        "title": "ip address(ipv4)",
+        "tagline": "match an ipv4 address",
+        "firstdescr": "Matches an ip address(version 4)",
+        "seconddescr": "ip addresses are of the range <code class='text-green-600'>0.0.0.0</code> - <code class='text-green-600'>255.255.255.255</code><br>This expression will check a given string for an ip address and also considers the range.",
+        "regex": "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}",
+        "flag": "gm",
+        "matchText": [
+            "192.168.1.1",
+            "127.0.0.1",
+            "0.0.0.0",
+            "255.255.255.255",
+            "256.256.256.256",
+            "999.999.999.999",
+            "1.2.3",
+            "1.2.3.4"
+        ],
+        "cheatRegex": [
+            "/[0-9]/",
+            "/(hello){4}/",
+            "/[abcd]/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["ip","ipv4"]
+    },
+    {
+        "id": "ipv6",
+        "title": "ip address(ipv6)",
+        "tagline": "match an ipv6 address",
+        "firstdescr": "This abomination is used to check for ipv6",
+        "seconddescr": "(don't ask me ¯\\_(ツ)_/¯)",
+        "regex": "(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))",
+        "flag": "gm",
+        "matchText": [
+            "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+            "FE80:0000:0000:0000:0202:B3FF:FE1E:8329",
+            "192.168.1.1",
+            "test:test:test:test:test:test:test:test"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/"
+        ],
+        "embedHeight": 500,
+        "tags" : []
+    },
+    {
+        "id": "date",
+        "title": "date",
+        "tagline": "match a date dd/mm/yyyy",
+        "firstdescr": "Matches a date in the format dd/mm/yyyy , dd-mm-yyyy or dd.mm.yyyy",
+        "seconddescr": "This expression can be used to find or validate a date field and can have seperators: <code class='text-green-600'>-</code>, <code class='text-green-600'>/</code> and <code class='text-green-600'>.</code>",
+        "regex": "(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})",
+        "flag": "gm",
+        "matchText": [
+            "01/01/2000",
+            "31/01/2000",
+            "32/01/2000",
+            "01-1-2000",
+            "1.1.2019"
+        ],
+        "cheatRegex": [
+            "/[0-9]/",
+            "/i am a (cat|dog|whale) person/",
+            "/z(?=a)/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 500,
+        "tags" : ["name", "slug"]
+    },
+    {
+        "id": "ascii",
+        "title": "ASCII",
+        "tagline": "match any ascii character",
+        "firstdescr": "Matches any printable ascii character",
+        "seconddescr": "matches all characters between <code class='text-green-600'>space</code> and <code class='text-green-600'>tilde[~]</code>.<br>such a beautiful expression 👌 <br>sauce: <a href='https://catonmat.net/my-favorite-regex' target='_blank'>catonmat</a>",
+        "regex": "[ -~]",
+        "flag": "gm",
+        "matchText": [
+            "lor難em",
+            "ipsum",
+            "說上難車中防水回大石在該是並",
+            "a - = ? / ~",
+            "ab",
+            "難",
+            "ഇത് മലയാളം",
+            "Christmas"
+        ],
+        "cheatRegex": [
+            "/[a-z]/"
+        ],
+        "embedHeight": 120,
+        "tags" : ["ascii", "unicode"]
+    },
+    {
+        "id": "url",
+        "title": "url",
+        "tagline": "match a valid url",
+        "firstdescr": "A valid URL with http/https",
+        "seconddescr": "This regex validates a url which should include <code class='text-green-600'>http</code> or <code class='text-green-600'>https</code>",
+        "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&\\/\\/=]*)",
+        "flag": "gm",
+        "matchText": [
+            "lorem",
+            "ipsum",
+            "gr3at",
+            "a",
+            "ab",
+            "abc",
+            "abcd",
+            "abcde",
+            "john doe",
+            "johnny",
+            "abcdefghijklmnopqrst"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["name", "slug"]
+    },
+    {
+        "id": "notusername",
+        "title": "not username",
+        "tagline": "match a username",
+        "firstdescr": "Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
+        "seconddescr": "This expression can be used to find or validate a username field. You may edit the regex to your liking for number of characters and/or types of values",
+        "regex": "^[a-z0-9_-]{3,15}$",
+        "flag": "gm",
+        "matchText": [
+            "lorem",
+            "ipsum",
+            "gr3at",
+            "a",
+            "ab",
+            "abc",
+            "abcd",
+            "abcde",
+            "john doe",
+            "johnny",
+            "abcdefghijklmnopqrst"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["name", "slug"]
+    },
+    {
+        "id": "notusername",
+        "title": "not username",
+        "tagline": "match a username",
+        "firstdescr": "Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
+        "seconddescr": "This expression can be used to find or validate a username field. You may edit the regex to your liking for number of characters and/or types of values",
+        "regex": "^[a-z0-9_-]{3,15}$",
+        "flag": "gm",
+        "matchText": [
+            "lorem",
+            "ipsum",
+            "gr3at",
+            "a",
+            "ab",
+            "abc",
+            "abcd",
+            "abcde",
+            "john doe",
+            "johnny",
+            "abcdefghijklmnopqrst"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){4}/"
         ],
         "embedHeight": 300,
         "tags" : ["name", "slug"]

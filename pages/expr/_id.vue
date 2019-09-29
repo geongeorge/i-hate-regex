@@ -1,17 +1,22 @@
 <template>
-  <expr :iregex="new RegExp(myregex.regex)" :iflag="myregex.flag" :imatchText="myregex.matchText" :eHeight="myregex.embedHeight">
+  <expr
+    :iregex="new RegExp(myregex.regex)"
+    :iflag="myregex.flag"
+    :imatchText="myregex.matchText"
+    :eHeight="myregex.embedHeight"
+  >
     <span slot="title">{{myregex.title}}</span>
 
     <span slot="tagline">{{myregex.tagline}}</span>
 
-    <p
-      slot="firstdescr"
-    >{{myregex.firstdescr}}</p>
+    <p slot="firstdescr">{{myregex.firstdescr}}</p>
 
     <div slot="seconddescr">
       <p v-html="myregex.seconddescr"></p>
       <br />
+      <h2 class="text-2xl">Cheatsheet</h2>
       <CheatTable :inputRegex="myregex.cheatRegex"></CheatTable>
+      <div class="text-base text-green-600 my-2 underline"><nuxt-link to="/cheatsheet">view full cheatsheet</nuxt-link></div>
     </div>
   </expr>
 </template>
@@ -19,7 +24,7 @@
 <script>
 import expr from "~/layout-g/expr.vue";
 import CheatTable from "~/components/post-components/CheatTable";
-import regexdata from "~/static/regexdata.json"
+import regexdata from "~/static/regexdata.json";
 export default {
   components: {
     expr,
@@ -27,19 +32,26 @@ export default {
   },
   data() {
     return {
-        // regex: regexdata
-        id: this.$route.params.id
+      // regex: regexdata
+      id: this.$route.params.id
     };
   },
   computed: {
-      myregex() {
-          return regexdata.find((val)=>{
-              return val.id == this.id
-          })
-      }
+    myregex() {
+      return regexdata.find(val => {
+        return val.id == this.id;
+      });
+    }
   },
-  mounted() {
-
+  validate({ params, query, store }) {
+    var val = regexdata.find(val => {
+      return val.id == params.id;
+    });
+    if(val) {
+      return true;
+    } else {
+      return false;
+    }
   }
 };
 </script>

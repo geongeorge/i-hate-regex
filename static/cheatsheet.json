@@ -65,11 +65,11 @@
 
     {
         "regex": "/[a-z]/",
-        "usage": "matches all lowercase letters"
+        "usage": "matches all lowercase letters (a to z)"
     },
     {
         "regex": "/[A-Z]/",
-        "usage": "matches all uppercase letters"
+        "usage": "matches all uppercase letters (A to Z)"
     },
     {
         "regex": "/[0-9]/",
