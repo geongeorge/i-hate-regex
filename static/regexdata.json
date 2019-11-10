@@ -13,7 +13,6 @@
             "gr3at",
             "a",
             "ab",
-            "abc",
             "abcd",
             "abcde",
             "john doe",
@@ -268,63 +267,28 @@
         "tags" : ["name", "slug"]
     },
     {
-        "id": "notusername",
-        "title": "not username",
-        "tagline": "match a username",
-        "firstdescr": "Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
-        "seconddescr": "This expression can be used to find or validate a username field. You may edit the regex to your liking for number of characters and/or types of values",
-        "regex": "^[a-z0-9_-]{3,15}$",
+        "id": "ssn",
+        "title": "ssn",
+        "tagline": "match a social security number",
+        "firstdescr": "Hyphen-separated Social Security Number (SSN) in the format NNN-NN-NNNN.",
+        "seconddescr": "This expression can be used to find or validate a social security number. You may edit the regex to your liking for number of characters and/or types of values",
+        "regex": "^\\d{3}-\\d{2}-\\d{4}$",
         "flag": "gm",
         "matchText": [
-            "lorem",
-            "ipsum",
-            "gr3at",
-            "a",
+            "123-45-6789",
+            "123 45 6789",
+            "333-22-4444",
+            "aaa-bbb-cccc",
             "ab",
-            "abc",
-            "abcd",
-            "abcde",
-            "john doe",
-            "johnny",
-            "abcdefghijklmnopqrst"
+            "abcd"
         ],
         "cheatRegex": [
             "/^/",
             "/$/",
-            "/[a-zA-Z0-9]/",
-            "/(hello){4}/"
+            "/\\d/",
+            "/(hello){1,3}/"
         ],
         "embedHeight": 300,
-        "tags" : ["name", "slug"]
-    },
-    {
-        "id": "notusername",
-        "title": "not username",
-        "tagline": "match a username",
-        "firstdescr": "Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
-        "seconddescr": "This expression can be used to find or validate a username field. You may edit the regex to your liking for number of characters and/or types of values",
-        "regex": "^[a-z0-9_-]{3,15}$",
-        "flag": "gm",
-        "matchText": [
-            "lorem",
-            "ipsum",
-            "gr3at",
-            "a",
-            "ab",
-            "abc",
-            "abcd",
-            "abcde",
-            "john doe",
-            "johnny",
-            "abcdefghijklmnopqrst"
-        ],
-        "cheatRegex": [
-            "/^/",
-            "/$/",
-            "/[a-zA-Z0-9]/",
-            "/(hello){4}/"
-        ],
-        "embedHeight": 300,
-        "tags" : ["name", "slug"]
+        "tags" : ["ssn"]
     }
 ]

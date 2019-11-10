@@ -19,7 +19,7 @@
           <CommonResults></CommonResults>
       </div>
       <p class="text-gray-600 mt-5">
-            <a href="#" class="hover:underline">see all</a>
+            <!-- <a href="#" class="hover:underline">see all</a> -->
         </p>
       
 
