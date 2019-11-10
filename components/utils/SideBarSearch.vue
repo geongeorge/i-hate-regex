@@ -24,9 +24,15 @@
     </div>
     
     <div class="w-full absolute bottom-0 border-t py-3 px-2 bg-gray-200 left-0">
-      <p class="my-2">Feedback</p>
+      <a href="https://twitter.com/geongeorgek" class="hover:underline" target="_blank">
+      <p class="my-2">feedback</p>
+      </a>
+      <a href="https://forms.gle/Cwo3VupujQJzeoYQ9" class="hover:underline" target="_blank">
       <p class="my-2">Submit regex</p>
-      <p class="my-2">Contribute</p>
+      </a>
+      <a href="https://www.buymeacoffee.com/geon" class="hover:underline" target="_blank">
+      <p class="my-2">Buy me a coffee</p>
+      </a>
     </div>
   </div>
 </template>
@@ -49,6 +55,20 @@ export default {
   mounted() {},
   methods: {
     fuseSearch() {
+      let options = {
+        shouldSort: true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: ["title", "firstdescr", "tags"]
+      };
+      this.$search(this.query, this.catalog, options).then(results => {
+        this.searchResults = results;
+      });
+    },
+    relatedSearch() {
       let options = {
         shouldSort: true,
         threshold: 0.6,

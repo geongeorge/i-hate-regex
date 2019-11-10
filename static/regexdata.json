@@ -61,7 +61,7 @@
             "/z(?=a)/"
         ],
         "embedHeight": 500,
-        "tags" : ["password", "secret"]
+        "tags" : ["password", "secret", "key"]
     },
     {
         "id": "email",
@@ -86,7 +86,7 @@
             "/ab+c/"
         ],
         "embedHeight": 300,
-        "tags" : ["email", "mail"]
+        "tags" : ["email", "mail", "gmail"]
     },
     {
         "id": "email-2",
@@ -112,7 +112,7 @@
             "/[0-9]/"
         ],
         "embedHeight": 600,
-        "tags" : ["email", "mail"]
+        "tags" : ["email", "mail", "gmail"]
     },
     {
         "id": "phone",
@@ -186,7 +186,7 @@
             "/$/"
         ],
         "embedHeight": 500,
-        "tags" : []
+        "tags" : ["ip","ipv6"]
     },
     {
         "id": "date",
@@ -210,7 +210,7 @@
             "/(hello){4}/"
         ],
         "embedHeight": 500,
-        "tags" : ["name", "slug"]
+        "tags" : ["date", "today","dd/mm/yyyy","day"]
     },
     {
         "id": "ascii",
@@ -264,7 +264,7 @@
             "/(hello){4}/"
         ],
         "embedHeight": 300,
-        "tags" : ["name", "slug"]
+        "tags" : ["url", "http","https","link"]
     },
     {
         "id": "ssn",
@@ -289,6 +289,6 @@
             "/(hello){1,3}/"
         ],
         "embedHeight": 300,
-        "tags" : ["ssn"]
+        "tags" : ["ssn","number","id"]
     }
 ]

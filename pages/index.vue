@@ -22,6 +22,20 @@
             <!-- <a href="#" class="hover:underline">see all</a> -->
         </p>
       
+      <div class="text-gray-500 mt-10 text-sm">
+        <div class="flex flex-wrap justify-center xmx-2">
+
+          <div class="mx-3">
+           <nuxt-link to="cheatsheet/" class="hover:underline">cheatsheet</nuxt-link>
+          </div>
+
+          <div class="mx-3">
+           <a href="https://forms.gle/Cwo3VupujQJzeoYQ9" class="hover:underline" target="_blank">submit</a>
+          </div>
+
+        </div>
+           
+        </div>
 
     </div>
   </div>
