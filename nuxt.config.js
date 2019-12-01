@@ -48,6 +48,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/tailwindcss'
   ],
   /*
   ** Build configuration
@@ -62,5 +63,9 @@ export default {
     */
     extend(config, ctx) {
     }
-  }
+  },
+
+  purgeCSS: {
+    // whitelist: ['lg:w-1/5', 'lg:w-4/5', 'hidden', 'lg:block'],
+  },
 }

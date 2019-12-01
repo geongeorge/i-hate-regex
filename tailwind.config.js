@@ -10,7 +10,8 @@ module.exports = {
   variants: {
     textColor: ['group-hover','hover'],
     opacity: ['group-hover'],
-    border: ['hover']
+    border: ['hover'],
+    width: ['responsive']
   },
   plugins: [
   ]

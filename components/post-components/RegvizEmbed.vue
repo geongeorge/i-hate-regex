@@ -1,7 +1,7 @@
 <template>
 <div>
 <div class='embed-container'>
-      <iframe src="https://embed.ihateregex.io/" :height="height" ref='regviz' frameborder="0"></iframe>
+      <iframe class="" src="https://embed.ihateregex.io/" :height="height" ref='regviz' frameborder="0"></iframe>
 </div>
 </div>
 </template>
@@ -51,6 +51,7 @@ export default {
 <style>
 .embed-container {
   position: relative;
+  z-index: 2;
   height: auto;
   overflow: hidden;
   max-width: 100%;
