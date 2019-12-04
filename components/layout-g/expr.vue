@@ -33,7 +33,7 @@
 
 <script>
 //base layout
-import post from '~/layout-g/base/post'
+import post from '~/components/layout-g/base/post'
 
 import Logo from "~/components/utils/Logo";
 import CodeBox from "~/components/post-components/CodeBox";

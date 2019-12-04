@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import expr from "~/layout-g/expr.vue";
+import expr from "~/components/layout-g/expr.vue";
 import CheatTable from "~/components/post-components/CheatTable";
 import regexdata from "~/static/regexdata.json";
 export default {

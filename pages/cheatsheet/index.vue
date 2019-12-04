@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import post from "~/layout-g/base/post.vue";
+import post from "~/components//layout-g/base/post.vue";
 import CheatTable from "~/components/post-components/CheatTable";
 export default {
   components: {

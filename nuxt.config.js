@@ -1,4 +1,4 @@
-
+import purgecss from '@fullhuman/postcss-purgecss'
 export default {
   mode: 'universal',
   server: {
@@ -65,7 +65,16 @@ export default {
     }
   },
 
-  purgeCSS: {
-    // whitelist: ['lg:w-1/5', 'lg:w-4/5', 'hidden', 'lg:block'],
-  },
+  // purgeCSS: {
+  //   // whitelist: ['lg:w-1/5', 'lg:w-4/5', 'hidden', 'lg:block'],
+  //   paths: ['layouts-g/**/*.vue']
+  // },
+  postcss: {
+    plugins: [
+      purgecss({
+        content: ['./pages/**/*.vue', './layouts/**/*.vue', './layouts-g/**/*.vue', './components/**/*.vue'],
+        whitelist: ['html', 'body'],
+      })
+    ]
+  }
 }
