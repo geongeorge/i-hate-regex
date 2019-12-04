@@ -36,7 +36,7 @@ export default {
     '~/plugins/vue-fuse',
     '~/plugins/vue-awesome',
     { src: '~/plugins/regex-colorize', mode: 'client' },
-    { src: '~plugins/ga.js', mode: 'client' } //google analytics
+    // { src: '~plugins/ga.js', mode: 'client' } //google analytics
   ],
   /*
   ** Nuxt.js dev-modules
@@ -49,7 +49,10 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-153865454-1'
+    }]
   ],
   /*
   ** Build configuration

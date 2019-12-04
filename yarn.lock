@@ -951,6 +951,13 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^3.2.0"
 
+"@nuxtjs/google-analytics@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/google-analytics/-/google-analytics-2.2.2.tgz#ccd6ce064b0c5b4d397e8a46fcf9ed75b4369ce9"
+  integrity sha512-uzjdj9GEvPa1jB2soPAeTH75u8qbEAMV36i9PLfkv23emfUIPF1PcgsRFJOBT1x19Zeg9ywC4U8q76li912vEQ==
+  dependencies:
+    vue-analytics "^5.18.0"
+
 "@nuxtjs/tailwindcss@^1.0.0":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-1.1.1.tgz#5d7a7052dce6d19240431eaaac2a485c13cfbfc2"
@@ -7176,6 +7183,11 @@ vm-browserify@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
+
+vue-analytics@^5.18.0:
+  version "5.18.0"
+  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.18.0.tgz#15a4aee44700d6ba3ee0b0dbd98b58154c78c53d"
+  integrity sha512-rnDwx+4mksrwohIxqwJqRVuXotpyKjEPeqMoYveAK3vIp8MiO2BuUfVxELaPFN9/OXFt2ayuQDMParsjWDrNmA==
 
 vue-awesome@^3.5.4:
   version "3.5.4"
