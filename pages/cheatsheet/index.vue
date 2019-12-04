@@ -30,6 +30,15 @@ export default {
   components: {
     post,
     CheatTable
+  },
+  head () {
+    return {
+      title: "Regex cheatsheet - Regular expressions for the common man",
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'description', content: "A regular expression cheatsheet that you can refer to. Simple examples and explainations." }
+      ]
+    }
   }
 
 };

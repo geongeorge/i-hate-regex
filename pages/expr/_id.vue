@@ -52,6 +52,18 @@ export default {
     } else {
       return false;
     }
+  },
+  head () {
+    const thisregex = regexdata.find(val => {
+        return val.id == this.id;
+      });
+    return {
+      title: "Regex for "+thisregex.title+" - IHateRegex",
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'description', content: thisregex.firstdescr }
+      ]
+    }
   }
 };
 </script>
