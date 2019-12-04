@@ -36,6 +36,7 @@ export default {
     '~/plugins/vue-fuse',
     '~/plugins/vue-awesome',
     { src: '~/plugins/regex-colorize', mode: 'client' },
+    { src: '~plugins/ga.js', mode: 'client' } //google analytics
   ],
   /*
   ** Nuxt.js dev-modules
