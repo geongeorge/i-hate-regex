@@ -18,15 +18,18 @@
           {{item.firstdescr.substring(0,25) + '...'}}
           </SearchResult>
       </div>
+      <button @click="relatedSearch()">clikc</button>
       <div class="mx-2 mt-5" v-if="!query && related.length!=0">
           <h3 class="font-bold">Related:</h3>
       </div>
     </div>
     
     <div class="w-full absolute bottom-0 border-t py-3 px-2 bg-gray-200 left-0">
-      <a href="https://twitter.com/geongeorgek" class="hover:underline" target="_blank">
-      <p class="my-2">feedback</p>
+      <span class="bg-blue-600 p-1 rounded-lg font-bold hover:underline text-white">
+      <a href="https://twitter.com/geongeorgek" class="" target="_blank">
+      follow @geongeorgek
       </a>
+      </span>
       <a href="https://forms.gle/Cwo3VupujQJzeoYQ9" class="hover:underline" target="_blank">
       <p class="my-2">Submit regex</p>
       </a>
@@ -52,7 +55,9 @@ export default {
       related:[]
     };
   },
-  mounted() {},
+  mounted() {
+    this.relatedSearch();
+  },
   methods: {
     fuseSearch() {
       let options = {
@@ -79,7 +84,7 @@ export default {
         keys: ["title", "firstdescr", "tags"]
       };
       this.$search(this.query, this.catalog, options).then(results => {
-        this.searchResults = results;
+        this.related = results;
       });
     }
   }

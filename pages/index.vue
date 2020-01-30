@@ -102,7 +102,7 @@ export default {
   },
   head () {
     return {
-      title: "I Hate Regex",
+      title: "Regex cheatsheet - I Hate Regex",
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         { hid: 'description', name: 'description', content: "Stop hating regex and start learning." }
