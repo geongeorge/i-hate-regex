@@ -296,7 +296,7 @@
         "title": "uuid",
         "tagline": "match a hyphen-delimited uuid",
         "firstdescr": "Hyphen-separated universally unique identifier (UUID) in the format xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx.",
-        "seconddescr": "This expression can be used to find or validate a UUID. You may edit the regex to your liking for removing hyphens",
+        "seconddescr": "This expression can be used to find or validate a UUID. UUIDs are often used to identify information in computer systems. A UUID is a 128-bit number represented, textually, in 16 octets as 32 hexadecimal (base-16) digits. These 32 digits are displayed in 5 groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters. You may edit the regex to your liking for removing hyphens.",
         "regex": "^\\d{3}-\\d{2}-\\d{4}$",
         "regex": "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$",
         "flag": "gm",
