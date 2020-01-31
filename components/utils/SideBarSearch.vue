@@ -39,10 +39,8 @@
       <a href="https://www.buymeacoffee.com/geon" class="hover:underline" target="_blank">
       <p class="my-2">Buy me a coffee</p>
       </a>
-      <span class="bg-red-600 p-1 rounded-lg font-bold hover:underline text-white">
-      <a href="https://www.producthunt.com/posts/i-hate-regex/" class="" target="_blank">
-      upvote on Producthunt 🔥
-      </a>
+      <span class="">
+      <a href="https://www.producthunt.com/posts/i-hate-regex?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-i-hate-regex" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=182905&theme=light" alt="i Hate Regex - regex cheatsheet for the haters | Product Hunt Embed" style="width: 250px; height: 54px;" width="220px" height="54px" /></a>
       </span>
     </div>
   </div>
