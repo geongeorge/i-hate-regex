@@ -158,6 +158,8 @@ export default {
     // set datatext to sample text array from props
     this.dataText = this.sampleText.join("\n");
     // this.boxEdited()
+
+    this.toggleMatches()
   }
 };
 </script>
