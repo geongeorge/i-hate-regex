@@ -32,6 +32,9 @@
           <div class="mx-3">
            <a href="https://forms.gle/Cwo3VupujQJzeoYQ9" class="hover:underline" target="_blank">submit</a>
           </div>
+          <div class="mx-3">
+           <a href="https://github.com/geongeorge/i-hate-regex" class="hover:underline" target="_blank">github</a>
+          </div>
 
         </div>
            
