@@ -6,7 +6,7 @@
   <p>
     <strong>a regex cheatsheet for the haters</strong>
   </p>
-  <a href="https://ihateregex.io"><img src="https://i.imgur.com/orxpLOW.png"></a>
+  <a href="https://ihateregex.io"><img src="https://i.imgur.com/orxpLOW.png" width=250></a>
   <p>
     <strong>don't just use; understand.</strong>
 </p>
