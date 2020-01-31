@@ -85,3 +85,9 @@ $ yarn generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
+### Credits
+
+- The visual demo is built with: [regexper](https://gitlab.com/javallone/regexper-static
+)
