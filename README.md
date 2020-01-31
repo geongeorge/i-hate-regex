@@ -1,12 +1,20 @@
-<p style="text-align: center;">
- <h1>iHateRegex</h1>
-
-<em>a regex cheatsheet for the haters</em>
-
-<center>
-<img src="https://i.imgur.com/orxpLOW.png" width=250>
-</center>
+<div align="center">
+  
+  <h1>
+    iHateRegex
+  </h1>
+  <p>
+    <strong>a regex cheatsheet for the haters</strong>
+  </p>
+  <a href="https://ihateregex.io"><img src="https://i.imgur.com/orxpLOW.png"></a>
+  <p>
+    <strong>don't just use; understand.</strong>
 </p>
+<p>
+    <a href="https://ihateregex.io">iHateRegex.io</a>
+
+</p>
+</div>
 
 ## Contribute Regex
 
