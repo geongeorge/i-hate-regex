@@ -40,7 +40,7 @@
       <p class="my-2">Buy me a coffee</p>
       </a>
       <span class="bg-red-600 p-1 rounded-lg font-bold hover:underline text-white">
-      <a href="https://www.producthunt.com/posts/ihateregex" class="" target="_blank">
+      <a href="https://www.producthunt.com/posts/i-hate-regex/maker-invite?code=gN1gTO" class="" target="_blank">
       upvote on Producthunt 🔥
       </a>
       </span>
