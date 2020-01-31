@@ -39,6 +39,11 @@
       <a href="https://www.buymeacoffee.com/geon" class="hover:underline" target="_blank">
       <p class="my-2">Buy me a coffee</p>
       </a>
+      <span class="bg-red-600 p-1 rounded-lg font-bold hover:underline text-white">
+      <a href="https://www.producthunt.com/posts/ihateregex" class="" target="_blank">
+      upvote on Producthunt 🔥
+      </a>
+      </span>
     </div>
   </div>
 </template>
