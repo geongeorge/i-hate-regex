@@ -18,7 +18,7 @@
           {{item.firstdescr.substring(0,25) + '...'}}
           </SearchResult>
       </div>
-      <button @click="relatedSearch()">clikc</button>
+      <!-- <button @click="relatedSearch()">clikc</button> -->
       <div class="mx-2 mt-5" v-if="!query && related.length!=0">
           <h3 class="font-bold">Related:</h3>
       </div>

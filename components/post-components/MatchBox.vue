@@ -157,9 +157,8 @@ export default {
   mounted() {
     // set datatext to sample text array from props
     this.dataText = this.sampleText.join("\n");
-    // this.boxEdited()
-
-    this.toggleMatches()
+    // this.boxEdited() 
+    setTimeout(this.toggleMatches, 1500);
   }
 };
 </script>
