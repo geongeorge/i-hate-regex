@@ -178,6 +178,8 @@
         "matchText": [
             "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
             "FE80:0000:0000:0000:0202:B3FF:FE1E:8329",
+            "2001:db8::1",
+            "fE80::aBcD:eF12:3456:7890%enp0s2f5",
             "192.168.1.1",
             "test:test:test:test:test:test:test:test"
         ],
