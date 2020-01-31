@@ -1,10 +1,12 @@
-<center>
+<p style="text-align: center;">
  <h1>iHateRegex</h1>
 
-> a regex cheatsheet for haters
+<em>a regex cheatsheet for the haters</em>
 
+<center>
 <img src="https://i.imgur.com/orxpLOW.png" width=250>
 </center>
+</p>
 
 ## Contribute Regex
 
