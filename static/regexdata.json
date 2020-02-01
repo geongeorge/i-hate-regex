@@ -93,7 +93,7 @@
         "title": "email complicated",
         "tagline": "match a email more accurately",
         "firstdescr": "Unnecessarily complicated email regex that works \"more than\" most of the times",
-        "seconddescr": "You're on your own with this. I have no idea how to explain this.<br>sauce: <a href='https://emailregex.com/' target='_blank'>emailregex</a>",
+        "seconddescr": "You're on your own with this. I have no idea how to explain this.<br>source: <a href='https://emailregex.com/' target='_blank'>emailregex</a>",
         "regex": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
         "flag": "gm",
         "matchText": [
@@ -217,7 +217,7 @@
         "title": "ASCII",
         "tagline": "match any ascii character",
         "firstdescr": "Matches any printable ascii character",
-        "seconddescr": "matches all characters between <code class='text-green-600'>space</code> and <code class='text-green-600'>tilde[~]</code>.<br>such a beautiful expression 👌 <br>sauce: <a href='https://catonmat.net/my-favorite-regex' target='_blank'>catonmat</a>",
+        "seconddescr": "matches all characters between <code class='text-green-600'>space</code> and <code class='text-green-600'>tilde[~]</code>.<br>such a beautiful expression 👌 <br>source: <a href='https://catonmat.net/my-favorite-regex' target='_blank'>catonmat</a>",
         "regex": "[ -~]",
         "flag": "gm",
         "matchText": [
