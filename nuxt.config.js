@@ -52,8 +52,15 @@ export default {
     '@nuxtjs/tailwindcss',
     ['@nuxtjs/google-analytics', {
       id: 'UA-153865454-1'
-    }]
+    }],
+    ["@nuxtjs/toast"]
   ],
+  toast: {
+    position: "bottom-center",
+    duration: 3000,
+    theme: "outline",
+    keepOnHover: true
+  },
   /*
   ** Build configuration
   */

@@ -1,6 +1,4 @@
 
-# Created by https://www.gitignore.io/api/node,vuejs,nuxtjs
-# Edit at https://www.gitignore.io/?templates=node,vuejs,nuxtjs
 
 ### Node ###
 # Logs
@@ -124,5 +122,3 @@ dist
 # Recommended template: Node.gitignore
 
 yarn-error.log
-
-# End of https://www.gitignore.io/api/node,vuejs,nuxtjs
