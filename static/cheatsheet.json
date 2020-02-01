@@ -166,9 +166,5 @@
     {
         "regex": "/(?<![aeiou])\\w/",
         "usage": "negative lookbehind... matches any word character that is not preceded by a vowel"
-    },
-   {
-       "regex": "/^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$/",
-       "usage": "matches MAJOR.MINOR.PATCH version format"
-   }
+    }
 ]
