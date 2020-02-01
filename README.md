@@ -69,20 +69,25 @@ To contribute simply add your regex to `static/regexdata.json`
 
 ## Build Setup 🚀
 
-``` bash
-# install dependencies
-$ yarn install
+- Install dependencies ⚙️
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+  ``` bash
+  $ yarn install
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+  ```
+- Test on localhost 🛠
+  ``` bash
+  # serve with hot reload at localhost:3000
+  $ yarn dev
+  ```
+- Build and Start nuxt server 🚀
+  ``` bash
+  # build for production and launch server
+  $ yarn build
+  $ yarn start
+  ```
 
-# generate static project
-$ yarn generate
-```
+This project is built with Nuxt.js 🙌
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
