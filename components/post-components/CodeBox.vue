@@ -141,6 +141,7 @@ export default {
         var msg = successful ? "successful" : "unsuccessful";
 
         this.ifCopy = true;
+        this.$toast.success('Copied')
         setTimeout(() => {
           this.ifCopy = false;
         }, 300);
