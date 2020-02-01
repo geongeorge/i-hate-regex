@@ -342,5 +342,32 @@
         ],
         "embedHeight": 330,
         "tags" : ["semver", "version", "semantic"]
+    },
+    {
+        "id": "uuid",
+        "title": "uuid",
+        "tagline": "match a hyphen-delimited uuid",
+        "firstdescr": "Hyphen-separated universally unique identifier (UUID) in the format xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx.",
+        "seconddescr": "This expression can be used to find or validate a UUID. UUIDs are often used to uniquely identify information in computer systems. A UUID is a 128-bit number represented, textually, in 16 octets as 32 hexadecimal (base-16) digits. These 32 digits are displayed in 5 groups separated by hyphens, in the form 8-4-4-4-12, for a total of 36 characters. You may edit the regex to your liking for removing hyphens.",
+        "regex": "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$",
+        "flag": "gm",
+        "matchText": [
+            "123e4567-e89b-12d3-a456-426655440000",
+            "c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd",
+            "C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD",
+            "c73bcdcc-2669-4bf6-81d3-e4an73fb11fd",
+            "c73bcdcc26694bf681d3e4ae73fb11fd",
+            "definitely-not-a-uuid"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/\\b/",
+            "/\\d/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["uuid","guid","id"]
     }
 ]
