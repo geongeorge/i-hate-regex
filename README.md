@@ -11,8 +11,9 @@
   <p>
     <strong>don't just use; understand.</strong>
 </p>
+
 <p>
-    
+   Chat with us on <a href="https://t.me/ihateregex" target="_blank">Telegram</a>
 
 </p>
 </div>
