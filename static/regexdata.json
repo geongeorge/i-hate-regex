@@ -290,5 +290,34 @@
         ],
         "embedHeight": 300,
         "tags" : ["ssn","number","id"]
+    },
+    {
+        "id": "url-slug",
+        "title": "url slug",
+        "tagline": "match a url slug",
+        "firstdescr": "A ‘slug' is the part that comes at the very end of a URL, and refers to a specific page or post. Usually a combination of word that separated with hyphen",
+        "seconddescr": "This expression can be used to validate an url slug with only lowercase alphabet or numbers on each word. For example https://github.com/geongeorge/i-hate-regex , i-hate-regex is the slug . You may edit the regex to your liking for number of characters and/or types of values",
+        "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "flag": "gm",
+        "matchText": [
+            "best-way",
+            "best-d4y",
+            "my-1ife",
+            "@t-the-sky",
+            "at-the--sky",
+            "-",
+            "a",
+            "fly-"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z]/",
+            "/ab+c/",
+            "/ab*c/",
+            "/(?:hard)?work/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["slug", "url", "link"]
     }
 ]
