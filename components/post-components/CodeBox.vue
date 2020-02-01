@@ -132,7 +132,6 @@ export default {
 
       try {
         var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
 
         this.$toast.success('Copied');
       } catch (err) {
