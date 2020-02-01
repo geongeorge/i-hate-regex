@@ -319,5 +319,31 @@
         ],
         "embedHeight": 300,
         "tags" : ["slug", "url", "link"]
+    },
+    {
+        "id": "c-like-identifier",
+        "title": "C-like identifier",
+        "tagline": "match an C-like identifier",
+        "firstdescr": "In computer languages, identifiers are tokens (also called symbols) which name language entities",
+        "seconddescr": "This expression can be used to validate an C-like identifier that can contains alphanumeric and underscore, but can't start with a number . You may edit the regex to your liking for number of characters and/or types of values",
+        "regex": "^[a-zA-Z_][0-9a-zA-Z_]*$",
+        "flag": "gm",
+        "matchText": [
+            "abc123",
+            "PascalCase",
+            "camelCase",
+            "snake_case",
+            "_test",
+            "_",
+            "123abc"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z]/",
+            "/ab*c/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["c", "identifier"]
     }
 ]
