@@ -167,5 +167,4 @@
         "regex": "/(?<![aeiou])\\w/",
         "usage": "negative lookbehind... matches any word character that is not preceded by a vowel"
     }
-   
 ]
