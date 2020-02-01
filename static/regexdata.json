@@ -262,7 +262,7 @@
             "/[a-zA-Z0-9]/",
             "/(hello){4}/"
         ],
-        "embedHeight": 300,
+        "embedHeight": 550,
         "tags" : ["url", "http","https","link"]
     },
     {
