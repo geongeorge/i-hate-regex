@@ -140,11 +140,7 @@ export default {
         var successful = document.execCommand("copy");
         var msg = successful ? "successful" : "unsuccessful";
 
-        this.ifCopy = true;
-        this.$toast.success('Copied')
-        setTimeout(() => {
-          this.ifCopy = false;
-        }, 300);
+        this.$toast.success('Copied');
       } catch (err) {
         alert("Oops, unable to copy");
       }
