@@ -25,11 +25,11 @@
     </div>
     
     <div class="w-full absolute bottom-0 border-t py-3 px-2 bg-gray-200 left-0">
-      <span class="bg-blue-600 p-1 rounded-lg font-bold hover:underline text-white">
+      <!-- <span class="bg-blue-600 p-1 rounded-lg font-bold hover:underline text-white">
       <a href="https://twitter.com/geongeorgek" class="" target="_blank">
       follow @geongeorgek
       </a>
-      </span>
+      </span> -->
       <a href="https://github.com/geongeorge/i-hate-regex" class="hover:underline" target="_blank">
       <p class="my-2">github</p>
       </a>
@@ -40,7 +40,7 @@
       <p class="my-2">Buy me a coffee</p>
       </a>
       <span class="">
-      <a href="https://www.producthunt.com/posts/i-hate-regex?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-i-hate-regex" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=182905&theme=light" alt="i Hate Regex - regex cheatsheet for the haters | Product Hunt Embed" style="width: 250px; height: 54px;" width="220px" height="54px" /></a>
+<a href="https://www.producthunt.com/posts/i-hate-regex?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-i-hate-regex" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=182905&theme=dark" alt="i Hate Regex - regex cheatsheet for the haters | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
       </span>
     </div>
   </div>
