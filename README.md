@@ -4,15 +4,15 @@
     iHateRegex
   </h1>
   <p>
-    <strong>a regex cheatsheet for the haters</strong>
+    <strong><a href="https://ihateregex.io">iHateRegex.io</a> - a regex cheatsheet for the haters</strong>
   </p>
-  <a href="https://ihateregex.io"><img src="https://i.imgur.com/YvpuluX.png" width=400></a>
+  <a href="https://ihateregex.io"><img src="https://i.imgur.com/aAhDp9j.png" width=600></a>
   
   <p>
     <strong>don't just use; understand.</strong>
 </p>
 <p>
-    <a href="https://ihateregex.io">iHateRegex.io</a>
+    
 
 </p>
 </div>
