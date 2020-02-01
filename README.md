@@ -1,7 +1,7 @@
 <div align="center">
   
   <h1>
-    iHateRegex
+    iHateRegex 😈
   </h1>
   <p>
     <strong><a href="https://ihateregex.io">iHateRegex.io</a> - a regex cheatsheet for the haters</strong>
@@ -17,7 +17,7 @@
 </p>
 </div>
 
-## Contribute Regex
+## Contribute Regex 🙏
 
 To contribute simply add your regex to `static/regexdata.json`
 
@@ -67,7 +67,7 @@ To contribute simply add your regex to `static/regexdata.json`
 |  embedHeight | Height in pixels of the regex visualization embed  |
 | tags  | tags related to the expression (to be used later)  |
 
-## Build Setup
+## Build Setup 🚀
 
 ``` bash
 # install dependencies
