@@ -13,7 +13,7 @@
           </a>
         </div>
         <div class='mt-5 px-2'>
-          <SideBarSearch></SideBarSearch>
+          <SideBarSearch :tags="tags" :id="id"></SideBarSearch>
         </div>
         </div>
     </div>
@@ -41,6 +41,10 @@ export default {
   components: {
     SideBarSearch,
     NavBar
+  },
+  props: {
+    tags: {default : []},
+    id: {default: ""}
   },
   data() {
     return {

@@ -9,7 +9,7 @@ module.exports = {
   theme: {},
   variants: {
     textColor: ['group-hover','hover'],
-    opacity: ['group-hover'],
+    opacity: ['group-hover','hover'],
     border: ['hover'],
     width: ['responsive']
   },

@@ -18,9 +18,11 @@
           {{item.firstdescr.substring(0,25) + '...'}}
           </SearchResult>
       </div>
-      <!-- <button @click="relatedSearch()">clikc</button> -->
-      <div class="mx-2 mt-5" v-if="!query && related.length!=0">
+      <div class="opacity-25 hover:opacity-100" v-if="!query && related.length!==0">
           <h3 class="font-bold">Related:</h3>
+          <SearchResult v-for="(item, key) in related" :key="key" :id="item.id" :title="item.title" :addclass="['mt-0']">
+          {{item.firstdescr.substring(0,25) + '...'}}
+          </SearchResult>
       </div>
     </div>
     
@@ -53,6 +55,10 @@ export default {
     components: {
         SearchResult,
     },
+    props: {
+      tags: {default : []},
+      id: {default:""}
+    },
   data() {
     return {
       query: "",
@@ -62,7 +68,8 @@ export default {
     };
   },
   mounted() {
-    this.relatedSearch();
+    // Search for related
+    setTimeout(this.relatedSearch, 500)
   },
   methods: {
     fuseSearch() {
@@ -89,9 +96,27 @@ export default {
         minMatchCharLength: 1,
         keys: ["title", "firstdescr", "tags"]
       };
-      this.$search(this.query, this.catalog, options).then(results => {
-        this.related = results;
-      });
+
+      // Don't show related if there are no tags or regex
+      if(!this.tags) return;
+
+      // Don't show more than 3 related
+      const noOfRelated = 3;
+      // Initialize to empty temporary array
+      const relatedTemp = [] 
+
+      for(const tag of this.tags)
+        this.$search(tag, this.catalog, options).then(results => {
+          console.log("result",results)
+          //Don't show the same product
+          //Filter the id
+          relatedTemp.push(...results.filter((elm)=> elm.id!== this.id))
+          // Slice to max length
+          if(relatedTemp.length >= noOfRelated) {
+            this.related = relatedTemp.slice(0, noOfRelated);
+          }
+        });
+
     }
   }
 };

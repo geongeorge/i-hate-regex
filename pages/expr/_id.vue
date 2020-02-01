@@ -4,6 +4,8 @@
     :iflag="myregex.flag"
     :imatchText="myregex.matchText"
     :eHeight="myregex.embedHeight"
+    :tags="myregex.tags"
+    :id="myregex.id"
   >
     <span slot="title">{{myregex.title}}</span>
 

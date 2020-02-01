@@ -1,5 +1,5 @@
 <template>
-<post>
+<post :tags="tags" :id="id">
   <div>
     <a href="#">
       <h1 class="text-2xl group">
@@ -54,7 +54,9 @@ export default {
       iregex: {default: / /}, //input regex
       iflag: {default: 'gm'}, //input flags
       imatchText: {default: ['lorem ipsum']}, //input text
-      eHeight: {default: 400} //embed regviz height
+      eHeight: {default: 400}, //embed regviz height
+      tags: {default: []},
+      id: {default: ""}
   },
   data() {
     return {
