@@ -255,7 +255,13 @@
             "abcde",
             "john doe",
             "johnny",
-            "abcdefghijklmnopqrst"
+            "abcdefghijklmnopqrst",
+            "https://github.com/Huy-Ngo/i-hate-regex",
+            "https://www.facebook.com/",
+            "https://www.google.com/",
+            "https://xkcd.com/2048/",
+            "https://this-shouldn't.match@example.com",
+            "http://www.example.com/"
         ],
         "cheatRegex": [
             "/^/",
