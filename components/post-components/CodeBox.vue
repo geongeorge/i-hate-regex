@@ -30,12 +30,6 @@
             :class="{'opacity-0': ifCopy}"
             @click.prevent="copyRegex"
           >copy</a>
-          <transition name="fade">
-            <span
-              v-show="ifCopy"
-              class="absolute top-0 left-0 w-full h-full text-base"
-            >&lt; copied /&gt;</span>
-          </transition>
         </div>
       </div>
     </div>
@@ -138,14 +132,10 @@ export default {
 
       try {
         var successful = document.execCommand("copy");
-        var msg = successful ? "successful" : "unsuccessful";
 
-        this.ifCopy = true;
-        setTimeout(() => {
-          this.ifCopy = false;
-        }, 300);
+        this.$toast.success('Copied');
       } catch (err) {
-        alert("Oops, unable to copy");
+        this.$toast.error("Oops, unable to copy");
       }
 
       /* unselect the range */

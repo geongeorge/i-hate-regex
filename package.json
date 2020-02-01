@@ -11,6 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/toast": "^3.3.0",
     "nuxt": "^2.0.0",
     "regex-colorize": "^0.0.3",
     "vue-awesome": "^3.5.4",
