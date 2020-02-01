@@ -142,7 +142,7 @@ export default {
 
         this.$toast.success('Copied');
       } catch (err) {
-        this.$toast.success("Oops, unable to copy");
+        this.$toast.error("Oops, unable to copy");
       }
 
       /* unselect the range */
