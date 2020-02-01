@@ -30,12 +30,6 @@
             :class="{'opacity-0': ifCopy}"
             @click.prevent="copyRegex"
           >copy</a>
-          <transition name="fade">
-            <span
-              v-show="ifCopy"
-              class="absolute top-0 left-0 w-full h-full text-base"
-            >&lt; copied /&gt;</span>
-          </transition>
         </div>
       </div>
     </div>
