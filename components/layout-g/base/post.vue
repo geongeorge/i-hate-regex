@@ -26,7 +26,7 @@
         <div class="bg-gray-300 mt-6 h-24 w-full shadow-inner">
           <div class="flex flex-col h-full w-full justify-center  items-center">
             <div class="px-2 text-xl">iHateRegex</div>
-            <div class="px-2">by <a href="https://geongeorge.com/" class="underline" target="_blank">geon</a></div>
+            <!-- <div class="px-2">by <a href="https://geongeorge.com/" class="underline" target="_blank">geon</a></div> -->
           </div>
         </div>
     </div>
