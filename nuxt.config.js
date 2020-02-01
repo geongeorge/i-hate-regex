@@ -58,7 +58,7 @@ export default {
   toast: {
     position: "bottom-center",
     duration: 3000,
-    theme: "bubble",
+    theme: "outline",
     keepOnHover: true
   },
   /*

@@ -968,6 +968,13 @@
     nuxt-purgecss "^0.2.1"
     tailwindcss "^1.0.5"
 
+"@nuxtjs/toast@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/toast/-/toast-3.3.0.tgz#fe762dc8a19d81b2a9b5b9e6daac61e5d31821b7"
+  integrity sha512-HZAhWMQqgQ8m2XtQS4CpvoJtiZw2kmdqFg0GJv8upNEXoP7/nATW2CPIFemMtiparevLZwpCAAcMIVqcSW9l1g==
+  dependencies:
+    vue-toasted "^1.1.27"
+
 "@nuxtjs/youch@^4.2.3":
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/@nuxtjs/youch/-/youch-4.2.3.tgz#36f8b22df5a0efaa81373109851e1d857aca6bed"
@@ -7278,6 +7285,11 @@ vue-text-highlight@^2.0.8:
   integrity sha512-JffWtENaae4YPwerVqLwAC8P7VLx5ykrTfcV9Mt1PMXudAc0HqFtkCgk9Xun5/WcCDA/L2zmQXwqGk9UzdmEdw==
   dependencies:
     clone-regexp "^2.1.0"
+
+vue-toasted@^1.1.27:
+  version "1.1.27"
+  resolved "https://registry.yarnpkg.com/vue-toasted/-/vue-toasted-1.1.27.tgz#ce0a74b875f90c2e4a9e163cce6d5fc37d78a07c"
+  integrity sha512-GVbwInwnqkVxQ4GU/XYeQt1e0dAXL8sF5Hr1H/coCBbYUan5xP0G2mEz/HRDf1lt73rFQAN/bJcLTOKkqiM6tg==
 
 vue@^2.6.10:
   version "2.6.10"
