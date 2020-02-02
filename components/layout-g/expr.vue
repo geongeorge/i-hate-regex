@@ -33,7 +33,6 @@
 //base layout
 import post from "~/components/layout-g/base/post"
 
-import Logo from "~/components/utils/Logo"
 import CodeBox from "~/components/post-components/CodeBox"
 import MatchBox from "~/components/post-components/MatchBox"
 
@@ -43,7 +42,6 @@ export default {
   layout: "post",
   components: {
     post,
-    Logo,
     CodeBox,
     MatchBox,
     RegvizEmbed
