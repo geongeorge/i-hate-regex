@@ -49,6 +49,12 @@
       follow @geongeorgek
       </a>
       </span> -->
+      <nuxt-link
+        to="/playground"
+        class="hover:underline"
+      >
+        <p class="my-2">playground</p>
+      </nuxt-link>
       <a
         href="https://github.com/geongeorge/i-hate-regex"
         class="hover:underline"
