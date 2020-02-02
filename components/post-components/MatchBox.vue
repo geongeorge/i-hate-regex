@@ -2,9 +2,8 @@
   <div>
     <div class="flex w-full flex-row">
       <div class="text-sm float-right mr-2">
-        <a
-          href="#"
-          class="text-gray-500 hover:underline"
+        <!-- eslint-disable-next-line -->
+        <a href="#" class="text-gray-500 hover:underline"
           @click="toggleMatches"
           >{{ showText }}
         </a>
@@ -107,6 +106,7 @@ export default {
 
         // the below part to be fixed : match inner groups of regex
         let matches
+        let i = 0 // eslint-disable-line
         while ((matches = this.regex.exec(text)) !== null) {
           // some text...[s]match[e]..end text
           // s-> start pos = index
