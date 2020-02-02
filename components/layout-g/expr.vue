@@ -51,7 +51,7 @@ export default {
     iflag: { default: "gm" }, //input flags
     imatchText: { default: ["lorem ipsum"] }, //input text
     eHeight: { default: 400 }, //embed regviz height
-    tags: { default: [] },
+    tags: { default: ()=>[] }, // Arrays need to be defaulted to factory function
     id: { default: "" }
   },
   data() {

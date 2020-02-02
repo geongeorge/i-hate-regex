@@ -86,7 +86,7 @@ export default {
     SearchResult
   },
   props: {
-    tags: { default: [] },
+    tags: { default: ()=>[] },
     id: { default: "" }
   },
   data() {
@@ -137,7 +137,6 @@ export default {
 
       for (const tag of this.tags)
         this.$search(tag, this.catalog, options).then(results => {
-          console.log("result", results)
           // Don't show the same product
           // Filter the id
           relatedTemp.push(...results.filter(elm => elm.id !== this.id))

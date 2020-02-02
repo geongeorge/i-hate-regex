@@ -35,7 +35,7 @@ export default {
   methods: {
     reload() {
       var embedUrl = this.embedRoot + this.hashEncodeUrl(this.regex.source)
-      console.log("source", this.regex.source, embedUrl)
+      // console.log("source", this.regex.source, embedUrl)
       this.$refs.regviz.src = embedUrl
     },
     // to encode base64 for url

@@ -89,9 +89,7 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.query.q)
     this.query = this.$route.query.q ? this.$route.query.q : this.query
-    console.log(this.query)
     this.$forceUpdate()
   },
   methods: {

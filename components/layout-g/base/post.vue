@@ -48,7 +48,7 @@ export default {
     NavBar
   },
   props: {
-    tags: { default: [] },
+    tags: { default: ()=>[] },
     id: { default: "" }
   },
   data() {
