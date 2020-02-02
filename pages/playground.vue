@@ -47,14 +47,14 @@ export default {
       myregex: {
         id: "",
         title: "playground",
-        tagline: "play around with iHateRegex",
+        tagline: "play around with regex",
         firstdescr: "",
         seconddescr: "",
         regex: "^[a-z0-9_-]{3,15}$",
         flag: "gm",
         matchText: ["lorem", "ipsum"],
         embedHeight: 300,
-        tags: ["name", "slug"]
+        tags: []
       }
     }
   },
