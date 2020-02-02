@@ -68,8 +68,8 @@
         "title": "email simple",
         "tagline": "match an email",
         "firstdescr": "Simple email regex that works most of the times",
-        "seconddescr": "Validate or scrape email ids using this regular expression.<br><code class='text-green-600'>\\S+</code> checks for <strong>one or more</strong> repetitions of a non-whitespace character.<br><br>**This expression also matches <code class='text-red-600'>test@test@gmail.com</code> as you can see in the matches field",
-        "regex": "\\S+@\\S+\\.\\S+",
+        "seconddescr": "Validate or scrape email ids using this regular expression.<br><code class='text-green-600'>[^@ \\t\\r\\n]</code> checks for anything other than<strong>@, space, tab, new lines</strong> repetitions of a non-whitespace character.",
+        "regex": "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+",
         "flag": "gm",
         "matchText": [
             "geon@ihateregex.io",
@@ -82,8 +82,8 @@
 
         ],
         "cheatRegex": [
-            "/\\S/",
-            "/ab+c/"
+            "/hello/",
+            "/[^abcd]/"
         ],
         "embedHeight": 300,
         "tags" : ["email", "mail", "gmail"]
