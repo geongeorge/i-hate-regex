@@ -1,6 +1,8 @@
 <template>
   <span class="text-6xl text-gray-600 align-top">
-    i<span class="font-bold text-red-600">Hate</span>Regex
+    <nuxt-link to="/">
+      i<span class="font-bold text-red-600">Hate</span>Regex
+    </nuxt-link>
   </span>
 </template>
 
