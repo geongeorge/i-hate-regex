@@ -9,7 +9,7 @@
           type="text"
           placeholder="Search"
           @keyup="fuseSearch"
-        >
+        />
       </form>
     </div>
     <div class="overflow-y-scroll">
@@ -21,18 +21,24 @@
           :title="item.title"
           :addclass="['mt-0']"
         >
-          {{ item.firstdescr.substring(0,25) + '...' }}
+          {{ item.firstdescr.substring(0, 25) + "..." }}
         </SearchResult>
       </div>
       <div
         v-if="!query && related.length !== 0"
         class="opacity-25 hover:opacity-100"
-        <h3 class="font-bold"
       >
-        Related:
+        <h3 class="font-bold">
+          Related:
         </h3>
-        <SearchResult v-for="(item, key) in related" :id="item.id" :key="key" :title="item.title" :addclass="['mt-0']">
-          {{ item.firstdescr.substring(0,25) + '...' }}
+        <SearchResult
+          v-for="(item, key) in related"
+          :id="item.id"
+          :key="key"
+          :title="item.title"
+          :addclass="['mt-0']"
+        >
+            {{ item.firstdescr.substring(0,25) + '...' }}
         </SearchResult>
       </div>
     </div>
