@@ -363,5 +363,30 @@
         ],
         "embedHeight": 300,
         "tags" : ["uuid","guid","id"]
+    },
+    {
+        "id": "jira-ticket",
+        "title": "jira issue ticket",
+        "tagline": "match a jira issue ticket number",
+        "firstdescr": "Hyphen-separated Jira project key and ticket issue number",
+        "seconddescr": "This expression can be used to find or validate mentation of Jira issue ticket number",
+        "regex": "[A-Z]{2,}-\\d+",
+        "flag": "gm",
+        "matchText": [
+            "DAT-123",
+            "A-333",
+            "AB-333",
+            "aka-48",
+            "PROJECT-6",
+            "TST 000"
+        ],
+        "cheatRegex": [
+            "/[A-Z]/",
+            "/(hello){3,}/",
+            "/ab+c/",
+            "/\\d/"
+        ],
+        "embedHeight": 200,
+        "tags" : ["jira","software"]
     }
 ]
