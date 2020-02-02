@@ -145,7 +145,7 @@ export default {
           if (relatedTemp.length >= noOfRelated) {
             this.related = relatedTemp.slice(0, noOfRelated)
           }
-      })
+        })
 
     }
   }

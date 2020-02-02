@@ -53,7 +53,7 @@ export default {
       })
     }
   },
-  validate({ params, query, store }) {
+  validate({ params, query, store }) { // eslint-disable-line
     var val = regexdata.find(val => {
       return val.id == params.id
     })
