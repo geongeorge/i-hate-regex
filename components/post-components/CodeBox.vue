@@ -45,7 +45,7 @@
         @selected="flagsChange"
       />
     </no-ssr>
-    <input ref="regexCopy" v-model="regex" type="text" class="hidden">
+    <input ref="regexCopy" v-model="regex" type="text" class="hidden" />
   </section>
 </template>
 
