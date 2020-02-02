@@ -214,7 +214,7 @@
     },
     {
         "id": "ascii",
-        "title": "ASCII",
+        "title": "ascii",
         "tagline": "match any ascii character",
         "firstdescr": "Matches any printable ascii character",
         "seconddescr": "matches all characters between <code class='text-green-600'>space</code> and <code class='text-green-600'>tilde[~]</code>.<br>such a beautiful expression 👌 <br>source: <a href='https://catonmat.net/my-favorite-regex' target='_blank'>catonmat</a>",
