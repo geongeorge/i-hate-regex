@@ -4,7 +4,7 @@
       <div class="text-sm float-right mr-2">
         <!-- eslint-disable-next-line -->
         <a href="#" class="text-gray-500 hover:underline"
-          @click="toggleMatches"
+           @click="toggleMatches"
           >{{ showText }}
         </a>
       </div>

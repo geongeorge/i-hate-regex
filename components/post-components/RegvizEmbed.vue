@@ -9,7 +9,9 @@
         frameborder="0"
       />
       <div class="hidden md:block mr-3">
-        <p class="text-right text-sm opacity-50 hover:opacity-100 hover:underline">
+        <p
+          class="text-right text-sm opacity-50 hover:opacity-100 hover:underline"
+        >
           <a href="#" @click.prevent="copyEmbedCode()">&lt;/&gt; embed code</a>
         </p>
       </div>
@@ -27,7 +29,18 @@ export default {
   },
   data() {
     return {
-      embedUrl : ""
+      embedUrl: ""
+    }
+  },
+  computed: {
+    embedString() {
+      return `<iframe
+        src="${this.embedUrl}"
+        height="${this.height}"
+        style="width:100%"
+        frameborder="0"
+      />
+      `
     }
   },
   watch: {
@@ -56,14 +69,12 @@ export default {
         .replace(/\=+$/, "") // eslint-disable-line
     },
 
-
     copyEmbedCode() {
-
-      var tempInput = document.createElement("input");
-      tempInput.style = "position: absolute; left: -1000px; top: -1000px";
-      tempInput.value = this.embedString;
-      document.body.appendChild(tempInput);
-      tempInput.select();
+      var tempInput = document.createElement("input")
+      tempInput.style = "position: absolute; left: -1000px; top: -1000px"
+      tempInput.value = this.embedString
+      document.body.appendChild(tempInput)
+      tempInput.select()
 
       try {
         document.execCommand("copy")
@@ -72,22 +83,11 @@ export default {
         this.$toast.error("Oops, unable to copy")
       }
 
-      document.body.removeChild(tempInput);
+      document.body.removeChild(tempInput)
 
       /* unselect the range */
       // regexToCopy.setAttribute('type', 'hidden')
       window.getSelection().removeAllRanges()
-    }
-  },
-  computed: {
-    embedString() {
-      return `<iframe
-        src="${this.embedUrl}"
-        height="${this.height}"
-        style="width:100%"
-        frameborder="0"
-      />
-      `
     }
   }
 }
