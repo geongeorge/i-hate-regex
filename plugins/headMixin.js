@@ -13,7 +13,7 @@ export default ({ route }) => {
           {
             hid: "og:image",
             name: "og:image",
-            content: "~/assets/images/ihateregex.png"
+            content: "/ihateregex.png"
           },
           { hid: "og:type", name: "og:type", content: "website" },
           { hid: "og:site_name", name: "og:site_name", content: "iHateRegex" },
