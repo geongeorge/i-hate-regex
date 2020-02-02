@@ -23,7 +23,8 @@
             href="#"
             class="text-3xl text-gray-500 hover:text-green-500"
             @click.prevent="toggleFlagSelect"
-          >/{{ myflag }}</a>
+            >/{{ myflag }}
+          </a>
         </div>
         <div class="w-full relative flex content-start text-right">
           <a
@@ -31,7 +32,8 @@
             class="text-base w-full hover:text-blue-400"
             :class="{ 'opacity-0': ifCopy }"
             @click.prevent="copyRegex"
-          >copy</a>
+            >copy
+          </a>
         </div>
       </div>
     </div>
@@ -43,7 +45,7 @@
         @selected="flagsChange"
       />
     </no-ssr>
-    <input ref="regexCopy" v-model="regex" type="text" class="hidden" >
+    <input ref="regexCopy" v-model="regex" type="text" class="hidden" />
   </section>
 </template>
 
@@ -133,8 +135,7 @@ export default {
       this.selectElementContents(regexToCopy)
 
       try {
-        var successful = document.execCommand("copy")
-
+        document.execCommand("copy")
         this.$toast.success("Copied")
       } catch (err) {
         this.$toast.error("Oops, unable to copy")
