@@ -366,8 +366,8 @@
     },
     {
         "id": "jira-ticket",
-        "title": "Jira issue ticket",
-        "tagline": "match a Jira issue ticket number",
+        "title": "jira issue ticket",
+        "tagline": "match a jira issue ticket number",
         "firstdescr": "Hyphen-separated Jira project key and ticket issue number",
         "seconddescr": "This expression can be used to find or validate mentation of Jira issue ticket number",
         "regex": "[A-Z]{2,}-\\d+",
@@ -387,6 +387,6 @@
             "/\\d/"
         ],
         "embedHeight": 200,
-        "tags" : ["jira"]
+        "tags" : ["jira","software"]
     }
 ]
