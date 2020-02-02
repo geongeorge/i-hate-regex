@@ -1,0 +1,3 @@
+nuxt.config.js
+plugins/regex-colorize.js
+.gitignore
