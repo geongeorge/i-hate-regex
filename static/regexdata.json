@@ -425,7 +425,7 @@
         "matchText": [
             "01:02:03:04:ab:cd",
             "definitely:not:a:mac",
-            "01-02-03-04-ab-cd",
+            "01-02-03-04-ab-cd"
         ],
         "cheatRegex": [
             "/[a-zA-Z0-9]/",
