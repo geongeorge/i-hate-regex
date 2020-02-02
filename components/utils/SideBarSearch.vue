@@ -54,7 +54,7 @@
         class="hover:underline"
         target="_blank"
       >
-        <p class="my-2 font-bold">github</p>
+        <p class="my-2">github</p>
       </a>
       <a
         href="https://forms.gle/Cwo3VupujQJzeoYQ9"
