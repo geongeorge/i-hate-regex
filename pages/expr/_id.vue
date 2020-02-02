@@ -68,7 +68,7 @@ export default {
       return val.id == this.id
     })
     return {
-      title: "Regex for " + thisregex.title + " - IHateRegex",
+      title: "Regex for " + thisregex.title + " - iHateRegex",
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {

@@ -42,7 +42,8 @@ export default {
   plugins: [
     "~/plugins/vue-fuse",
     "~/plugins/vue-awesome",
-    { src: "~/plugins/regex-colorize", mode: "client" }
+    { src: "~/plugins/regex-colorize", mode: "client" },
+    '~/plugins/headMixin.js'
     // { src: '~plugins/ga.js', mode: 'client' } //google analytics
   ],
   /*
