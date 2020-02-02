@@ -31,7 +31,7 @@
 
             <div class="mx-3">
               <nuxt-link to="/playground" class="hover:underline">
-                playground
+                playground 
               </nuxt-link>
             </div>
 
