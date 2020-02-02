@@ -18,7 +18,7 @@
     }
   },
   "lint-staged": {
-    "*{.js,.vue}": "eslint"
+    "*{.js,.vue}": "eslint --fix"
   },
   "dependencies": {
     "@nuxtjs/toast": "^3.3.0",
