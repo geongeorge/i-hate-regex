@@ -1,51 +1,55 @@
 <template>
-<div>
-<div class='embed-container'>
-      <iframe class="" src="https://embed.ihateregex.io/" :height="height" ref='regviz' frameborder="0"></iframe>
-</div>
-</div>
+  <div>
+    <div class="embed-container">
+      <iframe
+        ref="regviz"
+        class=""
+        src="https://embed.ihateregex.io/"
+        :height="height"
+        frameborder="0"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-    props: {
-        height: {default: 400},
-        regex: {default: / /},
-        embedRoot: {default: 'https://embed.ihateregex.io/make/'},
-        // embedRoot: {default: 'http://localhost:3300/make/'},
-    },
-    data() {
-        return {
-        }
-    },
-    mounted() {
+  props: {
+    height: { default: 400 },
+    regex: { default: / / },
+    embedRoot: { default: "https://embed.ihateregex.io/make/" }
+    // embedRoot: {default: 'http://localhost:3300/make/'},
+  },
+  data() {
+    return {}
+  },
+  watch: {
+    regex() {
       this.reload()
-    // handeled in watch
-    },
-    methods: {
-        reload() {
-            var embedUrl = this.embedRoot+this.hashEncodeUrl(this.regex.source);
-            console.log("source",this.regex.source,embedUrl)
-             this.$refs.regviz.src = embedUrl;
-        },
-        // to encode base64 for url 
-        //https://gist.github.com/geongeorge/c30e9b1e3e7590b8a22464c879ad9a04
-        hashEncodeUrl(str){
-            let mystr = str.replace(/\\/g, '\\\\') // escaping \
-            return btoa(encodeURIComponent(mystr)).
-            replace(/\+/g, '-')
-            .replace(/\//g, '_') //  /..
-            .replace(/\\/g, ',') //  \
-            .replace(/\=+$/, '')
-        }
-    },
-    watch:{
-        
-        regex() {
-            this.reload()
-        }
     }
-};
+  },
+  mounted() {
+    this.reload()
+    // handeled in watch
+  },
+  methods: {
+    reload() {
+      var embedUrl = this.embedRoot + this.hashEncodeUrl(this.regex.source)
+      // console.log("source", this.regex.source, embedUrl)
+      this.$refs.regviz.src = embedUrl
+    },
+    // to encode base64 for url
+    //https://gist.github.com/geongeorge/c30e9b1e3e7590b8a22464c879ad9a04
+    hashEncodeUrl(str) {
+      let mystr = str.replace(/\\/g, "\\\\") // escaping \
+      return btoa(encodeURIComponent(mystr))
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_") //  /..
+        .replace(/\\/g, ",") //  \
+        .replace(/\=+$/, "") // eslint-disable-line
+    }
+  }
+}
 </script>
 
 <style>

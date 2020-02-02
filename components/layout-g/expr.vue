@@ -1,81 +1,75 @@
 <template>
-<post :tags="tags" :id="id">
-  <div>
-    <a href="#">
-      <h1 class="text-2xl group">
-        <span class="group-hover:text-red-600">#</span> 
-        <slot name="title"></slot>
-      </h1>
-    </a>
-    <p class="text-sm text-gray-500">
-        <slot name="tagline"></slot>
-    </p>
-    <div class="mt-8">
-      <CodeBox :regex="regex" :flag="flag" @regexChanged="regexChanged"></CodeBox>
-    </div>
-
-    <MatchBox :regex="regex" :sampleText="matchText"></MatchBox>
-
-    <div
-      class="mt-8"
-    ><slot name="firstdescr"></slot>
-    </div>
+  <post :id="id" :tags="tags">
     <div>
-      <RegvizEmbed :regex="regex" :height="eHeight"></RegvizEmbed>
+      <a href="#">
+        <h1 class="text-2xl group">
+          <span class="group-hover:text-red-600">#</span>
+          <slot name="title" />
+        </h1>
+      </a>
+      <p class="text-sm text-gray-500">
+        <slot name="tagline" />
+      </p>
+      <div class="mt-8">
+        <CodeBox :regex="regex" :flag="flag" @regexChanged="regexChanged" />
+      </div>
+
+      <MatchBox :regex="regex" :sample-text="matchText" />
+
+      <div class="mt-8">
+        <slot name="firstdescr" />
+      </div>
+      <div>
+        <RegvizEmbed :regex="regex" :height="eHeight" />
+      </div>
+      <div class="mt-8">
+        <slot name="seconddescr" />
+      </div>
     </div>
-    <div
-      class="mt-8"
-    ><slot name="seconddescr"></slot>
-    </div>
-  </div>
   </post>
 </template>
 
 <script>
 //base layout
-import post from '~/components/layout-g/base/post'
+import post from "~/components/layout-g/base/post"
 
-import Logo from "~/components/utils/Logo";
-import CodeBox from "~/components/post-components/CodeBox";
-import MatchBox from "~/components/post-components/MatchBox";
+import CodeBox from "~/components/post-components/CodeBox"
+import MatchBox from "~/components/post-components/MatchBox"
 
-import RegvizEmbed from "~/components/post-components/RegvizEmbed";
+import RegvizEmbed from "~/components/post-components/RegvizEmbed"
 
 export default {
   layout: "post",
   components: {
     post,
-    Logo,
     CodeBox,
     MatchBox,
     RegvizEmbed
   },
   props: {
-      iregex: {default: / /}, //input regex
-      iflag: {default: 'gm'}, //input flags
-      imatchText: {default: ['lorem ipsum']}, //input text
-      eHeight: {default: 400}, //embed regviz height
-      tags: {default: []},
-      id: {default: ""}
+    iregex: { default: / / }, //input regex
+    iflag: { default: "gm" }, //input flags
+    imatchText: { default: ["lorem ipsum"] }, //input text
+    eHeight: { default: 400 }, //embed regviz height
+    tags: { default: ()=>[] }, // Arrays need to be defaulted to factory function
+    id: { default: "" }
   },
   data() {
     return {
       regex: / /,
       flag: "",
       matchText: []
-    };
-  },
-  methods: {
-    regexChanged(event) {
-      this.regex = new RegExp(event.regex, event.flag);
     }
   },
   created() {
     this.regex = this.iregex
     this.flag = this.iflag
     this.matchText = this.imatchText
+  },
+  methods: {
+    regexChanged(event) {
+      this.regex = new RegExp(event.regex, event.flag)
+    }
   }
-
-};
+}
 </script>
-
