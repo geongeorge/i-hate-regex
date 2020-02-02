@@ -38,7 +38,7 @@
           :title="item.title"
           :addclass="['mt-0']"
         >
-            {{ item.firstdescr.substring(0,25) + '...' }}
+          {{ item.firstdescr.substring(0, 25) + "..." }}
         </SearchResult>
       </div>
     </div>
@@ -71,6 +71,7 @@
         <p class="my-2">Buy me a coffee</p>
       </a>
       <span class="">
+        <!-- eslint-disable-next-line -->
         <a href="https://www.producthunt.com/posts/i-hate-regex?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-i-hate-regex" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=182905&theme=dark" alt="i Hate Regex - regex cheatsheet for the haters | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px"></a>
       </span>
     </div>
@@ -127,7 +128,7 @@ export default {
       }
 
       // Don't show related if there are no tags or regex
-      if(!this.tags) return
+      if (!this.tags) return
 
       // Don't show more than 3 related
       const noOfRelated = 3
@@ -137,14 +138,14 @@ export default {
       for (const tag of this.tags)
         this.$search(tag, this.catalog, options).then(results => {
           console.log("result", results)
-          //Don't show the same product
-          //Filter the id
+          // Don't show the same product
+          // Filter the id
           relatedTemp.push(...results.filter(elm => elm.id !== this.id))
           // Slice to max length
           if (relatedTemp.length >= noOfRelated) {
             this.related = relatedTemp.slice(0, noOfRelated)
           }
-        })
+      })
 
     }
   }
