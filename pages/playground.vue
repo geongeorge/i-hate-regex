@@ -16,9 +16,12 @@
     </p>
 
     <div slot="seconddescr">
-      <p v-html="myregex.seconddescr" />
-      <div class="text-sm text-gray-700 my-2">
-        [under construction]
+      <p>
+        embed height: 
+        <input type="range" min="1" max="800" v-model="myregex.embedHeight" class="slider" id="myRange">
+      </p>
+      <div class="text-sm text-gray-700 my-2 mt-16">
+        [this page under construction]
         <ul class="list-inside list-disc">
             <li>
                 <a class="hover:underline" href="https://www.buymeacoffee.com/geon">support development</a>
