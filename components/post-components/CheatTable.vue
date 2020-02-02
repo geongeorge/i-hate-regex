@@ -8,15 +8,17 @@
         </tr>
       </thead>
       <tbody v-if="!showAll">
-        <tr v-for="(reg,key) in regexes" :key="key">
-          <td><code class='text-green-600'>{{reg.regex}}</code></td>
-          <td>{{reg.usage}}</td>
+        <tr v-for="(reg, key) in regexes" :key="key">
+          <td>
+            <code class="text-green-600">{{ reg.regex }}</code>
+          </td>
+          <td>{{ reg.usage }}</td>
         </tr>
       </tbody>
       <tbody v-else>
-        <tr v-for="(reg,key) in cheatsheet" :key="key">
-          <td>{{reg.regex}}</td>
-          <td>{{reg.usage}}</td>
+        <tr v-for="(reg, key) in cheatsheet" :key="key">
+          <td>{{ reg.regex }}</td>
+          <td>{{ reg.usage }}</td>
         </tr>
       </tbody>
     </table>
@@ -24,13 +26,13 @@
 </template>
 
 <script>
-import cheatsheet from "~/static/cheatsheet.json";
+import cheatsheet from "~/static/cheatsheet.json"
 
 export default {
   props: {
     inputRegex: {
       default: function() {
-        return [];
+        return []
       }
     },
     showAll: { default: false }
@@ -39,14 +41,14 @@ export default {
     return {
       cheatsheet: cheatsheet,
       regexes: []
-    };
+    }
   },
   mounted() {
     this.regexes = this.cheatsheet.filter(val => {
-      return this.inputRegex.includes(val.regex);
-    });
+      return this.inputRegex.includes(val.regex)
+    })
   }
-};
+}
 </script>
 
 <style>

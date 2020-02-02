@@ -1,1 +1,1 @@
-import RegexColorize from 'regex-colorize';
+import RegexColorize from "regex-colorize"
