@@ -17,7 +17,7 @@
 
     <div slot="seconddescr">
       <p v-html="myregex.seconddescr" />
-      <br >
+      <br>
       <h2 class="text-2xl">
         Cheatsheet
       </h2>
