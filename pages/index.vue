@@ -35,8 +35,8 @@
             </div>
 
             <div class="mx-3">
-              <nuxt-link to="/cheatsheet" class="hover:underline">
-                cheatsheet
+              <nuxt-link to="/expr" class="hover:underline">
+                all
               </nuxt-link>
             </div>
 
