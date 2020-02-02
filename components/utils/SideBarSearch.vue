@@ -54,21 +54,21 @@
         class="hover:underline"
         target="_blank"
       >
-        <p class="my-2">github</p>
+        <p class="my-2 font-bold">github</p>
       </a>
       <a
         href="https://forms.gle/Cwo3VupujQJzeoYQ9"
         class="hover:underline"
         target="_blank"
       >
-        <p class="my-2">Submit regex</p>
+        <p class="my-2">submit regex</p>
       </a>
       <a
         href="https://www.buymeacoffee.com/geon"
         class="hover:underline"
         target="_blank"
       >
-        <p class="my-2">Buy me a coffee</p>
+        <p class="my-2">buy me a coffee</p>
       </a>
       <span class="">
         <!-- eslint-disable-next-line -->
