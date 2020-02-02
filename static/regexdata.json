@@ -388,5 +388,30 @@
         ],
         "embedHeight": 200,
         "tags" : ["jira","software"]
+    },
+    {
+        "id": "lat-long",
+        "title": "latitude and longitude",
+        "tagline": "match latitude-longitude value",
+        "firstdescr": "Latitude and longitude values are usually found comma seperated to denote a location on the globe",
+        "seconddescr": "This would work for any comma-separated values that can optionally have <b>+</b> or <b>-</b> as prefix.",
+        "regex": "^((\\-?|\\+?)?\\d+(\\.\\d+)?),\\s*((\\-?|\\+?)?\\d+(\\.\\d+)?)$",
+        "flag": "gm",
+        "matchText": [
+            "+90.0, -127.554334",
+            "45, 180",
+            "-90.000, -180.0",
+            "20,80",
+            "47.1231231, 179.99999999",
+            "-90., -180.",
+            "045, 180"
+        ],
+        "cheatRegex": [
+            "/(hard)?work/",
+            "/i am a (cat|dog|whale) person/",
+            "/\\d/"
+        ],
+        "embedHeight": 200,
+        "tags" : ["location","address"]
     }
 ]
