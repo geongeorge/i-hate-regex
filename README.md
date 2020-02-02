@@ -3,6 +3,15 @@
   <h1>
     iHateRegex 😈
   </h1>
+  
+  <p align="center">
+    <a href="https://github.com/geongeorge/i-hate-regex/pull/new">
+      <img src="https://img.shields.io/badge/PRs%20-welcome-brightgreen.svg" alt="PRs Welcome" />
+    </a>
+    <a title="Chat on Telegram" href="https://t.me/ihateregex"> <img src="https://img.shields.io/badge/chat-Telegram-blueviolet?logo=Telegram"/>
+    </a>
+  </p>
+  
   <p>
     <strong><a href="https://ihateregex.io">iHateRegex.io</a> - a regex cheatsheet for the haters</strong>
   </p>
