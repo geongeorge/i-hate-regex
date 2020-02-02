@@ -46,7 +46,7 @@ export default {
         .replace(/\+/g, "-")
         .replace(/\//g, "_") //  /..
         .replace(/\\/g, ",") //  \
-        .replace(/\=+$/, "")
+        .replace(/\=+$/, "") // eslint-disable-line
     }
   }
 }

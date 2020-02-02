@@ -97,7 +97,7 @@ export default {
     }
   },
   watch: {
-    modelShow: function(newv, oldv) {
+    modelShow: function(newv, oldv) { // eslint-disable-line
       this.flaglist = this.flaglist.map(ele => {
         ele.showDescr = false
         return ele
@@ -105,7 +105,7 @@ export default {
       //   console.log("toggling", newv);
     },
     myselections: {
-      handler: function(newv, oldv) {
+      handler: function(newv, oldv) { // eslint-disable-line
         this.$emit("selected", this.myselections)
       },
       deep: true
