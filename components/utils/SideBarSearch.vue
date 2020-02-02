@@ -49,11 +49,10 @@
       follow @geongeorgek
       </a>
       </span> -->
-      <nuxt-link
-        to="/playground"
-        class="hover:underline"
-      >
-        <p class="my-2">playground</p>
+      <nuxt-link to="/playground" class="hover:underline">
+        <p class="my-2">
+          playground
+        </p>
       </nuxt-link>
       <a
         href="https://github.com/geongeorge/i-hate-regex"
@@ -119,7 +118,7 @@ export default {
         keys: ["title", "firstdescr", "tags"]
       }
       this.$search(this.query, this.catalog, options).then(results => {
-        this.searchResults = results.slice(0,3) //top 3 search result only
+        this.searchResults = results.slice(0, 3) //top 3 search result only
       })
     },
     relatedSearch() {

@@ -17,18 +17,31 @@
 
     <div slot="seconddescr">
       <p>
-        embed height: 
-        <input type="range" min="1" max="800" v-model="myregex.embedHeight" class="slider" id="myRange">
+        embed height:
+        <input
+          id="myRange"
+          v-model="myregex.embedHeight"
+          type="range"
+          min="1"
+          max="800"
+          class="slider"
+        />
       </p>
       <div class="text-sm text-gray-700 my-2 mt-16">
         [this page under construction]
         <ul class="list-inside list-disc">
-            <li>
-                <a class="hover:underline" href="https://www.buymeacoffee.com/geon">support development</a>
-            </li>
-            <li>
-                <a class="hover:underline" href="https://github.com/geongeorge/i-hate-regex">view on github</a>
-            </li>
+          <li>
+            <a class="hover:underline" href="https://www.buymeacoffee.com/geon"
+              >support development</a
+            >
+          </li>
+          <li>
+            <a
+              class="hover:underline"
+              href="https://github.com/geongeorge/i-hate-regex"
+              >view on github</a
+            >
+          </li>
         </ul>
       </div>
     </div>

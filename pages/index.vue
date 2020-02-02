@@ -28,7 +28,6 @@
 
         <div class="text-gray-500 mt-10 text-sm">
           <div class="flex flex-wrap justify-center xmx-2">
-
             <div class="mx-3">
               <nuxt-link to="/playground" class="hover:underline">
                 playground
