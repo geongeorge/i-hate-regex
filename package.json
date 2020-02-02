@@ -12,6 +12,14 @@
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint --fix --ext .js,.vue ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*{.js}": "eslint"
+  },
   "dependencies": {
     "@nuxtjs/toast": "^3.3.0",
     "nuxt": "^2.0.0",
