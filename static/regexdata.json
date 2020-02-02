@@ -411,7 +411,27 @@
             "/i am a (cat|dog|whale) person/",
             "/\\d/"
         ],
-        "embedHeight": 200,
+        "embedHeight": 250,
         "tags" : ["location","address"]
+    },
+    {
+        "id": "mac-address",
+        "title": "mac address",
+        "tagline": "match ethernet mac address",
+        "firstdescr": "A simple expression to match an ethernet MAC address",
+        "seconddescr": "A media access control address is a unique identifier assigned to a network interface controller for use as a network address within a network.",
+        "regex": "^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$",
+        "flag": "gm",
+        "matchText": [
+            "01:02:03:04:ab:cd",
+            "definitely:not:a:mac",
+            "01-02-03-04-ab-cd",
+        ],
+        "cheatRegex": [
+            "/[a-zA-Z0-9]/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["address"]
     }
 ]
