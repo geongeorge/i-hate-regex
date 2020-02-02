@@ -6,7 +6,8 @@
           href="#"
           class="text-gray-500 hover:underline"
           @click="toggleMatches"
-        >{{ showText }}</a>
+          >{{ showText }}
+        </a>
       </div>
     </div>
     <transition-expand>
@@ -58,7 +59,7 @@ export default {
     }
   },
   watch: {
-    regex: function(oldv, newv) {
+    regex: function(oldv, newv) { // eslint-disable-line
       this.boxEdited()
     }
   },
@@ -106,8 +107,6 @@ export default {
 
         // the below part to be fixed : match inner groups of regex
         let matches
-        let i = 0
-        let temptext = text
         while ((matches = this.regex.exec(text)) !== null) {
           // some text...[s]match[e]..end text
           // s-> start pos = index
@@ -156,9 +155,7 @@ export default {
         }, 200)
       }
     },
-    matchboxChanged(event) {
-      var node = this.$refs.matchbox
-      // console.log(typeTimeout);
+    matchboxChanged(event) { // eslint-disable-line
       if (typeTimeout) {
         clearTimeout(typeTimeout)
       }
