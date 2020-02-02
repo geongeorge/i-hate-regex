@@ -86,7 +86,7 @@ export default {
     SearchResult
   },
   props: {
-    tags: { default: ()=>[] },
+    tags: { default: () => [] },
     id: { default: "" }
   },
   data() {
