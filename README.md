@@ -12,7 +12,9 @@
     <a title="Chat on Telegram" href="https://t.me/ihateregex"> <img src="https://img.shields.io/badge/chat-Telegram-blueviolet?logo=Telegram"/>
     </a>
   </p>
-  
+  <p>
+  <a href="https://www.buymeacoffee.com/geon" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-yellow.png" alt="Buy Me A Coffee" style="height: 25px !important;width: 108px !important;" ></a>
+  </p>
   <a href="https://ihateregex.io"><img src="https://i.imgur.com/mHuTAzy.png" width=600></a>
   
   <p>
@@ -91,18 +93,22 @@ To contribute simply add your regex to `static/regexdata.json`
 
 ## Build Setup 🚀
 
-- Install dependencies ⚙️
+1. Install [yarn](https://yarnpkg.com/)
+
+2. [Clone](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) this repo
+
+3. Install dependencies ⚙️
 
   ``` bash
   $ yarn install
 
   ```
-- Test on localhost 🛠
+4. Test on localhost 🛠
   ``` bash
   # serve with hot reload at localhost:3000
   $ yarn dev
   ```
-- Build and Start nuxt server 🚀
+5. Build and Start nuxt server 🚀
   ``` bash
   # build for production and launch server
   $ yarn build
@@ -112,6 +118,8 @@ To contribute simply add your regex to `static/regexdata.json`
 This project is built with Nuxt.js 🙌
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
 
 
 ### Credits
