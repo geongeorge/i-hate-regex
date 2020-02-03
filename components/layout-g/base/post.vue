@@ -32,7 +32,15 @@
             <div class="px-2 text-xl">
               iHateRegex
             </div>
-            <!-- <div class="px-2">by <a href="https://geongeorge.com/" class="underline" target="_blank">geon</a></div> -->
+            <div class="px-2">
+              by
+              <a
+                href="https://geongeorge.com/"
+                class="underline"
+                target="_blank"
+                >geon</a
+              >
+            </div>
           </div>
         </div>
       </div>
