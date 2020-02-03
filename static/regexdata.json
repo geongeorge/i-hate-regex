@@ -271,7 +271,7 @@
         "tagline": "match a social security number",
         "firstdescr": "Hyphen-separated Social Security Number (SSN) in the format NNN-NN-NNNN.",
         "seconddescr": "This expression can be used to find or validate a social security number. You may edit the regex to your liking for number of characters and/or types of values",
-        "regex": "^\\d{3}-\\d{2}-\\d{4}$",
+        "regex": "^(?!0{3})(?!6{3})[0-8]\\d{2}-(?!0{2})\\d{2}-(?!0{4})\\d{4}$",
         "flag": "gm",
         "matchText": [
             "123-45-6789",
@@ -279,7 +279,12 @@
             "333-22-4444",
             "aaa-bbb-cccc",
             "ab",
-            "abcd"
+            "abcd",
+            "900-58-4564",
+            "999-58-4564",
+            "000-45-5454",
+            "667-00-5454",
+            "667-45-0000"
         ],
         "cheatRegex": [
             "/^/",
