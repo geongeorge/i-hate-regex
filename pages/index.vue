@@ -27,36 +27,36 @@
         </p>
 
         <div class="text-gray-500 mt-10 text-sm">
-          <div class="flex flex-wrap justify-center xmx-2">
-            <div class="mx-3">
+          <ul class="flex flex-wrap justify-center xmx-2">
+            <li class="mx-3">
               <nuxt-link to="/playground" class="hover:underline">
                 playground
               </nuxt-link>
-            </div>
+            </li>
 
-            <div class="mx-3">
+            <li class="mx-3">
               <nuxt-link to="/expr" class="hover:underline">
                 all
               </nuxt-link>
-            </div>
+            </li>
 
-            <div class="mx-3">
+            <li class="mx-3">
               <a
                 href="https://forms.gle/Cwo3VupujQJzeoYQ9"
                 class="hover:underline"
                 target="_blank"
                 >submit</a
               >
-            </div>
-            <div class="mx-3">
+            </li>
+            <li class="mx-3">
               <a
                 href="https://github.com/geongeorge/i-hate-regex"
                 class="hover:underline"
                 target="_blank"
                 >github</a
               >
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

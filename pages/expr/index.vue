@@ -18,13 +18,13 @@
         </div>
         <div v-else>
           <div class="mt-10 text-gray-900 text-2xl">
-            <div class="flex flex-wrap justify-center mx-2">
-              <div v-for="(item, key) in catalog" :key="key" class="mx-3">
+            <ul class="flex flex-wrap justify-center mx-2">
+              <li v-for="(item, key) in catalog" :key="key" class="mx-3">
                 <nuxt-link :to="'/expr/' + item.id" class="hover:underline">
                   {{ item.title }}
                 </nuxt-link>
-              </div>
-            </div>
+              </li>
+            </ul>
           </div>
         </div>
         <p class="text-gray-600 mt-5">

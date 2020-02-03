@@ -15,7 +15,7 @@
   <p>
     <strong><a href="https://ihateregex.io">iHateRegex.io</a> - a regex cheatsheet for the haters</strong>
   </p>
-  <a href="https://ihateregex.io"><img src="https://i.imgur.com/aAhDp9j.png" width=600></a>
+  <a href="https://ihateregex.io"><img src="https://i.imgur.com/e85R6b4.png" width=600></a>
   
   <p>
     <strong>don't just use; understand.</strong>
