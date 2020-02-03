@@ -433,5 +433,60 @@
         ],
         "embedHeight": 300,
         "tags" : ["address"]
+    },
+    {
+        "id": "url-slug",
+        "title": "url slug",
+        "tagline": "match a url slug",
+        "firstdescr": "A ‘slug' is the part that comes at the very end of a URL, and refers to a specific page or post. Usually a combination of word that separated with hyphen",
+        "seconddescr": "This expression can be used to validate an url slug with only lowercase alphabet or numbers on each word. For example <em>https://github.com/geongeorge/i-hate-regex</em> , <b>i-hate-regex</b> is the slug . You may edit the regex to your liking for number of characters and/or types of values",
+        "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "flag": "gm",
+        "matchText": [
+            "best-way",
+            "best-d4y",
+            "my-1ife",
+            "@t-the-sky",
+            "at-the--sky",
+            "-",
+            "a",
+            "fly-"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z]/",
+            "/ab+c/",
+            "/ab*c/",
+            "/(?:hard)?work/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["slug", "url", "link"]
+    },
+    {
+        "id": "c-like-identifier",
+        "title": "C-like identifier",
+        "tagline": "match an C-like identifier",
+        "firstdescr": "In computer languages, identifiers are tokens (also called symbols) which name language entities",
+        "seconddescr": "This expression can be used to validate an C-like identifier that can contains alphanumeric and underscore, but can't start with a number . You may edit the regex to your liking for number of characters and/or types of values",
+        "regex": "^[a-zA-Z_][0-9a-zA-Z_]*$",
+        "flag": "gm",
+        "matchText": [
+            "abc123",
+            "PascalCase",
+            "camelCase",
+            "snake_case",
+            "_test",
+            "_",
+            "123abc"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z]/",
+            "/ab*c/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["c", "identifier"]
     }
 ]
