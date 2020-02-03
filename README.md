@@ -13,22 +13,19 @@
     </a>
   </p>
   
-  <p>
-    <strong><a href="https://ihateregex.io">iHateRegex.io</a> - a regex cheatsheet for the haters</strong>
-  </p>
   <a href="https://ihateregex.io"><img src="https://i.imgur.com/e85R6b4.png" width=600></a>
   
   <p>
     <strong>don't just use; understand.</strong>
 </p>
 
-<p>
+  <p>
+    <strong><a href="https://ihateregex.io">iHateRegex.io</a></strong> - a regex cheatsheet for the haters.
+  </p>
+
+  <p>
    Chat with us on <a href="https://t.me/ihateregex" target="_blank">Telegram</a>
 
-</p>
-
-<p>
-<b>i<span style="color:#e53e3e;">Hate</span>Regex</b> is a cheatsheet for commonly used regular expressions.
 </p>
 </div>
 
