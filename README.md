@@ -8,6 +8,7 @@
     <a href="https://github.com/geongeorge/i-hate-regex/pull/new">
       <img src="https://img.shields.io/badge/PRs%20-welcome-brightgreen.svg" alt="PRs Welcome" />
     </a>
+      <img src="https://github.com/geongeorge/i-hate-regex/workflows/Node.js%20CI/badge.svg" alt="Nodejs CI" />
     <a title="Chat on Telegram" href="https://t.me/ihateregex"> <img src="https://img.shields.io/badge/chat-Telegram-blueviolet?logo=Telegram"/>
     </a>
   </p>
