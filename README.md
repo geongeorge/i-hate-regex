@@ -12,9 +12,6 @@
     <a title="Chat on Telegram" href="https://t.me/ihateregex"> <img src="https://img.shields.io/badge/chat-Telegram-blueviolet?logo=Telegram"/>
     </a>
   </p>
-  <p>
-  <a href="https://www.buymeacoffee.com/geon" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-yellow.png" alt="Buy Me A Coffee" style="height: 25px !important;width: 108px !important;" ></a>
-  </p>
   <a href="https://ihateregex.io"><img src="https://i.imgur.com/mHuTAzy.png" width=600></a>
   
   <p>
