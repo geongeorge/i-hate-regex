@@ -26,7 +26,21 @@
    Chat with us on <a href="https://t.me/ihateregex" target="_blank">Telegram</a>
 
 </p>
+
+<p>
+<b>i<span style="color:#e53e3e;">Hate</span>Regex</b> is a cheatsheet for commonly used regular expressions.
+</p>
 </div>
+
+
+
+## Features 😎
+
+- [x] Visual representation of regular expressions
+- [x] Matched strings - the Testing area
+- [x] Embed regular expression visualization on your sites
+- [x] Regex code highlighting and validation
+- [ ] [Playground page](https://ihateregex.io/playground) where you can create your own expression and link to it.
 
 ## Contribute Regex 🙏
 

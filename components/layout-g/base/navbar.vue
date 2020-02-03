@@ -9,6 +9,7 @@
 
 <script>
 import SidebarToggle from "~/components/utils/SideBarToggleButton"
+
 export default {
   components: {
     SidebarToggle
