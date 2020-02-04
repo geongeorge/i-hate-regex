@@ -70,7 +70,7 @@ import SearchResult from "~/components/utils/SearchResult"
 import NoResults from "~/components/utils/NoResults"
 import CommonResults from "~/components/utils/CommonResults"
 
-import jsonData from "~/static/regexdata.json"
+import jsonData from "~/regex/regexdata.json"
 
 export default {
   components: {

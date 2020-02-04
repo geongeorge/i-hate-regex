@@ -57,6 +57,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
+    "@nuxtjs/markdownit",
     "@nuxtjs/tailwindcss",
     [
       "@nuxtjs/google-analytics",

@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import jsonData from "~/static/regexdata.json"
+import jsonData from "~/regex/regexdata.json"
 import SearchResult from "~/components/utils/SearchResult"
 export default {
   components: {

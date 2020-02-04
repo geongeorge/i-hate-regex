@@ -34,7 +34,7 @@
 <script>
 import expr from "~/components/layout-g/expr.vue"
 import CheatTable from "~/components/post-components/CheatTable"
-import regexdata from "~/static/regexdata.json"
+import regexdata from "~/regex/regexdata.json"
 export default {
   components: {
     expr,
