@@ -16,6 +16,7 @@
     </p>
 
     <div slot="seconddescr">
+      <!-- render markdown for second description -->
       <div v-html="$md.render(markdown)"></div>
       <br />
       <h2 class="text-2xl">
