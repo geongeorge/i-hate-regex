@@ -41,7 +41,12 @@
 
 ## Contribute Regex 🙏
 
-To contribute simply add your regex to `/static/regex/data.json`
+**To contribute:**
+
+1. Add your regex to `/static/regex/data.json`
+
+<details>
+<summary>Show sample JSON</summary>
 
 ```json
 {
@@ -74,6 +79,11 @@ To contribute simply add your regex to `/static/regex/data.json`
     },
 ```
 
+</details>
+
+<details>
+<summary>Show JSON properties</summary>
+
 | Property | Definition |
 |------|------------|
 |  id|  this is the slug and also the short name of the regex. cannot contain spaces and only contain url-safe characters|
@@ -86,6 +96,14 @@ To contribute simply add your regex to `/static/regex/data.json`
 |  cheatRegex | refer `static/regex/cheatsheet.json` and see what all cheats are relevent to this expression. (you can also add your own cheats into cheatsheet.json and refer to that) |
 |  embedHeight | Height in pixels of the regex visualization embed  |
 | tags  | tags related to the expression (to be used later)  |
+
+</details>
+
+2. Create a markdown file in `/static/regex/markdown/` named `<regex-id>.md` for longer description and explaination
+
+    *&lt;regex-id&gt; is the **id** from **data.json***
+
+
 
 ## Build Setup 🚀
 
