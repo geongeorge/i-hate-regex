@@ -1,0 +1,1 @@
+This expression can be used to validate an C-like identifier that can contains alphanumeric and underscore, but can't start with a number.

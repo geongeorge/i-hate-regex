@@ -1,0 +1,1 @@
+`[^@ \\t\\r\\n]` matches for anything other than **@, space, tab, new lines** repetitions of a non-whitespace character.

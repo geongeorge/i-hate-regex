@@ -1,0 +1,1 @@
+A media access control address is a unique identifier assigned to a network interface controller for use as a network address within a network.
