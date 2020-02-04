@@ -11,8 +11,8 @@
 
     <span slot="tagline">{{ myregex.tagline }}</span>
 
-    <p slot="firstdescr">
-      {{ myregex.firstdescr }}
+    <p slot="description">
+      {{ myregex.description }}
     </p>
 
     <div slot="seconddescr">
@@ -61,7 +61,7 @@ export default {
         id: "",
         title: "playground",
         tagline: "play around with regex",
-        firstdescr: "",
+        description: "",
         seconddescr: "",
         regex: "^[a-z0-9_-]{3,15}$",
         flag: "gm",
@@ -80,7 +80,7 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.myregex.firstdescr
+          content: this.myregex.description
         }
       ]
     }

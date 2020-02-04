@@ -17,7 +17,7 @@
       <MatchBox :regex="regex" :sample-text="matchText" />
 
       <div class="mt-8">
-        <slot name="firstdescr" />
+        <slot name="description" />
       </div>
       <div>
         <RegvizEmbed :regex="regex" :height="eHeight" />

@@ -11,8 +11,8 @@
 
     <span slot="tagline">{{ myregex.tagline }}</span>
 
-    <p slot="firstdescr">
-      {{ myregex.firstdescr }}
+    <p slot="description">
+      {{ myregex.description }}
     </p>
 
     <div slot="seconddescr">
@@ -102,7 +102,7 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: thisregex.firstdescr
+          content: thisregex.description
         }
       ]
     }

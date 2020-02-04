@@ -48,8 +48,7 @@ To contribute simply add your regex to `/static/regex/data.json`
         "id": "username",
         "title": "username",
         "tagline": "match a username",
-        "firstdescr": "Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
-        "seconddescr": "This expression can be used to find or validate a username field. You may edit the regex to your liking for number of characters and/or types of values",
+        "description": "Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
         "regex": "^[a-z0-9_-]{3,15}$",
         "flag": "gm",
         "matchText": [
@@ -80,7 +79,7 @@ To contribute simply add your regex to `/static/regex/data.json`
 |  id|  this is the slug and also the short name of the regex. cannot contain spaces and only contain url-safe characters|
 |  title |  Title of the page. |
 | tagline  |  Tagline |
-| firstdescr  | First line under the tagline and also the meta description  |
+| description  | First line under the tagline and also the meta description  |
 |  seconddescr | Longer description  |
 |  regex |  The actual regex string |
 | flag  |  regex flags associated with the expression. eg; g |

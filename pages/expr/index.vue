@@ -11,7 +11,7 @@
             :key="key"
             :title="item.title"
           >
-            {{ item.firstdescr }}
+            {{ item.description }}
           </SearchResult>
 
           <NoResults v-if="searchResults.length < 1" />
@@ -108,7 +108,7 @@ export default {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: ["title", "firstdescr", "tags"]
+        keys: ["title", "description", "tags"]
       }
       this.$search(this.query, this.catalog, options).then(results => {
         this.searchResults = results
