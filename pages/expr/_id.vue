@@ -58,7 +58,6 @@ export default {
         /* do nothing */
       }
     } else {
-      console.log("tryings....")
       try {
         // client mode -> use axios
         markdown = await $axios.$get(path)
@@ -111,4 +110,31 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.long-description ul {
+  @apply list-inside list-disc;
+}
+.long-description ol {
+  @apply list-inside list-decimal;
+}
+
+.long-description code {
+  @apply bg-gray-300 rounded;
+}
+
+.long-description h4 {
+  @apply text-xl;
+}
+
+.long-description h3 {
+  @apply text-2xl;
+}
+
+.long-description h2 {
+  @apply text-3xl;
+}
+
+.long-description h1 {
+  @apply text-4xl;
+}
+</style>

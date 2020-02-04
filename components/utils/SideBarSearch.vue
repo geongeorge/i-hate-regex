@@ -168,7 +168,6 @@ export default {
             this.related = relatedTemp.slice(0, noOfRelated)
           }
         }) // eslint-disable-line
-
     }
   }
 }

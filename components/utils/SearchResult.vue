@@ -1,7 +1,7 @@
 <template>
-  <div class="p-3 rounded text-gray-600 text-left" :class="addclass">
+  <div class="px-3 py-2 rounded text-gray-600 text-left" :class="addclass">
     <a :href="'/expr/' + id">
-      <h2 class="text-black text-lg hover:underline">{{ title }}</h2>
+      <h2 class="text-black text-xl hover:underline">{{ title }}</h2>
     </a>
     <slot />
   </div>
