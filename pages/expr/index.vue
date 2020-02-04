@@ -67,7 +67,7 @@ import SearchBox from "~/components/utils/SearchBox"
 import SearchResult from "~/components/utils/SearchResult"
 import NoResults from "~/components/utils/NoResults"
 
-import jsonData from "~/regex/regexdata.json"
+import jsonData from "~/static/regex/data.json"
 
 export default {
   components: {

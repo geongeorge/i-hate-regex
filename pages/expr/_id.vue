@@ -16,7 +16,7 @@
     </p>
 
     <div slot="seconddescr">
-      <p v-html="myregex.seconddescr" />
+      <div v-html="$md.render(markdown)"></div>
       <br />
       <h2 class="text-2xl">
         Cheatsheet
@@ -34,11 +34,38 @@
 <script>
 import expr from "~/components/layout-g/expr.vue"
 import CheatTable from "~/components/post-components/CheatTable"
-import regexdata from "~/regex/regexdata.json"
+import regexdata from "~/static/regex/data.json"
 export default {
   components: {
     expr,
     CheatTable
+  },
+  async asyncData({ $axios, params }) {
+    const path = `/regex/markdown/${params.id}.md`
+
+    var markdown = ""
+
+    if (process.server) {
+      // if server -> get file using fs.readFileSync
+      const fs = require("fs")
+      try {
+        if (fs.existsSync("static" + path)) {
+          //file exists
+          markdown = fs.readFileSync("static" + path, "utf8")
+        }
+      } catch (err) {
+        /* do nothing */
+      }
+    } else {
+      try {
+        // client mode -> use axios
+        markdown = await $axios.$get(path)
+      } catch (e) {
+        /* do nothing */
+      }
+    }
+
+    return { markdown }
   },
   data() {
     return {

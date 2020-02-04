@@ -41,7 +41,7 @@
 
 ## Contribute Regex 🙏
 
-To contribute simply add your regex to `static/regexdata.json`
+To contribute simply add your regex to `/static/regex/data.json`
 
 ```json
 {
