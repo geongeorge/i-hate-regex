@@ -12,16 +12,6 @@
       </p>
 
       <CheatTable :show-all="true" />
-
-      <p class="mt-5">
-        Cheatsheet adapted from
-        <a
-          class="text-green-600"
-          href="https://dev.to/catherinecodes/a-regex-cheatsheet-for-all-those-regex-haters-and-lovers--2cj1"
-        >
-          Catherine's post
-        </a>
-      </p>
     </div>
   </post>
 </template>

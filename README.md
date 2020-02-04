@@ -79,12 +79,11 @@ To contribute simply add your regex to `/static/regex/data.json`
 |  id|  this is the slug and also the short name of the regex. cannot contain spaces and only contain url-safe characters|
 |  title |  Title of the page. |
 | tagline  |  Tagline |
-| description  | First line under the tagline and also the meta description  |
-|  seconddescr | Longer description  |
+| description  | First line under the tagline and also the meta description |
 |  regex |  The actual regex string |
 | flag  |  regex flags associated with the expression. eg; g |
 | matchText  | Array(line by line) of strings to be included in the string matching are  |
-|  cheatRegex | refer `static/cheatsheet.json` and see what all cheats are relevent to this expression. (you can also add your own cheats into cheatsheet.json and refer to that) |
+|  cheatRegex | refer `static/regex/cheatsheet.json` and see what all cheats are relevent to this expression. (you can also add your own cheats into cheatsheet.json and refer to that) |
 |  embedHeight | Height in pixels of the regex visualization embed  |
 | tags  | tags related to the expression (to be used later)  |
 

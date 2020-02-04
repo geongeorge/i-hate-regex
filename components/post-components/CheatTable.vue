@@ -10,14 +10,18 @@
       <tbody v-if="!showAll">
         <tr v-for="(reg, key) in regexes" :key="key">
           <td>
-            <code class="text-green-600">{{ reg.regex }}</code>
+            <code class="font-bold text-green-600">{{ reg.regex }}</code>
           </td>
           <td>{{ reg.usage }}</td>
         </tr>
       </tbody>
       <tbody v-else>
         <tr v-for="(reg, key) in cheatsheet" :key="key">
-          <td>{{ reg.regex }}</td>
+          <td>
+            <code class="font-bold text-green-600">
+              {{ reg.regex }}
+            </code>
+          </td>
           <td>{{ reg.usage }}</td>
         </tr>
       </tbody>
@@ -26,7 +30,7 @@
 </template>
 
 <script>
-import cheatsheet from "~/static/cheatsheet.json"
+import cheatsheet from "~/static/regex/cheatsheet.json"
 
 export default {
   props: {
