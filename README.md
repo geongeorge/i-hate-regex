@@ -36,6 +36,7 @@
 - [x] Matched strings - the Testing area
 - [x] Embed regular expression visualization on your sites
 - [x] Regex code highlighting and validation
+- [x] Regex description with markdown support
 - [ ] [Playground page](https://ihateregex.io/playground) where you can create your own expression and link to it.
 - [ ] User login and save regex
 
