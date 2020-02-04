@@ -82,7 +82,7 @@
           submit regex
         </p>
       </a>
-      <a href="https://www.buymeacoffee.com/geon" target="_blank">
+      <!-- <a href="https://www.buymeacoffee.com/geon" target="_blank">
         <p class="my-2 group">
           <v-icon
             name="mug-hot"
@@ -92,7 +92,7 @@
           </v-icon>
           buy me a coffee
         </p>
-      </a>
+      </a> -->
       <!-- <span class=""> -->
       <!-- eslint-disable-next-line -->
         <!-- <a href="https://www.producthunt.com/posts/i-hate-regex?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-i-hate-regex" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=182905&theme=dark" alt="i Hate Regex - regex cheatsheet for the haters | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px"></a> -->
