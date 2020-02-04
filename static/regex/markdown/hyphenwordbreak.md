@@ -1,1 +1,1 @@
-This expression will find any lines you have a hyphen to break a word so that it'll fit onto one line.
+This expression will find any lines you have a hyphen to break a word.
