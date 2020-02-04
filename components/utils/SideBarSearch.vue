@@ -49,36 +49,54 @@
       follow @geongeorgek
       </a>
       </span> -->
-      <nuxt-link to="/playground" class="hover:underline">
-        <p class="my-2">
+      <nuxt-link to="/playground">
+        <p class="my-2 group">
+          <v-icon
+            name="magic"
+            class="text-gray-500 group-hover:text-gray-700"
+            scale="1"
+          >
+          </v-icon>
           playground
         </p>
       </nuxt-link>
-      <a
-        href="https://github.com/geongeorge/i-hate-regex"
-        class="hover:underline"
-        target="_blank"
-      >
-        <p class="my-2">github</p>
+      <a href="https://github.com/geongeorge/i-hate-regex" target="_blank">
+        <p class="my-2 group">
+          <v-icon
+            name="brands/github"
+            class="text-gray-500 group-hover:text-gray-700"
+            scale="1"
+          >
+          </v-icon>
+          github
+        </p>
       </a>
-      <a
-        href="https://forms.gle/Cwo3VupujQJzeoYQ9"
-        class="hover:underline"
-        target="_blank"
-      >
-        <p class="my-2">submit regex</p>
+      <a href="https://forms.gle/Cwo3VupujQJzeoYQ9" target="_blank">
+        <p class="my-2 group">
+          <v-icon
+            name="paper-plane"
+            class="text-gray-500 group-hover:text-gray-700"
+            scale="1"
+          >
+          </v-icon>
+          submit regex
+        </p>
       </a>
-      <a
-        href="https://www.buymeacoffee.com/geon"
-        class="hover:underline"
-        target="_blank"
-      >
-        <p class="my-2">buy me a coffee</p>
+      <a href="https://www.buymeacoffee.com/geon" target="_blank">
+        <p class="my-2 group">
+          <v-icon
+            name="mug-hot"
+            class="text-gray-500 group-hover:text-gray-700"
+            scale="1"
+          >
+          </v-icon>
+          buy me a coffee
+        </p>
       </a>
-      <span class="">
-        <!-- eslint-disable-next-line -->
-        <a href="https://www.producthunt.com/posts/i-hate-regex?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-i-hate-regex" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=182905&theme=dark" alt="i Hate Regex - regex cheatsheet for the haters | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px"></a>
-      </span>
+      <!-- <span class=""> -->
+      <!-- eslint-disable-next-line -->
+        <!-- <a href="https://www.producthunt.com/posts/i-hate-regex?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-i-hate-regex" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=182905&theme=dark" alt="i Hate Regex - regex cheatsheet for the haters | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px"></a> -->
+      <!-- </span> -->
     </div>
   </div>
 </template>
