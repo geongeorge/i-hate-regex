@@ -37,6 +37,7 @@
 - [x] Embed regular expression visualization on your sites
 - [x] Regex code highlighting and validation
 - [ ] [Playground page](https://ihateregex.io/playground) where you can create your own expression and link to it.
+- [ ] User login and save regex
 
 ## Contribute Regex 🙏
 
