@@ -53,7 +53,7 @@
         <p class="my-2 group">
           <v-icon
             name="magic"
-            class="text-gray-500 group-hover:text-gray-700"
+            class="inline-block fill-current text-gray-500 group-hover:text-gray-700"
             scale="1"
           >
           </v-icon>
@@ -64,7 +64,7 @@
         <p class="my-2 group">
           <v-icon
             name="brands/github"
-            class="text-gray-500 group-hover:text-gray-700"
+            class="inline-block fill-current text-gray-500 group-hover:text-gray-700"
             scale="1"
           >
           </v-icon>
@@ -75,7 +75,7 @@
         <p class="my-2 group">
           <v-icon
             name="paper-plane"
-            class="text-gray-500 group-hover:text-gray-700"
+            class="inline-block fill-current text-gray-500 group-hover:text-gray-700"
             scale="1"
           >
           </v-icon>
@@ -86,7 +86,7 @@
         <p class="my-2 group">
           <v-icon
             name="mug-hot"
-            class="text-gray-500 group-hover:text-gray-700"
+            class="inline-block fill-current text-gray-500 group-hover:text-gray-700"
             scale="1"
           >
           </v-icon>
