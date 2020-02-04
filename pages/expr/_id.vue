@@ -58,6 +58,7 @@ export default {
         /* do nothing */
       }
     } else {
+      console.log("tryings....")
       try {
         // client mode -> use axios
         markdown = await $axios.$get(path)

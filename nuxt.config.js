@@ -1,9 +1,11 @@
 import purgecss from "@fullhuman/postcss-purgecss"
+const port = 3600;
+const host = "0.0.0.0";
 export default {
   mode: "universal",
   server: {
-    port: 3600, // default: 3000
-    host: "0.0.0.0" // default: localhost
+    port, // default: 3000
+    host // default: localhost
   },
   /*
    ** Headers of the page
@@ -68,6 +70,9 @@ export default {
     ],
     ["@nuxtjs/toast"]
   ],
+  axios: {
+    baseURL : "https://ihateregex.io"
+  },
   markdownit: {
     injected: true
   },
