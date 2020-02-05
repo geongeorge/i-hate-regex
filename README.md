@@ -106,6 +106,24 @@
 
 
 
+### Descriptions
+
+There are 2 descriptions for each regex. 
+
+- One is the **description** property inside `/static/regex/data.json`. 
+
+    - This is used for page **meta description**
+
+- Second is a dedicated **markdown file** in `/static/regex/markdown/` which we will call **second description**
+
+  - This should explain the working of the expression in detail
+
+
+| Property | Definition | example |
+|------|------------|------------|
+| **description** property inside `data.json` | This should explain about what the target match is in a few lines. It should not contain any html or markdown |A username is a unique identifier given to accounts in websites and social media |
+|dedicated **markdown file**|Explain about the expression and its working| ip addresses are of the range 0.0.0.0 - 255.255.255.255. The expression matches the ....(more)|
+
 ## Build Setup 🚀
 
 1. Install [yarn](https://yarnpkg.com/)
