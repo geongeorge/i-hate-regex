@@ -125,7 +125,7 @@ There are 2 descriptions for each regex.
   - This is the **long description**
 
   <div align="center">
-  <img src="https://i.imgur.com/fgjwVih.png" width="500">
+  <img src="https://i.imgur.com/fRiJeql.png" width="600">
   </div>
 
 
