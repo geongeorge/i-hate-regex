@@ -109,6 +109,7 @@ You can also submit regex via this [google form](https://forms.gle/Cwo3VupujQJze
     *&lt;regex-id&gt; is the **id** from **data.json***
 
 
+That's it 🙌 Go ahead and shoot a new pull request✨✨
 
 ### Descriptions
 
