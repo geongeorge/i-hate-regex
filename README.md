@@ -117,10 +117,16 @@ There are 2 descriptions for each regex.
 - One is the **description** property inside `/static/regex/data.json`. 
 
     - This is used for page **meta description** as well.
+    - This is the **first description**
 
-- Second is a dedicated **markdown file** in `/static/regex/markdown/` which we will call **second description**
+- Second is a dedicated **markdown file** in `/static/regex/markdown/<file>.md`
 
   - This should explain the working of the expression in detail
+  - This is the **long description**
+
+  <div align="center">
+  <img src="https://i.imgur.com/fgjwVih.png" width="500">
+  </div>
 
 
 | Property | Definition | example |
