@@ -40,6 +40,35 @@
 - [ ] [Playground page](https://ihateregex.io/playground) where you can create your own expression and link to it.
 - [ ] User login and save regex
 
+## Setup 🚀
+
+1. Install [yarn](https://yarnpkg.com/)
+
+2. [Clone](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) this repo
+
+3. Install dependencies ⚙️
+
+  ``` bash
+  $ yarn install
+
+  ```
+4. Test on localhost 🛠
+  ``` bash
+  # serve with hot reload at localhost:3600
+  $ yarn dev
+  ```
+5. Build and Start nuxt server 🚀
+  ``` bash
+  # build for production and launch server
+  $ yarn build
+  $ yarn start
+  ```
+
+This project is built with Nuxt.js 🙌
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+
 ## Contribute Regex 🙏
 
 Contribute to this project and make this the largest collection of useful expressions 😍
@@ -134,36 +163,6 @@ There are 2 descriptions for each regex.
 |------|------------|------------|
 | **description** property inside `data.json` | This should explain about what the target match is in a few lines. It should not contain any html or markdown |A username is a unique identifier given to accounts in websites and social media |
 |dedicated **markdown file**|Explain about the expression and its working| ip addresses are of the range 0.0.0.0 - 255.255.255.255. The expression matches the ....(more)|
-
-## Build Setup 🚀
-
-1. Install [yarn](https://yarnpkg.com/)
-
-2. [Clone](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) this repo
-
-3. Install dependencies ⚙️
-
-  ``` bash
-  $ yarn install
-
-  ```
-4. Test on localhost 🛠
-  ``` bash
-  # serve with hot reload at localhost:3000
-  $ yarn dev
-  ```
-5. Build and Start nuxt server 🚀
-  ``` bash
-  # build for production and launch server
-  $ yarn build
-  $ yarn start
-  ```
-
-This project is built with Nuxt.js 🙌
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-
-
 
 
 ### Credits
