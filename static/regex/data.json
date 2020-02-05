@@ -492,5 +492,30 @@
         ],
         "embedHeight": 300,
         "tags" : ["hyphen", "word_break"]
+    },
+    {
+        "id": "bitcoin-address",
+        "title": "bitcoin address",
+        "tagline": "match bitcoint addresses",
+        "description": "A bitcoin address is the address string which identifies a bitcoin cryptocurrency wallet.",
+        "regex": "^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$",
+        "flag": "gm",
+        "matchText": [
+            "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY",
+            "loremipsum",
+            "16ftSEQ4ctQFDtVZiUBusQUjRrGhM3JYwe",
+            "1EBHA1ckUWzNKN7BMfDwGTx6GKEbADUozX",
+            "0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae",
+            "bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq"
+        ],
+        "cheatRegex": [
+            "/[a-zA-Z]/",
+            "/$/",
+            "/^/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){1,3}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["crypto", "address"]
     }
 ]

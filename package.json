@@ -9,7 +9,8 @@
     "build": "nuxt build",
     "start:dev": "nuxt start",
     "start": "cross-env NODE_ENV=production nuxt start",
-    "generate": "nuxt generate",
+    "generate:dev": "nuxt generate",
+    "generate": "cross-env NODE_ENV=production nuxt generate",
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint --fix --ext .js,.vue ."
   },
