@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "HOST=0.0.0.0 nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start:dev": "nuxt start",
+    "start": "cross-env NODE_ENV=production nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint --fix --ext .js,.vue ."
@@ -37,6 +38,7 @@
     "@nuxtjs/google-analytics": "^2.2.2",
     "@nuxtjs/tailwindcss": "^1.0.0",
     "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-loader": "^3.0.3",

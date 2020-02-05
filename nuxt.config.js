@@ -1,6 +1,6 @@
 import purgecss from "@fullhuman/postcss-purgecss"
 const port = 3600;
-const host = "0.0.0.0";
+const host = "localhost";
 export default {
   mode: "universal",
   server: {
@@ -71,7 +71,7 @@ export default {
     ["@nuxtjs/toast"]
   ],
   axios: {
-    baseURL : "https://ihateregex.io"
+    baseURL : process.env.NODE_ENV !== 'production'? 'http://'+host+':'+port:"https://ihateregex.io"
   },
   markdownit: {
     injected: true
