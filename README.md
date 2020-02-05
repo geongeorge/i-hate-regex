@@ -42,7 +42,11 @@
 
 ## Contribute Regex 🙏
 
-**To contribute:**
+Contribute to this project and make this the largest collection of useful expressions 😍
+
+You can also submit regex via this [google form](https://forms.gle/Cwo3VupujQJzeoYQ9)
+
+### To contribute:
 
 1. Add your regex to `/static/regex/data.json`
 
@@ -112,7 +116,7 @@ There are 2 descriptions for each regex.
 
 - One is the **description** property inside `/static/regex/data.json`. 
 
-    - This is used for page **meta description**
+    - This is used for page **meta description** as well.
 
 - Second is a dedicated **markdown file** in `/static/regex/markdown/` which we will call **second description**
 

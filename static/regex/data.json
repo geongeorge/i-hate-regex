@@ -259,7 +259,7 @@
         "id": "ssn",
         "title": "ssn",
         "tagline": "match a social security number",
-        "description": "Hyphen-separated Social Security Number (SSN) in the format NNN-NN-NNNN.",
+        "description": "A Social Security number (SSN) is a nine-digit number that the U.S. government issues to all U.S. citizens and eligible U.S",
         "regex": "^(?!0{3})(?!6{3})[0-8]\\d{2}-(?!0{2})\\d{2}-(?!0{4})\\d{4}$",
         "flag": "gm",
         "matchText": [

@@ -1,4 +1,4 @@
-This expression can be used to find or validate a social security number. 
+This expression can be used to find or validate a hyphen-separated Social Security Number (SSN) in the format **NNN-NN-NNNN**. 
 
 An SSN cannot:
 - Contain all zeroes in any specific group (e.g 000-##-####, ###-00-####, or ###-##-0000)
