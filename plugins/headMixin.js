@@ -16,7 +16,11 @@ export default ({ route }) => {
             content: require("~/static/images/ihateregex.png")
           },
           { hid: "og:type", name: "og:type", content: "website" },
-          { hid: "og:site_name", name: "og:site_name", content: "iHateRegex" },
+          {
+            hid: "og:site_name",
+            name: "og:site_name",
+            content: "i Hate Regex"
+          },
           {
             hid: "keywords",
             name: "keywords",

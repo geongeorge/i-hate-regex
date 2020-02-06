@@ -121,14 +121,14 @@ export default {
   },
   head() {
     return {
-      title: "i Hate Regex - regex cheatsheet for haters",
+      title: "i Hate Regex - The Regex Cheat Sheet",
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
           hid: "description",
           name: "description",
           content:
-            "i Hate Regex is a regex cheatsheet that also explains the commonly used expressions so that you understand it. Stop hating and start learning."
+            "i Hate Regex is a regex cheat sheet that also explains the commonly used expressions so that you understand it. Stop hating and start learning."
         }
       ]
     }
