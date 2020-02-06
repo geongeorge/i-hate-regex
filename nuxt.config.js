@@ -134,7 +134,7 @@ export default {
 // sitemap begin
   sitemap: {
     path: '/sitemap.xml',
-    host: myUrl,
+    hostname: myUrl,
     sitemaps: [
       {
         path: "/sitemap-main.xml",
