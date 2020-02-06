@@ -28,6 +28,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
     "@nuxtjs/markdownit": "^1.2.7",
+    "@nuxtjs/sitemap": "^2.0.1",
     "@nuxtjs/toast": "^3.3.0",
     "nuxt": "^2.0.0",
     "regex-colorize": "^0.0.3",

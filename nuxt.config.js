@@ -1,6 +1,11 @@
 import purgecss from "@fullhuman/postcss-purgecss"
+import regexArray from "./static/regex/data.json"
+
 const port = 3600;
 const host = "localhost";
+
+const myUrl = process.env.NODE_ENV !== 'production'? 'http://'+host+':'+port:"https://ihateregex.io";
+
 export default {
   mode: "universal",
   server: {
@@ -68,10 +73,11 @@ export default {
         id: "UA-153865454-1"
       }
     ],
-    ["@nuxtjs/toast"]
+    ["@nuxtjs/toast"],
+    "@nuxtjs/sitemap"
   ],
   axios: {
-    baseURL : process.env.NODE_ENV !== 'production'? 'http://'+host+':'+port:"https://ihateregex.io"
+    baseURL : myUrl
   },
   markdownit: {
     injected: true
@@ -123,5 +129,25 @@ export default {
         whitelist: ["html", "body"]
       })
     ]
+  },
+
+// sitemap begin
+  sitemap: {
+    path: '/sitemap.xml',
+    sitemaps: [
+      {
+        path: "/sitemap-main.xml",
+        routes: [
+          "/playground",
+          "/cheatsheet",
+          "/expr"
+        ]
+      },
+      {
+        path: '/sitemap-regex.xml',
+        routes: regexArray.map(el=> "expr/"+el.id)
+      }
+    ]
   }
+  // sitemap end
 }
