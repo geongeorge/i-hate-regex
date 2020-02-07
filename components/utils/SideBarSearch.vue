@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     fuseSearch() {
-      let options = {
+      const options = {
         shouldSort: true,
         threshold: 0.6,
         location: 0,
@@ -140,7 +140,7 @@ export default {
       })
     },
     relatedSearch() {
-      let options = {
+      const options = {
         shouldSort: true,
         threshold: 0.6,
         location: 0,
