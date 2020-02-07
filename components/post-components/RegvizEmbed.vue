@@ -61,7 +61,7 @@ export default {
     // to encode base64 for url
     //https://gist.github.com/geongeorge/c30e9b1e3e7590b8a22464c879ad9a04
     hashEncodeUrl(str) {
-      let mystr = str.replace(/\\/g, "\\\\") // escaping \
+      const mystr = str.replace(/\\/g, "\\\\") // escaping \
       return btoa(encodeURIComponent(mystr))
         .replace(/\+/g, "-")
         .replace(/\//g, "_") //  /..
@@ -70,7 +70,7 @@ export default {
     },
 
     copyEmbedCode() {
-      var tempInput = document.createElement("input")
+      const tempInput = document.createElement("input")
       tempInput.style = "position: absolute; left: -1000px; top: -1000px"
       tempInput.value = this.embedString
       document.body.appendChild(tempInput)
