@@ -117,8 +117,7 @@ export default {
   },
   methods: {
     checkSelection(str) {
-      if (this.myselections.includes(str)) return true
-      return false
+      return this.myselections.includes(str)
     },
     closeModelEmit() {
       this.$emit("closeModal", true)
