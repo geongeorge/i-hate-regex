@@ -55,13 +55,10 @@ import "regex-colorize/themes/sweetest.css"
 import FlagSelector from "~/components/post-components/utils/FlagSelector"
 import pastePlainText from "~/mixins/pastePlainText.js"
 //
-var rgx
+let rgx
 if (process.client) {
   require("regex-colorize")
   rgx = new window.RegexColorize.default()
-  // var RegexColorize = new window.RegexColorize.default();
-  // console.log(RegexColorize);
-  // RegexColorize.addStyleSheet();
 }
 export default {
   components: {
