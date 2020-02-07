@@ -85,11 +85,7 @@ export default {
     const val = regexdata.find(val => {
       return val.id == params.id
     })
-    if (val) {
-      return true
-    } else {
-      return false
-    }
+    return val
   },
   head() {
     const thisregex = regexdata.find(val => {
