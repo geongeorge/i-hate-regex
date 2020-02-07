@@ -53,8 +53,10 @@ export default {
   },
   computed: {
     showText() {
-      if (this.displayMatches) return "hide matches"
-      else return "show matches"
+      if (this.displayMatches) {
+        return "hide matches"
+      }
+      return "show matches"
     }
   },
   watch: {
@@ -74,14 +76,14 @@ export default {
       this.boxEdited()
     },
     getMatchTextOnly() {
-      let element = this.$refs.matchbox
-      let text = element.innerText || element.textContent || "" //get inner text without html
+      const element = this.$refs.matchbox
+      const text = element.innerText || element.textContent || "" //get inner text without html
       return text
     },
     boxEdited() {
       if (process.client) {
-        //when box edited
-        //somehow need to locate the cursor location and place it there
+        // when box edited
+        // somehow need to locate the cursor location and place it there
         let text = this.getMatchTextOnly() //get inner text without html
         // replace text with highlight html included
         text = text.replace(
@@ -94,8 +96,8 @@ export default {
     },
     boxEditedNew() {
       if (process.client) {
-        //when box edited
-        //somehow need to locate the cursor location and place it there
+        // when box edited
+        // somehow need to locate the cursor location and place it there
         let text = this.getMatchTextOnly() //get inner text without html
         // replace text with highlight html included
         // text = text.replace(
@@ -112,11 +114,11 @@ export default {
           // s-> start pos = index
           // e-> end pos = index+length
           // we will change the match and re-concatinate
-          let startPos = matches.index
-          let endPos = matches.index + matches[0].length
+          const startPos = matches.index
+          const endPos = matches.index + matches[0].length
 
-          let beginPart = text.substr(0, startPos)
-          let lastPart = text.substr(endPos)
+          const beginPart = text.substr(0, startPos)
+          const lastPart = text.substr(endPos)
           //string matched
           let matchStr = text.substr(startPos, matches[0].length)
 
@@ -126,7 +128,7 @@ export default {
             "</span>"
 
           // text from begining to match string (including)
-          let textTillStr = beginPart + matchStr
+          const textTillStr = beginPart + matchStr
 
           text = textTillStr + lastPart
 
@@ -142,8 +144,6 @@ export default {
           //   //   console.log(matchStr);
           //   // }
           // }
-
-          console.log(matches)
           // console.log(beginPart+"!"+matchStr+'!'+lastPart)
           // console.log(matches);
 

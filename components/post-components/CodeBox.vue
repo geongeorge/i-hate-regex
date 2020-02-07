@@ -55,13 +55,10 @@ import "regex-colorize/themes/sweetest.css"
 import FlagSelector from "~/components/post-components/utils/FlagSelector"
 import pastePlainText from "~/mixins/pastePlainText.js"
 //
-var rgx
+let rgx
 if (process.client) {
   require("regex-colorize")
   rgx = new window.RegexColorize.default()
-  // var RegexColorize = new window.RegexColorize.default();
-  // console.log(RegexColorize);
-  // RegexColorize.addStyleSheet();
 }
 export default {
   components: {
@@ -79,7 +76,7 @@ export default {
       debounceTimer: null,
       regexError: false,
       myflag: "gm",
-      ifCopy: false, //Variable to show copied message
+      ifCopy: false, // Variable to show copied message
       flagSelectorShow: false
     }
   },
@@ -96,7 +93,7 @@ export default {
       this.debounceTimer = setTimeout(() => {
         let isValid = true
         let reg
-        let codebox = this.$refs.codebox
+        const codebox = this.$refs.codebox
         try {
           reg = new RegExp(codebox.innerText, this.myflag)
           this.regexError = false
@@ -126,14 +123,14 @@ export default {
       this.regexChanged()
     },
     selectElementContents(el) {
-      var range = document.createRange()
+      const range = document.createRange()
       range.selectNodeContents(el)
-      var sel = window.getSelection()
+      const sel = window.getSelection()
       sel.removeAllRanges()
       sel.addRange(range)
     },
     copyRegex() {
-      let regexToCopy = this.$refs.codebox
+      const regexToCopy = this.$refs.codebox
 
       // regexToCopy.setAttribute('type', 'text')    //hidden
       this.selectElementContents(regexToCopy)
@@ -150,7 +147,7 @@ export default {
       window.getSelection().removeAllRanges()
     },
     onPaste(e) {
-      var text = (e.originalEvent || e).clipboardData.getData("text/plain")
+      const text = (e.originalEvent || e).clipboardData.getData("text/plain")
 
       document.execCommand("insertHTML", false, text)
     }

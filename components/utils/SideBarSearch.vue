@@ -126,7 +126,7 @@ export default {
   },
   methods: {
     fuseSearch() {
-      let options = {
+      const options = {
         shouldSort: true,
         threshold: 0.6,
         location: 0,
@@ -136,11 +136,11 @@ export default {
         keys: ["title", "description", "tags"]
       }
       this.$search(this.query, this.catalog, options).then(results => {
-        this.searchResults = results.slice(0, 3) //top 3 search result only
+        this.searchResults = results.slice(0, 3) // top 3 search result only
       })
     },
     relatedSearch() {
-      let options = {
+      const options = {
         shouldSort: true,
         threshold: 0.6,
         location: 0,

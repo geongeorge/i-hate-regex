@@ -14,14 +14,12 @@ export default {
   name: "TransitionExpand",
   methods: {
     enter(element) {
-      const width = getComputedStyle(element).width
+      const { height, width } = getComputedStyle(element).width
 
       element.style.width = width
       element.style.position = "absolute"
       element.style.visibility = "hidden"
       element.style.height = "auto"
-
-      const height = getComputedStyle(element).height
 
       element.style.width = null
       element.style.position = null
@@ -45,7 +43,7 @@ export default {
       element.style.height = "auto"
     },
     leave(element) {
-      const height = getComputedStyle(element).height
+      const { height } = getComputedStyle(element)
 
       element.style.height = height
 
