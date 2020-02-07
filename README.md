@@ -26,6 +26,11 @@
    Chat with us on <a href="https://t.me/ihateregex" target="_blank">Telegram</a>
 
 </p>
+<p>
+<a href="https://www.patreon.com/geongeorge" target="_blank">
+<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width=120>
+</a>
+</p>
 </div>
 
 
