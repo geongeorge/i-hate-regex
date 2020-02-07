@@ -1,7 +1,7 @@
 export default {
   methods: {
     insertTextAtCursor(text) {
-      var sel, range
+      let sel, range
       if (window.getSelection) {
         sel = window.getSelection()
         if (sel.getRangeAt && sel.rangeCount) {
@@ -14,7 +14,7 @@ export default {
       }
     },
     onPaste(e) {
-      let plaintext = e.clipboardData.getData("text/plain")
+      const plaintext = e.clipboardData.getData("text/plain")
       this.insertTextAtCursor(plaintext)
     }
   }
