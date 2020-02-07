@@ -53,8 +53,10 @@ export default {
   },
   computed: {
     showText() {
-      if (this.displayMatches) return "hide matches"
-      else return "show matches"
+      if (this.displayMatches) {
+        return "hide matches"
+      }
+      return "show matches"
     }
   },
   watch: {
