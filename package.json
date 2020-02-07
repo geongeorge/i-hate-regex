@@ -5,7 +5,7 @@
   "author": "Geon George",
   "private": true,
   "scripts": {
-    "dev": "HOST=0.0.0.0 nuxt",
+    "dev": "cross-env HOST=0.0.0.0 nuxt",
     "build": "nuxt build",
     "start:dev": "nuxt start",
     "start": "cross-env NODE_ENV=production nuxt start",
