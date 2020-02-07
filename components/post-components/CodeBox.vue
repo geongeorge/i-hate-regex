@@ -76,6 +76,7 @@ export default {
     return {
       myRegex: null,
       changeTimer: null,
+      debounceTimer: null,
       regexError: false,
       myflag: "gm",
       ifCopy: false, //Variable to show copied message
@@ -91,28 +92,31 @@ export default {
   },
   methods: {
     regexChanged() {
-      let isValid = true
-      let reg
-      let codebox = this.$refs.codebox
-      try {
-        reg = new RegExp(codebox.innerText, this.myflag)
-        this.regexError = false
-      } catch (e) {
-        isValid = false
-        this.regexError = true
-      }
-      if (this.changeTimer) {
-        clearTimeout(this.changeTimer)
-      }
-      this.changeTimer = setTimeout(() => {
-        rgx.colorizeAll()
-      }, 3000)
-      if (isValid) {
-        this.$emit("regexChanged", {
-          regex: reg,
-          flag: this.myflag
-        })
-      }
+      clearTimeout(this.debounceTimer)
+      this.debounceTimer = setTimeout(() => {
+        let isValid = true
+        let reg
+        let codebox = this.$refs.codebox
+        try {
+          reg = new RegExp(codebox.innerText, this.myflag)
+          this.regexError = false
+        } catch (e) {
+          isValid = false
+          this.regexError = true
+        }
+        if (this.changeTimer) {
+          clearTimeout(this.changeTimer)
+        }
+        this.changeTimer = setTimeout(() => {
+          rgx.colorizeAll()
+        }, 3000)
+        if (isValid) {
+          this.$emit("regexChanged", {
+            regex: reg,
+            flag: this.myflag
+          })
+        }
+      }, 700)
     },
     toggleFlagSelect() {
       this.flagSelectorShow = !this.flagSelectorShow
