@@ -44,7 +44,7 @@ export default {
   async asyncData({ $axios, params }) {
     const path = `/regex/markdown/${params.id}.md`
 
-    var markdown = ""
+    let markdown = ""
 
     if (process.server) {
       // if server -> get file using fs.readFileSync
@@ -82,7 +82,7 @@ export default {
     }
   },
   validate({ params, query, store }) { // eslint-disable-line
-    var val = regexdata.find(val => {
+    const val = regexdata.find(val => {
       return val.id == params.id
     })
     if (val) {
