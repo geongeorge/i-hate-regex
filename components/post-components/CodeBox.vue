@@ -76,7 +76,7 @@ export default {
       debounceTimer: null,
       regexError: false,
       myflag: "gm",
-      ifCopy: false, //Variable to show copied message
+      ifCopy: false, // Variable to show copied message
       flagSelectorShow: false
     }
   },

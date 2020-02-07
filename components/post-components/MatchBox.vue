@@ -82,8 +82,8 @@ export default {
     },
     boxEdited() {
       if (process.client) {
-        //when box edited
-        //somehow need to locate the cursor location and place it there
+        // when box edited
+        // somehow need to locate the cursor location and place it there
         let text = this.getMatchTextOnly() //get inner text without html
         // replace text with highlight html included
         text = text.replace(
@@ -96,8 +96,8 @@ export default {
     },
     boxEditedNew() {
       if (process.client) {
-        //when box edited
-        //somehow need to locate the cursor location and place it there
+        // when box edited
+        // somehow need to locate the cursor location and place it there
         let text = this.getMatchTextOnly() //get inner text without html
         // replace text with highlight html included
         // text = text.replace(
