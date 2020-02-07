@@ -12,6 +12,11 @@
     <a title="Chat on Telegram" href="https://t.me/ihateregex"> <img src="https://img.shields.io/badge/chat-Telegram-blueviolet?logo=Telegram"/>
     </a>
   </p>
+  <p>
+<a href="https://www.patreon.com/geongeorge" target="_blank">
+<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width=180>
+</a>
+</p>
   <a href="https://ihateregex.io"><img src="https://i.imgur.com/mHuTAzy.png" width=600></a>
   
   <p>
@@ -25,11 +30,6 @@
   <p>
    Chat with us on <a href="https://t.me/ihateregex" target="_blank">Telegram</a>
 
-</p>
-<p>
-<a href="https://www.patreon.com/geongeorge" target="_blank">
-<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width=120>
-</a>
 </p>
 </div>
 
