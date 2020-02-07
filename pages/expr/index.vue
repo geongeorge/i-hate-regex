@@ -101,7 +101,7 @@ export default {
       this.fuseSearch()
     },
     fuseSearch() {
-      let options = {
+      const options = {
         shouldSort: true,
         threshold: 0.6,
         location: 0,
