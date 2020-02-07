@@ -43,7 +43,7 @@ export default {
       element.style.height = "auto"
     },
     leave(element) {
-      const height = getComputedStyle(element).height
+      const { height } = getComputedStyle(element)
 
       element.style.height = height
 
