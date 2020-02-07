@@ -93,7 +93,7 @@ export default {
       this.debounceTimer = setTimeout(() => {
         let isValid = true
         let reg
-        let codebox = this.$refs.codebox
+        const codebox = this.$refs.codebox
         try {
           reg = new RegExp(codebox.innerText, this.myflag)
           this.regexError = false
@@ -123,14 +123,14 @@ export default {
       this.regexChanged()
     },
     selectElementContents(el) {
-      var range = document.createRange()
+      const range = document.createRange()
       range.selectNodeContents(el)
-      var sel = window.getSelection()
+      const sel = window.getSelection()
       sel.removeAllRanges()
       sel.addRange(range)
     },
     copyRegex() {
-      let regexToCopy = this.$refs.codebox
+      const regexToCopy = this.$refs.codebox
 
       // regexToCopy.setAttribute('type', 'text')    //hidden
       this.selectElementContents(regexToCopy)
@@ -147,7 +147,7 @@ export default {
       window.getSelection().removeAllRanges()
     },
     onPaste(e) {
-      var text = (e.originalEvent || e).clipboardData.getData("text/plain")
+      const text = (e.originalEvent || e).clipboardData.getData("text/plain")
 
       document.execCommand("insertHTML", false, text)
     }
