@@ -5,7 +5,7 @@
   </h1>
   
   <p align="center">
-    <a href="https://github.com/geongeorge/i-hate-regex/pull/new">
+    <a href="https://github.com/geongeorge/i-hate-regex/pull/new" target="_blank">
       <img src="https://img.shields.io/badge/PRs%20-welcome-brightgreen.svg" alt="PRs Welcome" />
     </a>
       <img src="https://github.com/geongeorge/i-hate-regex/workflows/Node.js%20CI/badge.svg" alt="Nodejs CI" />
@@ -13,8 +13,8 @@
     </a>
   </p>
   <p>
-<a href="https://www.patreon.com/geongeorge" target="_blank">
-<img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" width=140>
+<a href="https://opencollective.com/ihateregex" target="_blank">
+<img src="https://opencollective.com/webpack/donate/button@2x.png?color=blue" width=140>
 </a>
 </p>
   <a href="https://ihateregex.io"><img src="https://i.imgur.com/mHuTAzy.png" width=600></a>
@@ -169,8 +169,15 @@ There are 2 descriptions for each regex.
 | **description** property inside `data.json` | This should explain about what the target match is in a few lines. It should not contain any html or markdown |A username is a unique identifier given to accounts in websites and social media |
 |dedicated **markdown file**|Explain about the expression and its working| ip addresses are of the range 0.0.0.0 - 255.255.255.255. The expression matches the ....(more)|
 
+## Sponsors 💖
 
-### Credits
+<a href="http://bit.ly/datree-ihr-gh" target="_blank">
+<img width="190" src="https://assets.website-files.com/5d514f718e8309c01d798013/5d8b4657e7740e300666e3cc_datree_LOGO%20FLAT%20h-p-500.png">
+</a>
+
+<a href="https://opencollective.com/ihateregex">Contribute via Opencollective</a>
+
+## Credits
 
 - The visual demo is built with: [regexper](https://gitlab.com/javallone/regexper-static
 )
