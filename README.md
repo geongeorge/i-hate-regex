@@ -175,7 +175,10 @@ There are 2 descriptions for each regex.
 <img width="190" src="https://assets.website-files.com/5d514f718e8309c01d798013/5d8b4657e7740e300666e3cc_datree_LOGO%20FLAT%20h-p-500.png">
 </a>
 
+<p>
 <a href="https://opencollective.com/ihateregex">Donate via Opencollective</a>
+</p>
+
 
 ## Credits
 
