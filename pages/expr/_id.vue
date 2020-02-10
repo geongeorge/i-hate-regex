@@ -115,7 +115,7 @@ export default {
 }
 
 .long-description code {
-  @apply bg-gray-300 rounded;
+  @apply bg-gray-200 rounded text-green-700;
 }
 
 .long-description h4 {
@@ -132,5 +132,8 @@ export default {
 
 .long-description h1 {
   @apply text-4xl;
+}
+.long-description p {
+  @apply mt-3;
 }
 </style>
