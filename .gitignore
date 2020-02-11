@@ -122,3 +122,6 @@ dist
 # Recommended template: Node.gitignore
 
 yarn-error.log
+
+# prefer yarn.lock and avoid mixup
+package-lock.json
