@@ -31,11 +31,6 @@
         [this page under construction]
         <ul class="list-inside list-disc">
           <li>
-            <a class="hover:underline" href="https://www.buymeacoffee.com/geon"
-              >support development</a
-            >
-          </li>
-          <li>
             <a
               class="hover:underline"
               href="https://github.com/geongeorge/i-hate-regex"
