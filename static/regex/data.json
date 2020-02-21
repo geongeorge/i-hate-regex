@@ -477,7 +477,7 @@
         "title": "hyphen word break",
         "tagline": "match the end of line hyphens that split up words",
         "description": "A hyphen appears at the end of a line when the word must be split to fit on the line",
-        "regex": "[a-zA-Z][\\-]$[\\n][a-zA-Z]",
+        "regex": "(?<=[a-z])-$\\n(?=[a-z])",
         "flag": "gm",
         "matchText": [
             "It illustrates not only the impor-",
@@ -487,8 +487,11 @@
             "ing the meaning of questions and answers. Our colleague had"
         ],
         "cheatRegex": [
-            "/[a-zA-Z]/",
-            "/$/"
+            "/[a-z]/",
+            "/(?<=[aeiou])\\w/",
+            "/$/",
+            "/z(?=a)/",
+
         ],
         "embedHeight": 300,
         "tags" : ["hyphen", "word_break"]
