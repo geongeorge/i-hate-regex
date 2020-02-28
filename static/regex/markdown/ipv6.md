@@ -1,1 +1,2 @@
-(don't ask me ¯\\_(ツ)_/¯)
+It is a 128 bit alphanumeric address separated by colon `(:)`. It can even contain hexadecimal.
+
