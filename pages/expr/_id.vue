@@ -136,4 +136,11 @@ export default {
 .long-description p {
   @apply mt-3;
 }
+
+.long-description a {
+  @apply text-green-600;
+}
+.long-description a:hover {
+  @apply border-green-400 border-b-2;
+}
 </style>
