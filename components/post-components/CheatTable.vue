@@ -22,7 +22,7 @@
               {{ reg.regex }}
             </code>
           </td>
-          <td>{{ reg.usage }}</td>
+          <td v-html="reg.usage"></td>
         </tr>
       </tbody>
     </table>

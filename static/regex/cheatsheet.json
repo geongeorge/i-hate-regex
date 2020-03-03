@@ -13,7 +13,7 @@
     },
     {
         "regex": "/h.llo/",
-        "usage": "the '.' matches any one character other than a new line character... matches 'hello', 'hallo' but not 'h\nllo'"
+        "usage": "the '.' matches any one character other than a new line character... matches 'hello', 'hallo' but not 'h<br>llo'"
     },
     {
         "regex": "/h.*llo/",
