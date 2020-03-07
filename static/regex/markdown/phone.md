@@ -1,1 +1,1 @@
-This is a generalized expression which works most of the time. There are too many variables to make this work around the world. Do try with the phone numbers in your country before using
+This is a generalized expression which works most of the time. There are too many variables to make this work around the world. Do try with the phone numbers in your country before using.
