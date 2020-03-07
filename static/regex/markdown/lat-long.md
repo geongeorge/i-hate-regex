@@ -1,1 +1,1 @@
-This would work for any comma-separated values that can optionally have **+** or **-** as prefix.
+This would work for any comma-separated values that can optionally have + or - as prefix.
