@@ -1,7 +1,7 @@
 import purgecss from "@fullhuman/postcss-purgecss"
 import regexArray from "./static/regex/data.json"
 
-const port = 3600;
+const port = process.env.port || 3600;
 const host = "localhost";
 
 const myUrl = process.env.NODE_ENV !== 'production'? 'http://'+host+':'+port:"https://ihateregex.io";
