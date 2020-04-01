@@ -1,4 +1,4 @@
-import purgecss from "@fullhuman/postcss-purgecss"
+// import purgecss from "@fullhuman/postcss-purgecss"
 import regexArray from "./static/regex/data.json"
 
 const port = process.env.port || 3600;
@@ -113,21 +113,17 @@ export default {
     }
   },
 
-  // purgeCSS: {
-  //   // whitelist: ['lg:w-1/5', 'lg:w-4/5', 'hidden', 'lg:block'],
-  //   paths: ['layouts-g/**/*.vue']
-  // },
   postcss: {
     plugins: [
-      purgecss({
-        content: [
-          "./pages/**/*.vue",
-          "./layouts/**/*.vue",
-          "./layouts-g/**/*.vue",
-          "./components/**/*.vue"
-        ],
-        whitelist: ["html", "body"]
-      })
+      // purgecss({
+      //   content: [
+      //     "./pages/**/*.vue",
+      //     "./layouts/**/*.vue",
+      //     "./layouts-g/**/*.vue",
+      //     "./components/**/*.vue"
+      //   ],
+      //   whitelist: ["html", "body"]
+      // })
     ]
   },
 
