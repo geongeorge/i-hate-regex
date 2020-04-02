@@ -1,4 +1,3 @@
-// import purgecss from "@fullhuman/postcss-purgecss"
 import regexArray from "./static/regex/data.json"
 
 const port = process.env.port || 3600;
@@ -115,15 +114,6 @@ export default {
 
   postcss: {
     plugins: [
-      // purgecss({
-      //   content: [
-      //     "./pages/**/*.vue",
-      //     "./layouts/**/*.vue",
-      //     "./layouts-g/**/*.vue",
-      //     "./components/**/*.vue"
-      //   ],
-      //   whitelist: ["html", "body"]
-      // })
     ]
   },
 
