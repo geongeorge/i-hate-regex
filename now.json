@@ -5,7 +5,10 @@
         "src": "nuxt.config.js",
         "use": "@nuxtjs/now-builder",
         "config": {
-          "serverFiles": ["./static/regex/data.json"]
+          "serverFiles": [
+            "./static/regex/data.json",
+            "./.nuxt/dist/sitemap-routes.json"
+          ]
         }
       }
     ]

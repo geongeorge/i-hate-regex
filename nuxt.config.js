@@ -57,7 +57,13 @@ export default {
    */
   devModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    "@nuxtjs/tailwindcss"
+    "@nuxtjs/tailwindcss",
+    [
+      "@nuxtjs/google-analytics",
+      {
+        id: "UA-153865454-1"
+      }
+    ],
   ],
   /*
    ** Nuxt.js modules
@@ -66,12 +72,6 @@ export default {
     '@nuxtjs/axios',
     "@nuxtjs/markdownit",
     "@nuxtjs/tailwindcss",
-    [
-      "@nuxtjs/google-analytics",
-      {
-        id: "UA-153865454-1"
-      }
-    ],
     ["@nuxtjs/toast"],
     "@nuxtjs/sitemap"
   ],
