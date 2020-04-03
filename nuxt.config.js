@@ -57,7 +57,6 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    "@nuxtjs/tailwindcss",
     [
       "@nuxtjs/google-analytics",
       {
@@ -73,7 +72,7 @@ export default {
     "@nuxtjs/markdownit",
     "@nuxtjs/tailwindcss",
     ["@nuxtjs/toast"],
-    "@nuxtjs/sitemap"
+    "@nuxtjs/sitemap",
   ],
   axios: {
     baseURL : myUrl
