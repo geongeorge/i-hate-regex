@@ -34,10 +34,10 @@
     "regex-colorize": "^0.0.3",
     "vue-awesome": "^3.5.4",
     "vue-fuse": "^2.1.0",
-    "vue-text-highlight": "^2.0.8"
+    "vue-text-highlight": "^2.0.8",
+    "@nuxtjs/tailwindcss": "^1.4.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^1.0.0",
     "@nuxtjs/google-analytics": "^2.2.2",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.0",
