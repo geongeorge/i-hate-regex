@@ -53,9 +53,9 @@ export default {
     // { src: '~plugins/ga.js', mode: 'client' } //google analytics
   ],
   /*
-   ** Nuxt.js dev-modules
+   ** Nuxt.js buildModules
    */
-  devModules: [
+  buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     "@nuxtjs/tailwindcss",
     [
