@@ -6,10 +6,10 @@
         "use": "@nuxtjs/now-builder",
         "config": {
           "serverFiles": [
-            "./static/regex/data.json",
-            "./.nuxt/dist/sitemap-routes.json",
             "~/tailwind.config.js",
-            "~/assets/css/tailwind.css"
+            "~/assets/css/tailwind.css",
+            "./static/regex/data.json",
+            "./.nuxt/dist/sitemap-routes.json"
           ]
         }
       }
