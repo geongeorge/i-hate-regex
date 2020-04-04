@@ -9,7 +9,8 @@
             "~/tailwind.config.js",
             "~/assets/css/tailwind.css",
             "./static/regex/data.json",
-            "./.nuxt/dist/sitemap-routes.json"
+            "./.nuxt/dist/sitemap-routes.json",
+            "./static/regex/markdown/"
           ]
         }
       }
