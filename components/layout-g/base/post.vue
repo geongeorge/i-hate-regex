@@ -2,7 +2,7 @@
   <div>
     <NavBar @sidebarStateChanged="toggleSidebar" />
     <div class="min-h-screen lg:flex">
-      <no-ssr>
+      <client-only>
         <div
           class="static h-full inset-0 h-full bg-gray-100 flex-none w-full lg:w-1/5 bg-gray-200 text-gray-700"
           :class="{ 'hidden lg:block': !sidebar }"
@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-      </no-ssr>
+      </client-only>
       <div class="flex-1 bg-white lg:w-4/5 lg:static text-gray-700">
         <div class="container mx-auto md:mt-5 lg:mt-20 px-2 text-left">
           <slot />

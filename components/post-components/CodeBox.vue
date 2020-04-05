@@ -4,7 +4,7 @@
       class="flex my-1 py-2 px-4 text-2xl rounded bg-gray-200 transition"
       :class="{ 'bg-red-200': regexError }"
     >
-      <no-ssr>
+      <client-only>
         <div class="w-5/6 flex content-center flex-wrap">
           <div
             ref="codebox"
@@ -16,7 +16,7 @@
             {{ regex.source }}
           </div>
         </div>
-      </no-ssr>
+      </client-only>
       <div class="w-1/6 flex flex-col content-center text-gray-400">
         <div class="w-full text-right">
           <a
@@ -37,14 +37,14 @@
         </div>
       </div>
     </div>
-    <no-ssr>
+    <client-only>
       <FlagSelector
         :model-show="flagSelectorShow"
         :selections="myflag.split('')"
         @closeModal="toggleFlagSelect"
         @selected="flagsChange"
       />
-    </no-ssr>
+    </client-only>
     <input ref="regexCopy" v-model="regex" type="text" class="hidden" />
   </section>
 </template>
