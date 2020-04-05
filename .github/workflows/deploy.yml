@@ -19,7 +19,8 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
       with:
         source: "."
-        target: ${{ secrets.DEPLOYPATH }}
+        target: "test"
+        # ${{ secrets.DEPLOYPATH }}
         # "/var/www/ihateregex.io/app"
 
     - name: Executing remote  command
