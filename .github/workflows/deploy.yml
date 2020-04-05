@@ -19,7 +19,8 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
       with:
         source: "."
-        target: "/var/www/ihateregex.io/app"
+        target: ${{ secrets.DEPLOYPATH }}
+        # "/var/www/ihateregex.io/app"
 
     - name: Executing remote  command
       uses: appleboy/ssh-action@master
