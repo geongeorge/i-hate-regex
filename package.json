@@ -12,7 +12,7 @@
     "generate:dev": "nuxt generate",
     "generate": "cross-env NODE_ENV=production nuxt generate",
     "lint": "eslint --ext .js,.vue .",
-    "lint:fix": "eslint --fix --ext .js,.vue ."
+    "lint:fix": "eslint --ext .js,.vue . --fix"
   },
   "husky": {
     "hooks": {
