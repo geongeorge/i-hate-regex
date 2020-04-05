@@ -4,4 +4,4 @@ An identifier can have **alphabets, numbers, and underscore (_)**.
 
 Identifiers cannot start with numbers.
 
-_Keywords cannot be used as an identifier._
+**Note:** Keywords cannot be used as an identifier
