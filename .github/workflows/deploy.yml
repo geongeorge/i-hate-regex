@@ -3,7 +3,7 @@ name: Deploy
 on: [push]
 
 jobs:
-  build:
+  copy:
 
     runs-on: ubuntu-latest
 
@@ -19,18 +19,22 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
       with:
         source: "."
-        target: "test"
+        target: ${{ secrets.DEPLOYPATH }}
         # ${{ secrets.DEPLOYPATH }}
         # "/var/www/ihateregex.io/app"
 
-    - name: Executing remote  command
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
-        script: |
-          yarn
-          yarn build
-          pm2 restart ihateregex
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Executing remote  command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          script: |
+            cd ${{ secrets.DEPLOYPATH }}
+            yarn
+            yarn build
+            pm2 restart ihateregex
