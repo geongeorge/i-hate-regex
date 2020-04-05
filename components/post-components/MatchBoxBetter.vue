@@ -149,7 +149,7 @@ export default {
   background: hsla(160, 100%, 73%, 0.3) !important;
 }
 #matchbox-container {
-  @apply relative bg-blue-gti 100 rounded mb-2 shadow-inner overflow-hidden;
+  @apply relative bg-blue-100 rounded mb-2 shadow-inner overflow-hidden;
   z-index: 0 !important;
   height: auto;
 }
