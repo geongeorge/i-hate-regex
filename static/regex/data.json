@@ -555,6 +555,7 @@
             "1234566660000222"
         ],
         "cheatRegex": [
+            "/[0-9]/"
         ],
         "embedHeight": 1100,
         "tags" : ["credit card", "payment card", "Visa", "MasterCard", "American Express", "Diners Club", "Discover", "JCB"]
