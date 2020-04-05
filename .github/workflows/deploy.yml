@@ -27,6 +27,7 @@ jobs:
      steps:
       - uses: actions/checkout@v1
       - name: Copy file via scp 2
+        if: github.ref == 'refs/heads/master'
         uses: garygrossgarten/github-action-scp@release       
         with:
           host: ${{ secrets.HOST }}
@@ -43,6 +44,7 @@ jobs:
     steps:
       - name: Executing remote  command
         uses: appleboy/ssh-action@master
+        if: github.ref == 'refs/heads/master'
         with:
           host: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
