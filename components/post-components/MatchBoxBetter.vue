@@ -96,6 +96,7 @@ export default {
         textarea.scrollHeight <= 0
           ? textarea.clientHeight
           : textarea.scrollHeight
+      textarea.style.height = "auto"
       textarea.style.height = scrollHeight + "px"
 
       console.log("scroll", textarea.scrollHeight)
