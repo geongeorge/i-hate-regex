@@ -83,13 +83,12 @@ export default {
       this.displayMatches = !this.displayMatches
       this.boxEdited()
     },
-    HtmlEncode(s) {
-      var text = s
+    htmlEncode(s) {
+      return s
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;")
-      return text
     },
     resizeTextarea() {
       // fix rreduction of height
@@ -103,7 +102,7 @@ export default {
       return text
     },
     applyHighlights(text) {
-      let fixedText = this.HtmlEncode(text)
+      let fixedText = this.htmlEncode(text)
       fixedText = fixedText.replace(/\n$/g, "\n\n")
       fixedText = `<mark>${fixedText}</mark>`
       return fixedText
@@ -156,7 +155,7 @@ export default {
           const fixedMatchStr = this.applyHighlights(matchStr)
 
           // fixed parts
-          const fixedBeginPart = this.HtmlEncode(beginPart)
+          const fixedBeginPart = this.htmlEncode(beginPart)
 
           // no need to fix last part
 
