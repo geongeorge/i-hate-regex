@@ -151,7 +151,7 @@ export default {
           const beginPart = text.substr(lastEndPos, lengthOfBeginPart)
           const lastPart = text.substr(endPos)
           //string matched
-          let matchStr = text.substr(startPos, matches[0].length)
+          const matchStr = text.substr(startPos, matches[0].length)
 
           const fixedMatchStr = this.applyHighlights(matchStr)
 
