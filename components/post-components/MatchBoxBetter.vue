@@ -84,24 +84,17 @@ export default {
       this.boxEdited()
     },
     HtmlEncode(s) {
-      var el = document.createElement("div")
-      el.innerText = el.textContent = s
-      s = el.innerHTML
-      el.parentNode.removeChild(el)
-      return s
+      var text = s
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+      return text
     },
     resizeTextarea() {
       // fix rreduction of height
       let textarea = this.$refs.matchbox
       autosize(textarea)
-      // let scrollHeight =
-      //   textarea.scrollHeight <= 0
-      //     ? textarea.clientHeight
-      //     : textarea.scrollHeight
-      // textarea.style.height = "auto"
-      // textarea.style.height = scrollHeight + "px"
-
-      console.log("scroll", textarea.scrollHeight)
     },
     getMatchTextOnly() {
       const element = this.$refs.matchbox
@@ -110,8 +103,9 @@ export default {
       return text
     },
     applyHighlights(text) {
-      let fixedText = text.replace(/\n$/g, "\n\n")
-      fixedText = fixedText.replace(this.regex, `<mark>$&</mark>`)
+      let fixedText = this.HtmlEncode(text)
+      fixedText = fixedText.replace(/\n$/g, "\n\n")
+      fixedText = `<mark>${fixedText}</mark>`
       return fixedText
     },
     hideCanvas(val = true) {
@@ -129,16 +123,62 @@ export default {
         // somehow need to locate the cursor location and place it there
         let text = this.getMatchTextOnly() //get inner text without html
         // replace text with highlight html included
-        var highlightedText = this.applyHighlights(text)
 
-        this.$refs.highlights.innerHTML = highlightedText
+        let matches
+        let lastEndPos = 0
+        this.regex.lastIndex = 0
 
-        console.log(text)
+        while ((matches = this.regex.exec(text)) !== null) {
+          // some text...[s]match[e]..end text
+          // s-> start pos = index
+          // e-> end pos = index+length
+          // we will change the match and re-concatinate
+          // The text is divided into 4 parts
+          //   alreadyParsedText => which need not be encoded(fixed)
+          //   beginPart => The text between already parsed and start of matched text
+          //                 Should be encoded
+          //   matchStr => String that is matched
+          //               Encoded, but added <mark></mark> tags which will not be encoded for highlights
+          //   lastPart => rest of the string, not highlighted/fixed
+          //
+          const startPos = matches.index
+          const endPos = matches.index + matches[0].length
+          // each time text will only matct section from last end position
+          const alreadyParsedText = text.substr(0, lastEndPos)
+
+          const lengthOfBeginPart = startPos - lastEndPos
+
+          const beginPart = text.substr(lastEndPos, lengthOfBeginPart)
+          const lastPart = text.substr(endPos)
+          //string matched
+          let matchStr = text.substr(startPos, matches[0].length)
+
+          const fixedMatchStr = this.applyHighlights(matchStr)
+
+          // fixed parts
+          const fixedBeginPart = this.HtmlEncode(beginPart)
+
+          // no need to fix last part
+
+          // text from begining to match string (including)
+          const textTillStr = alreadyParsedText + fixedBeginPart + fixedMatchStr
+
+          text = textTillStr + lastPart
+
+          // console.log(text)
+
+          // Add lastIndex the length of begin part + matchStr
+          this.regex.lastIndex = textTillStr.length
+          lastEndPos = this.regex.lastIndex
+        }
+
+        this.$refs.highlights.innerHTML = text
 
         setTimeout(() => {
           this.resizeTextarea()
         }, 50)
       }
+      //  end if process.client
     },
     matchboxChanged() {
       // eslint-disable-line
@@ -189,7 +229,7 @@ export default {
 
 #matchbox-container mark {
   @apply rounded;
+  background-color: #d4e9ab;
   color: transparent;
-  background-color: #d4e9ab; /* or whatever */
 }
 </style>
