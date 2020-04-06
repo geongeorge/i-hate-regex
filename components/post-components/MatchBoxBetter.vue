@@ -34,6 +34,7 @@
 <script>
 import TransitionExpand from "./TransitionExpand"
 import pastePlainText from "~/mixins/pastePlainText.js"
+import autosize from "autosize"
 var typeTimeout
 
 export default {
@@ -92,12 +93,13 @@ export default {
     resizeTextarea() {
       // fix rreduction of height
       let textarea = this.$refs.matchbox
-      let scrollHeight =
-        textarea.scrollHeight <= 0
-          ? textarea.clientHeight
-          : textarea.scrollHeight
-      textarea.style.height = "auto"
-      textarea.style.height = scrollHeight + "px"
+      autosize(textarea)
+      // let scrollHeight =
+      //   textarea.scrollHeight <= 0
+      //     ? textarea.clientHeight
+      //     : textarea.scrollHeight
+      // textarea.style.height = "auto"
+      // textarea.style.height = scrollHeight + "px"
 
       console.log("scroll", textarea.scrollHeight)
     },
@@ -111,6 +113,15 @@ export default {
       let fixedText = text.replace(/\n$/g, "\n\n")
       fixedText = fixedText.replace(this.regex, `<mark>$&</mark>`)
       return fixedText
+    },
+    hideCanvas(val = true) {
+      const highlights = this.$refs.highlights
+
+      if (val) {
+        highlights.classList.add("hidden")
+      } else {
+        highlights.classList.remove("hidden")
+      }
     },
     boxEdited() {
       if (process.client) {
@@ -126,7 +137,7 @@ export default {
 
         setTimeout(() => {
           this.resizeTextarea()
-        }, 1000)
+        }, 50)
       }
     },
     matchboxChanged() {
@@ -137,7 +148,7 @@ export default {
       }
       typeTimeout = setTimeout(() => {
         this.boxEdited()
-      }, 200)
+      }, 50)
     }
   }
 }
@@ -173,6 +184,7 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
   word-spacing: 0px;
+  color: transparent;
 }
 
 #matchbox-container mark {
