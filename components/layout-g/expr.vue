@@ -34,7 +34,7 @@
 import post from "~/components/layout-g/base/post"
 
 import CodeBox from "~/components/post-components/CodeBox"
-import MatchBox from "~/components/post-components/MatchBox"
+import MatchBox from "~/components/post-components/MatchBoxBetter"
 
 import RegvizEmbed from "~/components/post-components/RegvizEmbed"
 

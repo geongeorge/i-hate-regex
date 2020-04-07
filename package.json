@@ -12,7 +12,7 @@
     "generate:dev": "nuxt generate",
     "generate": "cross-env NODE_ENV=production nuxt generate",
     "lint": "eslint --ext .js,.vue .",
-    "lint:fix": "eslint --fix --ext .js,.vue ."
+    "lint:fix": "eslint --ext .js,.vue . --fix"
   },
   "husky": {
     "hooks": {
@@ -30,6 +30,7 @@
     "@nuxtjs/markdownit": "^1.2.7",
     "@nuxtjs/sitemap": "^2.0.1",
     "@nuxtjs/toast": "^3.3.0",
+    "autosize": "^4.0.2",
     "nuxt": "2.11.0",
     "regex-colorize": "^0.0.3",
     "vue-awesome": "^3.5.4",
