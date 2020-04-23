@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import cheatsheet from "~/static/regex/cheatsheet.json"
+import cheatsheet from '~/static/regex/cheatsheet.json'
 
 export default {
   props: {

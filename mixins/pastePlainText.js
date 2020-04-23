@@ -14,7 +14,7 @@ export default {
       }
     },
     onPaste(e) {
-      const plaintext = e.clipboardData.getData("text/plain")
+      const plaintext = e.clipboardData.getData('text/plain')
       this.insertTextAtCursor(plaintext)
     }
   }

@@ -21,7 +21,7 @@
           :title="item.title"
           :addclass="['mt-0']"
         >
-          {{ item.description.substring(0, 25) + "..." }}
+          {{ item.description.substring(0, 25) + '...' }}
         </SearchResult>
       </div>
       <div
@@ -38,7 +38,7 @@
           :title="item.title"
           :addclass="['mt-0']"
         >
-          {{ item.description.substring(0, 25) + "..." }}
+          {{ item.description.substring(0, 25) + '...' }}
         </SearchResult>
       </div>
     </div>
@@ -102,19 +102,19 @@
 </template>
 
 <script>
-import jsonData from "~/static/regex/data.json"
-import SearchResult from "~/components/utils/SearchResult"
+import jsonData from '~/static/regex/data.json'
+import SearchResult from '~/components/utils/SearchResult'
 export default {
   components: {
     SearchResult
   },
   props: {
     tags: { default: () => [] },
-    id: { default: "" }
+    id: { default: '' }
   },
   data() {
     return {
-      query: "",
+      query: '',
       catalog: jsonData,
       searchResults: [],
       related: []
@@ -133,7 +133,7 @@ export default {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: ["title", "description", "tags"]
+        keys: ['title', 'description', 'tags']
       }
       this.$search(this.query, this.catalog, options).then(results => {
         this.searchResults = results.slice(0, 3) // top 3 search result only
@@ -147,7 +147,7 @@ export default {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: ["title", "description", "tags"]
+        keys: ['title', 'description', 'tags']
       }
 
       // Don't show related if there are no tags or regex

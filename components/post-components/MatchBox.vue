@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import TransitionExpand from "./TransitionExpand"
-import pastePlainText from "~/mixins/pastePlainText.js"
+import TransitionExpand from './TransitionExpand'
+import pastePlainText from '~/mixins/pastePlainText.js'
 var typeTimeout
 
 export default {
@@ -40,13 +40,13 @@ export default {
   },
   mixins: [pastePlainText],
   props: {
-    regex: { default: "/(?:)/" },
-    sampleText: { default: ["Lorem ipsum"] }
+    regex: { default: '/(?:)/' },
+    sampleText: { default: ['Lorem ipsum'] }
   },
   data() {
     return {
       displayMatches: false,
-      dataText: "",
+      dataText: '',
       queries: [],
       isTyping: false
     }
@@ -54,9 +54,9 @@ export default {
   computed: {
     showText() {
       if (this.displayMatches) {
-        return "hide matches"
+        return 'hide matches'
       }
-      return "show matches"
+      return 'show matches'
     }
   },
   watch: {
@@ -66,7 +66,7 @@ export default {
   },
   mounted() {
     // set datatext to sample text array from props
-    this.dataText = this.sampleText.join("\n")
+    this.dataText = this.sampleText.join('\n')
     // this.boxEdited()
     setTimeout(this.toggleMatches, 1500)
   },
@@ -77,7 +77,7 @@ export default {
     },
     getMatchTextOnly() {
       const element = this.$refs.matchbox
-      const text = element.innerText || element.textContent || "" //get inner text without html
+      const text = element.innerText || element.textContent || '' //get inner text without html
       return text
     },
     boxEdited() {
@@ -125,7 +125,7 @@ export default {
           matchStr =
             "<span class='bg-green-200 border rounded hover:bg-teal-200'>" +
             matchStr +
-            "</span>"
+            '</span>'
 
           // text from begining to match string (including)
           const textTillStr = beginPart + matchStr

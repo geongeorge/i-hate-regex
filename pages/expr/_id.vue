@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import expr from "~/components/layout-g/expr.vue"
-import CheatTable from "~/components/post-components/CheatTable"
-import regexdata from "~/static/regex/data.json"
+import expr from '~/components/layout-g/expr.vue'
+import CheatTable from '~/components/post-components/CheatTable'
+import regexdata from '~/static/regex/data.json'
 export default {
   components: {
     expr,
@@ -44,15 +44,15 @@ export default {
   async asyncData({ $axios, params }) {
     const path = `/regex/markdown/${params.id}.md`
 
-    let markdown = ""
+    let markdown = ''
 
     if (process.server) {
       // if server -> get file using fs.readFileSync
-      const fs = require("fs")
+      const fs = require('fs')
       try {
-        if (fs.existsSync("static" + path)) {
+        if (fs.existsSync('static' + path)) {
           //file exists
-          markdown = fs.readFileSync("static" + path, "utf8")
+          markdown = fs.readFileSync('static' + path, 'utf8')
         }
       } catch (err) {
         /* do nothing */
@@ -92,12 +92,12 @@ export default {
       return val.id == this.id
     })
     return {
-      title: "Regex for " + thisregex.title + " - iHateRegex",
+      title: 'Regex for ' + thisregex.title + ' - iHateRegex',
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
-          hid: "description",
-          name: "description",
+          hid: 'description',
+          name: 'description',
           content: thisregex.description
         }
       ]

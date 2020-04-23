@@ -16,11 +16,11 @@
 <script>
 export default {
   props: {
-    initQuery: { default: "" }
+    initQuery: { default: '' }
   },
   data() {
     return {
-      query: ""
+      query: ''
     }
   },
   mounted() {
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     queryUpdated() {
-      this.$emit("changed", this.query)
+      this.$emit('changed', this.query)
     }
   }
 }

@@ -44,7 +44,7 @@ export default {
   },
   watch: {
     opened: function() {
-      this.$emit("sidebarStateChanged", this.opened)
+      this.$emit('sidebarStateChanged', this.opened)
     }
   },
   methods: {
