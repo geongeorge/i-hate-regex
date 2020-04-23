@@ -19,6 +19,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     semi: [2, 'never'],
+    quotes: [2, 'single', { avoidEscape: true }],
     'no-console': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/html-self-closing': 0

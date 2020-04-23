@@ -6,7 +6,7 @@ export default ({ route }) => {
       return {
         meta: [
           {
-            hid: `og:url`,
+            hid: 'og:url',
             property: 'og:url',
             content: 'https://ihateregex.io' + route.fullPath
           },
