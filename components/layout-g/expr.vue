@@ -31,15 +31,15 @@
 
 <script>
 //base layout
-import post from "~/components/layout-g/base/post"
+import post from '~/components/layout-g/base/post'
 
-import CodeBox from "~/components/post-components/CodeBox"
-import MatchBox from "~/components/post-components/MatchBox"
+import CodeBox from '~/components/post-components/CodeBox'
+import MatchBox from '~/components/post-components/MatchBoxBetter'
 
-import RegvizEmbed from "~/components/post-components/RegvizEmbed"
+import RegvizEmbed from '~/components/post-components/RegvizEmbed'
 
 export default {
-  layout: "post",
+  layout: 'post',
   components: {
     post,
     CodeBox,
@@ -48,16 +48,16 @@ export default {
   },
   props: {
     iregex: { default: / / }, //input regex
-    iflag: { default: "gm" }, //input flags
-    imatchText: { default: ["lorem ipsum"] }, //input text
+    iflag: { default: 'gm' }, //input flags
+    imatchText: { default: ['lorem ipsum'] }, //input text
     eHeight: { default: 400 }, //embed regviz height
     tags: { default: () => [] }, // Arrays need to be defaulted to factory function
-    id: { default: "" }
+    id: { default: '' }
   },
   data() {
     return {
-      regex: / /,
-      flag: "",
+      regex: / /g,
+      flag: '',
       matchText: []
     }
   },
