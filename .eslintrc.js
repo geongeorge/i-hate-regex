@@ -18,8 +18,7 @@ module.exports = {
   plugins: ['vue'],
   // add your custom rules here
   rules: {
-    semi: [2, 'never'],
-    quotes: [2, 'single', { avoidEscape: true }],
+    'prettier/prettier': 'error',
     'no-console': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/html-self-closing': 0
