@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import expr from "~/components/layout-g/expr.vue"
+import expr from '~/components/layout-g/expr.vue'
 export default {
   components: {
     expr
@@ -53,14 +53,14 @@ export default {
     return {
       // regex: regexdata
       myregex: {
-        id: "",
-        title: "playground",
-        tagline: "play around with regex",
-        description: "",
-        seconddescr: "",
-        regex: "^[a-z0-9_-]{3,15}$",
-        flag: "gm",
-        matchText: ["lorem", "ipsum"],
+        id: '',
+        title: 'playground',
+        tagline: 'play around with regex',
+        description: '',
+        seconddescr: '',
+        regex: '^[a-z0-9_-]{3,15}$',
+        flag: 'gm',
+        matchText: ['lorem', 'ipsum'],
         embedHeight: 300,
         tags: []
       }
@@ -69,12 +69,12 @@ export default {
   computed: {},
   head() {
     return {
-      title: "Regex for " + this.myregex.title + " - IHateRegex",
+      title: 'Regex for ' + this.myregex.title + ' - IHateRegex',
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
-          hid: "description",
-          name: "description",
+          hid: 'description',
+          name: 'description',
           content: this.myregex.description
         }
       ]

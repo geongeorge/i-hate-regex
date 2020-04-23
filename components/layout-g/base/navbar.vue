@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import SidebarToggle from "~/components/utils/SideBarToggleButton"
+import SidebarToggle from '~/components/utils/SideBarToggleButton'
 
 export default {
   components: {
@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     toggleSidebar(evt) {
-      this.$emit("sidebarStateChanged", evt)
+      this.$emit('sidebarStateChanged', evt)
     }
   }
 }

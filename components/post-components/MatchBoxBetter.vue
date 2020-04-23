@@ -3,7 +3,12 @@
     <div class="flex w-full flex-row">
       <div class="text-sm float-right mr-2">
         <!-- eslint-disable-next-line -->
-        <a href="#" class="text-gray-500 hover:underline" @click="toggleMatches">{{ showText }}</a>
+        <a
+          href="#"
+          class="text-gray-500 hover:underline"
+          @click="toggleMatches"
+          >{{ showText }}</a
+        >
       </div>
     </div>
     <transition-expand>
@@ -32,9 +37,9 @@
 </template>
 
 <script>
-import TransitionExpand from "./TransitionExpand"
-import pastePlainText from "~/mixins/pastePlainText.js"
-import autosize from "autosize"
+import TransitionExpand from './TransitionExpand'
+import pastePlainText from '~/mixins/pastePlainText.js'
+import autosize from 'autosize'
 var typeTimeout
 
 export default {
@@ -43,13 +48,13 @@ export default {
   },
   mixins: [pastePlainText],
   props: {
-    regex: { default: "/(?:)/" },
-    sampleText: { default: ["Lorem ipsum"] }
+    regex: { required: true },
+    sampleText: { default: ['Lorem ipsum'] }
   },
   data() {
     return {
       displayMatches: false,
-      dataText: "",
+      dataText: '',
       queries: [],
       isTyping: false,
       loaded: false
@@ -58,9 +63,9 @@ export default {
   computed: {
     showText() {
       if (this.displayMatches) {
-        return "hide matches"
+        return 'hide matches'
       }
-      return "show matches"
+      return 'show matches'
     }
   },
   watch: {
@@ -71,7 +76,7 @@ export default {
   },
   mounted() {
     // set datatext to sample text array from props
-    this.dataText = this.sampleText.join("\n")
+    this.dataText = this.sampleText.join('\n')
     // this.boxEdited()
     setTimeout(this.toggleMatches, 50)
 
@@ -85,10 +90,10 @@ export default {
     },
     htmlEncode(s) {
       return s
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;")
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
     },
     resizeTextarea() {
       // fix rreduction of height
@@ -98,12 +103,12 @@ export default {
     getMatchTextOnly() {
       const element = this.$refs.matchbox
       const text =
-        element.value || element.innerText || element.textContent || "" //get inner text without html
+        element.value || element.innerText || element.textContent || '' //get inner text without html
       return text
     },
     applyHighlights(text) {
       let fixedText = this.htmlEncode(text)
-      fixedText = fixedText.replace(/\n$/g, "\n\n")
+      fixedText = fixedText.replace(/\n$/g, '\n\n')
       fixedText = `<mark>${fixedText}</mark>`
       return fixedText
     },
@@ -111,27 +116,35 @@ export default {
       const highlights = this.$refs.highlights
 
       if (val) {
-        highlights.classList.add("hidden")
+        highlights.classList.add('hidden')
       } else {
-        highlights.classList.remove("hidden")
+        highlights.classList.remove('hidden')
       }
     },
     boxEdited() {
       if (process.client) {
-        // when box edited
-        // somehow need to locate the cursor location and place it there
-        let text = this.getMatchTextOnly() //get inner text without html
-        // replace text with highlight html included
-
+        let text = this.getMatchTextOnly()
+        let markedText = ''
         let matches
-        let lastEndPos = 0
-        this.regex.lastIndex = 0
+        // Check for g flag, if not don't use matchAll
+        // see https://stackoverflow.com/a/60290199/8134823
+        // matchAll throws an error when g flag is missing
+        if (this.regex.flags.includes('g')) {
+          matches = [...text.matchAll(this.regex)]
+        } else {
+          // if matches? add to array else empty []
+          matches = text.match(this.regex) ? [text.match(this.regex)] : []
+        }
 
-        while ((matches = this.regex.exec(text)) !== null) {
-          // some text...[s]match[e]..end text
-          // s-> start pos = index
-          // e-> end pos = index+length
-          // we will change the match and re-concatinate
+        // each match will have
+        //   0 -> match
+        //   1,2,etc -> group matches
+        //   index -> pos of
+        //   input -> input str
+        //   length -> number of matches incl groups
+        let lastEndPos = 0
+        let lastPart = ''
+        for (let match of matches) {
           // The text is divided into 4 parts
           //   alreadyParsedText => which need not be encoded(fixed)
           //   beginPart => The text between already parsed and start of matched text
@@ -140,44 +153,38 @@ export default {
           //               Encoded, but added <mark></mark> tags which will not be encoded for highlights
           //   lastPart => rest of the string, not highlighted/fixed
           //
-          const startPos = matches.index
-          const endPos = matches.index + matches[0].length
-          // each time text will only matct section from last end position
-          const alreadyParsedText = text.substr(0, lastEndPos)
+          const startPos = match.index
+          const endPos = startPos + match[0].length
 
           const lengthOfBeginPart = startPos - lastEndPos
 
           const beginPart = text.substr(lastEndPos, lengthOfBeginPart)
-          const lastPart = text.substr(endPos)
+          lastPart = text.substr(endPos)
+
           //string matched
-          const matchStr = text.substr(startPos, matches[0].length)
+          const matchStr = text.substr(startPos, match[0].length)
 
-          const fixedMatchStr = this.applyHighlights(matchStr)
-
-          // fixed parts
-          const fixedBeginPart = this.htmlEncode(beginPart)
-
-          // no need to fix last part
+          const encodedMatchStr = this.applyHighlights(matchStr)
+          // html encoded parts
+          const encodedBeginPart = this.htmlEncode(beginPart)
 
           // text from begining to match string (including)
-          const textTillStr = alreadyParsedText + fixedBeginPart + fixedMatchStr
+          const textTillStr = encodedBeginPart + encodedMatchStr
 
-          text = textTillStr + lastPart
-
-          // console.log(text)
+          markedText += textTillStr
 
           // Add lastIndex the length of begin part + matchStr
-          this.regex.lastIndex = textTillStr.length
-          lastEndPos = this.regex.lastIndex
+          lastEndPos = endPos
         }
+        // add the final unmatched lastPart
+        markedText += this.htmlEncode(lastPart)
 
-        this.$refs.highlights.innerHTML = text
+        this.$refs.highlights.innerHTML = markedText
 
         setTimeout(() => {
           this.resizeTextarea()
         }, 50)
       }
-      //  end if process.client
     },
     matchboxChanged() {
       // eslint-disable-line
@@ -205,7 +212,7 @@ export default {
   height: auto;
 }
 #matchbox {
-  @apply relative text-gray-600 text-lg p-3 whitespace-pre z-10 w-full bg-transparent;
+  @apply relative text-gray-700 text-lg p-3 whitespace-pre z-10 w-full bg-transparent;
   z-index: 10 !important;
   white-space: pre-wrap;
   min-height: 50px;

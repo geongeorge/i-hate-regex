@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import Logo from "~/components/utils/Logo"
+import Logo from '~/components/utils/Logo'
 export default {
   components: {
     Logo
   },
-  props: ["error"]
+  props: ['error']
 }
 </script>

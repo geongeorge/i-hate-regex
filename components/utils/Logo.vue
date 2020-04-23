@@ -8,7 +8,7 @@
 
 <style scoped>
 span {
-  font-family: "Fira Sans", sans-serif !important;
+  font-family: 'Fira Sans', sans-serif !important;
   font-weight: 400;
 }
 .font-bold {

@@ -64,13 +64,13 @@
 </template>
 
 <script>
-import Logo from "~/components/utils/Logo"
-import SearchBox from "~/components/utils/SearchBox"
-import SearchResult from "~/components/utils/SearchResult"
-import NoResults from "~/components/utils/NoResults"
-import CommonResults from "~/components/utils/CommonResults"
+import Logo from '~/components/utils/Logo'
+import SearchBox from '~/components/utils/SearchBox'
+import SearchResult from '~/components/utils/SearchResult'
+import NoResults from '~/components/utils/NoResults'
+import CommonResults from '~/components/utils/CommonResults'
 
-import jsonData from "~/static/regex/data.json"
+import jsonData from '~/static/regex/data.json'
 
 export default {
   components: {
@@ -82,7 +82,7 @@ export default {
   },
   data() {
     return {
-      query: "",
+      query: '',
       catalog: jsonData,
       searchResults: []
     }
@@ -112,7 +112,7 @@ export default {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: ["title", "description", "tags"]
+        keys: ['title', 'description', 'tags']
       }
       this.$search(this.query, this.catalog, options).then(results => {
         this.searchResults = results
@@ -121,14 +121,14 @@ export default {
   },
   head() {
     return {
-      title: "i Hate Regex - The Regex Cheat Sheet",
+      title: 'i Hate Regex - The Regex Cheat Sheet',
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
-          hid: "description",
-          name: "description",
+          hid: 'description',
+          name: 'description',
           content:
-            "i Hate Regex is a regex cheat sheet that also explains the commonly used expressions so that you understand it. Stop hating and start learning."
+            'i Hate Regex is a regex cheat sheet that also explains the commonly used expressions so that you understand it. Stop hating and start learning.'
         }
       ]
     }

@@ -51,13 +51,13 @@
 
 <script>
 // import VueRegexColorize from "~/plugins/vue-regex-colorize";
-import "regex-colorize/themes/sweetest.css"
-import FlagSelector from "~/components/post-components/utils/FlagSelector"
-import pastePlainText from "~/mixins/pastePlainText.js"
+import 'regex-colorize/themes/sweetest.css'
+import FlagSelector from '~/components/post-components/utils/FlagSelector'
+import pastePlainText from '~/mixins/pastePlainText.js'
 //
 let rgx
 if (process.client) {
-  require("regex-colorize")
+  require('regex-colorize')
   rgx = new window.RegexColorize.default()
 }
 export default {
@@ -75,7 +75,7 @@ export default {
       changeTimer: null,
       debounceTimer: null,
       regexError: false,
-      myflag: "gm",
+      myflag: 'gm',
       ifCopy: false, // Variable to show copied message
       flagSelectorShow: false
     }
@@ -108,7 +108,7 @@ export default {
           rgx.colorizeAll()
         }, 3000)
         if (isValid) {
-          this.$emit("regexChanged", {
+          this.$emit('regexChanged', {
             regex: reg,
             flag: this.myflag
           })
@@ -119,7 +119,7 @@ export default {
       this.flagSelectorShow = !this.flagSelectorShow
     },
     flagsChange(newFlagArray) {
-      this.myflag = newFlagArray.join("")
+      this.myflag = newFlagArray.join('')
       this.regexChanged()
     },
     selectElementContents(el) {
@@ -136,10 +136,10 @@ export default {
       this.selectElementContents(regexToCopy)
 
       try {
-        document.execCommand("copy")
-        this.$toast.success("Copied")
+        document.execCommand('copy')
+        this.$toast.success('Copied')
       } catch (err) {
-        this.$toast.error("Oops, unable to copy")
+        this.$toast.error('Oops, unable to copy')
       }
 
       /* unselect the range */
@@ -147,9 +147,9 @@ export default {
       window.getSelection().removeAllRanges()
     },
     onPaste(e) {
-      const text = (e.originalEvent || e).clipboardData.getData("text/plain")
+      const text = (e.originalEvent || e).clipboardData.getData('text/plain')
 
-      document.execCommand("insertHTML", false, text)
+      document.execCommand('insertHTML', false, text)
     }
   }
 }

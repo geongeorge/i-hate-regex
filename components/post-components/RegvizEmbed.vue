@@ -24,12 +24,12 @@ export default {
   props: {
     height: { default: 400 },
     regex: { default: / / },
-    embedRoot: { default: "https://embed.ihateregex.io/make/" }
+    embedRoot: { default: 'https://embed.ihateregex.io/make/' }
     // embedRoot: {default: 'http://localhost:3300/make/'},
   },
   data() {
     return {
-      embedUrl: ""
+      embedUrl: ''
     }
   },
   computed: {
@@ -61,26 +61,26 @@ export default {
     // to encode base64 for url
     //https://gist.github.com/geongeorge/c30e9b1e3e7590b8a22464c879ad9a04
     hashEncodeUrl(str) {
-      const mystr = str.replace(/\\/g, "\\\\") // escaping \
+      const mystr = str.replace(/\\/g, '\\\\') // escaping \
       return btoa(encodeURIComponent(mystr))
-        .replace(/\+/g, "-")
-        .replace(/\//g, "_") //  /..
-        .replace(/\\/g, ",") //  \
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_') //  /..
+        .replace(/\\/g, ',') //  \
         .replace(/\=+$/, "") // eslint-disable-line
     },
 
     copyEmbedCode() {
-      const tempInput = document.createElement("input")
-      tempInput.style = "position: absolute; left: -1000px; top: -1000px"
+      const tempInput = document.createElement('input')
+      tempInput.style = 'position: absolute; left: -1000px; top: -1000px'
       tempInput.value = this.embedString
       document.body.appendChild(tempInput)
       tempInput.select()
 
       try {
-        document.execCommand("copy")
-        this.$toast.success("Copied")
+        document.execCommand('copy')
+        this.$toast.success('Copied')
       } catch (err) {
-        this.$toast.error("Oops, unable to copy")
+        this.$toast.error('Oops, unable to copy')
       }
 
       document.body.removeChild(tempInput)

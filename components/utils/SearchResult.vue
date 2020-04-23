@@ -10,9 +10,9 @@
 <script>
 export default {
   props: {
-    title: { default: "" },
-    id: { default: "" },
-    addclass: { default: () => ["mt-6"] }
+    title: { default: '' },
+    id: { default: '' },
+    addclass: { default: () => ['mt-6'] }
   }
 }
 </script>
