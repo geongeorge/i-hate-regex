@@ -135,7 +135,6 @@ export default {
           // if matches? add to array else empty []
           matches = text.match(this.regex) ? [text.match(this.regex)] : []
         }
-        console.log('mathces', matches)
 
         // each match will have
         //   0 -> match
