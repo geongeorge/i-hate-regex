@@ -20,10 +20,7 @@
     }
   },
   "lint-staged": {
-    "*{.js,.vue}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*{.js,.vue}": "eslint --fix"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
