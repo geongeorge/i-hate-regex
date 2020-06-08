@@ -1,27 +1,11 @@
 name: Deploy
 
-on: [push]
+on: 
+  push:
+    branches:
+    - master
 
 jobs:
-#   copy:
-
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - uses: actions/checkout@v1
-
-#     - name: Copy file via scp
-#       uses: appleboy/scp-action@master
-#       env:
-#         HOST: ${{ secrets.HOST }}
-#         USERNAME: ${{ secrets.USERNAME }}
-#         PORT: ${{ secrets.PORT }}
-#         KEY: ${{ secrets.SSHKEY }}
-#       with:
-#         source: "."
-#         target: ${{ secrets.DEPLOYPATH }}
-#         # ${{ secrets.DEPLOYPATH }}
-#         # "/var/www/ihateregex.io/app"
   copy:
      runs-on: ubuntu-latest
      steps:
@@ -36,8 +20,6 @@ jobs:
           local: "."
           remote: ${{ secrets.DEPLOYPATH }}
           recursive: true
-          # ${{ secrets.DEPLOYPATH }}
-          # "/var/www/ihateregex.io/app"
 
   build:
     runs-on: ubuntu-latest
