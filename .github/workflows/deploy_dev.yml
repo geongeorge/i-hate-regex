@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           privateKey: ${{ secrets.SSHKEY }}
           local: "."
-          remote: ${{ secrets.DEPLOYPATH }}
+          remote: ${{ secrets.DEVDEPLOYPATH }}
           recursive: true
 
   build:
@@ -33,7 +33,7 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           script: |
-            cd ${{ secrets.DEPLOYPATH }}
+            cd ${{ secrets.DEVDEPLOYPATH }}
             yarn
             yarn build
-            pm2 restart ihateregex
+            pm2 restart ihateregex-dev
