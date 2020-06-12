@@ -1,12 +1,10 @@
 <template>
   <post :id="id" :tags="tags">
     <div>
-      <a href="#">
-        <h1 class="text-2xl group">
-          <span class="group-hover:text-red-600">#</span>
-          <slot name="title" />
-        </h1>
-      </a>
+      <h1 class="text-2xl group">
+        regex for 
+        <span class="font-bold"><slot name="title" /></span>
+      </h1>
       <p class="text-sm text-gray-500">
         <slot name="tagline" />
       </p>
