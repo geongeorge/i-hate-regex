@@ -1,9 +1,9 @@
 <template>
-  <h1 class="text-6xl text-gray-600 align-top">
-    <nuxt-link to="/">
+  <nuxt-link to="/">
+    <h1 class="text-6xl text-gray-600 align-top">
       i<span class="font-bold text-red-600">Hate</span>Regex
-    </nuxt-link>
-  </h1>
+    </h1>
+  </nuxt-link>
 </template>
 
 <style scoped>
