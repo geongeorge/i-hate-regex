@@ -24,7 +24,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Executing remote  command
+      - name: Executing remote command
         uses: appleboy/ssh-action@master
         if: github.ref == 'refs/heads/master'
         with:
