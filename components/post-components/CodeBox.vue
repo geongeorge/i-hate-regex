@@ -23,7 +23,7 @@
             href="#"
             class="text-3xl text-gray-500 hover:text-green-500"
             @click.prevent="toggleFlagSelect"
-            >/{{ myflag }}
+          >/{{ myflag }}
           </a>
         </div>
         <div class="w-full relative flex content-start text-right">
@@ -32,7 +32,7 @@
             class="text-base w-full hover:text-blue-400"
             :class="{ 'opacity-0': ifCopy }"
             @click.prevent="copyRegex"
-            >copy
+          >copy
           </a>
         </div>
       </div>
@@ -55,11 +55,13 @@ import 'regex-colorize/themes/sweetest.css'
 import FlagSelector from '~/components/post-components/utils/FlagSelector'
 import pastePlainText from '~/mixins/pastePlainText.js'
 //
-let rgx
+
 if (process.client) {
-  require('regex-colorize')
-  rgx = new window.RegexColorize.default()
+  const RegexColorize =  require('regex-colorize');
+  let rgx = new RegexColorize.default();
+  rgx.colorizeAll();
 }
+
 export default {
   components: {
     FlagSelector

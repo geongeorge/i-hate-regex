@@ -1,35 +1,37 @@
 <template>
-  <expr
-    :id="myregex.id"
-    :iregex="new RegExp(myregex.regex)"
-    :iflag="myregex.flag"
-    :imatch-text="myregex.matchText"
-    :e-height="myregex.embedHeight"
-    :tags="myregex.tags"
-  >
-    <span slot="title">{{ myregex.title }}</span>
+  <div>
+    <expr
+      :id="myregex.id"
+      :iregex="new RegExp(myregex.regex)"
+      :iflag="myregex.flag"
+      :imatch-text="myregex.matchText"
+      :e-height="myregex.embedHeight"
+      :tags="myregex.tags"
+    >
+      <span slot="title">{{ myregex.title }}</span>
 
-    <span slot="tagline">{{ myregex.tagline }}</span>
+      <span slot="tagline">{{ myregex.tagline }}</span>
 
-    <p slot="description">
-      {{ myregex.description }}
-    </p>
+      <p slot="description">
+        {{ myregex.description }}
+      </p>
 
-    <div slot="seconddescr">
-      <!-- render markdown for second description -->
-      <div class="long-description" v-html="$md.render(markdown)"></div>
-      <br />
-      <h2 class="text-2xl">
-        Cheatsheet
-      </h2>
-      <CheatTable :input-regex="myregex.cheatRegex" />
-      <div class="text-base text-green-600 my-2 underline">
-        <nuxt-link to="/cheatsheet">
-          view full cheatsheet
-        </nuxt-link>
+      <div slot="seconddescr">
+        <!-- render markdown for second description -->
+        <div class="long-description" v-html="$md.render(markdown)"></div>
+        <br />
+        <h2 class="text-2xl">
+          Cheatsheet
+        </h2>
+        <CheatTable :input-regex="myregex.cheatRegex" />
+        <div class="text-base text-green-600 my-2 underline">
+          <nuxt-link to="/cheatsheet">
+            view full cheatsheet
+          </nuxt-link>
+        </div>
       </div>
-    </div>
-  </expr>
+    </expr>
+  </div>
 </template>
 
 <script>
