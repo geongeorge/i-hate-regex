@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "cross-env HOST=0.0.0.0 nuxt",
     "build": "nuxt build",
-    "start:dev": "cross-env NODE_ENV=production port=3700 nuxt start",
+    "start:dev": "cross-env NODE_ENV=production site_type=staging port=3700 nuxt start",
     "start": "cross-env NODE_ENV=production nuxt start",
     "generate:dev": "nuxt generate",
     "generate": "cross-env NODE_ENV=production nuxt generate",
@@ -25,6 +25,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
     "@nuxtjs/markdownit": "^1.2.7",
+    "@nuxtjs/robots": "^2.4.2",
     "@nuxtjs/sitemap": "^2.0.1",
     "@nuxtjs/toast": "^3.3.0",
     "autosize": "^4.0.2",

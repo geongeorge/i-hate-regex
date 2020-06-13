@@ -5,6 +5,11 @@ const host = "localhost";
 
 const myUrl = process.env.NODE_ENV !== 'production'? 'http://'+host+':'+port:"https://ihateregex.io";
 
+const robotsObj = process.env.site_type === 'staging' ? {
+  UserAgent: '*',
+  Disallow: '/'
+} : {};
+
 export default {
   mode: "universal",
   server: {
@@ -73,6 +78,7 @@ export default {
     "@nuxtjs/tailwindcss",
     ["@nuxtjs/toast"],
     "@nuxtjs/sitemap",
+    '@nuxtjs/robots'
   ],
   axios: {
     baseURL : myUrl
@@ -80,6 +86,7 @@ export default {
   markdownit: {
     injected: true
   },
+  robots: robotsObj,
   toast: {
     position: "bottom-center",
     duration: 3000,
