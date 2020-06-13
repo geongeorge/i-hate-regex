@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "cross-env HOST=0.0.0.0 nuxt",
     "build": "nuxt build",
-    "start:dev": "cross-env NODE_ENV=production port=3700 nuxt start",
+    "start:dev": "nuxt start",
     "start": "cross-env NODE_ENV=production nuxt start",
     "generate:dev": "nuxt generate",
     "generate": "cross-env NODE_ENV=production nuxt generate",
