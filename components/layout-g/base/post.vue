@@ -11,8 +11,7 @@
             <div class="text-center mt-5 pt-2">
               <a href="/" class="group">
                 <h2 class="text-2xl">
-                  i<span class="font-bold group-hover:text-red-600">Hate</span
-                  >Regex
+                  i<span class="font-bold group-hover:text-red-600">Hate</span>Regex
                 </h2>
               </a>
             </div>

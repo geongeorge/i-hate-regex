@@ -1,7 +1,7 @@
 <template>
   <div class="px-3 py-2 rounded text-gray-600 text-left" :class="addclass">
     <a :href="'/expr/' + id">
-      <h2 class="text-black text-xl hover:underline">{{ title }}</h2>
+      <h2 class="text-black text-xl fade-effect">{{ title }}</h2>
     </a>
     <slot />
   </div>
@@ -17,4 +17,12 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.fade-effect {
+  opacity: 0.7;
+  transition: opacity 200ms ease-out;
+}
+.fade-effect:hover {
+  opacity: 1;
+}
+</style>

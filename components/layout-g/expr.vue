@@ -22,7 +22,7 @@
       </div>
       <div class="mt-8">
         <div class="md:flex">
-          <div>
+          <div class="flex-grow">
             <slot name="seconddescr" />
           </div>
           <div class="md:w-1/4 px-6 min-w-64 flex-col justify-center">

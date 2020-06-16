@@ -26,7 +26,7 @@
       </div>
       <div
         v-if="!query && related.length !== 0"
-        class="opacity-25 hover:opacity-100"
+        class=""
       >
         <h3 class="font-bold">
           Related:
@@ -173,4 +173,5 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+</style>
