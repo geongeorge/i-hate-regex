@@ -55,10 +55,10 @@ import 'regex-colorize/themes/sweetest.css'
 import FlagSelector from '~/components/post-components/utils/FlagSelector'
 import pastePlainText from '~/mixins/pastePlainText.js'
 //
-
+let rgx;
 if (process.client) {
   const RegexColorize =  require('regex-colorize');
-  let rgx = new RegexColorize.default();
+  rgx = new RegexColorize.default();
   rgx.colorizeAll();
 }
 
@@ -106,9 +106,11 @@ export default {
         if (this.changeTimer) {
           clearTimeout(this.changeTimer)
         }
-        this.changeTimer = setTimeout(() => {
-          rgx.colorizeAll()
-        }, 3000)
+        if (process.client) {
+          this.changeTimer = setTimeout(() => {
+            rgx.colorizeAll()
+          }, 3000)
+        }
         if (isValid) {
           this.$emit('regexChanged', {
             regex: reg,
