@@ -521,12 +521,20 @@
         "title": "emoji",
         "tagline": "match emojis",
         "description": "Emojis or emoticons are symbols used to denote various emotions in electronic messages.",
-        "regex": "^(\\u00a9|\\u00ae|[\\u2000-\\u3300]|\\ud83c[\\ud000-\\udfff]|\\ud83d[\\ud000-\\udfff]|\\ud83e[\\ud000-\\udfff])$",
+        "regex": "(\\u00a9|\\u00ae|[\\u2000-\\u3300]|\\ud83c[\\ud000-\\udfff]|\\ud83d[\\ud000-\\udfff]|\\ud83e[\\ud000-\\udfff])",
         "flag": "gm",
         "matchText": [
-            "😀", "😂", "🤣", "😆", "😉", "😊",
-            "😋", "😎", "😍", "😘", "🥰",
-            "🐊", "🐅", "⛩",  "🛤", "🗾"
+            "Emojies are amazing 😍",
+            "⁣☀               ☁",
+            "         ☁",
+            "",
+            "          🐬",
+            "🌊🌊⛵🌊🌊🌊🌊⁣🌊",
+            "         ｜",
+            "         ｜ 🐠",
+            "         ｜     🐟",
+            " 🐳   ｜     ",
+            "         ⚓"
         ],
         "cheatRegex": [
             "/$/",
