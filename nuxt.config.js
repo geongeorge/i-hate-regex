@@ -3,7 +3,11 @@ import regexArray from "./static/regex/data.json"
 const port = process.env.port || 3600;
 const host = "localhost";
 
-const myUrl = process.env.NODE_ENV !== 'production'? 'http://'+host+':'+port:"https://ihateregex.io";
+let myUrl = process.env.NODE_ENV !== 'production'? 'http://'+host+':'+port:"https://ihateregex.io";
+
+if(process.env.site_type === 'staging' ) {
+  myUrl = "https://dev.ihateregex.io"
+}
 
 const robotsObj = process.env.site_type === 'staging' ? {
   UserAgent: '*',
