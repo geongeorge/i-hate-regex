@@ -75,8 +75,8 @@
             "hello@",
             "@test",
             "email@gmail",
-            "theproblem@test@gmail.com"
-
+            "theproblem@test@gmail.com",
+            "mail with@space.com"
         ],
         "cheatRegex": [
             "/hello/",
