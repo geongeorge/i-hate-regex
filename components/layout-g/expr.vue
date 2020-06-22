@@ -45,7 +45,9 @@
             </div>
             <div class="mx-auto mt-6 sponsor-effect">
               <!-- carbon ads -->
-              <script id="_carbonads_js" async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DL23E&placement=ihateregexio"></script>
+              <client-only>
+                <script id="_carbonads_js" async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CE7DL23E&placement=ihateregexio"></script>
+              </client-only>
             </div>
           </div>
         </div>
