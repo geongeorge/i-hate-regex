@@ -49,10 +49,6 @@
                    target="_blank"
                 >Sponsor us</a>
               </div>
-              <div class="mx-auto w-full w-2/5 mt-6 sponsor-effect">
-                <!-- carbon ads -->
-                <CarbonAds v-if="false"></CarbonAds>
-              </div>
             </div>
           </div>
         </div>
@@ -70,7 +66,6 @@ import MatchBox from '~/components/post-components/MatchBoxBetter'
 
 import RegvizEmbed from '~/components/post-components/RegvizEmbed'
 
-import CarbonAds from '../utils/CarbonAds'
 
 export default {
   layout: 'post',
@@ -78,8 +73,7 @@ export default {
     post,
     CodeBox,
     MatchBox,
-    RegvizEmbed,
-    CarbonAds
+    RegvizEmbed
   },
   props: {
     iregex: { default: / / }, //input regex
