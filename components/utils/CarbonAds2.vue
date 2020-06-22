@@ -63,10 +63,12 @@ export default {
   display: block;
   margin: 0;
   line-height: 1;
+  max-width: 120px;
 }
 
 .carbon-img img {
   display: block;
+  max-width: 120px!important;
 }
 
 .carbon-text {
@@ -79,6 +81,7 @@ export default {
 .carbon-poweredby {
   position: absolute;
   bottom: 0;
+  padding-top: 3px;
   left: 146px;
   color: #999 !important;
   text-transform: uppercase;
