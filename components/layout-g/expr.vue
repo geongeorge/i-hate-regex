@@ -25,33 +25,34 @@
           <div class="flex-grow">
             <slot name="seconddescr" />
           </div>
-          <div class="md:w-1/4 px-6 min-w-64 flex-col justify-center">
+          <div class="px-6 min-w-64 flex-col justify-center">
             <div class="font-bold text-gray-500 text-center">
               Our Sponsors
             </div>
-
-            <div class="w-48 mt-6 w-full sponsor-effect">
-              <a
-                href="http://bit.ly/datree-ihr"
-                rel="noopener nofollow"
-                target="_blank"
-              >
-                <img
-                  class="sponsor mx-auto"
-                  src="https://assets.website-files.com/5d514f718e8309c01d798013/5d8b4657e7740e300666e3cc_datree_LOGO%20FLAT%20h-p-500.png"
-                  alt="datree.io"
-                />
-              </a>
-            </div>
-            <div class="mx-auto w-full text-center mt-10">
-              <a href="https://bit.ly/ihr-contribute" rel="nofollow" 
-                 class="p-2 text-white font-bold underline text-red-400 hover:text-red-600 rounded"
-                 target="_blank"
-              >Sponsor us</a>
-            </div>
-            <div class="mx-auto mt-6 sponsor-effect">
-              <!-- carbon ads -->
-              <CarbonAds></CarbonAds>
+            <div class="flex flex-col sm:flex-row md:flex-col ">
+              <div class="mt-6 w-full w-2/5 sponsor-effect">
+                <a
+                  href="http://bit.ly/datree-ihr"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <img
+                    class="sponsor mx-auto"
+                    src="https://assets.website-files.com/5d514f718e8309c01d798013/5d8b4657e7740e300666e3cc_datree_LOGO%20FLAT%20h-p-500.png"
+                    alt="datree.io"
+                  />
+                </a>
+              </div>
+              <div class="mx-auto  w-full text-center mt-10">
+                <a href="https://bit.ly/ihr-contribute" rel="nofollow" 
+                   class="p-2 text-white font-bold underline text-red-400 hover:text-red-600 rounded"
+                   target="_blank"
+                >Sponsor us</a>
+              </div>
+              <div class="mx-auto w-full w-2/5 mt-6 sponsor-effect">
+                <!-- carbon ads -->
+                <CarbonAds></CarbonAds>
+              </div>
             </div>
           </div>
         </div>
