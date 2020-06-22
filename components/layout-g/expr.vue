@@ -30,7 +30,7 @@
               Our Sponsors
             </div>
 
-            <div class="mx-auto w-48 mt-6 w-full sponsor-effect">
+            <div class="w-48 mt-6 w-full sponsor-effect">
               <a
                 href="http://bit.ly/datree-ihr"
                 rel="noopener nofollow"
