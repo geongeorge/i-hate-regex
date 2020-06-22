@@ -78,7 +78,7 @@
             submit regex
           </p>
         </a>
-        <a href="https://www.buymeacoffee.com/geon" target="_blank">
+        <!-- <a href="https://www.buymeacoffee.com/geon" target="_blank">
           <p class="my-2 group">
             <v-icon
               name="mug-hot"
@@ -88,7 +88,7 @@
             </v-icon>
             buy me a coffee
           </p>
-        </a> 
+        </a>  -->
       </div>
       <div class="border-t py-2">
         <CarbonAds></CarbonAds>
