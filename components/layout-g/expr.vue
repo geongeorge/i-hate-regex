@@ -51,7 +51,7 @@
               </div>
               <div class="mx-auto w-full w-2/5 mt-6 sponsor-effect">
                 <!-- carbon ads -->
-                <CarbonAds></CarbonAds>
+                <CarbonAds v-if="false"></CarbonAds>
               </div>
             </div>
           </div>

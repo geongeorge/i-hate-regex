@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #carbonads {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu,
   Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -29,11 +29,15 @@ export default {
 
 #carbonads {
   display: flex;
-  max-width: 170px;
-  margin: 0 auto;
-  text-align: center;
-  /* background-color: hsl(0, 0%, 98%); */
-  /* box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, .1); */
+  max-width: 330px;
+  background-color: transparent;
+  z-index: 100;
+  opacity: 0.7;
+  transition: opacity 200ms ease-out;
+}
+
+#carbonads:hover {
+  opacity: 1;
 }
 
 #carbonads a {
@@ -52,8 +56,7 @@ export default {
 }
 
 #carbonads .carbon-wrap {
-  /* display: flex; */
-  width: 100%;
+  display: flex;
 }
 
 .carbon-img {
@@ -64,27 +67,25 @@ export default {
 
 .carbon-img img {
   display: block;
-  margin: 0 auto;
-  width:100%;
 }
 
 .carbon-text {
   font-size: 13px;
   padding: 10px;
-  text-align: center;
   line-height: 1.5;
   text-align: left;
 }
 
 .carbon-poweredby {
-  display: block;
-  padding: 8px 10px;
-  /* background: repeating-linear-gradient(-45deg, transparent, transparent 5px, hsla(0, 0%, 0%, .025) 5px, hsla(0, 0%, 0%, .025) 10px) hsla(203, 11%, 95%, .4); */
-  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 146px;
+  color: #999 !important;
   text-transform: uppercase;
+  white-space: nowrap;
   letter-spacing: .5px;
-  font-weight: 600;
-  font-size: 9px;
-  line-height: 1;
+  font-weight: 500;
+  font-size: 10px;
 }
+
 </style>

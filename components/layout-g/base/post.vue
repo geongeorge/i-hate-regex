@@ -4,7 +4,7 @@
     <div class="min-h-screen lg:flex">
       <client-only>
         <div
-          class="static h-full inset-0 h-full bg-gray-100 flex-none w-full lg:w-1/5 bg-gray-200 text-gray-700"
+          class="static h-full inset-0 h-full bg-gray-100 flex-none w-full lg:w-1/5 bg-gray-200 text-gray-700 main-sidebar"
           :class="{ 'hidden lg:block': !sidebar }"
         >
           <div class="fixed bg-gray-200  z-20 h-screen w-full lg:w-1/5">
@@ -68,5 +68,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+.main-sidebar {
+  min-width: 288px;
 }
 </style>
