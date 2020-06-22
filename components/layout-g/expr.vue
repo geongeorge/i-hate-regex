@@ -25,11 +25,11 @@
           <div class="flex-grow">
             <slot name="seconddescr" />
           </div>
-          <div class="px-6 min-w-64 flex-col justify-center">
+          <div class="px-6 sponsor-bar flex-col justify-center">
             <div class="font-bold text-gray-500 text-center">
               Our Sponsors
             </div>
-            <div class="flex flex-col sm:flex-row md:flex-col ">
+            <div class="flex flex-col sm:flex-row md:flex-col">
               <div class="mt-6 w-full w-2/5 sponsor-effect">
                 <a
                   href="http://bit.ly/datree-ihr"
@@ -109,6 +109,9 @@ export default {
 }
 </script>
 <style>
+.sponsor-bar {
+  min-width: 200px;
+}
 .sponsor-effect {
   opacity: 0.7;
   transition: opacity 200ms ease-out;
