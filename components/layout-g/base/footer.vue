@@ -2,7 +2,7 @@
   <div>
     <div class="flex bg-gray-300 mt-6 h-24 w-full shadow-inner">
       <div class="flex-auto">
-        <div class="flex flex-col h-full w-full justify-center items-left ml-4">
+        <div class="flex flex-col h-full justify-center items-left ml-4">
           <div class="px-2 text-3xl text-gray-400">
             i<span class="font-bold">Hate</span>Regex
           </div>

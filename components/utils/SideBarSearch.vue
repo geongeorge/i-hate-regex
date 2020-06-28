@@ -78,7 +78,9 @@
             submit regex
           </p>
         </a>
-        <!-- <a href="https://www.buymeacoffee.com/geon" target="_blank">
+      </div>
+      <div class="border-t py-2">
+        <a href="https://www.buymeacoffee.com/geon" target="_blank">
           <p class="my-2 group">
             <v-icon
               name="mug-hot"
@@ -88,10 +90,7 @@
             </v-icon>
             buy me a coffee
           </p>
-        </a>  -->
-      </div>
-      <div class="border-t py-2">
-        <CarbonAds></CarbonAds>
+        </a>
       </div>
     </div>
   </div>
@@ -100,11 +99,9 @@
 <script>
 import jsonData from '~/static/regex/data.json'
 import SearchResult from '~/components/utils/SearchResult'
-import CarbonAds from '../utils/CarbonAds2'
 export default {
   components: {
-    SearchResult,
-    CarbonAds
+    SearchResult
   },
   props: {
     tags: { default: () => [] },

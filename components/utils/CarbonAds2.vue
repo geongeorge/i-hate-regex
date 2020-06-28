@@ -29,7 +29,8 @@ export default {
 
 #carbonads {
   display: flex;
-  max-width: 330px;
+  width: 330px;
+  max-width: 100%;
   background-color: transparent;
   z-index: 100;
   opacity: 0.7;
