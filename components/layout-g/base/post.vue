@@ -70,6 +70,6 @@ html {
   box-sizing: border-box;
 }
 .main-sidebar {
-  min-width: 288px;
+  min-width: 258px;
 }
 </style>
