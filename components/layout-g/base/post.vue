@@ -6,7 +6,7 @@
         class="static h-full inset-0 h-full bg-gray-100 flex-none w-full lg:w-1/5 bg-gray-200 text-gray-700 main-sidebar"
         :class="{ 'hidden lg:block': !sidebar }"
       >
-        <div class="fixed bg-gray-200  z-20 h-screen w-full lg:w-1/5">
+        <div class="fixed bg-gray-200  z-20 h-screen w-full lg:w-1/5 main-sidebar">
           <div class="text-center mt-5 pt-2">
             <a href="/" class="group">
               <h2 class="text-2xl">
