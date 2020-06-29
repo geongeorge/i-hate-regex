@@ -1,9 +1,11 @@
 <template>
   <div class="px-3 py-2 rounded text-gray-600 text-left" :class="addclass">
     <a :href="'/expr/' + id">
-      <h2 class="text-black text-xl fade-effect">{{ title }}</h2>
+      <h2 class="text-black text-base fade-effect">{{ title }}</h2>
     </a>
-    <slot />
+    <p class="text-sm">
+      <slot />
+    </p>
   </div>
 </template>
 

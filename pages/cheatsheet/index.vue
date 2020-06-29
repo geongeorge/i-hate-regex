@@ -2,10 +2,10 @@
   <post>
     <div>
       <a href="#">
-        <h1 class="text-2xl group">
+        <h3 class="text-2xl group">
           <span class="group-hover:text-red-600">#</span>
           cheatsheet
-        </h1>
+        </h3>
       </a>
       <p class="text-sm text-gray-500">
         tiny regex cheatsheet

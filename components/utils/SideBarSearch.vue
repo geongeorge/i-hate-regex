@@ -28,7 +28,7 @@
         v-if="!query && related.length !== 0"
         class=""
       >
-        <h3 class="font-bold">
+        <h3 class="font-bold mt-2">
           Related:
         </h3>
         <SearchResult
