@@ -565,5 +565,30 @@
         ],
         "embedHeight": 1100,
         "tags" : ["credit card", "payment card", "Visa", "MasterCard", "American Express", "Diners Club", "Discover", "JCB"]
+    },
+    {
+      "id": "pan-from-gstin",
+      "title": "Extract permanent account number (PAN) from GSTIN number",
+      "tagline": "extracts PAN number from a valid GSTIN number",
+      "description": "A PAN is a unique identifier issued to all judicial entities identifiable under the Indian Income Tax Act, 1961",
+      "regex": "^([0][1-9]|[1-2][0-9]|[3][0-5])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1})([1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$",
+      "flag": "ig",
+      "matchText": [
+        "22ABCDE1234F1Z5",
+        "11GHIJK1234L1Z5",
+        "33PQRST5678L1Z5",
+        "34UVWXY5678L1Z5",
+        "35PQRST5678L1Z5"
+      ],
+      "cheatRegex": [
+        "/\\w/"
+      ],
+      "embedHeight": 500,
+      "tags": [
+        "PAN FROM GSTIN",
+        "GSTIN",
+        "INDIAN GSTIN",
+        "INDIAN PAN"
+      ]
     }
 ]
