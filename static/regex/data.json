@@ -572,7 +572,7 @@
       "tagline": "extracts PAN number from a valid GSTIN number",
       "description": "A PAN is a unique identifier issued to all judicial entities identifiable under the Indian Income Tax Act, 1961",
       "regex": "^([0][1-9]|[1-2][0-9]|[3][0-5])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1})([1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$",
-      "flag": "ig",
+      "flag": "igm",
       "matchText": [
         "22ABCDE1234F1Z5",
         "11GHIJK1234L1Z5",
