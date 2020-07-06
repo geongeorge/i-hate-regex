@@ -38,9 +38,6 @@
               <nuxt-link to="/expr" class="hover:underline">
                 all
               </nuxt-link>
-              <nuxt-link to="/color" class="hover:underline">
-                color
-              </nuxt-link>
             </li>
 
             <li class="mx-3">
@@ -48,14 +45,16 @@
                 href="https://forms.gle/Cwo3VupujQJzeoYQ9"
                 class="hover:underline"
                 target="_blank"
-              >submit</a>
+                >submit</a
+              >
             </li>
             <li class="mx-3">
               <a
                 href="https://github.com/geongeorge/i-hate-regex"
                 class="hover:underline"
                 target="_blank"
-              >github</a>
+                >github</a
+              >
             </li>
           </ul>
         </div>
