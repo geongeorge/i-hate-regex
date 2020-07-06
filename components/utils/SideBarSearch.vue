@@ -80,17 +80,7 @@
         </a>
       </div>
       <div class="border-t py-2">
-        <a href="https://www.buymeacoffee.com/geon" target="_blank">
-          <p class="my-2 group">
-            <v-icon
-              name="mug-hot"
-              class="inline-block fill-current text-gray-500 group-hover:text-gray-700"
-              scale="1"
-            >
-            </v-icon>
-            buy me a coffee
-          </p>
-        </a>
+        <TwitterButton></TwitterButton>
       </div>
     </div>
   </div>
@@ -99,9 +89,12 @@
 <script>
 import jsonData from '~/static/regex/data.json'
 import SearchResult from '~/components/utils/SearchResult'
+import TwitterButton from './TwitterButton'
+
 export default {
   components: {
-    SearchResult
+    SearchResult,
+    TwitterButton 
   },
   props: {
     tags: { default: () => [] },
