@@ -7,8 +7,7 @@
           href="#"
           class="text-gray-500 hover:underline"
           @click="toggleMatches"
-          >{{ showText }}</a
-        >
+        >{{ showText }}</a>
       </div>
     </div>
     <transition-expand>
@@ -53,8 +52,7 @@ export default {
   },
   data() {
     return {
-      displayMatches: false,
-      dataText: '',
+      displayMatches: true,
       queries: [],
       isTyping: false,
       loaded: false
@@ -66,6 +64,9 @@ export default {
         return 'hide matches'
       }
       return 'show matches'
+    },
+    dataText() {
+      return this.sampleText.join('\n') || ''
     }
   },
   watch: {
@@ -75,10 +76,8 @@ export default {
     }
   },
   mounted() {
-    // set datatext to sample text array from props
-    this.dataText = this.sampleText.join('\n')
-    // this.boxEdited()
-    setTimeout(this.toggleMatches, 50)
+    this.boxEdited()
+    // setTimeout(this.boxEdited(), 50)
 
     //set loaded to true
     this.loaded = true
