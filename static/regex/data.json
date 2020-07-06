@@ -561,7 +561,9 @@
             "1234566660000222"
         ],
         "cheatRegex": [
-            "/[0-9]/"
+            "/[0-9]/",
+            "/[0-9]/",
+            "/(hello){1,3}/"
         ],
         "embedHeight": 1100,
         "tags" : ["credit card", "payment card", "Visa", "MasterCard", "American Express", "Diners Club", "Discover", "JCB"]
@@ -582,12 +584,17 @@
         "22ABCDE1234F1Z5"
       ],
       "cheatRegex": [
-        "/\\w/"
+        "/\\w/",
+        "/[0-9]/",
+        "/[a-z]/",
+        "/[a-zA-Z0-9]/",
+        "/(hello){1,3}/"
       ],
       "embedHeight": 500,
       "tags": [
         "PAN FROM GSTIN",
         "GSTIN",
+        "GST",
         "INDIAN GSTIN",
         "INDIAN PAN"
       ]
