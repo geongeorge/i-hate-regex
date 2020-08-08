@@ -29,7 +29,7 @@
     "@nuxtjs/sitemap": "^2.0.1",
     "@nuxtjs/toast": "^3.3.0",
     "autosize": "^4.0.2",
-    "nuxt": "2.13.2",
+    "nuxt": "^2.14.1",
     "regex-colorize": "^0.0.3",
     "vue-awesome": "^3.5.4",
     "vue-fuse": "^2.1.0",
