@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="codebox" :class="{ 'bg-red-200': regexError }">
+    <div class="codebox" :class="{ 'codebox-error': regexError }">
       <div class="regex-area">
         <client-only>
           <div
