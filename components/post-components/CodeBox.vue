@@ -23,7 +23,7 @@
             @click.prevent="toggleFlagSelect"
           >
             {{ myflag }}
-            <v-icon name="flag" class="" scale="1"></v-icon>
+            <v-icon name="flag" class="" scale="1.35"></v-icon>
           </a>
         </div>
         <div class="w-full relative flex content-start text-right">
@@ -33,7 +33,7 @@
             :class="{ 'opacity-0': ifCopy }"
             @click.prevent="copyRegex"
           >
-            copy
+            copy <v-icon name="copy" class="" scale="1"></v-icon>
           </a>
         </div>
       </div>
