@@ -36,6 +36,7 @@
     "vue-text-highlight": "^2.0.8"
   },
   "devDependencies": {
+    "@nuxtjs/color-mode": "^1.0.3",
     "@nuxtjs/google-analytics": "^2.2.2",
     "@nuxtjs/tailwindcss": "^3.0.0",
     "babel-eslint": "^10.0.3",
@@ -49,6 +50,7 @@
     "node-sass": "^4.14.1",
     "nodemon": "^1.18.9",
     "prettier": "^1.19.1",
-    "sass-loader": "^9.0.3"
+    "sass-loader": "^9.0.3",
+    "tailwindcss-dark-mode": "^1.1.6"
   }
 }
