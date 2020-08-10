@@ -40,14 +40,7 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      {
-        rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css?family=Fira+Sans:400,600&display=swap"
-      }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
   /*
    ** Customize the progress-bar color
