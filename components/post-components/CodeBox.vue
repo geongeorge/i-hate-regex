@@ -33,7 +33,7 @@
             :class="{ 'opacity-0': ifCopy }"
             @click.prevent="copyRegex"
           >
-            copy <v-icon name="copy" class="" scale="1"></v-icon>
+            copy
           </a>
         </div>
       </div>
