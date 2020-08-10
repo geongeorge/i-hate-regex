@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="matchbox-wrapper">
     <div class="flex w-full flex-row">
       <div class="text-sm float-right mr-2">
         <!-- eslint-disable-next-line -->
