@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import post from '~/components/layout-g/base/post.vue'
-import CheatTable from '~/components/post-components/CheatTable'
+import post from "~/components/layouts/base/post.vue";
+import CheatTable from "~/components/post-components/CheatTable";
 export default {
   components: {
     post,
@@ -26,19 +26,19 @@ export default {
   },
   head() {
     return {
-      title: 'Regex cheatsheet - Regular expressions for the common man',
+      title: "Regex cheatsheet - Regular expressions for the common man",
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
-          hid: 'description',
-          name: 'description',
+          hid: "description",
+          name: "description",
           content:
-            'A regular expression cheatsheet that you can refer to. Simple examples and explainations.'
+            "A regular expression cheatsheet that you can refer to. Simple examples and explainations."
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style></style>
