@@ -5,7 +5,7 @@
         <client-only>
           <div
             ref="codebox"
-            class="w-full focus:outline-none regex"
+            class="codebox-content regex"
             contenteditable="true"
             @paste.prevent="onPaste"
             @keyup="regexChanged"
@@ -15,22 +15,25 @@
         </client-only>
       </div>
 
-      <div class="w-1/6 flex flex-col content-center text-gray-400">
+      <div class="regex-options">
         <div class="w-full text-right">
           <a
             href="#"
             class="text-3xl text-gray-500 hover:text-green-500"
             @click.prevent="toggleFlagSelect"
-          >/{{ myflag }}
+          >
+            {{ myflag }}
+            <v-icon name="flag" class="" scale="1"></v-icon>
           </a>
         </div>
         <div class="w-full relative flex content-start text-right">
           <a
             href="#"
-            class="text-base w-full hover:text-blue-400"
+            class="text-lg w-full hover:text-green-500"
             :class="{ 'opacity-0': ifCopy }"
             @click.prevent="copyRegex"
-          >copy
+          >
+            copy
           </a>
         </div>
       </div>
@@ -48,8 +51,8 @@
 </template>
 
 <script>
-// import VueRegexColorize from "~/plugins/vue-regex-colorize";
 import "regex-colorize/themes/sweetest.css";
+// use the .regex class on contenteditable
 import FlagSelector from "~/components/post-components/utils/FlagSelector";
 import pastePlainText from "~/mixins/pastePlainText.js";
 //

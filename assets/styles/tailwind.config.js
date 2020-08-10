@@ -1,9 +1,25 @@
+const { colors } = require("tailwindcss/defaultTheme");
+
 module.exports = {
   theme: {
     fontFamily: {
       // compatible with @nuxtjs/color-mode
       darkSelector: ".dark-mode",
       sans: ["'Source Sans'", "-apple-system", "BlinkMacSystemFont"]
+    },
+    extend: {
+      colors: {
+        primary: colors.red["600"],
+        secondary: colors.green["600"],
+        gray: {
+          ...colors.gray,
+          default: colors.gray["200"]
+        },
+        dark: {
+          default: colors.gray["700"],
+          muted: colors.gray["500"]
+        }
+      }
     }
   },
   variants: {
