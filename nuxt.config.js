@@ -65,6 +65,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/color-mode",
     [
       "@nuxtjs/google-analytics",
       {
@@ -78,8 +80,7 @@ export default {
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/markdownit",
-    "@nuxtjs/tailwindcss",
-    ["@nuxtjs/toast"],
+    "@nuxtjs/toast",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots"
   ],
