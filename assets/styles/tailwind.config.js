@@ -11,13 +11,20 @@ module.exports = {
       colors: {
         primary: colors.red["600"],
         secondary: colors.green["600"],
-        gray: {
-          ...colors.gray,
-          default: colors.gray["200"]
+        shade: {
+          default: colors.gray["200"],
+          lighter: colors.gray["100"]
         },
         dark: {
-          default: colors.gray["700"],
-          muted: colors.gray["500"]
+          default: colors.gray["800"],
+          lighter: colors.gray["700"],
+          muted: colors.gray["500"],
+          black: colors.gray["900"]
+        },
+        light: {
+          default: colors.gray["100"],
+          muted: colors.gray["500"],
+          black: colors.gray["700"]
         }
       }
     }

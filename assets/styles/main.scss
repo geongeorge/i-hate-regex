@@ -10,10 +10,13 @@
 /** Import theme styles */
 @import "common/global";
 @import "components/buttons";
+@import "components/forms";
+@import "components/matchbox";
 
 /* Import layout styles */
 @import "layouts/pages";
 @import "layouts/expr";
+@import "layouts/post";
 
 /* Import components */
 @import "components/buttons";

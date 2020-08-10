@@ -3,9 +3,8 @@
     <div>
       <form autocomplete="off" method="post" action>
         <input
-          id="inline-full-name"
           v-model="query"
-          class="bg-gray-300 text-1xl appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-100 focus:border-gray-200"
+          class="textbox-gray"
           type="text"
           placeholder="Search"
           @keyup="fuseSearch"
@@ -40,7 +39,7 @@
       </div>
     </div>
 
-    <div class="w-full absolute bottom-0 px-3 bg-gray-200 left-0">
+    <div class="w-full absolute bottom-0 px-3 left-0">
       <div class="border-t py-1">
         <nuxt-link to="/playground">
           <p class="my-2 group">

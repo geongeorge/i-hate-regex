@@ -3,7 +3,7 @@
 */
 
 .codebox {
-  @apply flex my-1 py-2 px-4 text-2xl rounded bg-gray text-dark;
+  @apply flex my-1 py-2 px-4 text-2xl rounded bg-shade text-dark;
 
   transition: all 0.5s ease;
 
@@ -28,6 +28,14 @@
   }
 }
 
+.dark-mode .codebox {
+  @apply bg-dark text-light;
+}
+
 .codebox-error {
   @apply bg-red-200;
+}
+
+.dark-mode .codebox-error {
+  background: #660d07;
 }
