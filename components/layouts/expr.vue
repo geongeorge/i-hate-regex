@@ -1,14 +1,19 @@
 <template>
   <post :id="id" :tags="tags">
-    <div>
-      <h1 class="text-2xl group">
-        regex for
-        <span class="font-bold"><slot name="title" /></span>
-      </h1>
-      <p class="text-sm text-gray-500">
-        <slot name="tagline" />
-      </p>
-      <div class="mt-8">
+    <article>
+      <header class="expr-header">
+        <h1>
+          regex for
+          <span class="keyword">
+            <slot name="title" />
+          </span>
+        </h1>
+        <h3>
+          <slot name="tagline" />
+        </h3>
+      </header>
+
+      <div class="codebox-wrapper">
         <CodeBox :regex="regex" :flag="flag" @regexChanged="regexChanged" />
       </div>
 
@@ -55,7 +60,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </article>
   </post>
 </template>
 
