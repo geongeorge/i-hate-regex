@@ -1,18 +1,24 @@
-import regexArray from "./static/regex/data.json"
+import regexArray from "./static/regex/data.json";
 
 const port = process.env.port || 3600;
 const host = "localhost";
 
-let myUrl = process.env.NODE_ENV !== 'production'? 'http://'+host+':'+port:"https://ihateregex.io";
+let myUrl =
+  process.env.NODE_ENV !== "production"
+    ? "http://" + host + ":" + port
+    : "https://ihateregex.io";
 
-if(process.env.site_type === 'staging' ) {
-  myUrl = "https://dev.ihateregex.io"
+if (process.env.site_type === "staging") {
+  myUrl = "https://dev.ihateregex.io";
 }
 
-const robotsObj = process.env.site_type === 'staging' ? {
-  UserAgent: '*',
-  Disallow: '/'
-} : {};
+const robotsObj =
+  process.env.site_type === "staging"
+    ? {
+        UserAgent: "*",
+        Disallow: "/"
+      }
+    : {};
 
 export default {
   mode: "universal",
@@ -50,7 +56,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ["~/assets/styles/main.scss"],
   /*
    ** Plugins to load before mounting the App
    */
@@ -58,7 +64,7 @@ export default {
     "~/plugins/vue-fuse",
     "~/plugins/vue-awesome",
     { src: "~/plugins/regex-colorize", mode: "client" },
-    '~/plugins/headMixin.js'
+    "~/plugins/headMixin.js"
     // { src: '~plugins/ga.js', mode: 'client' } //google analytics
   ],
   /*
@@ -71,21 +77,27 @@ export default {
       {
         id: "UA-153865454-1"
       }
-    ],
+    ]
   ],
   /*
    ** Nuxt.js modules
    */
   modules: [
-    '@nuxtjs/axios',
+    "@nuxtjs/axios",
     "@nuxtjs/markdownit",
     "@nuxtjs/tailwindcss",
     ["@nuxtjs/toast"],
     "@nuxtjs/sitemap",
-    '@nuxtjs/robots'
+    "@nuxtjs/robots"
   ],
+  tailwindcss: {
+    cssPath: "~/assets/styles/tailwind.scss",
+    configPath: "./assets/styles/tailwind.config.js",
+    exposeConfig: false,
+    config: {}
+  },
   axios: {
-    baseURL : myUrl
+    baseURL: myUrl
   },
   markdownit: {
     injected: true
@@ -118,33 +130,28 @@ export default {
       // }
 
       //this is for webpack - require('fs') to work
-      config.node = { fs: 'empty' }
+      config.node = { fs: "empty" };
     }
   },
 
   postcss: {
-    plugins: [
-    ]
+    plugins: []
   },
 
-// sitemap begin
+  // sitemap begin
   sitemap: {
-    path: '/sitemap.xml',
+    path: "/sitemap.xml",
     hostname: myUrl,
     sitemaps: [
       {
         path: "/sitemap-main.xml",
-        routes: [
-          "/playground",
-          "/cheatsheet",
-          "/expr"
-        ]
+        routes: ["/playground", "/cheatsheet", "/expr"]
       },
       {
-        path: '/sitemap-regex.xml',
-        routes: regexArray.map(el=> "expr/"+el.id)
+        path: "/sitemap-regex.xml",
+        routes: regexArray.map(el => "expr/" + el.id)
       }
     ]
   }
   // sitemap end
-}
+};
