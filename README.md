@@ -138,7 +138,7 @@ You can also submit regex via this [google form](https://forms.gle/Cwo3VupujQJze
 
 </details>
 
-2. Create a markdown file in `/static/regex/markdown/` named `<regex-id>.md` for longer description and explaination
+2. Create a markdown file in `/static/regex/markdown/` named `<regex-id>.md` for longer description and explanation
 
     *&lt;regex-id&gt; is the **id** from **data.json***
 
@@ -156,7 +156,7 @@ There are 2 descriptions for each regex.
 
 - Second is a dedicated **markdown file** in `/static/regex/markdown/<file>.md`
 
-  - This should explain the working of the expression in detail
+  - This should explain how the expression works in detail.
   - This is the **long description**
 
   <div align="center">
@@ -167,7 +167,7 @@ There are 2 descriptions for each regex.
 | Property | Definition | example |
 |------|------------|------------|
 | **description** property inside `data.json` | This should explain about what the target match is in a few lines. It should not contain any html or markdown |A username is a unique identifier given to accounts in websites and social media |
-|dedicated **markdown file**|Explain about the expression and its working| ip addresses are of the range 0.0.0.0 - 255.255.255.255. The expression matches the ....(more)|
+|dedicated **markdown file**|Explain about the expression and how it works| ip addresses are of the range 0.0.0.0 - 255.255.255.255. The expression matches the ....(more)|
 
 ## Sponsors 💖
 
