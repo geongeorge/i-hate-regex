@@ -740,7 +740,7 @@
             "title": "hashtag",
             "tagline": "matches a social media hashtag",
             "description": "Hashtags are metadata tags used on social networks that categorizes the content of the post",
-            "regex": "#[^ !@#$%^&*(),.?\":{}|<>]*",
+            "regex": "^#[^ !@#$%^&*(),.?\":{}|<>]*$",
             "flag": "gmi",
             "matchText": [
                 "#Hello",
