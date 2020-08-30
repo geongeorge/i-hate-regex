@@ -42,11 +42,3 @@
   z-index: 0 !important;
   height: auto;
 }
-
-.dark-mode #matchbox-container {
-  @apply bg-dark text-light;
-
-  mark {
-    background-color: rgba(169, 252, 0, 0.4);
-  }
-}

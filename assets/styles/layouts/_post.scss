@@ -24,11 +24,7 @@
 }
 
 .main-sidebar {
-  @apply fixed bg-shade z-20 h-screen w-full;
-}
-
-.dark-mode .main-sidebar {
-  @apply bg-dark-black border-r border-gray-800;
+  @apply fixed bg-gray-200 z-20 h-screen w-full;
 }
 
 @screen lg {

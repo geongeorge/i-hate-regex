@@ -16,13 +16,15 @@ module.exports = {
           lighter: colors.gray["100"]
         },
         dark: {
-          default: colors.gray["800"],
-          lighter: colors.gray["700"],
-          muted: colors.gray["500"],
-          black: colors.gray["900"]
+          black: '#121212',
+          default: '#222222',
+          lighter: '#515151',
+          muted: '#7e7e7e',
+          shade: '#cfcfcf',
+          shadelight: '#e1e1e1'
         },
         light: {
-          default: colors.gray["100"],
+          default: colors.gray["200"],
           muted: colors.gray["500"],
           black: colors.gray["700"]
         }
