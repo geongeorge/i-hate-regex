@@ -598,5 +598,34 @@
         "INDIAN GSTIN",
         "INDIAN PAN"
       ]
-    }
+    },
+    {
+        "id": "e164-phone",
+        "title": "E.164 Phone Number",
+        "tagline": "matches a valid e.164 format telephobne number",
+        "description": "E.164 is a telephone number format to ensure consistency",
+        "regex": "^\\+[1-9]\\d{1,14}$",
+        "flag": "igm",
+        "matchText": [
+            "+919367788755",
+            "8989829304",
+            "+16308520397",
+            "786-307-3615",
+            "+14155552671",
+            "+551155256325"
+        ],
+        "cheatRegex": [
+          "/\\w/",
+          "/[0-9]/",
+          "/\\d/",
+          "/(hello){1,3}/"
+        ],
+        "embedHeight": 500,
+        "tags": [
+          "phone",
+          "e.164",
+          "number",
+          "telephone"
+        ]
+      }
 ]
