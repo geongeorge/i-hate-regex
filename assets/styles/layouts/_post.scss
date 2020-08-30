@@ -1,0 +1,48 @@
+/**
+ Post Layout: Sidebar layout
+*/
+
+.post-wrapper {
+  @apply min-h-screen;
+}
+@screen lg {
+  .post-wrapper {
+    @apply flex;
+  }
+}
+
+.static-sidebar-wrapper {
+  @apply static h-full inset-0 flex-none w-full;
+
+  min-width: 258px;
+}
+
+@screen lg {
+  .static-sidebar-wrapper {
+    @apply w-1/5;
+  }
+}
+
+.main-sidebar {
+  @apply fixed bg-gray-200 z-20 h-screen w-full;
+}
+
+@screen lg {
+  .main-sidebar {
+    @apply w-1/5;
+  }
+}
+
+.sidebar-footer {
+  @apply flex-1 w-4/5 static;
+}
+
+.post-content {
+  @apply flex-1;
+}
+
+@screen lg {
+  .post-content {
+    @apply w-4/5 static;
+  }
+}

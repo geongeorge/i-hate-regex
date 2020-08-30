@@ -3,16 +3,15 @@
     <div>
       <form autocomplete="off" method="post" action>
         <input
-          id="inline-full-name"
           v-model="query"
-          class="bg-gray-300 text-1xl appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-gray-100 focus:border-gray-200"
+          class="textbox-gray"
           type="text"
           placeholder="Search"
           @keyup="fuseSearch"
         />
       </form>
     </div>
-    <div class="overflow-y-scroll">
+    <div class="overflow-y-auto">
       <div v-if="query" class="">
         <SearchResult
           v-for="(item, key) in searchResults"
@@ -21,13 +20,10 @@
           :title="item.title"
           :addclass="['mt-0']"
         >
-          {{ item.description.substring(0, 25) + '...' }}
+          {{ item.description.substring(0, 25) + "..." }}
         </SearchResult>
       </div>
-      <div
-        v-if="!query && related.length !== 0"
-        class=""
-      >
+      <div v-if="!query && related.length !== 0" class="">
         <h3 class="font-bold mt-2">
           Related:
         </h3>
@@ -38,12 +34,12 @@
           :title="item.title"
           :addclass="['mt-0']"
         >
-          {{ item.description.substring(0, 25) + '...' }}
+          {{ item.description.substring(0, 25) + "..." }}
         </SearchResult>
       </div>
     </div>
 
-    <div class="w-full absolute bottom-0 px-3 bg-gray-200 left-0">
+    <div class="w-full absolute bottom-0 px-3 left-0">
       <div class="border-t py-1">
         <nuxt-link to="/playground">
           <p class="my-2 group">
@@ -87,9 +83,9 @@
 </template>
 
 <script>
-import jsonData from '~/static/regex/data.json'
-import SearchResult from '~/components/utils/SearchResult'
-import TwitterButton from './TwitterButton'
+import jsonData from "~/static/regex/data.json";
+import SearchResult from "~/components/utils/SearchResult";
+import TwitterButton from "./TwitterButton";
 
 export default {
   components: {
@@ -98,19 +94,19 @@ export default {
   },
   props: {
     tags: { default: () => [] },
-    id: { default: '' }
+    id: { default: "" }
   },
   data() {
     return {
-      query: '',
+      query: "",
       catalog: jsonData,
       searchResults: [],
       related: []
-    }
+    };
   },
   mounted() {
     // Search for related
-    setTimeout(this.relatedSearch, 500)
+    setTimeout(this.relatedSearch, 500);
   },
   methods: {
     fuseSearch() {
@@ -121,11 +117,11 @@ export default {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: ['title', 'description', 'tags']
-      }
+        keys: ["title", "description", "tags"]
+      };
       this.$search(this.query, this.catalog, options).then(results => {
-        this.searchResults = results.slice(0, 3) // top 3 search result only
-      })
+        this.searchResults = results.slice(0, 3); // top 3 search result only
+      });
     },
     relatedSearch() {
       const options = {
@@ -135,31 +131,30 @@ export default {
         distance: 100,
         maxPatternLength: 32,
         minMatchCharLength: 1,
-        keys: ['title', 'description', 'tags']
-      }
+        keys: ["title", "description", "tags"]
+      };
 
       // Don't show related if there are no tags or regex
-      if (!this.tags) return
+      if (!this.tags) return;
 
       // Don't show more than 3 related
-      const noOfRelated = 3
+      const noOfRelated = 3;
       // Initialize to empty temporary array
-      const relatedTemp = []
+      const relatedTemp = [];
 
       for (const tag of this.tags)
         this.$search(tag, this.catalog, options).then(results => {
           // Don't show the same product
           // Filter the id
-          relatedTemp.push(...results.filter(elm => elm.id !== this.id))
+          relatedTemp.push(...results.filter(elm => elm.id !== this.id));
           // Slice to max length
           if (relatedTemp.length >= noOfRelated) {
-            this.related = relatedTemp.slice(0, noOfRelated)
+            this.related = relatedTemp.slice(0, noOfRelated);
           }
-        }) // eslint-disable-line
+        }); // eslint-disable-line
     }
   }
-}
+};
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,0 +1,20 @@
+/**
+*    Styles for expression pages
+*/
+
+.expr-header {
+  h1 {
+    @apply text-2xl;
+    .keyword {
+      @apply font-bold;
+    }
+  }
+
+  h3 {
+    @apply text-sm text-dark-muted;
+  }
+}
+
+.codebox-wrapper {
+  @apply mt-8;
+}

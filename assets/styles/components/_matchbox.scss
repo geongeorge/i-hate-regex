@@ -1,0 +1,44 @@
+/**
+*   Matchbox component
+*/
+
+.matchbox-wrapper {
+  .text__highlight {
+    white-space: pre-line;
+    margin: 2px;
+    background: hsla(160, 100%, 73%, 0.3) !important;
+  }
+  #matchbox {
+    @apply relative text-lg p-3 whitespace-pre z-10 w-full bg-transparent;
+    z-index: 10 !important;
+    white-space: pre-wrap;
+    min-height: 50px;
+  }
+  #matchbox:focus {
+    border: none;
+    outline: none;
+  }
+  .backdrop {
+    overflow: auto;
+  }
+
+  .highlights {
+    @apply absolute top-0 left-0 w-full p-3 text-lg;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-spacing: 0px;
+    color: transparent;
+  }
+
+  mark {
+    @apply rounded;
+    background-color: #d4e9ab;
+    color: transparent;
+  }
+}
+
+#matchbox-container {
+  @apply relative bg-blue-100 rounded mb-2 shadow-inner overflow-hidden;
+  z-index: 0 !important;
+  height: auto;
+}

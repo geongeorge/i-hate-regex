@@ -29,15 +29,16 @@
     "@nuxtjs/sitemap": "^2.0.1",
     "@nuxtjs/toast": "^3.3.0",
     "autosize": "^4.0.2",
-    "nuxt": "2.13.2",
+    "nuxt": "^2.14.1",
     "regex-colorize": "^0.0.3",
     "vue-awesome": "^3.5.4",
     "vue-fuse": "^2.1.0",
     "vue-text-highlight": "^2.0.8"
   },
   "devDependencies": {
+    "@nuxtjs/color-mode": "^1.0.3",
     "@nuxtjs/google-analytics": "^2.2.2",
-    "@nuxtjs/tailwindcss": "^1.4.1",
+    "@nuxtjs/tailwindcss": "^3.0.0",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.0",
     "eslint": "^6.8.0",
@@ -46,7 +47,10 @@
     "eslint-plugin-vue": "^6.1.2",
     "husky": "^4.2.1",
     "lint-staged": "^10.0.7",
+    "node-sass": "^4.14.1",
     "nodemon": "^1.18.9",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "sass-loader": "^9.0.3",
+    "tailwindcss-dark-mode": "^1.1.6"
   }
 }

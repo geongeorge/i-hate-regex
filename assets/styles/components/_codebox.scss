@@ -1,0 +1,35 @@
+/**
+*   Codebox component
+*/
+
+.codebox {
+  @apply flex my-1 py-2 px-4 text-2xl rounded bg-gray-200 text-dark;
+
+  transition: all 0.5s ease;
+
+  .regex-area {
+    @apply w-5/6 flex content-center flex-wrap;
+  }
+
+  .regex-options {
+    @apply w-1/6 flex flex-col content-center text-dark-muted;
+  }
+
+  .codebox-content {
+    @apply w-full;
+
+    &:focus {
+      @apply outline-none;
+    }
+
+    b {
+      @apply font-bold;
+    }
+  }
+}
+
+
+.codebox-error {
+  @apply bg-red-200;
+}
+

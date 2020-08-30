@@ -1,14 +1,19 @@
 <template>
   <post :id="id" :tags="tags">
-    <div>
-      <h1 class="text-2xl group">
-        regex for 
-        <span class="font-bold"><slot name="title" /></span>
-      </h1>
-      <p class="text-sm text-gray-500">
-        <slot name="tagline" />
-      </p>
-      <div class="mt-8">
+    <article>
+      <header class="expr-header">
+        <h1>
+          regex for
+          <span class="keyword">
+            <slot name="title" />
+          </span>
+        </h1>
+        <h3>
+          <slot name="tagline" />
+        </h3>
+      </header>
+
+      <div class="codebox-wrapper">
         <CodeBox :regex="regex" :flag="flag" @regexChanged="regexChanged" />
       </div>
 
@@ -44,31 +49,32 @@
                 </a>
               </div>
               <div class="mx-auto  w-full text-center mt-10">
-                <a href="https://bit.ly/ihr-contribute" rel="nofollow" 
-                   class="p-2 text-white font-bold underline text-red-400 hover:text-red-600 rounded"
-                   target="_blank"
+                <a
+                  href="https://bit.ly/ihr-contribute"
+                  rel="nofollow"
+                  class="p-2 text-white font-bold underline text-red-400 hover:text-red-600 rounded"
+                  target="_blank"
                 >Sponsor us</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </article>
   </post>
 </template>
 
 <script>
 //base layout
-import post from '~/components/layout-g/base/post'
+import post from "~/components/layouts/base/post";
 
-import CodeBox from '~/components/post-components/CodeBox'
-import MatchBox from '~/components/post-components/MatchBoxBetter'
+import CodeBox from "~/components/post-components/CodeBox";
+import MatchBox from "~/components/post-components/MatchBoxBetter";
 
-import RegvizEmbed from '~/components/post-components/RegvizEmbed'
-
+import RegvizEmbed from "~/components/post-components/RegvizEmbed";
 
 export default {
-  layout: 'post',
+  layout: "post",
   components: {
     post,
     CodeBox,
@@ -77,30 +83,30 @@ export default {
   },
   props: {
     iregex: { default: / / }, //input regex
-    iflag: { default: 'gm' }, //input flags
-    imatchText: { default: ['lorem ipsum'] }, //input text
+    iflag: { default: "gm" }, //input flags
+    imatchText: { default: ["lorem ipsum"] }, //input text
     eHeight: { default: 400 }, //embed regviz height
     tags: { default: () => [] }, // Arrays need to be defaulted to factory function
-    id: { default: '' }
+    id: { default: "" }
   },
   data() {
     return {
       regex: / /g,
-      flag: '',
+      flag: "",
       matchText: []
-    }
+    };
   },
   created() {
-    this.regex = this.iregex
-    this.flag = this.iflag
-    this.matchText = this.imatchText
+    this.regex = this.iregex;
+    this.flag = this.iflag;
+    this.matchText = this.imatchText;
   },
   methods: {
     regexChanged(event) {
-      this.regex = new RegExp(event.regex, event.flag)
+      this.regex = new RegExp(event.regex, event.flag);
     }
   }
-}
+};
 </script>
 <style>
 .sponsor-bar {

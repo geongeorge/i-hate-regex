@@ -1,0 +1,29 @@
+/**
+ Source Sans Font
+*/
+
+@font-face {
+  font-family: "Source Sans";
+  font-weight: 200 900;
+  font-style: normal;
+  font-stretch: normal;
+  src: url("./fonts/source-sans/WOFF2/VAR/SourceSansVariable-Roman.ttf.woff2")
+      format("woff2"),
+    url("./fonts/source-sans/WOFF/VAR/SourceSansVariable-Roman.ttf.woff")
+      format("woff"),
+    url("./fonts/source-sans/VAR/SourceSansVariable-Roman.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "Source Sans";
+  font-weight: 200 900;
+  font-style: italic;
+  font-stretch: normal;
+  src: url("./fonts/source-sans/WOFF2/VAR/SourceSansVariable-Italic.ttf.woff2")
+      format("woff2"),
+    url("./fonts/source-sans/WOFF/VAR/SourceSansVariable-Italic.ttf.woff")
+      format("woff"),
+    url("./fonts/source-sans/VAR/SourceSansVariable-Italic.ttf")
+      format("truetype");
+}

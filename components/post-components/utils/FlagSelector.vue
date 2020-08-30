@@ -10,6 +10,7 @@
     <div
       class="absolute w-full md:w-1/2 bg-white rounded-sm shadow-lg flex flex-col text-2xl p-3 md:px-5 z-20"
     >
+      <h2>Regex Flags</h2>
       <div v-for="(flag, key) in flaglist" :key="key">
         <label class="font-bold">
           <input
@@ -42,88 +43,90 @@
 </template>
 
 <script>
-import TransitionExpand from '../TransitionExpand'
+import TransitionExpand from "../TransitionExpand";
 export default {
   components: {
     TransitionExpand
   },
   props: {
     modelShow: { default: false },
-    selections: { default: () => ['g', 'm'] }
+    selections: { default: () => ["g", "m"] }
   },
   data() {
     return {
       myselections: [],
       flaglist: [
         {
-          flag: 'g',
+          flag: "g",
           showDescr: false,
-          title: 'global match',
-          descr: 'find all matches rather than stopping after the first match'
+          title: "global match",
+          descr: "find all matches rather than stopping after the first match"
         },
         {
-          flag: 'i',
+          flag: "i",
           showDescr: false,
-          title: 'ignore case',
-          descr: 'if u flag is also enabled, use Unicode case folding'
+          title: "ignore case",
+          descr: "if u flag is also enabled, use Unicode case folding"
         },
         {
-          flag: 'm',
+          flag: "m",
           showDescr: false,
-          title: 'multiline',
+          title: "multiline",
           descr:
-            'treat beginning and end characters (^ and $) as working over multiple lines '
+            "treat beginning and end characters (^ and $) as working over multiple lines "
         },
         {
-          flag: 's',
+          flag: "s",
           showDescr: false,
-          title: 'dotAll',
-          descr: 'allows . to match newlines'
+          title: "dotAll",
+          descr: "allows . to match newlines"
         },
         {
-          flag: 'u',
+          flag: "u",
           showDescr: false,
-          title: 'unicode',
-          descr: 'treat pattern as a sequence of Unicode code points '
+          title: "unicode",
+          descr: "treat pattern as a sequence of Unicode code points "
         },
         {
-          flag: 'y',
+          flag: "y",
           showDescr: false,
-          title: 'sticky',
+          title: "sticky",
           descr:
-            'matches only from the index indicated by the lastIndex property of this regular expression'
+            "matches only from the index indicated by the lastIndex property of this regular expression"
         }
       ]
-    }
+    };
   },
   watch: {
-    modelShow: function(newv, oldv) { // eslint-disable-line
+    modelShow: function(newv, oldv) {
+      // eslint-disable-line
       this.flaglist = this.flaglist.map(ele => {
-        ele.showDescr = false
-        return ele
-      })
+        ele.showDescr = false;
+        return ele;
+      });
       //   console.log("toggling", newv);
     },
     myselections: {
-      handler: function(newv, oldv) { // eslint-disable-line
-        this.$emit('selected', this.myselections)
+      handler: function(newv, oldv) {
+        // eslint-disable-line
+        this.$emit("selected", this.myselections);
       },
       deep: true
     }
   },
   mounted() {
     // setting prop property to data var
-    this.myselections = this.selections
+    this.myselections = this.selections;
   },
   methods: {
     checkSelection(str) {
-      return this.myselections.includes(str)
+      return this.myselections.includes(str);
     },
     closeModelEmit() {
-      this.$emit('closeModal', true)
+      this.$emit("closeModal", true);
     }
   }
-}
+};
 </script>
 
 <style>

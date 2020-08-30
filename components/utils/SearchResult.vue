@@ -1,7 +1,7 @@
 <template>
-  <div class="px-3 py-2 rounded text-gray-600 text-left" :class="addclass">
+  <div class="px-3 py-2 rounded text-lg text-left" :class="addclass">
     <a :href="'/expr/' + id">
-      <h2 class="text-black text-base fade-effect">{{ title }}</h2>
+      <h2 class="text-base fade-effect">{{ title }}</h2>
     </a>
     <p class="text-sm">
       <slot />
@@ -12,11 +12,11 @@
 <script>
 export default {
   props: {
-    title: { default: '' },
-    id: { default: '' },
-    addclass: { default: () => ['mt-6'] }
+    title: { default: "" },
+    id: { default: "" },
+    addclass: { default: () => ["mt-6"] }
   }
-}
+};
 </script>
 
 <style>

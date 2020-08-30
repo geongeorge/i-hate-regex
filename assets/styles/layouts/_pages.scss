@@ -1,0 +1,8 @@
+.main-content {
+  @apply text-dark;
+
+  min-height: 100vh;
+
+  transition: background-color 0.5s ease;
+}
+
