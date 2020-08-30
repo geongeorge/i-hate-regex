@@ -570,7 +570,7 @@
     },
     {
       "id": "pan-from-gstin",
-      "title": "PAN from GSTIN",
+      "title": "pan from gstin",
       "tagline": "extracts PAN number from a valid GSTIN number",
       "description": "A PAN is a unique identifier issued to all judicial entities identifiable under the Indian Income Tax Act, 1961",
       "regex": "^([0][1-9]|[1-2][0-9]|[3][0-5])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1})([1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$",
@@ -601,7 +601,7 @@
     },
     {
         "id": "e164-phone",
-        "title": "E.164 Phone Number",
+        "title": "e.164 phone number",
         "tagline": "matches a valid e.164 format telephobne number",
         "description": "E.164 is a telephone number format to ensure consistency",
         "regex": "^\\+[1-9]\\d{1,14}$",
@@ -630,7 +630,7 @@
       },
       {
           "id": "han-unification",
-          "title": "Han Unification",
+          "title": "han unification",
           "tagline": "matches han unification, or cjk (chinese (hanzi), japanese (kanji), and korean (hanja))",
           "description": "Han characters are a common feature of written Chinese (hanzi), Japanese (kanji), and Korean (hanja)",
           "regex": "^[\\u4E00-\\u9FFF\\u3400-\\u4DBF\\u20000-\\u2A6DF\\u2A700-\\u2B73F\\u2B740-\\u2B81F\\u2B820-\\u2CEAF\\u2CEB0-\\u2EBEF\\u30000-\\u3134F\\uF900-\\uFAFF\\u2E80-\\u2EFF\\u31C0-\\u31EF\\u3000-\\u303F\\u2FF0-\\u2FFF\\u3300-\\u33FF\\uFE30-\\uFE4F\\uF900-\\uFAFF\\u2F800-\\u2FA1F\\u3200-\\u32FF\\u1F200-\\u1F2FF\\u2F00-\\u2FDF]+$",
@@ -653,5 +653,32 @@
             "japanese",
             "korean"
           ]
-        }
+        },
+        {
+            "id": "port",
+            "title": "port number",
+            "tagline": "matches a port number in computer networks",
+            "description": "A port is a communication endpoint associated with a specific address",
+            "regex": "^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$",
+            "flag": "gm",
+            "matchText": [
+                "8080",
+                "3000",
+                "65535",
+                "65536"
+            ],
+            "cheatRegex": [
+              "/\\w/",
+              "/[0-9]/",
+              "/$/",
+              "/^/",
+              "/(hello){1,3}/"
+            ],
+            "embedHeight": 500,
+            "tags": [
+              "port",
+              "ip",
+              "network"
+            ]
+          }
 ]
