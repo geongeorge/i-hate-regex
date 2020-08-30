@@ -1,0 +1,1 @@
+The service Discord allows to have a 4 digit tag along with a user name. 
