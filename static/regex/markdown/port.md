@@ -1,4 +1,4 @@
-A port is a 16 bit unsigned integer ranging from `0` to `65535`.
+A port is a 16-bit unsigned integer ranging from `0` to `65535`.
 The regex pattern tries to figure out if the input string falls under the given range.
 
 

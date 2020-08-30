@@ -680,5 +680,86 @@
               "ip",
               "network"
             ]
+          },
+          {
+            "id": "doi",
+            "title": "digital object identifier",
+            "tagline": "matches a digital object identifier (doi)",
+            "description": "A DOI is an identifier/handle used to identify objects uniquely",
+            "regex": "^(10\\.\\d{4,5}\\/[\\S]+[^;,.\\s])$",
+            "flag": "gmi",
+            "matchText": [
+                "10.1000/123456",
+                "10.1038/issn.1476-4687",
+                "10.1111/dome.12082",
+                "10.1111/josi.12122"
+            ],
+            "cheatRegex": [
+              "/\\w/",
+              "/[0-9]/",
+              "/$/",
+              "/^/",
+              "/(hello){1,3}/"
+            ],
+            "embedHeight": 300,
+            "tags": [
+              "doi",
+              "document",
+              "identifier",
+              "journal"
+            ]
+          },
+          {
+            "id": "discord-username",
+            "title": "discord username",
+            "tagline": "matches a discord username along with ending tag",
+            "description": "Username identifier for the VOIP application Discord",
+            "regex": "^.{3,32}#[0-9]{4}$",
+            "flag": "gmi",
+            "matchText": [
+                "Disコルド#0001",
+                "KiBender#1234",
+                "SkankHunt42#2134"
+            ],
+            "cheatRegex": [
+              "/\\w/",
+              "/[0-9]/",
+              "/$/",
+              "/^/",
+              "/(hello){1,3}/"
+            ],
+            "embedHeight": 300,
+            "tags": [
+              "discord",
+              "gaming",
+              "username"
+            ]
+          },
+          {
+            "id": "hashtag",
+            "title": "hashtag",
+            "tagline": "matches a social media hashtag",
+            "description": "Hashtags are metadata tags used on social networks that categorizes the content of the post",
+            "regex": "#[^ !@#$%^&*(),.?\":{}|<>]*",
+            "flag": "gmi",
+            "matchText": [
+                "#Hello",
+                "#Photography_Daily",
+                "#Photography Daily",
+                "#justice4me"
+            ],
+            "cheatRegex": [
+              "/\\w/",
+              "/[0-9]/",
+              "/$/",
+              "/^/",
+              "/(hello){1,3}/"
+            ],
+            "embedHeight": 500,
+            "tags": [
+              "hashtag",
+              "twitter",
+              "social"
+            ]
           }
 ]
