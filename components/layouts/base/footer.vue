@@ -8,7 +8,7 @@
           </div>
           <div class="px-2 text-gray-500">
             by
-            <a href="https://geongeorge.com/" class="underline" target="_blank">geon</a>
+            <a href="https://twitter.com/geongeorgek" class="underline" target="_blank">geon</a>
           </div>
         </div>
       </div>
