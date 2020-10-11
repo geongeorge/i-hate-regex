@@ -37,7 +37,8 @@ module.exports = {
       "dark-hover",
       "dark-group-hover",
       "dark-even",
-      "dark-odd"
+      "dark-odd",
+      "hover",
     ],
     textColor: ["group-hover", "hover", "dark", "dark-hover", "dark-active"],
     borderColor: ["dark", "dark-focus", "dark-focus-within"],
