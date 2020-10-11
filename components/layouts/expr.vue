@@ -48,13 +48,25 @@
                   />
                 </a>
               </div>
-              <div class="mx-auto  w-full text-center mt-10">
+              <div class="mt-6 w-full w-2/5 sponsor-effect">
                 <a
-                  href="https://bit.ly/ihr-contribute"
-                  rel="nofollow"
-                  class="p-2 text-white font-bold underline text-red-400 hover:text-red-600 rounded"
+                  href="http://bit.ly/ihr-telegram"
+                  rel="noopener nofollow"
                   target="_blank"
-                >Sponsor us</a>
+                >
+                  <img
+                    class="sponsor mx-auto"
+                    src="~/assets/images/telegram-group.svg"
+                    alt="datree.io"
+                  />
+                </a>
+              </div>
+              <div class="mx-auto  w-full text-center mt-10">
+                <nuxt-link to="/donate"
+                           class="p-2 text-white font-bold underline text-red-400 hover:text-red-600 rounded"
+                >
+                  Support this project
+                </nuxt-link>
               </div>
             </div>
           </div>
@@ -113,7 +125,7 @@ export default {
   min-width: 200px;
 }
 .sponsor-effect {
-  opacity: 0.7;
+  opacity: 0.8;
   transition: opacity 200ms ease-out;
 }
 .sponsor-effect:hover {

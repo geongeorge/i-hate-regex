@@ -13,8 +13,6 @@
 
 .static-sidebar-wrapper {
   @apply static h-full inset-0 flex-none w-full;
-
-  min-width: 258px;
 }
 
 @screen lg {
