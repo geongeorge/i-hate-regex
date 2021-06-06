@@ -8,9 +8,9 @@ web:
                         FROM node:14-buster as build
                         WORKDIR /app
                         COPY package.json ./
-                        RUN npm ci
+                        RUN yarn
                         COPY . .
-                        RUN npm run generate
+                        RUN yarn generate
     output:
         type: static
         static:
