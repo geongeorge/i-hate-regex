@@ -31,23 +31,7 @@
             <slot name="seconddescr" />
           </div>
           <div class="px-6 sponsor-bar flex-col justify-center">
-            <div class="font-bold text-gray-500 text-center">
-              Our Sponsors
-            </div>
             <div class="flex flex-col sm:flex-row md:flex-col">
-              <div class="mt-6 w-full w-2/5 sponsor-effect">
-                <a
-                  href="http://bit.ly/datree-ihr"
-                  rel="noopener nofollow"
-                  target="_blank"
-                >
-                  <img
-                    class="sponsor mx-auto"
-                    src="https://assets.website-files.com/5d514f718e8309c01d798013/5d8b4657e7740e300666e3cc_datree_LOGO%20FLAT%20h-p-500.png"
-                    alt="datree.io"
-                  />
-                </a>
-              </div>
               <div class="mt-6 w-full w-2/5 sponsor-effect">
                 <a
                   href="http://bit.ly/ihr-telegram"
