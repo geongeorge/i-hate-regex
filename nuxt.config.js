@@ -21,7 +21,6 @@ const robotsObj =
     : {};
 
 export default {
-  mode: "universal",
   server: {
     port, // default: 3000
     host // default: localhost
