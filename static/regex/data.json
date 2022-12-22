@@ -602,7 +602,7 @@
     {
         "id": "e164-phone",
         "title": "e.164 phone number",
-        "tagline": "matches a valid e.164 format telephobne number",
+        "tagline": "matches a valid e.164 format telephone number",
         "description": "E.164 is a telephone number format to ensure consistency",
         "regex": "^\\+[1-9]\\d{1,14}$",
         "flag": "igm",
