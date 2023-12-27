@@ -232,7 +232,7 @@
         "title": "url",
         "tagline": "match a valid url",
         "description": "A valid URL with http/https",
-        "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)",
+        "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,7}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)",
         "flag": "gm",
         "matchText": [
             "abcdef",
