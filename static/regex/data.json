@@ -115,7 +115,7 @@
         "title": "phone number",
         "tagline": "match a phone number",
         "description": "Match a phone number with \"-\" and/or country code.",
-        "regex": "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$",
+        "regex": "^\\+?\\(?[0-9]{3}\\)?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$",
         "flag": "gmi",
         "matchText": [
             "+919367788755",
