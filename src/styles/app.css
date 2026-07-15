@@ -74,6 +74,7 @@ button, input, textarea { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; text-decoration: none; }
 button { color: inherit; }
+svg:not(.regex-diagram) { background-color: transparent; }
 ::selection { background: var(--accent); color: #fff; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -305,7 +306,6 @@ button { color: inherit; }
 .diagram-panel { min-height: 280px; }
 .diagram-scroll { min-height: 252px; padding: 18px; display: grid; place-items: center; overflow: auto; background-color: var(--surface-muted); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 20px 20px; }
 .regex-diagram { max-width: none; height: auto; }
-.regex-diagram > style { display: none; }
 html[data-theme='dark'] .regex-diagram { filter: invert(.88) hue-rotate(180deg); }
 .diagram-empty { min-height: 210px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--faint); text-align: center; }
 .diagram-empty p { max-width: 650px; margin: 12px 0 3px; color: var(--ink); font: 600 11px/1.5 ui-monospace, monospace; }
