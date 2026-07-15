@@ -51,7 +51,7 @@ export function RegexDiagram({ pattern, flags, error }: Props) {
           <span className="eyebrow">Structure</span>
           <h2 id="diagram-title">Railroad diagram</h2>
         </div>
-        <span className="panel-status">
+        <span className="panel-status" aria-live="polite">
           {rendering ? <CircleNotch className="spin" size={15} /> : <Graph size={15} />}
           {rendering ? 'Drawing' : 'Live'}
         </span>

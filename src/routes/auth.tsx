@@ -68,7 +68,7 @@ function AuthPage() {
           )}
           <label><span>Email</span><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required autoComplete="email" placeholder="you@example.com" /></label>
           <label><span>Password</span><input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required minLength={8} maxLength={128} autoComplete={mode === 'login' ? 'current-password' : 'new-password'} placeholder="At least 8 characters" /></label>
-          {error && <p className="auth-error">{error}</p>}
+          {error && <p className="auth-error" role="alert">{error}</p>}
           <button className="button auth-submit" type="submit" disabled={submitting}>
             {submitting ? 'One moment…' : mode === 'login' ? 'Log in' : 'Create my account'} <ArrowRight size={17} />
           </button>

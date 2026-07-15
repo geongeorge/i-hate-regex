@@ -1,11 +1,13 @@
 /// <reference types="vite/client" />
 import { HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router'
-import { Books, List, Notebook, SignIn, SignOut, TerminalWindow, UsersThree, X } from '@phosphor-icons/react'
+import { Books, BracketsCurly, List, Notebook, SignIn, SignOut, TerminalWindow, UsersThree, X } from '@phosphor-icons/react'
 import { type ReactNode, useState } from 'react'
 import { ThemeToggle } from '~/components/ThemeToggle'
 import { authClient } from '~/lib/auth-client'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
+
+const themeScript = `(function(){try{var saved=localStorage.getItem('ihateregex:theme');var theme=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme}catch(e){}})()`
 
 export const Route = createRootRoute({
   head: () => ({
@@ -40,19 +42,18 @@ function SiteHeader() {
         <Link to="/" className="brand" aria-label="iHateRegex home">
           <span className="brand-mark"><TerminalWindow size={18} weight="bold" /></span>
           <span>iHateRegex</span>
-          <span className="beta-pill">v2</span>
         </Link>
 
-        <button className="mobile-menu-button" type="button" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+        <button className="mobile-menu-button" type="button" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open} aria-controls="site-navigation">
           {open ? <X size={20} weight="bold" /> : <List size={20} weight="bold" />}
         </button>
 
-        <nav className={open ? 'site-nav open' : 'site-nav'} aria-label="Primary navigation">
+        <nav id="site-navigation" className={open ? 'site-nav open' : 'site-nav'} aria-label="Primary navigation">
           <Link to="/" activeOptions={{ exact: true }} activeProps={{ className: 'active' }} onClick={() => setOpen(false)}>
             <Books size={16} /> Library
           </Link>
           <Link to="/cheatsheet" activeProps={{ className: 'active' }} onClick={() => setOpen(false)}>
-            Cheatsheet
+            <BracketsCurly size={16} /> Cheatsheet
           </Link>
           <Link to="/community" activeProps={{ className: 'active' }} onClick={() => setOpen(false)}>
             <UsersThree size={16} /> Community
@@ -78,8 +79,6 @@ function SiteHeader() {
 }
 
 function RootDocument({ children }: { children: ReactNode }) {
-  const themeScript = `(function(){try{var saved=localStorage.getItem('ihateregex:theme');var theme=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme}catch(e){}})()`
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head><HeadContent /><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>

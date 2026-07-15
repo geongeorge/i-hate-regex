@@ -67,7 +67,7 @@ export function MatchPreview({ pattern, flags, text, onChange, error, readOnly =
           <span className="eyebrow">Test bench</span>
           <h2 id="test-title">Sample text</h2>
         </div>
-        <span className="match-count">
+        <span className="match-count" aria-live="polite">
           <BracketsCurly size={14} /> {matches.length} {matches.length === 1 ? 'match' : 'matches'}
         </span>
       </div>

@@ -204,7 +204,7 @@ export function RegexWorkbench({
             </>
           ) : (
             <>
-              <span className={`save-state ${isDirty ? 'dirty' : ''}`}>
+              <span className={`save-state ${isDirty ? 'dirty' : ''}`} role="status" aria-live="polite">
                 {isDirty ? <PencilLine size={14} /> : <Cloud size={14} />}
                 {notice ?? (isDirty ? 'Unsaved changes' : documentId ? 'Saved' : sessionPending ? 'Checking session' : session?.user ? 'Private draft' : 'Sign in to save')}
               </span>
