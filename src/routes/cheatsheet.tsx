@@ -14,7 +14,7 @@ function Cheatsheet() {
       <div className="cheat-grid">
         {cheatsheet.map((item) => (
           <article className="cheat-card" key={item.regex}>
-            <code>{item.regex}</code>
+            <div className="cheat-command"><span>$ token</span><code>{item.regex}</code></div>
             <p dangerouslySetInnerHTML={{ __html: item.usage }} />
           </article>
         ))}

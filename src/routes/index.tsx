@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight, BookOpen, Database, Route as RouteIcon, Search, Sparkles } from 'lucide-react'
+import { ArrowRight, BookOpen, Database, GitBranch, MagnifyingGlass, Sparkle } from '@phosphor-icons/react'
 import { useMemo, useState } from 'react'
 import { catalog } from '~/data/catalog'
 
@@ -29,7 +29,7 @@ function Home() {
           </p>
           <div className="hero-actions">
             <Link to="/playground" className="button hero-button">
-              Start a regex <ArrowRight size={17} />
+              Start a regex <ArrowRight size={17} weight="bold" />
             </Link>
             <a href="#library" className="text-link">Browse the library</a>
           </div>
@@ -46,12 +46,12 @@ function Home() {
             <span>not-an-email</span>
             <span>team@example.dev</span>
           </div>
-          <div className="demo-footer"><span><Sparkles size={14} /> 2 matches</span><span>valid expression</span></div>
+          <div className="demo-footer"><span><Sparkle size={14} weight="fill" /> 2 matches</span><span>exit 0 · valid expression</span></div>
         </div>
       </section>
 
       <section className="feature-strip" aria-label="Product features">
-        <div><RouteIcon /><span><strong>See the structure</strong>Browser-rendered railroad diagrams</span></div>
+        <div><GitBranch /><span><strong>See the structure</strong>Browser-rendered railroad diagrams</span></div>
         <div><BookOpen /><span><strong>Explain the why</strong>Markdown notes beside every pattern</span></div>
         <div><Database /><span><strong>Share a workspace</strong>Saved in Postgres, not query strings</span></div>
       </section>
@@ -63,7 +63,7 @@ function Home() {
             <h2>A library for the regex you actually write.</h2>
           </div>
           <label className="catalog-search">
-            <Search size={18} />
+            <MagnifyingGlass size={18} />
             <span className="sr-only">Search patterns</span>
             <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search email, URL, date…" />
           </label>
@@ -71,13 +71,17 @@ function Home() {
 
         <div className="catalog-grid">
           {results.map((entry, index) => (
-            <Link key={entry.id} to="/library/$id" params={{ id: entry.id }} className="catalog-card">
+            <Link key={entry.id} to="/expr/$id" params={{ id: entry.id }} className="catalog-card">
               <div className="catalog-card-top">
                 <span className="card-index">{String(index + 1).padStart(2, '0')}</span>
-                <ArrowRight size={17} />
+                <ArrowRight size={17} weight="bold" />
               </div>
               <h3>{entry.title}</h3>
               <p>{entry.description}</p>
+              <div className="catalog-terminal">
+                <span>$ pattern</span>
+                <code>/{entry.regex}/{entry.flag}</code>
+              </div>
               <div className="tag-row">
                 {entry.tags.slice(0, 3).map((tag) => <span key={tag}>{tag}</span>)}
               </div>

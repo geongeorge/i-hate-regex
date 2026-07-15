@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight, Globe2, Sparkles } from 'lucide-react'
+import { ArrowRight, Globe, Sparkle } from '@phosphor-icons/react'
 import { listCommunityRegexDocuments } from '~/server/regexes'
 
 export const Route = createFileRoute('/community/')({
@@ -19,7 +19,7 @@ function Community() {
           <h1>The community pattern shelf.</h1>
           <p>Useful expressions with the context intact—publicly shared, clearly explained, and safe to remix.</p>
         </div>
-        <span className="community-orbit"><Globe2 size={28} /><i /><i /></span>
+        <span className="community-orbit"><Globe size={28} /><i /><i /></span>
       </header>
 
       {documents.length ? (
@@ -27,11 +27,11 @@ function Community() {
           {documents.map((document) => (
             <Link key={document.id} to="/community/$id" params={{ id: document.id }} className="document-card community-card">
               <div className="document-card-top">
-                <span className="visibility-pill public"><Sparkles size={13} /> By {document.ownerName ?? 'community'}</span>
+                <span className="visibility-pill public"><Sparkle size={13} /> By {document.ownerName ?? 'community'}</span>
                 <ArrowRight size={17} />
               </div>
               <h2>{document.title}</h2>
-              <code>/{document.pattern}/{document.flags}</code>
+              <div className="document-terminal"><span>$ pattern</span><code>/{document.pattern}/{document.flags}</code></div>
               <p>{document.notes.replace(/[#*_`]/g, '').slice(0, 130) || 'Shared without notes.'}</p>
               <span className="document-date">Published {new Date(document.publishedAt ?? document.updatedAt).toLocaleDateString()}</span>
             </Link>
@@ -39,7 +39,7 @@ function Community() {
         </div>
       ) : (
         <section className="empty-collection">
-          <span><Globe2 size={24} /></span>
+          <span><Globe size={24} /></span>
           <h2>The shelf is waiting.</h2>
           <p>Be the first to publish a regex with a good explanation.</p>
           <Link to="/playground" className="button primary-button">Create a pattern</Link>

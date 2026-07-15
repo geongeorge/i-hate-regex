@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { LoaderCircle, Route } from 'lucide-react'
+import { CircleNotch, Graph } from '@phosphor-icons/react'
 
 type Props = {
   pattern: string
@@ -52,7 +52,7 @@ export function RegexDiagram({ pattern, flags, error }: Props) {
           <h2 id="diagram-title">Railroad diagram</h2>
         </div>
         <span className="panel-status">
-          {rendering ? <LoaderCircle className="spin" size={15} /> : <Route size={15} />}
+          {rendering ? <CircleNotch className="spin" size={15} /> : <Graph size={15} />}
           {rendering ? 'Drawing' : 'Live'}
         </span>
       </div>
@@ -60,7 +60,7 @@ export function RegexDiagram({ pattern, flags, error }: Props) {
       <div className="diagram-scroll">
         {message ? (
           <div className="diagram-empty">
-            <Route size={28} />
+            <Graph size={28} />
             <p>{message}</p>
             <span>Fix the expression to restore the diagram.</span>
           </div>

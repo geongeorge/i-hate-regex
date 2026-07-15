@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight, Check, KeyRound, ShieldCheck, Sparkles } from 'lucide-react'
+import { ArrowRight, Check, Key, ShieldCheck, Sparkle } from '@phosphor-icons/react'
 import { type FormEvent, useState } from 'react'
 import { z } from 'zod'
 import { authClient } from '~/lib/auth-client'
@@ -48,8 +48,8 @@ function AuthPage() {
         <p>Save private workspaces, revisit the reasoning, and publish only the patterns you want the community to see.</p>
         <div className="auth-benefits">
           <span><ShieldCheck size={18} /><strong>Private by default</strong></span>
-          <span><Sparkles size={18} /><strong>Publish when ready</strong></span>
-          <span><KeyRound size={18} /><strong>Secure cookie sessions</strong></span>
+          <span><Sparkle size={18} /><strong>Publish when ready</strong></span>
+          <span><Key size={18} /><strong>Secure cookie sessions</strong></span>
         </div>
       </section>
 
@@ -59,12 +59,12 @@ function AuthPage() {
           <button type="button" role="tab" aria-selected={mode === 'signup'} className={mode === 'signup' ? 'active' : ''} onClick={() => { setMode('signup'); setError(null) }}>Create account</button>
         </div>
         <div className="auth-card-heading">
-          <span className="auth-icon"><KeyRound size={20} /></span>
+          <span className="auth-icon"><Key size={20} weight="bold" /></span>
           <div><h2>{mode === 'login' ? 'Welcome back' : 'Make regex feel lighter'}</h2><p>{mode === 'login' ? 'Pick up where you left off.' : 'Your first workspace stays private.'}</p></div>
         </div>
         <form onSubmit={submit} className="auth-form">
           {mode === 'signup' && (
-            <label><span>Display name</span><input value={name} onChange={(event) => setName(event.target.value)} required minLength={2} maxLength={80} autoComplete="name" placeholder="Sam" /></label>
+            <label><span>Display name</span><input value={name} onChange={(event) => setName(event.target.value)} required minLength={2} maxLength={80} autoComplete="name" placeholder="Ada" /></label>
           )}
           <label><span>Email</span><input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required autoComplete="email" placeholder="you@example.com" /></label>
           <label><span>Password</span><input type="password" value={password} onChange={(event) => setPassword(event.target.value)} required minLength={8} maxLength={128} autoComplete={mode === 'login' ? 'current-password' : 'new-password'} placeholder="At least 8 characters" /></label>

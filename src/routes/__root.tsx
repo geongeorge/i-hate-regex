@@ -1,7 +1,8 @@
 /// <reference types="vite/client" />
 import { HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router'
-import { Library, LogIn, LogOut, Menu, NotebookPen, Sparkles, UsersRound, X } from 'lucide-react'
+import { Books, List, Notebook, SignIn, SignOut, TerminalWindow, UsersThree, X } from '@phosphor-icons/react'
 import { type ReactNode, useState } from 'react'
+import { ThemeToggle } from '~/components/ThemeToggle'
 import { authClient } from '~/lib/auth-client'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
@@ -37,37 +38,38 @@ function SiteHeader() {
     <header className="site-header">
       <div className="site-header-inner">
         <Link to="/" className="brand" aria-label="iHateRegex home">
-          <span className="brand-mark">iH</span>
+          <span className="brand-mark"><TerminalWindow size={18} weight="bold" /></span>
           <span>iHateRegex</span>
-          <span className="beta-pill">next</span>
+          <span className="beta-pill">v2</span>
         </Link>
 
         <button className="mobile-menu-button" type="button" onClick={() => setOpen(!open)} aria-label="Toggle menu">
-          {open ? <X size={20} /> : <Menu size={20} />}
+          {open ? <X size={20} weight="bold" /> : <List size={20} weight="bold" />}
         </button>
 
         <nav className={open ? 'site-nav open' : 'site-nav'} aria-label="Primary navigation">
           <Link to="/" activeOptions={{ exact: true }} activeProps={{ className: 'active' }} onClick={() => setOpen(false)}>
-            <Library size={16} /> Library
+            <Books size={16} /> Library
           </Link>
           <Link to="/cheatsheet" activeProps={{ className: 'active' }} onClick={() => setOpen(false)}>
             Cheatsheet
           </Link>
           <Link to="/community" activeProps={{ className: 'active' }} onClick={() => setOpen(false)}>
-            <UsersRound size={16} /> Community
+            <UsersThree size={16} /> Community
           </Link>
           {session?.user && (
             <Link to="/me" activeProps={{ className: 'active' }} onClick={() => setOpen(false)}>
-              <NotebookPen size={16} /> My regexes
+              <Notebook size={16} /> My regexes
             </Link>
           )}
+          <ThemeToggle />
           {!isPending && (session?.user ? (
-            <button className="nav-auth-button" type="button" onClick={logOut} title={`Signed in as ${session.user.email}`}><span className="user-initial">{session.user.name.charAt(0)}</span><LogOut size={15} /> Log out</button>
+            <button className="nav-auth-button" type="button" onClick={logOut} title={`Signed in as ${session.user.email}`}><span className="user-initial">{session.user.name.charAt(0)}</span><SignOut size={15} /> Log out</button>
           ) : (
-            <Link to="/auth" search={{ returnTo: '/me' }} onClick={() => setOpen(false)}><LogIn size={16} /> Log in</Link>
+            <Link to="/auth" search={{ returnTo: '/me' }} onClick={() => setOpen(false)}><SignIn size={16} /> Log in</Link>
           ))}
           <Link to="/playground" className="nav-cta" onClick={() => setOpen(false)}>
-            <Sparkles size={16} /> Open playground
+            <TerminalWindow size={16} /> Open playground
           </Link>
         </nav>
       </div>
@@ -76,9 +78,11 @@ function SiteHeader() {
 }
 
 function RootDocument({ children }: { children: ReactNode }) {
+  const themeScript = `(function(){try{var saved=localStorage.getItem('ihateregex:theme');var theme=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme}catch(e){}})()`
+
   return (
-    <html lang="en">
-      <head><HeadContent /></head>
+    <html lang="en" suppressHydrationWarning>
+      <head><HeadContent /><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
       <body>
         <SiteHeader />
         {children}

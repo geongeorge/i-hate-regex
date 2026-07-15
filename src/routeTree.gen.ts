@@ -18,6 +18,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunityIndexRouteImport } from './routes/community.index'
 import { Route as RIdRouteImport } from './routes/r.$id'
 import { Route as LibraryIdRouteImport } from './routes/library.$id'
+import { Route as ExprIdRouteImport } from './routes/expr.$id'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
@@ -66,6 +67,11 @@ const LibraryIdRoute = LibraryIdRouteImport.update({
   path: '/library/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExprIdRoute = ExprIdRouteImport.update({
+  id: '/expr/$id',
+  path: '/expr/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommunityIdRoute = CommunityIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
   '/community/$id': typeof CommunityIdRoute
+  '/expr/$id': typeof ExprIdRoute
   '/library/$id': typeof LibraryIdRoute
   '/r/$id': typeof RIdRoute
   '/community/': typeof CommunityIndexRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
   '/community/$id': typeof CommunityIdRoute
+  '/expr/$id': typeof ExprIdRoute
   '/library/$id': typeof LibraryIdRoute
   '/r/$id': typeof RIdRoute
   '/community': typeof CommunityIndexRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
   '/community/$id': typeof CommunityIdRoute
+  '/expr/$id': typeof ExprIdRoute
   '/library/$id': typeof LibraryIdRoute
   '/r/$id': typeof RIdRoute
   '/community/': typeof CommunityIndexRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/me'
     | '/playground'
     | '/community/$id'
+    | '/expr/$id'
     | '/library/$id'
     | '/r/$id'
     | '/community/'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/me'
     | '/playground'
     | '/community/$id'
+    | '/expr/$id'
     | '/library/$id'
     | '/r/$id'
     | '/community'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/me'
     | '/playground'
     | '/community/$id'
+    | '/expr/$id'
     | '/library/$id'
     | '/r/$id'
     | '/community/'
@@ -164,6 +176,7 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRouteWithChildren
   MeRoute: typeof MeRoute
   PlaygroundRoute: typeof PlaygroundRoute
+  ExprIdRoute: typeof ExprIdRoute
   LibraryIdRoute: typeof LibraryIdRoute
   RIdRoute: typeof RIdRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
@@ -234,6 +247,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LibraryIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/expr/$id': {
+      id: '/expr/$id'
+      path: '/expr/$id'
+      fullPath: '/expr/$id'
+      preLoaderRoute: typeof ExprIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/community/$id': {
       id: '/community/$id'
       path: '/$id'
@@ -272,6 +292,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRouteWithChildren,
   MeRoute: MeRoute,
   PlaygroundRoute: PlaygroundRoute,
+  ExprIdRoute: ExprIdRoute,
   LibraryIdRoute: LibraryIdRoute,
   RIdRoute: RIdRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,

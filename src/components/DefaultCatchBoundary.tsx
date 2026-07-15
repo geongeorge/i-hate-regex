@@ -1,51 +1,27 @@
-import {
-  ErrorComponent,
-  Link,
-  useLocation,
-  useRouter,
-} from '@tanstack/react-router'
+import { ArrowCounterClockwise, ArrowLeft, House } from '@phosphor-icons/react'
+import { ErrorComponent, Link, useLocation, useRouter } from '@tanstack/react-router'
 import type { ErrorComponentProps } from '@tanstack/react-router'
 
 export function DefaultCatchBoundary({ error }: ErrorComponentProps) {
   const router = useRouter()
-  const isRoot = useLocation({
-    select: (location) => location.pathname === '/',
-  })
-
-  console.error('DefaultCatchBoundary Error:', error)
+  const isRoot = useLocation({ select: (location) => location.pathname === '/' })
 
   return (
-    <div className="min-w-0 flex-1 p-4 flex flex-col items-center justify-center gap-6">
-      <ErrorComponent error={error} />
-      <div className="flex gap-2 items-center flex-wrap">
-        <button
-          onClick={() => {
-            router.invalidate()
-          }}
-          className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
-        >
-          Try Again
-        </button>
-        {isRoot ? (
-          <Link
-            to="/"
-            className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
-          >
-            Home
-          </Link>
-        ) : (
-          <Link
-            to="/"
-            className={`px-2 py-1 bg-gray-600 dark:bg-gray-700 rounded-sm text-white uppercase font-extrabold`}
-            onClick={(e) => {
-              e.preventDefault()
-              window.history.back()
-            }}
-          >
-            Go Back
-          </Link>
-        )}
+    <main className="system-page">
+      <div className="system-terminal" role="alert">
+        <div className="terminal-bar"><span>error</span><code>runtime_exception</code></div>
+        <div className="system-terminal-body">
+          <ErrorComponent error={error} />
+          <div className="system-actions">
+            <button className="button ghost-button" type="button" onClick={() => router.invalidate()}><ArrowCounterClockwise size={16} /> Try again</button>
+            {isRoot ? (
+              <Link to="/" className="button primary-button"><House size={16} /> Home</Link>
+            ) : (
+              <Link to="/" className="button primary-button" onClick={(event) => { event.preventDefault(); window.history.back() }}><ArrowLeft size={16} /> Go back</Link>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
+    </main>
   )
 }

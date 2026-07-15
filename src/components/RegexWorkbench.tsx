@@ -3,17 +3,17 @@ import { Link, useNavigate } from '@tanstack/react-router'
 import {
   Check,
   Cloud,
-  CloudUpload,
-  Code2,
+  CloudArrowUp,
+  Code,
   Copy,
   FileText,
-  Globe2,
-  LockKeyhole,
+  FloppyDisk,
+  Globe,
+  LockKey,
+  MagicWand,
   PencilLine,
-  Save,
-  Sparkles,
-  WandSparkles,
-} from 'lucide-react'
+  Sparkle,
+} from '@phosphor-icons/react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { MatchPreview } from './MatchPreview'
@@ -198,9 +198,9 @@ export function RegexWorkbench({
         <div className="save-cluster">
           {readOnly ? (
             <>
-              <span className="save-state"><LockKeyhole size={14} /> View-only original</span>
+              <span className="save-state"><LockKey size={14} /> View-only original</span>
               {mode === 'public' && <button className="button ghost-button" type="button" onClick={copyPublicLink}><Copy size={16} /> Copy link</button>}
-              <button className="button primary-button" type="button" onClick={remix}><WandSparkles size={16} /> Remix in playground</button>
+              <button className="button primary-button" type="button" onClick={remix}><MagicWand size={16} /> Remix in playground</button>
             </>
           ) : (
             <>
@@ -209,11 +209,11 @@ export function RegexWorkbench({
                 {notice ?? (isDirty ? 'Unsaved changes' : documentId ? 'Saved' : sessionPending ? 'Checking session' : session?.user ? 'Private draft' : 'Sign in to save')}
               </span>
               {documentId && isPublic && (
-                <Link className="button ghost-button" to="/community/$id" params={{ id: documentId }}><Globe2 size={16} /> Public page</Link>
+                <Link className="button ghost-button" to="/community/$id" params={{ id: documentId }}><Globe size={16} /> Public page</Link>
               )}
               {documentId && (
                 <button className="button ghost-button" type="button" onClick={togglePublished} disabled={publishing}>
-                  {isPublic ? <LockKeyhole size={16} /> : <Globe2 size={16} />}
+                  {isPublic ? <LockKey size={16} /> : <Globe size={16} />}
                   {publishing ? 'Updating…' : isPublic ? 'Unpublish' : 'Publish'}
                 </button>
               )}
@@ -223,7 +223,7 @@ export function RegexWorkbench({
                 onClick={save}
                 disabled={Boolean(regexError) || saving || (!isDirty && Boolean(documentId))}
               >
-                {saving ? <CloudUpload className="spin" size={16} /> : documentId ? <Save size={16} /> : <Sparkles size={16} />}
+                {saving ? <CloudArrowUp className="spin" size={16} /> : documentId ? <FloppyDisk size={16} /> : <Sparkle size={16} />}
                 {saving ? 'Saving…' : documentId ? 'Save' : session?.user ? 'Save privately' : 'Sign in to save'}
               </button>
             </>
@@ -233,7 +233,7 @@ export function RegexWorkbench({
 
       {readOnly && (
         <div className="readonly-ribbon">
-          <LockKeyhole size={15} />
+          <LockKey size={15} />
           <span>This page is intentionally read-only. Remix it to experiment without changing the original.</span>
         </div>
       )}
@@ -243,7 +243,7 @@ export function RegexWorkbench({
           <section className={`panel expression-panel ${regexError ? 'has-error' : ''}`}>
             <div className="panel-heading compact-heading">
               <div><span className="eyebrow">JavaScript</span><h2>Expression</h2></div>
-              <Code2 size={18} />
+              <Code size={18} />
             </div>
 
             <div className="expression-input-row">
@@ -289,7 +289,7 @@ export function RegexWorkbench({
             {!readOnly && (
               <div className="segmented-control" role="tablist" aria-label="Markdown mode">
                 <button type="button" className={notesMode === 'write' ? 'active' : ''} onClick={() => setNotesMode('write')} role="tab" aria-selected={notesMode === 'write'}><FileText size={14} /> Write</button>
-                <button type="button" className={notesMode === 'preview' ? 'active' : ''} onClick={() => setNotesMode('preview')} role="tab" aria-selected={notesMode === 'preview'}><Sparkles size={14} /> Preview</button>
+                <button type="button" className={notesMode === 'preview' ? 'active' : ''} onClick={() => setNotesMode('preview')} role="tab" aria-selected={notesMode === 'preview'}><Sparkle size={14} /> Preview</button>
               </div>
             )}
           </div>

@@ -15,28 +15,25 @@
   },
   "dependencies": {
     "@ihateregex/embed": "file:../RegViz-embed-server",
+    "@phosphor-icons/react": "^2.1.10",
     "@tanstack/react-router": "^1.170.18",
     "@tanstack/react-router-devtools": "^1.167.0",
     "@tanstack/react-start": "^1.168.28",
     "better-auth": "^1.6.23",
-    "lucide-react": "^1.24.0",
     "pg": "^8.22.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
-    "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.2.2",
     "@types/node": "^22.5.4",
     "@types/pg": "^8.20.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^6.0.1",
     "nitro": "^3.0.260311-beta",
-    "tailwindcss": "^4.2.2",
     "typescript": "^6.0.2",
     "vite": "^8.0.14"
   }

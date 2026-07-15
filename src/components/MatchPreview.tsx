@@ -1,4 +1,4 @@
-import { Braces } from 'lucide-react'
+import { BracketsCurly } from '@phosphor-icons/react'
 
 type Match = {
   index: number
@@ -59,7 +59,7 @@ export function MatchPreview({ pattern, flags, text, onChange, error, readOnly =
           <h2 id="test-title">Sample text</h2>
         </div>
         <span className="match-count">
-          <Braces size={14} /> {matches.length} {matches.length === 1 ? 'match' : 'matches'}
+          <BracketsCurly size={14} /> {matches.length} {matches.length === 1 ? 'match' : 'matches'}
         </span>
       </div>
 

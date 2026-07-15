@@ -6,6 +6,7 @@ A TypeScript rebuild of [iHateRegex](https://ihateregex.io) on TanStack Start, b
 
 - The original 29-pattern library with strict read-only detail pages
 - A live regex playground with match highlighting, flags, test text, and Markdown notes
+- Compact terminal-inspired light and dark themes with Phosphor icons
 - Client-side railroad diagrams from the sibling `RegViz-embed-server` package—no render server or iframe
 - Email/password accounts and PostgreSQL-backed sessions with Better Auth
 - Private-by-default saved regexes under `/me`
@@ -60,7 +61,8 @@ Regex documents store the expression, flags, test text, Markdown notes, ownershi
 
 - `/` — searchable regex library
 - `/playground` — new workspace
-- `/library/:id` — read-only original library entry
+- `/expr/:id` — canonical read-only library entry, matching the original production URL structure
+- `/library/:id` — permanent compatibility redirect to `/expr/:id`
 - `/auth` — sign up or log in
 - `/me` — signed-in user's private and public regexes
 - `/r/:id` — owner-only editor

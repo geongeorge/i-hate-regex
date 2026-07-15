@@ -1,5 +1,5 @@
 import { createFileRoute, Link, redirect } from '@tanstack/react-router'
-import { ArrowRight, FilePlus2, Globe2, LockKeyhole } from 'lucide-react'
+import { ArrowRight, FilePlus, Globe, LockKey } from '@phosphor-icons/react'
 import { listMyRegexDocuments } from '~/server/regexes'
 import { getSessionUser } from '~/server/session'
 
@@ -20,7 +20,7 @@ function MyRegexes() {
     <main className="collection-page">
       <header className="collection-header">
         <div><span className="eyebrow">Private notebook</span><h1>{user.name}’s regexes</h1><p>Draft privately. Publish deliberately. Every edit stays attached to your account.</p></div>
-        <Link to="/playground" className="button hero-button"><FilePlus2 size={17} /> New regex</Link>
+        <Link to="/playground" className="button hero-button"><FilePlus size={17} /> New regex</Link>
       </header>
 
       {documents.length ? (
@@ -28,18 +28,18 @@ function MyRegexes() {
           {documents.map((document) => (
             <Link key={document.id} to="/r/$id" params={{ id: document.id }} className="document-card">
               <div className="document-card-top">
-                <span className={`visibility-pill ${document.isPublic ? 'public' : ''}`}>{document.isPublic ? <Globe2 size={13} /> : <LockKeyhole size={13} />}{document.isPublic ? 'Published' : 'Private'}</span>
+                <span className={`visibility-pill ${document.isPublic ? 'public' : ''}`}>{document.isPublic ? <Globe size={13} /> : <LockKey size={13} />}{document.isPublic ? 'Published' : 'Private'}</span>
                 <ArrowRight size={17} />
               </div>
               <h2>{document.title}</h2>
-              <code>/{document.pattern}/{document.flags}</code>
+              <div className="document-terminal"><span>$ pattern</span><code>/{document.pattern}/{document.flags}</code></div>
               <p>{document.notes.replace(/[#*_`]/g, '').slice(0, 130) || 'No notes yet.'}</p>
               <span className="document-date">Updated {new Date(document.updatedAt).toLocaleDateString()}</span>
             </Link>
           ))}
         </div>
       ) : (
-        <section className="empty-collection"><span><FilePlus2 size={24} /></span><h2>Your notebook is quiet.</h2><p>Start with a pattern you never want to decode twice.</p><Link to="/playground" className="button primary-button">Open playground</Link></section>
+        <section className="empty-collection"><span><FilePlus size={24} /></span><h2>Your notebook is quiet.</h2><p>Start with a pattern you never want to decode twice.</p><Link to="/playground" className="button primary-button">Open playground</Link></section>
       )}
     </main>
   )
