@@ -1,4 +1,5 @@
 import { BracketsCurly } from '@phosphor-icons/react'
+import { type UIEvent, useRef } from 'react'
 
 type Match = {
   index: number
@@ -50,6 +51,14 @@ type Props = {
 
 export function MatchPreview({ pattern, flags, text, onChange, error, readOnly = false }: Props) {
   const matches = error ? [] : findMatches(pattern, flags, text)
+  const highlightsRef = useRef<HTMLDivElement>(null)
+
+  function syncHighlightScroll(event: UIEvent<HTMLTextAreaElement>) {
+    const highlights = highlightsRef.current
+    if (!highlights) return
+    highlights.scrollTop = event.currentTarget.scrollTop
+    highlights.scrollLeft = event.currentTarget.scrollLeft
+  }
 
   return (
     <section className="panel match-panel" aria-labelledby="test-title">
@@ -64,7 +73,7 @@ export function MatchPreview({ pattern, flags, text, onChange, error, readOnly =
       </div>
 
       <div className="match-editor">
-        <div className="match-highlights" aria-hidden="true">
+        <div ref={highlightsRef} className="match-highlights" aria-hidden="true">
           <HighlightedText text={text} matches={matches} />
         </div>
         <textarea
@@ -74,6 +83,7 @@ export function MatchPreview({ pattern, flags, text, onChange, error, readOnly =
           placeholder="Paste text here to see matches…"
           spellCheck={false}
           readOnly={readOnly}
+          onScroll={syncHighlightScroll}
         />
       </div>
     </section>

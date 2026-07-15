@@ -300,7 +300,7 @@ svg:not(.regex-diagram) { background-color: transparent; }
 .match-panel .match-count { border-color: var(--terminal-line); background: var(--terminal); color: var(--terminal-accent); }
 .match-editor { position: relative; min-height: 190px; background: var(--terminal); }
 .match-editor textarea, .match-highlights { width: 100%; min-height: 190px; margin: 0; padding: 16px; border: 0; white-space: pre-wrap; overflow-wrap: break-word; font: 13px/1.7 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0; }
-.match-highlights { position: absolute; inset: 0; color: transparent; pointer-events: none; }
+.match-highlights { position: absolute; inset: 0; overflow: hidden; color: transparent; pointer-events: none; }
 .match-editor textarea { position: relative; z-index: 2; resize: vertical; outline: 0; background: transparent; color: var(--terminal-text); caret-color: var(--terminal-accent); }
 .match-mark { padding: 1px 0; border-radius: 1px; background: rgba(114,213,140,.32); color: transparent; box-shadow: inset 0 -1px var(--terminal-accent); }
 .diagram-panel { min-height: 280px; }
