@@ -1,0 +1,1 @@
+This regex validates a url which should include **http** or **https**

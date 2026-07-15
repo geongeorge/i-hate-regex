@@ -1,0 +1,765 @@
+[
+    {
+        "id": "username",
+        "title": "username",
+        "tagline": "match a username",
+        "description": "A username is a unique identifier given to accounts in websites and social media",
+        "regex": "^[a-z0-9_-]{3,15}$",
+        "flag": "gm",
+        "matchText": [
+            "lorem",
+            "ipsum",
+            "gr3at",
+            "a",
+            "ab",
+            "abcd",
+            "abcde",
+            "john doe",
+            "johnny",
+            "abcdefghijklmnopqrst"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){1,3}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["name", "slug"]
+    },
+    {
+        "id": "password",
+        "title": "password",
+        "tagline": "match a password",
+        "description": "Minimum eight characters, at least one upper case English letter, one lower case English letter, one number and one special character",
+        "regex": "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$",
+        "flag": "gm",
+        "matchText": [
+            "lorem",
+            "ipsum",
+            "gr3at@3wdsG",
+            "a",
+            "ab",
+            "abc",
+            "abcd",
+            "abcde",
+            "john doe",
+            "johnny",
+            "abcdefghijklmnopqrst"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/(?:hard)?work/",
+            "/[abcd]/",
+            "/[a-z]/",
+            "/[0-9]/",
+            "/h.*llo/",
+            "/(hello){3,}/",
+            "/z(?=a)/"
+        ],
+        "embedHeight": 500,
+        "tags" : ["password", "secret", "key"]
+    },
+    {
+        "id": "email",
+        "title": "email simple",
+        "tagline": "match an email",
+        "description": "Simple email regex that works most of the times",
+        "regex": "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+",
+        "flag": "gm",
+        "matchText": [
+            "geon@ihateregex.io",
+            "test@gmail.com mail@test.org",
+            "mail@testing.com",
+            "hello@",
+            "@test",
+            "email@gmail",
+            "theproblem@test@gmail.com",
+            "mail with@space.com"
+        ],
+        "cheatRegex": [
+            "/hello/",
+            "/[^abcd]/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["email", "mail", "gmail"]
+    },
+    {
+        "id": "email-2",
+        "title": "email complicated",
+        "tagline": "match an email more accurately",
+        "description": "Unnecessarily complicated email regex that works \"more than\" most of the times",
+        "regex": "(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))",
+        "flag": "gm",
+        "matchText": [
+            "geon@ihateregex.io",
+            "test@gmail.com mail@test.org",
+            "mail@testing.com",
+            "hello@",
+            "@test",
+            "email@gmail",
+            "theproblem@test@gmail.com"
+
+        ],
+        "cheatRegex": [
+            "/[abcd]/",
+            "/[a-z]/",
+            "/[0-9]/"
+        ],
+        "embedHeight": 600,
+        "tags" : ["email", "mail", "gmail"]
+    },
+    {
+        "id": "phone",
+        "title": "phone number",
+        "tagline": "match a phone number",
+        "description": "Match a phone number with \"-\" and/or country code.",
+        "regex": "^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$",
+        "flag": "gmi",
+        "matchText": [
+            "+919367788755",
+            "8989829304",
+            "+16308520397",
+            "786-307-3615",
+            "789",
+            "123765",
+            "1-1-1",
+            "+982"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[0-9]/",
+            "/(hello){1,3}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["phone", "mobile","number"]
+    },
+    {
+        "id": "ip",
+        "title": "ip address(ipv4)",
+        "tagline": "match an ipv4 address",
+        "description": "Matches an ip address(version 4)",
+        "regex": "(\\b25[0-5]|\\b2[0-4][0-9]|\\b[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}",
+        "flag": "gm",
+        "matchText": [
+            "192.168.1.1",
+            "127.0.0.1",
+            "0.0.0.0",
+            "255.255.255.255",
+            "256.256.256.256",
+            "999.999.999.999",
+            "1.2.3",
+            "1.2.3.4"
+        ],
+        "cheatRegex": [
+            "/[0-9]/",
+            "/(hello){4}/",
+            "/[abcd]/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["ip","ipv4"]
+    },
+    {
+        "id": "ipv6",
+        "title": "ip address(ipv6)",
+        "tagline": "match an ipv6 address",
+        "description": "Internet Protocol version 6 (IPv6) is the most recent version of the Internet Protocol. This is used to provide identification for devices in a network.",
+        "regex": "(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))",
+        "flag": "gm",
+        "matchText": [
+            "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+            "FE80:0000:0000:0000:0202:B3FF:FE1E:8329",
+            "192.168.1.1",
+            "test:test:test:test:test:test:test:test"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/"
+        ],
+        "embedHeight": 500,
+        "tags" : ["ip","ipv6"]
+    },
+    {
+        "id": "date",
+        "title": "date",
+        "tagline": "match a date dd/mm/yyyy",
+        "description": "Matches a date in the format dd/mm/yyyy , dd-mm-yyyy or dd.mm.yyyy",
+        "regex": "(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})",
+        "flag": "gm",
+        "matchText": [
+            "01/01/2000",
+            "31/01/2000",
+            "32/01/2000",
+            "01-1-2000",
+            "1.1.2019"
+        ],
+        "cheatRegex": [
+            "/[0-9]/",
+            "/i am a (cat|dog|whale) person/",
+            "/z(?=a)/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 500,
+        "tags" : ["date", "today","dd/mm/yyyy","day"]
+    },
+    {
+        "id": "ascii",
+        "title": "ascii",
+        "tagline": "match any ascii character",
+        "description": "Matches any printable ascii character",
+        "regex": "[ -~]",
+        "flag": "gm",
+        "matchText": [
+            "lor難em",
+            "ipsum",
+            "說上難車中防水回大石在該是並",
+            "a - = ? / ~",
+            "ab",
+            "難",
+            "ഇത് മലയാളം",
+            "Christmas"
+        ],
+        "cheatRegex": [
+            "/[a-z]/"
+        ],
+        "embedHeight": 120,
+        "tags" : ["ascii", "unicode"]
+    },
+    {
+        "id": "url",
+        "title": "url",
+        "tagline": "match a valid url",
+        "description": "A valid URL with http/https",
+        "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()!@:%_\\+.~#?&\\/\\/=]*)",
+        "flag": "gm",
+        "matchText": [
+            "abcdef",
+            "www.whatever.com",
+            "https://github.com/geongeorge/i-hate-regex",
+            "https://www.facebook.com/",
+            "https://www.google.com/",
+            "https://xkcd.com/2293/",
+            "https://this-shouldn't.match@example.com",
+            "http://www.example.com/"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 550,
+        "tags" : ["url", "http","https","link"]
+    },
+    {
+        "id": "ssn",
+        "title": "ssn",
+        "tagline": "match a social security number",
+        "description": "A Social Security number (SSN) is a nine-digit number that the U.S. government issues to all U.S. citizens and eligible U.S",
+        "regex": "^(?!0{3})(?!6{3})[0-8]\\d{2}-(?!0{2})\\d{2}-(?!0{4})\\d{4}$",
+        "flag": "gm",
+        "matchText": [
+            "123-45-6789",
+            "123 45 6789",
+            "333-22-4444",
+            "aaa-bbb-cccc",
+            "900-58-4564",
+            "999-58-4564",
+            "000-45-5454"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/\\d/",
+            "/(hello){1,3}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["ssn","number","id"]
+    },
+    {
+        "id": "semver",
+        "title": "semantic versioning",
+        "tagline": "match a SemVer string",
+        "description": "Match a SemVer as specified in https://semver.org/",
+        "regex": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+        "flag": "gm",
+        "matchText": [
+            "1",
+            "0.0.4",
+            "1.2.3",
+            "1.2",
+            "10.20.30",
+            "01.1.1",
+            "1.1.2-prerelease+meta",
+            "1.1.2+meta",
+            "9.8.7-whatever+meta+meta",
+            "1.0.0-alpha",
+            "1.0.0-alpha.beta",
+            "1.0.0-alpha.1",
+            "1.0.0-alpha.0valid",
+            "1.0.0-rc.1+build.1",
+            "1.2.3-beta",
+            "10.2.3-DEV-SNAPSHOT",
+            "1.2.3.DEV",
+            "1.2.3-0123",
+            "1.2.3-SNAPSHOT-123",
+            "1.0.0",
+            "2.0.0+build.1848",
+            "2.0.1-alpha.1227",
+            "1.0.0-alpha+beta",
+            "1.0.0-alpha_beta",
+            "1.2.3----RC-SNAPSHOT.12.9.1--.12+788",
+            "1.2.3----R-S.12.9.1--.12+meta",
+            "1.2-SNAPSHOT",
+            "1.2.31.2.3----RC-SNAPSHOT.12.09.1--..12+788"
+          ],
+        "cheatRegex": [
+            "/\\d/",
+            "/h.*llo/",
+            "/[0-9]/",
+            "/(?:hard)?work/"
+        ],
+        "embedHeight": 330,
+        "tags" : ["semver", "version", "semantic"]
+    },
+    {
+        "id": "uuid",
+        "title": "uuid",
+        "tagline": "match a hyphen-delimited uuid",
+        "description": "Hyphen-separated universally unique identifier (UUID)",
+        "regex": "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$",
+        "flag": "gm",
+        "matchText": [
+            "123e4567-e89b-12d3-a456-426655440000",
+            "c73bcdcc-2669-4bf6-81d3-e4ae73fb11fd",
+            "C73BCDCC-2669-4Bf6-81d3-E4AE73FB11FD",
+            "c73bcdcc-2669-4bf6-81d3-e4an73fb11fd",
+            "c73bcdcc26694bf681d3e4ae73fb11fd",
+            "definitely-not-a-uuid"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/\\b/",
+            "/\\d/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["uuid","guid","id"]
+    },
+    {
+        "id": "jira-ticket",
+        "title": "jira issue ticket",
+        "tagline": "match a jira issue ticket number",
+        "description": "Hyphen-separated Jira project key and ticket issue number",
+        "regex": "[A-Z]{2,}-\\d+",
+        "flag": "gm",
+        "matchText": [
+            "DAT-123",
+            "A-333",
+            "AB-333",
+            "aka-48",
+            "PROJECT-6",
+            "TST 000"
+        ],
+        "cheatRegex": [
+            "/[A-Z]/",
+            "/(hello){3,}/",
+            "/ab+c/",
+            "/\\d/"
+        ],
+        "embedHeight": 200,
+        "tags" : ["jira","software"]
+    },
+    {
+        "id": "lat-long",
+        "title": "latitude and longitude",
+        "tagline": "match latitude-longitude value",
+        "description": "Latitude and longitude values are usually found comma seperated to denote a location on the globe",
+        "regex": "^((\\-?|\\+?)?\\d+(\\.\\d+)?),\\s*((\\-?|\\+?)?\\d+(\\.\\d+)?)$",
+        "flag": "gm",
+        "matchText": [
+            "+90.0, -127.554334",
+            "45, 180",
+            "-90.000, -180.0",
+            "20,80",
+            "47.1231231, 179.99999999",
+            "-90., -180.",
+            "045, 180"
+        ],
+        "cheatRegex": [
+            "/(hard)?work/",
+            "/i am a (cat|dog|whale) person/",
+            "/\\d/"
+        ],
+        "embedHeight": 250,
+        "tags" : ["location","address"]
+    },
+    {
+        "id": "mac-address",
+        "title": "mac address",
+        "tagline": "match ethernet mac address",
+        "description": "A simple expression to match an ethernet MAC address",
+        "regex": "^[a-fA-F0-9]{2}(:[a-fA-F0-9]{2}){5}$",
+        "flag": "gm",
+        "matchText": [
+            "01:02:03:04:ab:cd",
+            "definitely:not:a:mac",
+            "01-02-03-04-ab-cd"
+        ],
+        "cheatRegex": [
+            "/[a-zA-Z0-9]/",
+            "/(hello){4}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["address"]
+    },
+    {
+        "id": "url-slug",
+        "title": "url slug",
+        "tagline": "match a url slug",
+        "description": "A ‘slug' is the part that comes at the very end of a URL, and refers to a specific page or post. Usually a combination of word that separated with hyphen",
+        "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "flag": "gm",
+        "matchText": [
+            "best-way",
+            "best-d4y",
+            "my-1ife",
+            "@t-the-sky",
+            "at-the--sky",
+            "-",
+            "a",
+            "fly-"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z]/",
+            "/ab+c/",
+            "/ab*c/",
+            "/(?:hard)?work/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["slug", "url", "link"]
+    },
+    {
+        "id": "c-like-identifier",
+        "title": "C-like identifier",
+        "tagline": "match an C-like identifier",
+        "description": "In computer languages, identifiers are tokens (also called symbols) which name language entities",
+        "regex": "^[a-zA-Z_][0-9a-zA-Z_]*$",
+        "flag": "gm",
+        "matchText": [
+            "abc123",
+            "PascalCase",
+            "camelCase",
+            "snake_case",
+            "_test",
+            "_",
+            "123abc"
+        ],
+        "cheatRegex": [
+            "/^/",
+            "/$/",
+            "/[a-zA-Z]/",
+            "/ab*c/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["c", "identifier"]
+    },
+    {
+        "id": "hyphen-word-break",
+        "title": "hyphen word break",
+        "tagline": "match the end of line hyphens that split up words",
+        "description": "A hyphen appears at the end of a line when the word must be split to fit on the line",
+        "regex": "[a-zA-Z][\\-]$[\\n][a-zA-Z]",
+        "flag": "gm",
+        "matchText": [
+            "It illustrates not only the impor-",
+            "tance of the golden rule for asking questions—Ask what you want",
+            "to know, not something else—but also, more important, the ambi-",
+            "guities of language and the powerful force of context in interpret-",
+            "ing the meaning of questions and answers. Our colleague had"
+        ],
+        "cheatRegex": [
+            "/[a-zA-Z]/",
+            "/$/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["hyphen", "word_break"]
+    },
+    {
+        "id": "bitcoin-address",
+        "title": "bitcoin address",
+        "tagline": "match bitcoint addresses",
+        "description": "A bitcoin address is the address string which identifies a bitcoin cryptocurrency wallet.",
+        "regex": "^(bc1|[13])[a-zA-HJ-NP-Z0-9]{25,39}$",
+        "flag": "gm",
+        "matchText": [
+            "1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY",
+            "loremipsum",
+            "16ftSEQ4ctQFDtVZiUBusQUjRrGhM3JYwe",
+            "1EBHA1ckUWzNKN7BMfDwGTx6GKEbADUozX",
+            "0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae",
+            "bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq"
+        ],
+        "cheatRegex": [
+            "/[a-zA-Z]/",
+            "/$/",
+            "/^/",
+            "/[a-zA-Z0-9]/",
+            "/(hello){1,3}/"
+        ],
+        "embedHeight": 300,
+        "tags" : ["crypto", "address"]
+    },
+    {
+        "id": "emoji",
+        "title": "emoji",
+        "tagline": "match emojis",
+        "description": "Emojis or emoticons are symbols used to denote various emotions in electronic messages.",
+        "regex": "(\\u00a9|\\u00ae|[\\u2000-\\u3300]|\\ud83c[\\ud000-\\udfff]|\\ud83d[\\ud000-\\udfff]|\\ud83e[\\ud000-\\udfff])",
+        "flag": "gm",
+        "matchText": [
+            "Emojis are amazing 😍",
+            "⁣☀               ☁",
+            "         ☁",
+            "",
+            "          🐬",
+            "🌊🌊⛵🌊🌊🌊🌊⁣🌊",
+            "         ｜",
+            "         ｜ 🐠",
+            "         ｜     🐟",
+            " 🐳   ｜     ",
+            "         ⚓"
+        ],
+        "cheatRegex": [
+            "/$/",
+            "/^/",
+            "/[a-z]/"
+        ],
+        "embedHeight": 315,
+        "tags" : ["emoji", "emoticon", "smiley"]
+    },
+    {
+        "id": "credit-card",
+        "title": "credit card number",
+        "tagline": "match if the string is a credit card",
+        "description": "Credit card number is the card unique identifier found on payment cards.",
+        "regex": "(^4[0-9]{12}(?:[0-9]{3})?$)|(^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$)|(3[47][0-9]{13})|(^3(?:0[0-5]|[68][0-9])[0-9]{11}$)|(^6(?:011|5[0-9]{2})[0-9]{12}$)|(^(?:2131|1800|35\\d{3})\\d{11}$)",
+        "flag": "gm",
+        "matchText": [
+            "4569403961014710",
+            "5191914942157165",
+            "370341378581367",
+            "38520000023237",
+            "6011000000000000",
+            "3566002020360505",
+            "1234566660000222"
+        ],
+        "cheatRegex": [
+            "/[0-9]/",
+            "/[0-9]/",
+            "/(hello){1,3}/"
+        ],
+        "embedHeight": 1100,
+        "tags" : ["credit card", "payment card", "Visa", "MasterCard", "American Express", "Diners Club", "Discover", "JCB"]
+    },
+    {
+      "id": "pan-from-gstin",
+      "title": "pan from gstin",
+      "tagline": "extracts PAN number from a valid GSTIN number",
+      "description": "A PAN is a unique identifier issued to all judicial entities identifiable under the Indian Income Tax Act, 1961",
+      "regex": "^([0][1-9]|[1-2][0-9]|[3][0-5])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1})([1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$",
+      "flag": "igm",
+      "matchText": [
+        "22ABCDE1234F1Z5",
+        "11GHIJK1234L1Z5",
+        "33PQRST5678L1Z5",
+        "34UVWXY5678L1Z5",
+        "35PQRST5678L1Z5",
+        "22ABCDE1234F1Z5"
+      ],
+      "cheatRegex": [
+        "/\\w/",
+        "/[0-9]/",
+        "/[a-z]/",
+        "/[a-zA-Z0-9]/",
+        "/(hello){1,3}/"
+      ],
+      "embedHeight": 500,
+      "tags": [
+        "PAN FROM GSTIN",
+        "GSTIN",
+        "GST",
+        "INDIAN GSTIN",
+        "INDIAN PAN"
+      ]
+    },
+    {
+        "id": "e164-phone",
+        "title": "e.164 phone number",
+        "tagline": "matches a valid e.164 format telephobne number",
+        "description": "E.164 is a telephone number format to ensure consistency",
+        "regex": "^\\+[1-9]\\d{1,14}$",
+        "flag": "igm",
+        "matchText": [
+            "+919367788755",
+            "8989829304",
+            "+16308520397",
+            "786-307-3615",
+            "+14155552671",
+            "+551155256325"
+        ],
+        "cheatRegex": [
+          "/\\w/",
+          "/[0-9]/",
+          "/\\d/",
+          "/(hello){1,3}/"
+        ],
+        "embedHeight": 500,
+        "tags": [
+          "phone",
+          "e.164",
+          "number",
+          "telephone"
+        ]
+      },
+      {
+          "id": "han-unification",
+          "title": "han unification",
+          "tagline": "matches han unification, or cjk (chinese (hanzi), japanese (kanji), and korean (hanja))",
+          "description": "Han characters are a common feature of written Chinese (hanzi), Japanese (kanji), and Korean (hanja)",
+          "regex": "^[\\u4E00-\\u9FFF\\u3400-\\u4DBF\\u20000-\\u2A6DF\\u2A700-\\u2B73F\\u2B740-\\u2B81F\\u2B820-\\u2CEAF\\u2CEB0-\\u2EBEF\\u30000-\\u3134F\\uF900-\\uFAFF\\u2E80-\\u2EFF\\u31C0-\\u31EF\\u3000-\\u303F\\u2FF0-\\u2FFF\\u3300-\\u33FF\\uFE30-\\uFE4F\\uF900-\\uFAFF\\u2F800-\\u2FA1F\\u3200-\\u32FF\\u1F200-\\u1F2FF\\u2F00-\\u2FDF]+$",
+          "flag": "gm",
+          "matchText": [
+              "今",
+              "具",
+              "雇"
+          ],
+          "cheatRegex": [
+            "/\\w/",
+            "/[0-9]/",
+            "/$/",
+            "/^/"
+          ],
+          "embedHeight": 500,
+          "tags": [
+            "hans",
+            "chinese",
+            "japanese",
+            "korean"
+          ]
+        },
+        {
+            "id": "port",
+            "title": "port number",
+            "tagline": "matches a port number in computer networks",
+            "description": "A port is a communication endpoint associated with a specific address",
+            "regex": "^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$",
+            "flag": "gm",
+            "matchText": [
+                "8080",
+                "3000",
+                "65535",
+                "65536"
+            ],
+            "cheatRegex": [
+              "/\\w/",
+              "/[0-9]/",
+              "/$/",
+              "/^/",
+              "/(hello){1,3}/"
+            ],
+            "embedHeight": 500,
+            "tags": [
+              "port",
+              "ip",
+              "network"
+            ]
+          },
+          {
+            "id": "doi",
+            "title": "digital object identifier",
+            "tagline": "matches a digital object identifier (doi)",
+            "description": "A DOI is an identifier/handle used to identify objects uniquely",
+            "regex": "^(10\\.\\d{4,5}\\/[\\S]+[^;,.\\s])$",
+            "flag": "gmi",
+            "matchText": [
+                "10.1000/123456",
+                "10.1038/issn.1476-4687",
+                "10.1111/dome.12082",
+                "10.1111/josi.12122"
+            ],
+            "cheatRegex": [
+              "/\\w/",
+              "/[0-9]/",
+              "/$/",
+              "/^/",
+              "/(hello){1,3}/"
+            ],
+            "embedHeight": 300,
+            "tags": [
+              "doi",
+              "document",
+              "identifier",
+              "journal"
+            ]
+          },
+          {
+            "id": "discord-username",
+            "title": "discord username",
+            "tagline": "matches a discord username along with ending tag",
+            "description": "Username identifier for the VOIP application Discord",
+            "regex": "^.{3,32}#[0-9]{4}$",
+            "flag": "gmi",
+            "matchText": [
+                "Disコルド#0001",
+                "KiBender#1234",
+                "SkankHunt42#2134"
+            ],
+            "cheatRegex": [
+              "/\\w/",
+              "/[0-9]/",
+              "/$/",
+              "/^/",
+              "/(hello){1,3}/"
+            ],
+            "embedHeight": 300,
+            "tags": [
+              "discord",
+              "gaming",
+              "username"
+            ]
+          },
+          {
+            "id": "hashtag",
+            "title": "hashtag",
+            "tagline": "matches a social media hashtag",
+            "description": "Hashtags are metadata tags used on social networks that categorizes the content of the post",
+            "regex": "^#[^ !@#$%^&*(),.?\":{}|<>]*$",
+            "flag": "gmi",
+            "matchText": [
+                "#Hello",
+                "#Photography_Daily",
+                "#Photography Daily",
+                "#justice4me"
+            ],
+            "cheatRegex": [
+              "/\\w/",
+              "/[0-9]/",
+              "/$/",
+              "/^/",
+              "/(hello){1,3}/"
+            ],
+            "embedHeight": 500,
+            "tags": [
+              "hashtag",
+              "twitter",
+              "social"
+            ]
+          }
+]

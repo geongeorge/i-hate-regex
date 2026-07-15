@@ -1,0 +1,20 @@
+node_modules
+yarn.lock
+
+.DS_Store
+.cache
+.env
+.env.local
+.vercel
+.output
+.nitro
+/build/
+/api/
+/server/build
+/public/build# Sentry Config File
+.env.sentry-build-plugin
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.tanstack

@@ -1,0 +1,1 @@
+Used extensively in social media apps like Twitter and Instagram
