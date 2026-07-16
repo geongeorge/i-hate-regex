@@ -51,7 +51,9 @@ export const auth = betterAuth({
   database: authPool,
   trustedOrigins:
     process.env.NODE_ENV === 'production'
-      ? []
+      ? process.env.RAILWAY_PUBLIC_DOMAIN
+        ? [`https://${process.env.RAILWAY_PUBLIC_DOMAIN}`]
+        : []
       : ['http://localhost:3000', 'http://127.0.0.1:3000'],
   emailAndPassword: {
     enabled: true,

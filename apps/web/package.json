@@ -8,9 +8,9 @@
     "dev": "vite dev",
     "build": "vite build && tsc --noEmit",
     "check": "tsc --noEmit",
-    "db:migrate": "node --env-file=.env.local scripts/migrate.mjs",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate.mjs",
     "preview": "vite preview",
-    "start": "node .output/server/index.mjs"
+    "start": "node --env-file-if-exists=.env.local scripts/migrate.mjs && node .output/server/index.mjs"
   },
   "dependencies": {
     "@ihateregex/regex-railroad-diagram": "workspace:*",
