@@ -22,7 +22,9 @@ export function RegexDiagram({ pattern, flags, error }: Props) {
         setRendering(true)
         setRenderError(null)
         svg.replaceChildren()
-        const { renderRegexDiagram } = await import('@ihateregex/embed')
+        const { renderRegexDiagram } = await import(
+          '@ihateregex/regex-railroad-diagram'
+        )
         if (cancelled) return
         await renderRegexDiagram(svg, { pattern, flags })
       } catch (cause) {

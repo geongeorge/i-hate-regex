@@ -1,0 +1,40 @@
+{
+  "name": "@ihateregex/regex-railroad-diagram",
+  "version": "1.0.0",
+  "description": "Browser-only regular expression railroad diagram renderer.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite demo",
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "check": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "regex",
+    "regexp",
+    "railroad-diagram",
+    "visualizer"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "@regexper/render": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2",
+    "vite": "^8.0.14"
+  }
+}

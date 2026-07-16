@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iHateRegex railroad diagram</title>
+    <script type="module" src="./main.ts"></script>
+    <style>
+      body { margin: 0; padding: 48px; background: #f2efe7; color: #242018; font-family: ui-sans-serif, system-ui, sans-serif; }
+      main { max-width: 1040px; margin: auto; }
+      regex-diagram { margin-top: 24px; border: 1px solid #ded8cb; border-radius: 20px; background: white; box-shadow: 0 18px 60px #625b4c18; }
+      code { color: #dd4c2d; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>Browser-only railroad diagram</p>
+      <h1><code>/^(hello|hi)\s+world$/i</code></h1>
+      <regex-diagram pattern="^(hello|hi)\s+world$" flags="i"></regex-diagram>
+    </main>
+  </body>
+</html>
