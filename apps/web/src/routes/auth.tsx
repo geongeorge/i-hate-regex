@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight, Check, Key, ShieldCheck, Sparkle } from '@phosphor-icons/react'
+import { ArrowRight, Check, EnvelopeSimple, Key, ShieldCheck, Sparkle } from '@phosphor-icons/react'
 import { type FormEvent, useState } from 'react'
 import { z } from 'zod'
 import { authClient } from '~/lib/auth-client'
@@ -21,6 +21,8 @@ function AuthPage() {
   const [password, setPassword] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [pendingEmail, setPendingEmail] = useState<string | null>(null)
+  const [resent, setResent] = useState(false)
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -32,12 +34,57 @@ function AuthPage() {
       : await authClient.signIn.email({ email: email.trim(), password })
 
     if (result.error) {
+      if (result.error.code === 'EMAIL_NOT_VERIFIED') {
+        setPendingEmail(email.trim())
+        setSubmitting(false)
+        return
+      }
       setError(result.error.message ?? 'Authentication failed')
       setSubmitting(false)
       return
     }
 
+    if (mode === 'signup') {
+      setPendingEmail(email.trim())
+      setSubmitting(false)
+      return
+    }
+
     window.location.assign(returnTo)
+  }
+
+  async function resendVerification() {
+    if (!pendingEmail || submitting) return
+    setSubmitting(true)
+    const result = await authClient.sendVerificationEmail({ email: pendingEmail, callbackURL: returnTo })
+    setSubmitting(false)
+    if (result.error) {
+      setError(result.error.message ?? 'Could not resend the email')
+      return
+    }
+    setResent(true)
+  }
+
+  if (pendingEmail) {
+    return (
+      <main className="auth-page">
+        <section className="auth-card verify-card">
+          <span className="auth-icon"><EnvelopeSimple size={20} weight="bold" /></span>
+          <h2>Check your inbox</h2>
+          <p>
+            We sent a verification link to <strong>{pendingEmail}</strong>.
+            Click it to activate your account — the link is valid for one hour.
+          </p>
+          {error && <p className="auth-error" role="alert">{error}</p>}
+          <button className="button auth-submit" type="button" onClick={resendVerification} disabled={submitting || resent}>
+            {resent ? 'Email sent again' : submitting ? 'One moment…' : 'Resend the email'}
+          </button>
+          <button className="auth-backlink" type="button" onClick={() => { setPendingEmail(null); setResent(false); setError(null) }}>
+            Use a different email
+          </button>
+        </section>
+      </main>
+    )
   }
 
   return (
