@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight, BookOpen, Database, GitBranch, MagnifyingGlass, Sparkle } from '@phosphor-icons/react'
+import { ArrowRight, BookOpen, GitBranch, MagnifyingGlass, ShareNetwork, Sparkle } from '@phosphor-icons/react'
 import { useMemo, useState } from 'react'
 import { catalog } from '~/data/catalog'
 
@@ -52,8 +52,8 @@ function Home() {
 
       <section className="feature-strip" aria-label="Product features">
         <div><GitBranch /><span><strong>See the structure</strong>Browser-rendered railroad diagrams</span></div>
-        <div><BookOpen /><span><strong>Explain the why</strong>Markdown notes beside every pattern</span></div>
-        <div><Database /><span><strong>Share a workspace</strong>Saved in Postgres, not query strings</span></div>
+        <div><BookOpen /><span><strong>Explain the why</strong>Notes beside every pattern</span></div>
+        <div><ShareNetwork /><span><strong>Share a workspace</strong>One link your whole team can open</span></div>
       </section>
 
       <section id="library" className="library-section">

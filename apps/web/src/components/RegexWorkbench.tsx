@@ -16,6 +16,7 @@ import {
 } from '@phosphor-icons/react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { ExpressionEditor } from './ExpressionEditor'
 import { MatchPreview } from './MatchPreview'
 import { RegexDiagram } from './RegexDiagram'
 import { authClient } from '~/lib/auth-client'
@@ -249,14 +250,13 @@ export function RegexWorkbench({
             <div className="expression-input-row">
               <span className="regex-slash">/</span>
               <label htmlFor="regex-pattern" className="sr-only">Regular expression</label>
-              <textarea
+              <ExpressionEditor
                 id="regex-pattern"
                 value={draft.pattern}
-                onChange={(event) => patchDraft({ pattern: event.target.value })}
-                aria-invalid={Boolean(regexError)}
-                spellCheck={false}
-                rows={2}
+                flags={draft.flags}
+                invalid={Boolean(regexError)}
                 readOnly={readOnly}
+                onChange={(pattern) => patchDraft({ pattern })}
               />
               <span className="regex-slash">/</span>
               <span className="inline-flags">{draft.flags}</span>
@@ -285,9 +285,9 @@ export function RegexWorkbench({
 
         <aside className="panel notes-panel">
           <div className="panel-heading notes-heading">
-            <div><span className="eyebrow">Context</span><h2>Markdown notes</h2></div>
+            <div><span className="eyebrow">Context</span><h2>Notes</h2></div>
             {!readOnly && (
-              <div className="segmented-control" role="tablist" aria-label="Markdown mode">
+              <div className="segmented-control" role="tablist" aria-label="Notes mode">
                 <button type="button" className={notesMode === 'write' ? 'active' : ''} onClick={() => setNotesMode('write')} role="tab" aria-selected={notesMode === 'write'}><FileText size={14} /> Write</button>
                 <button type="button" className={notesMode === 'preview' ? 'active' : ''} onClick={() => setNotesMode('preview')} role="tab" aria-selected={notesMode === 'preview'}><Sparkle size={14} /> Preview</button>
               </div>
@@ -295,7 +295,7 @@ export function RegexWorkbench({
           </div>
 
           {!readOnly && notesMode === 'write' ? (
-            <textarea className="notes-editor" aria-label="Markdown notes" value={draft.notes} onChange={(event) => patchDraft({ notes: event.target.value })} placeholder={'## What it matches\n\nExplain the expression, edge cases, and examples…'} spellCheck />
+            <textarea className="notes-editor" aria-label="Notes" value={draft.notes} onChange={(event) => patchDraft({ notes: event.target.value })} placeholder={'## What it matches\n\nExplain the expression, edge cases, and examples…'} spellCheck />
           ) : (
             <article className="markdown-preview">
               {draft.notes ? <ReactMarkdown remarkPlugins={[remarkGfm]}>{draft.notes}</ReactMarkdown> : <p className="empty-note">No notes were added for this expression.</p>}

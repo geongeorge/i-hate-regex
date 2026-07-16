@@ -16,7 +16,7 @@ export const Route = createRootRoute({
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ...seo({
         title: 'iHateRegex — Understand, test, and share regex',
-        description: 'A modern regular expression playground with live matching, visual railroad diagrams, Markdown notes, and database-backed sharing.',
+        description: 'A modern regular expression playground with live matching, visual railroad diagrams, rich notes, and easy sharing.',
       }),
     ],
     links: [
@@ -40,8 +40,7 @@ function SiteHeader() {
     <header className="site-header">
       <div className="site-header-inner">
         <Link to="/" className="brand" aria-label="iHateRegex home">
-          <span className="brand-mark"><TerminalWindow size={18} weight="bold" /></span>
-          <span>iHateRegex</span>
+          <span>i<span className="brand-hate">Hate</span>Regex</span>
         </Link>
 
         <button className="mobile-menu-button" type="button" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open} aria-controls="site-navigation">

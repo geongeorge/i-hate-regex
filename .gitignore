@@ -21,3 +21,4 @@ build/
 /blob-report/
 /playwright/.cache/
 .tanstack/
+.claude/
