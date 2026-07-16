@@ -1,72 +1,151 @@
-# iHateRegex
+<div align="center">
 
-A TypeScript rebuild of [iHateRegex](https://ihateregex.io) on TanStack Start. The repository is a pnpm monorepo containing the web application and its browser-only railroad diagram renderer.
+  <h1>
+    iHateRegex 😈
+  </h1>
 
-## Workspace layout
+  <p align="center">
+    <a href="https://github.com/geongeorge/i-hate-regex/pull/new" target="_blank">
+      <img src="https://img.shields.io/badge/PRs%20-welcome-brightgreen.svg" alt="PRs Welcome" />
+    </a>
+    <a title="Chat on Telegram" href="https://t.me/ihateregex"> <img src="https://img.shields.io/badge/chat-Telegram-blueviolet?logo=Telegram"/>
+    </a>
+  </p>
+  <p>
+<a href="https://opencollective.com/ihateregex" target="_blank">
+<img src="https://opencollective.com/webpack/donate/button@2x.png?color=blue" width=180>
+</a>
+</p>
+  <a href="https://ihateregex.io"><img src="https://i.imgur.com/mHuTAzy.png" width=600></a>
+
+  <p>
+    <strong>don't just use; understand.</strong>
+</p>
+
+  <p>
+    <strong><a href="https://ihateregex.io">iHateRegex.io</a></strong> - a regex cheatsheet for the haters.
+  </p>
+
+  <p>
+   Chat with us on <a href="https://t.me/ihateregex" target="_blank">Telegram</a>
+
+</p>
+</div>
+
+> **v2** — iHateRegex has been rebuilt from the ground up on TypeScript, TanStack Start, and PostgreSQL. The original Nuxt version lives on the [`v1`](https://github.com/geongeorge/i-hate-regex/tree/v1) branch.
+
+## Features 😎
+
+- [x] Visual railroad diagrams of regular expressions — rendered in your browser, no embed server
+- [x] Hover any part of an expression to see what it does, in plain English
+- [x] Matched strings — the testing area with live highlighting
+- [x] Export any diagram as SVG or PNG
+- [x] Regex code highlighting and validation
+- [x] Regex descriptions with markdown support
+- [x] [Playground](https://ihateregex.io/playground) where you can create your own expressions
+- [x] User accounts with private saved regexes
+- [x] Publish your regexes to the community and share a stable link
+
+## Repository layout
+
+This is a pnpm monorepo:
 
 ```text
-i-hate-regex-next/
 ├── apps/
 │   └── web/                         # TanStack Start app and PostgreSQL migrations
-├── packages/
-│   └── regex-railroad-diagram/      # Browser-only TypeScript renderer
-├── package.json                     # Workspace commands
-└── pnpm-workspace.yaml
+└── packages/
+    └── regex-railroad-diagram/      # Browser-only TypeScript diagram renderer
 ```
 
-The web app imports `@ihateregex/regex-railroad-diagram` through pnpm's `workspace:*` protocol. The renderer has no server, iframe, Express application, or external repository dependency.
+## Setup 🚀
 
-## What is included
-
-- The original 29-pattern library with read-only detail pages
-- A live regex playground with match highlighting, flags, test text, and Markdown notes
-- Client-side railroad diagrams rendered by the local workspace package
-- Email/password accounts and PostgreSQL-backed sessions with Better Auth
-- Private-by-default saved regexes under `/me`
-- Explicit publish and unpublish controls for community sharing
-- Public, read-only community pages with stable database IDs
-- Terminal-inspired light and dark themes
-
-## Local setup
-
-Requirements:
-
-- Node.js 22.12 or newer
-- pnpm 10.13 or newer
-- PostgreSQL
-
-Create the database and environment file:
+Requirements: [Node.js](https://nodejs.org) 22.12+, [pnpm](https://pnpm.io) 10+, and PostgreSQL.
 
 ```bash
+# clone this repo, then:
+pnpm install
+
+# create the database and environment file
 createdb ihateregex_next
 cp apps/web/.env.example apps/web/.env.local
+# set DATABASE_URL, BETTER_AUTH_URL, and a random 32+ character BETTER_AUTH_SECRET
+
+pnpm db:migrate   # apply database migrations
+pnpm dev          # serve at http://127.0.0.1:3000
 ```
 
-Set `DATABASE_URL`, `BETTER_AUTH_URL`, and a random `BETTER_AUTH_SECRET` of at least 32 characters in `apps/web/.env.local`. Then install, migrate, and start from the repository root:
+Other commands:
 
 ```bash
-pnpm install
-pnpm db:migrate
-pnpm dev
-```
-
-Open [http://127.0.0.1:3000](http://127.0.0.1:3000).
-
-## Commands
-
-```bash
-pnpm dev          # build the renderer and start TanStack Start
-pnpm build        # build both workspace packages
+pnpm build        # production build of both workspace packages
 pnpm check        # type-check every workspace package
-pnpm db:migrate   # apply PostgreSQL migrations
-pnpm diagram:dev  # run the renderer package demo
+pnpm diagram:dev  # run the diagram renderer package demo
 pnpm start        # run the production web server
 ```
 
+## Contribute Regex 🙏
+
+Contribute to this project and make this the largest collection of useful expressions 😍
+
+1. Add your regex to `apps/web/src/content/regexes.json`
+
+<details>
+<summary>Show sample JSON</summary>
+
+```json
+{
+    "id": "username",
+    "title": "username",
+    "tagline": "match a username",
+    "description": "Alphanumeric string that may include _ and - having a length of 3 to 16 characters.",
+    "regex": "^[a-z0-9_-]{3,15}$",
+    "flag": "gm",
+    "matchText": [
+        "lorem",
+        "ipsum",
+        "gr3at",
+        "john doe",
+        "johnny"
+    ],
+    "tags": ["name", "slug"]
+}
+```
+
+</details>
+
+<details>
+<summary>Show JSON properties</summary>
+
+| Property | Definition |
+|------|------------|
+| id | The slug and short name of the regex. No spaces, only url-safe characters |
+| title | Title of the page |
+| tagline | Tagline shown under the title |
+| description | First line under the tagline and also the meta description |
+| regex | The actual regex string |
+| flag | Regex flags associated with the expression, e.g. `gm` |
+| matchText | Array (line by line) of strings shown in the testing area |
+| tags | Tags related to the expression |
+
+</details>
+
+2. Create a markdown file in `apps/web/src/content/regex/` named `<regex-id>.md` with a longer description explaining how the expression works
+
+That's it 🙌 Go ahead and shoot a new pull request✨✨
+
+You can also publish expressions directly from the [playground](https://ihateregex.io/playground) — sign in, save, and hit publish to share a community page.
+
 ## Privacy and sharing
 
-New saves belong to the signed-in user and are private. The owner can publish a document to create a public `/community/:id` page, then unpublish it at any time. Owner editing stays at `/r/:id`; other users cannot read or mutate that route. Original library entries and community pages never expose editing controls.
+New saves belong to the signed-in user and are private. The owner can publish a regex to create a public `/community/:id` page, and unpublish it at any time. URLs contain only an opaque database ID — never your regex in a query string.
 
-Regex documents store the expression, flags, test text, Markdown notes, ownership, visibility, and timestamps in PostgreSQL. URLs contain only an opaque database ID.
+## Sponsors 💖
 
-Database migrations live in `apps/web/db/migrations` and are tracked in `schema_migrations`.
+<p>
+<a href="https://opencollective.com/ihateregex">Donate via Opencollective</a>
+</p>
+
+## Credits
+
+- The railroad diagrams are rendered with [regexper](https://gitlab.com/javallone/regexper-static)
+- The previous version of this site was built with [Nuxt.js](https://nuxtjs.org) — see the [`v1`](https://github.com/geongeorge/i-hate-regex/tree/v1) branch
