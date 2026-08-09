@@ -20,9 +20,6 @@ export const Route = createRootRoute({
       }),
     ],
     links: [
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap' },
       { rel: 'stylesheet', href: appCss },
       { rel: 'icon', href: '/favicon.ico' },
     ],
@@ -87,14 +84,6 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body>
         <SiteHeader />
         {children}
-        <footer className="site-footer">
-          <p>i<span className="brand-hate">Hate</span>Regex — don’t just use it; understand it.</p>
-          <nav aria-label="Footer">
-            <a href="https://github.com/geongeorge/i-hate-regex" target="_blank" rel="noreferrer">GitHub</a>
-            <a href="https://t.me/ihateregex" target="_blank" rel="noreferrer">Telegram</a>
-            <a href="https://github.com/geongeorge/i-hate-regex/tree/v1" target="_blank" rel="noreferrer">v1</a>
-          </nav>
-        </footer>
         <Scripts />
       </body>
     </html>
