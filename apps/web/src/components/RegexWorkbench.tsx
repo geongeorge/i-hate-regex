@@ -232,13 +232,6 @@ export function RegexWorkbench({
         </div>
       </header>
 
-      {readOnly && (
-        <div className="readonly-ribbon">
-          <LockKey size={15} />
-          <span>This page is intentionally read-only. Remix it to experiment without changing the original.</span>
-        </div>
-      )}
-
       <div className="workbench-grid">
         <div className="workbench-primary">
           <section className={`panel expression-panel ${regexError ? 'has-error' : ''}`}>

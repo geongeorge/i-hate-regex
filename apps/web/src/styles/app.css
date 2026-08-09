@@ -256,7 +256,6 @@ svg:not(.regex-diagram) { background-color: transparent; }
 .save-state { margin-right: 3px; display: flex; align-items: center; gap: 5px; color: var(--muted); font: 10px ui-monospace, monospace; }
 .save-state.dirty { color: var(--warning); }
 .workbench-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(330px, .72fr); gap: 10px; align-items: start; }
-.readonly-ribbon { margin: -1px 0 11px; padding: 8px 11px; display: flex; align-items: center; gap: 7px; border: 1px solid color-mix(in srgb, var(--warning) 38%, var(--line)); border-radius: 3px; background: var(--warning-soft); color: var(--warning); font: 10px ui-monospace, monospace; }
 .readonly-workbench .title-field, .readonly-workbench textarea { cursor: default; }
 .readonly-workbench .match-editor textarea { resize: none; }
 .flag-chip.muted-flag { opacity: .38; }
