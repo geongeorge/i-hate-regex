@@ -202,13 +202,9 @@ svg:not(.regex-diagram) { background-color: transparent; }
 }
 .demo-topline,
 .terminal-bar { min-height: 38px; padding: 0 13px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--terminal-line); background: var(--terminal-raised); }
-.demo-dot { width: 7px; height: 7px; border-radius: 50%; }
-.demo-dot.red { background: #ff6b6b; }
-.demo-dot.yellow { background: #f6c85f; }
-.demo-dot.green { background: #72d58c; }
-.demo-file { margin-left: auto; color: var(--terminal-muted); font: 11px ui-monospace, monospace; }
+.demo-file { color: var(--terminal-muted); font: 11px ui-monospace, monospace; }
 .demo-expression { padding: 32px 24px 28px; overflow: auto; color: var(--terminal-text); font: 17px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
-.demo-expression span { color: var(--terminal-blue); }
+.demo-slash { color: var(--terminal-blue); }
 .demo-test { padding: 18px 24px; border-block: 1px solid var(--terminal-line); display: grid; gap: 7px; color: var(--terminal-muted); font: 12px/1.5 ui-monospace, monospace; }
 .demo-test span::before { content: '> '; color: var(--terminal-muted); }
 .demo-test span:first-child, .demo-test span:last-child { color: var(--terminal-accent); }

@@ -37,10 +37,13 @@ function Home() {
 
         <div className="hero-demo" aria-label="Example regular expression card">
           <div className="demo-topline">
-            <span className="demo-dot red" /><span className="demo-dot yellow" /><span className="demo-dot green" />
             <span className="demo-file">email.regex</span>
           </div>
-          <div className="demo-expression"><span>/</span>[^@\s]+@[^@\s]+\.[^@\s]+<span>/gm</span></div>
+          <div className="demo-expression">
+            <span className="demo-slash">/</span>
+            <span className="tok-class">[^@\s]</span><span className="tok-quantifier">+</span>@<span className="tok-class">[^@\s]</span><span className="tok-quantifier">+</span><span className="tok-meta">\.</span><span className="tok-class">[^@\s]</span><span className="tok-quantifier">+</span>
+            <span className="demo-slash">/</span><span className="tok-meta">gm</span>
+          </div>
           <div className="demo-test">
             <span>hello@ihateregex.io</span>
             <span>not-an-email</span>
