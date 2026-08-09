@@ -203,6 +203,12 @@ svg:not(.regex-diagram) { background-color: transparent; }
 .demo-topline,
 .terminal-bar { min-height: 38px; padding: 0 13px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--terminal-line); background: var(--terminal-raised); }
 .demo-file { color: var(--terminal-muted); font: 11px ui-monospace, monospace; }
+.embed-page { min-height: 100vh; padding: 18px; display: flex; flex-direction: column; gap: 14px; background: var(--terminal); color: var(--terminal-text); }
+.embed-pattern { overflow-x: auto; white-space: nowrap; font: 15px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.embed-diagram { flex: 1; padding: 14px 10px; overflow: auto; border-radius: 4px; background: #fbfaf6; }
+.embed-diagram svg { display: block; margin: 0 auto; }
+.embed-credit { align-self: flex-end; color: var(--terminal-muted); font: 11px ui-monospace, monospace; }
+.embed-credit:hover { color: var(--terminal-accent); }
 .demo-expression { padding: 32px 24px 28px; overflow: auto; color: var(--terminal-text); font: 17px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: nowrap; }
 .demo-slash { color: var(--terminal-blue); }
 .demo-test { padding: 18px 24px; border-block: 1px solid var(--terminal-line); display: grid; gap: 7px; color: var(--terminal-muted); font: 12px/1.5 ui-monospace, monospace; }

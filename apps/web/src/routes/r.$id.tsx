@@ -19,5 +19,5 @@ export const Route = createFileRoute('/r/$id')({
 
 function SharedRegex() {
   const document = Route.useLoaderData()
-  return <RegexWorkbench initialDraft={document} documentId={document.id} initiallyPublic={document.isPublic} />
+  return <RegexWorkbench initialDraft={document} documentId={document.id} initiallyPublic={document.isPublic} embedPath={document.isPublic ? `/embed/r/${document.id}` : undefined} />
 }

@@ -14,5 +14,5 @@ export const Route = createFileRoute('/community/$id')({
 
 function PublicRegex() {
   const document = Route.useLoaderData()
-  return <RegexWorkbench initialDraft={document} documentId={document.id} mode="public" initiallyPublic ownerName={document.ownerName} />
+  return <RegexWorkbench initialDraft={document} documentId={document.id} mode="public" initiallyPublic ownerName={document.ownerName} embedPath={`/embed/r/${document.id}`} />
 }

@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { CircleNotch, DownloadSimple, Graph } from '@phosphor-icons/react'
+import { CircleNotch, Code, DownloadSimple, Graph } from '@phosphor-icons/react'
 
 type Props = {
   pattern: string
   flags: string
   error: string | null
+  embedPath?: string
 }
 
 function serializeDiagram(svg: SVGSVGElement) {
@@ -35,7 +36,7 @@ function triggerDownload(url: string, filename: string) {
   anchor.click()
 }
 
-export function RegexDiagram({ pattern, flags, error }: Props) {
+export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
   const [renderError, setRenderError] = useState<string | null>(null)
   const [rendering, setRendering] = useState(false)
@@ -121,6 +122,18 @@ export function RegexDiagram({ pattern, flags, error }: Props) {
     }
   }
 
+  async function copyEmbedCode() {
+    if (!embedPath) return
+    const src = `${window.location.origin}${embedPath}`
+    const snippet = `<iframe src="${src}" width="100%" height="380" style="border:0;border-radius:6px;overflow:hidden" title="Regex railroad diagram — iHateRegex" loading="lazy"></iframe>`
+    try {
+      await navigator.clipboard.writeText(snippet)
+      setExportNote('Embed code copied')
+    } catch {
+      setExportNote('Copy blocked — try again')
+    }
+  }
+
   const message = error ?? renderError
   const exportDisabled = Boolean(message) || rendering
 
@@ -138,6 +151,11 @@ export function RegexDiagram({ pattern, flags, error }: Props) {
           <button className="panel-action" type="button" onClick={downloadPng} disabled={exportDisabled} title="Download the diagram as a PNG image">
             <DownloadSimple size={13} /> PNG
           </button>
+          {embedPath && (
+            <button className="panel-action" type="button" onClick={copyEmbedCode} disabled={exportDisabled} title="Copy an iframe snippet that embeds this diagram on any site">
+              <Code size={13} /> Embed
+            </button>
+          )}
           <span className="panel-status" aria-live="polite">
             {rendering ? <CircleNotch className="spin" size={15} /> : <Graph size={15} />}
             {exportNote ?? (rendering ? 'Drawing' : 'Live')}

@@ -60,6 +60,21 @@ export const saveRegexDocument = createServerFn({ method: 'POST' })
     return updateDocument(data.id, user.id, data.draft)
   })
 
+export const createRegexSnapshot = createServerFn({ method: 'POST' })
+  .validator((draft: unknown) => draftSchema.parse(draft))
+  .handler(async ({ data: draft }) => {
+    const { insertSnapshot } = await import('./db.server')
+    const id = randomBytes(7).toString('base64url')
+    return insertSnapshot(id, draft)
+  })
+
+export const getRegexSnapshot = createServerFn({ method: 'GET' })
+  .validator((id: string) => idSchema.parse(id))
+  .handler(async ({ data: id }) => {
+    const { findSnapshot } = await import('./db.server')
+    return findSnapshot(id)
+  })
+
 export const publishRegexDocument = createServerFn({ method: 'POST' })
   .validator((input: unknown) =>
     z.object({ id: idSchema, published: z.boolean() }).parse(input),

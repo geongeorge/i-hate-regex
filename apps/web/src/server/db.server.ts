@@ -126,6 +126,49 @@ export async function updateDocument(id: string, userId: string, draft: RegexDra
   return result.rows[0] ? toDocument(result.rows[0]) : null
 }
 
+export type RegexSnapshot = RegexDraft & { id: string; createdAt: string }
+
+type SnapshotRow = {
+  id: string
+  title: string
+  pattern: string
+  flags: string
+  test_text: string
+  notes: string
+  created_at: Date
+}
+
+function toSnapshot(row: SnapshotRow): RegexSnapshot {
+  return {
+    id: row.id,
+    title: row.title,
+    pattern: row.pattern,
+    flags: row.flags,
+    testText: row.test_text,
+    notes: row.notes,
+    createdAt: row.created_at.toISOString(),
+  }
+}
+
+export async function insertSnapshot(id: string, draft: RegexDraft) {
+  const result = await getPool().query<SnapshotRow>(
+    `INSERT INTO regex_snapshots (id, title, pattern, flags, test_text, notes)
+     VALUES ($1, $2, $3, $4, $5, $6)
+     RETURNING id, title, pattern, flags, test_text, notes, created_at`,
+    [id, draft.title, draft.pattern, draft.flags, draft.testText, draft.notes],
+  )
+  return toSnapshot(result.rows[0])
+}
+
+export async function findSnapshot(id: string) {
+  const result = await getPool().query<SnapshotRow>(
+    `SELECT id, title, pattern, flags, test_text, notes, created_at
+     FROM regex_snapshots WHERE id = $1`,
+    [id],
+  )
+  return result.rows[0] ? toSnapshot(result.rows[0]) : null
+}
+
 export async function setDocumentPublished(id: string, userId: string, published: boolean) {
   const result = await getPool().query<DocumentRow>(
     `UPDATE regex_documents

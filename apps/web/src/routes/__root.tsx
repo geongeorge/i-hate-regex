@@ -1,13 +1,16 @@
 /// <reference types="vite/client" />
-import { HeadContent, Link, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Link, Scripts, createRootRoute, useRouterState } from '@tanstack/react-router'
 import { Books, BracketsCurly, List, Notebook, SignIn, SignOut, TerminalWindow, UsersThree, X } from '@phosphor-icons/react'
-import { type ReactNode, useState } from 'react'
+import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { ThemeToggle } from '~/components/ThemeToggle'
 import { authClient } from '~/lib/auth-client'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
 
 const themeScript = `(function(){try{var saved=localStorage.getItem('ihateregex:theme');var theme=saved||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=theme}catch(e){}})()`
+
+const gaId = 'G-FNM708P0PE'
+const gaInitScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${gaId}');`
 
 export const Route = createRootRoute({
   head: () => ({
@@ -17,12 +20,19 @@ export const Route = createRootRoute({
       ...seo({
         title: 'iHateRegex — Understand, test, and share regex',
         description: 'A modern regular expression playground with live matching, visual railroad diagrams, rich notes, and easy sharing.',
+        image: 'https://ihateregex.io/og/default.png',
       }),
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
       { rel: 'icon', href: '/favicon.ico' },
     ],
+    scripts: import.meta.env.PROD
+      ? [
+          { src: `https://www.googletagmanager.com/gtag/js?id=${gaId}`, async: true },
+          { children: gaInitScript },
+        ]
+      : [],
   }),
   shellComponent: RootDocument,
 })
@@ -78,11 +88,27 @@ function SiteHeader() {
 }
 
 function RootDocument({ children }: { children: ReactNode }) {
+  const isEmbed = useRouterState({ select: (state) => state.location.pathname.startsWith('/embed/') })
+  const pathname = useRouterState({ select: (state) => state.location.pathname })
+  const firstPageView = useRef(true)
+
+  useEffect(() => {
+    if (firstPageView.current) {
+      firstPageView.current = false
+      return
+    }
+    const gtag = (window as Window & { gtag?: (...args: Array<unknown>) => void }).gtag
+    gtag?.('event', 'page_view', {
+      page_path: pathname,
+      page_location: window.location.href,
+      page_title: document.title,
+    })
+  }, [pathname])
   return (
     <html lang="en" suppressHydrationWarning>
       <head><HeadContent /><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
       <body>
-        <SiteHeader />
+        {!isEmbed && <SiteHeader />}
         {children}
         <Scripts />
       </body>

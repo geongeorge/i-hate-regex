@@ -22,6 +22,7 @@ import { RegexDiagram } from './RegexDiagram'
 import { authClient } from '~/lib/auth-client'
 import {
   createRegexDocument,
+  createRegexSnapshot,
   publishRegexDocument,
   saveRegexDocument,
 } from '~/server/regexes'
@@ -45,6 +46,8 @@ type Props = {
   mode?: 'editable' | 'library' | 'public'
   initiallyPublic?: boolean
   ownerName?: string
+  sharePath?: string
+  embedPath?: string
 }
 
 export function RegexWorkbench({
@@ -54,6 +57,8 @@ export function RegexWorkbench({
   mode = 'editable',
   initiallyPublic = false,
   ownerName,
+  sharePath,
+  embedPath,
 }: Props) {
   const navigate = useNavigate()
   const { data: session, isPending: sessionPending } = authClient.useSession()
@@ -168,8 +173,32 @@ export function RegexWorkbench({
 
   async function copyPublicLink() {
     if (!documentId) return
-    await navigator.clipboard.writeText(`${window.location.origin}/community/${documentId}`)
+    await navigator.clipboard.writeText(`${window.location.origin}${sharePath ?? `/community/${documentId}`}`)
     setNotice('Public link copied')
+  }
+
+  const [sharing, setSharing] = useState(false)
+
+  async function shareSnapshot() {
+    if (regexError || sharing) return
+    setSharing(true)
+    setNotice(null)
+    try {
+      const snapshot = await createRegexSnapshot({
+        data: { ...draft, title: draft.title.trim() || 'Untitled regex' },
+      })
+      const url = `${window.location.origin}/s/${snapshot.id}`
+      try {
+        await navigator.clipboard.writeText(url)
+        setNotice('Share link copied — anyone can open it')
+      } catch {
+        setNotice(`Share link ready: ${url}`)
+      }
+    } catch (cause) {
+      setNotice(cause instanceof Error ? cause.message : 'Could not create a share link')
+    } finally {
+      setSharing(false)
+    }
   }
 
   const accessLabel = mode === 'library'
@@ -209,6 +238,9 @@ export function RegexWorkbench({
                 {isDirty ? <PencilLine size={14} /> : <Cloud size={14} />}
                 {notice ?? (isDirty ? 'Unsaved changes' : documentId ? 'Saved' : sessionPending ? 'Checking session' : session?.user ? 'Private draft' : 'Sign in to save')}
               </span>
+              <button className="button ghost-button" type="button" onClick={shareSnapshot} disabled={Boolean(regexError) || sharing} title="Copy a read-only link to this regex — no account needed">
+                <Copy size={16} /> {sharing ? 'Creating link…' : 'Share link'}
+              </button>
               {documentId && isPublic && (
                 <Link className="button ghost-button" to="/community/$id" params={{ id: documentId }}><Globe size={16} /> Public page</Link>
               )}
@@ -273,7 +305,7 @@ export function RegexWorkbench({
           </section>
 
           <MatchPreview pattern={draft.pattern} flags={draft.flags} text={draft.testText} onChange={(testText) => patchDraft({ testText })} error={regexError} readOnly={readOnly} />
-          <RegexDiagram pattern={draft.pattern} flags={draft.flags} error={regexError} />
+          <RegexDiagram pattern={draft.pattern} flags={draft.flags} error={regexError} embedPath={embedPath} />
         </div>
 
         <aside className="panel notes-panel">

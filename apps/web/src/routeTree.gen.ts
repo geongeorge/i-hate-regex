@@ -16,10 +16,13 @@ import { Route as CheatsheetRouteImport } from './routes/cheatsheet'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunityIndexRouteImport } from './routes/community.index'
+import { Route as SIdRouteImport } from './routes/s.$id'
 import { Route as RIdRouteImport } from './routes/r.$id'
 import { Route as LibraryIdRouteImport } from './routes/library.$id'
 import { Route as ExprIdRouteImport } from './routes/expr.$id'
+import { Route as DevOgRouteImport } from './routes/dev.og'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
+import { Route as EmbedKindIdRouteImport } from './routes/embed.$kind.$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const PlaygroundRoute = PlaygroundRouteImport.update({
@@ -57,6 +60,11 @@ const CommunityIndexRoute = CommunityIndexRouteImport.update({
   path: '/',
   getParentRoute: () => CommunityRoute,
 } as any)
+const SIdRoute = SIdRouteImport.update({
+  id: '/s/$id',
+  path: '/s/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RIdRoute = RIdRouteImport.update({
   id: '/r/$id',
   path: '/r/$id',
@@ -72,10 +80,20 @@ const ExprIdRoute = ExprIdRouteImport.update({
   path: '/expr/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DevOgRoute = DevOgRouteImport.update({
+  id: '/dev/og',
+  path: '/dev/og',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommunityIdRoute = CommunityIdRouteImport.update({
   id: '/$id',
   path: '/$id',
   getParentRoute: () => CommunityRoute,
+} as any)
+const EmbedKindIdRoute = EmbedKindIdRouteImport.update({
+  id: '/embed/$kind/$id',
+  path: '/embed/$kind/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
@@ -91,11 +109,14 @@ export interface FileRoutesByFullPath {
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
   '/community/$id': typeof CommunityIdRoute
+  '/dev/og': typeof DevOgRoute
   '/expr/$id': typeof ExprIdRoute
   '/library/$id': typeof LibraryIdRoute
   '/r/$id': typeof RIdRoute
+  '/s/$id': typeof SIdRoute
   '/community/': typeof CommunityIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/embed/$kind/$id': typeof EmbedKindIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -104,11 +125,14 @@ export interface FileRoutesByTo {
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
   '/community/$id': typeof CommunityIdRoute
+  '/dev/og': typeof DevOgRoute
   '/expr/$id': typeof ExprIdRoute
   '/library/$id': typeof LibraryIdRoute
   '/r/$id': typeof RIdRoute
+  '/s/$id': typeof SIdRoute
   '/community': typeof CommunityIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/embed/$kind/$id': typeof EmbedKindIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -119,11 +143,14 @@ export interface FileRoutesById {
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
   '/community/$id': typeof CommunityIdRoute
+  '/dev/og': typeof DevOgRoute
   '/expr/$id': typeof ExprIdRoute
   '/library/$id': typeof LibraryIdRoute
   '/r/$id': typeof RIdRoute
+  '/s/$id': typeof SIdRoute
   '/community/': typeof CommunityIndexRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/embed/$kind/$id': typeof EmbedKindIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -135,11 +162,14 @@ export interface FileRouteTypes {
     | '/me'
     | '/playground'
     | '/community/$id'
+    | '/dev/og'
     | '/expr/$id'
     | '/library/$id'
     | '/r/$id'
+    | '/s/$id'
     | '/community/'
     | '/api/auth/$'
+    | '/embed/$kind/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -148,11 +178,14 @@ export interface FileRouteTypes {
     | '/me'
     | '/playground'
     | '/community/$id'
+    | '/dev/og'
     | '/expr/$id'
     | '/library/$id'
     | '/r/$id'
+    | '/s/$id'
     | '/community'
     | '/api/auth/$'
+    | '/embed/$kind/$id'
   id:
     | '__root__'
     | '/'
@@ -162,11 +195,14 @@ export interface FileRouteTypes {
     | '/me'
     | '/playground'
     | '/community/$id'
+    | '/dev/og'
     | '/expr/$id'
     | '/library/$id'
     | '/r/$id'
+    | '/s/$id'
     | '/community/'
     | '/api/auth/$'
+    | '/embed/$kind/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -176,10 +212,13 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRouteWithChildren
   MeRoute: typeof MeRoute
   PlaygroundRoute: typeof PlaygroundRoute
+  DevOgRoute: typeof DevOgRoute
   ExprIdRoute: typeof ExprIdRoute
   LibraryIdRoute: typeof LibraryIdRoute
   RIdRoute: typeof RIdRoute
+  SIdRoute: typeof SIdRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  EmbedKindIdRoute: typeof EmbedKindIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -233,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommunityIndexRouteImport
       parentRoute: typeof CommunityRoute
     }
+    '/s/$id': {
+      id: '/s/$id'
+      path: '/s/$id'
+      fullPath: '/s/$id'
+      preLoaderRoute: typeof SIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/r/$id': {
       id: '/r/$id'
       path: '/r/$id'
@@ -254,12 +300,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExprIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dev/og': {
+      id: '/dev/og'
+      path: '/dev/og'
+      fullPath: '/dev/og'
+      preLoaderRoute: typeof DevOgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/community/$id': {
       id: '/community/$id'
       path: '/$id'
       fullPath: '/community/$id'
       preLoaderRoute: typeof CommunityIdRouteImport
       parentRoute: typeof CommunityRoute
+    }
+    '/embed/$kind/$id': {
+      id: '/embed/$kind/$id'
+      path: '/embed/$kind/$id'
+      fullPath: '/embed/$kind/$id'
+      preLoaderRoute: typeof EmbedKindIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/api/auth/$': {
       id: '/api/auth/$'
@@ -292,10 +352,13 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRouteWithChildren,
   MeRoute: MeRoute,
   PlaygroundRoute: PlaygroundRoute,
+  DevOgRoute: DevOgRoute,
   ExprIdRoute: ExprIdRoute,
   LibraryIdRoute: LibraryIdRoute,
   RIdRoute: RIdRoute,
+  SIdRoute: SIdRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
+  EmbedKindIdRoute: EmbedKindIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
