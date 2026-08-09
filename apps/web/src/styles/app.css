@@ -208,8 +208,17 @@ svg:not(.regex-diagram) { background-color: transparent; }
   .demo-live::before { animation: live-pulse 2.4s ease-in-out infinite; }
   @keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 }
+.demo-expression-row { position: relative; }
 .demo-expression { padding: 24px 24px 20px; overflow: auto; color: var(--terminal-text); font: 16px/1.5 var(--font-mono); white-space: nowrap; }
 .demo-slash { color: var(--terminal-muted); }
+.demo-tok { border-radius: 3px; cursor: help; transition: background-color 120ms ease; }
+.demo-tok.tok-hover { background: color-mix(in srgb, currentColor 24%, transparent); box-shadow: 0 0 0 2px color-mix(in srgb, currentColor 24%, transparent); }
+.demo-popover { top: calc(100% - 8px); }
+.demo-hint { color: var(--terminal-muted); }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-demo { animation: card-enter 480ms 120ms cubic-bezier(.2, .8, .3, 1) both; }
+  @keyframes card-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+}
 .demo-diagram { margin: 0 24px; padding: 14px 10px; overflow: auto; border-radius: 4px; background: #fbfaf6; }
 .hero-diagram { display: block; margin: 0 auto; }
 .demo-test { margin-top: 20px; padding: 16px 24px; border-block: 1px solid var(--terminal-line); display: grid; gap: 7px; color: var(--terminal-muted); font: 12px/1.5 var(--font-mono); }
