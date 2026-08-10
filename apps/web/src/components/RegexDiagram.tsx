@@ -291,12 +291,11 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
     const onWheel = (event: WheelEvent) => {
       event.preventDefault()
       const rect = stage.getBoundingClientRect()
-      if (event.ctrlKey || event.metaKey) {
-        const factor = Math.exp(-event.deltaY * (event.deltaMode === 1 ? 0.05 : 0.008))
-        zoomAtPoint(event.clientX - rect.left, event.clientY - rect.top, factor)
-      } else {
-        panBy(-event.deltaX, -event.deltaY)
-      }
+      // Scroll and pinch both zoom toward the cursor; panning is space-drag,
+      // middle-mouse, or touch only.
+      const coefficient = event.deltaMode === 1 ? 0.05 : event.ctrlKey || event.metaKey ? 0.008 : 0.002
+      const factor = Math.exp(-event.deltaY * coefficient)
+      zoomAtPoint(event.clientX - rect.left, event.clientY - rect.top, factor)
     }
     stage.addEventListener('wheel', onWheel, { passive: false })
 
