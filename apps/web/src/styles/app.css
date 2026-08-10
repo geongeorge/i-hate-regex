@@ -320,7 +320,7 @@ button.panel-action:disabled { opacity: .5; cursor: not-allowed; }
 .match-editor textarea { position: relative; z-index: 2; resize: vertical; outline: 0; background: transparent; color: var(--terminal-text); caret-color: var(--terminal-accent); }
 .match-mark { padding: 1px 0; border-radius: 1px; background: rgba(114,213,140,.32); color: transparent; box-shadow: inset 0 -1px var(--terminal-accent); transition: background-color 140ms ease, box-shadow 140ms ease; }
 .diagram-panel { min-height: 280px; }
-.diagram-scroll { min-height: 252px; padding: 18px; display: grid; place-items: center; overflow: auto; background-color: var(--surface-muted); background-image: radial-gradient(color-mix(in srgb, var(--line-strong) 55%, transparent) 1.1px, transparent 1.1px); background-size: 18px 18px; }
+.diagram-scroll { min-height: 252px; padding: 18px; display: grid; place-items: center; overflow: auto; background-color: var(--surface-muted); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 18px 18px; }
 .regex-diagram { max-width: none; animation: diagram-enter 220ms ease-out both; border-radius: 4px; }
 html[data-theme='dark'] .diagram-scroll {
   --rrd-canvas: #0c1117;
