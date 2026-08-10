@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { CircleNotch, Code, DownloadSimple, Graph } from '@phosphor-icons/react'
+import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
+import { ArrowsInSimple, CircleNotch, Code, DownloadSimple, Graph, Minus, Plus } from '@phosphor-icons/react'
 
 type Props = {
   pattern: string
@@ -8,12 +8,16 @@ type Props = {
   embedPath?: string
 }
 
+const minZoom = 0.25
+const maxZoom = 3
+const zoomStep = 1.25
+
 function serializeDiagram(svg: SVGSVGElement) {
-  const rect = svg.getBoundingClientRect()
-  const width = Math.max(1, Math.ceil(rect.width))
-  const height = Math.max(1, Math.ceil(rect.height))
+  const width = Math.max(1, Math.ceil(Number.parseFloat(svg.getAttribute('width') ?? '') || svg.getBoundingClientRect().width))
+  const height = Math.max(1, Math.ceil(Number.parseFloat(svg.getAttribute('height') ?? '') || svg.getBoundingClientRect().height))
 
   const clone = svg.cloneNode(true) as SVGSVGElement
+  clone.removeAttribute('style')
   clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
   clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
   clone.setAttribute('width', String(width))
@@ -38,9 +42,15 @@ function triggerDownload(url: string, filename: string) {
 
 export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const panState = useRef<{ pointerId: number; startX: number; startY: number; scrollLeft: number; scrollTop: number } | null>(null)
   const [renderError, setRenderError] = useState<string | null>(null)
   const [rendering, setRendering] = useState(false)
   const [exportNote, setExportNote] = useState<string | null>(null)
+  const [natural, setNatural] = useState<{ width: number; height: number } | null>(null)
+  const [zoom, setZoom] = useState<number | 'fit'>('fit')
+  const [containerWidth, setContainerWidth] = useState(0)
+  const [panning, setPanning] = useState(false)
 
   useEffect(() => {
     const svg = svgRef.current
@@ -57,11 +67,16 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
         )
         if (cancelled) return
         await renderRegexDiagram(svg, { pattern, flags })
+        if (cancelled) return
+        const width = Number.parseFloat(svg.getAttribute('width') ?? '')
+        const height = Number.parseFloat(svg.getAttribute('height') ?? '')
+        setNatural(Number.isFinite(width) && Number.isFinite(height) ? { width, height } : null)
       } catch (cause) {
         if (!cancelled) {
           setRenderError(
             cause instanceof Error ? cause.message : 'Could not draw this expression',
           )
+          setNatural(null)
         }
       } finally {
         if (!cancelled) setRendering(false)
@@ -75,10 +90,71 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
   }, [pattern, flags, error])
 
   useEffect(() => {
-    if (!exportNote) return
-    const timer = window.setTimeout(() => setExportNote(null), 2400)
-    return () => window.clearTimeout(timer)
-  }, [exportNote])
+    const scroller = scrollRef.current
+    if (!scroller) return
+    const observer = new ResizeObserver((entries) => {
+      setContainerWidth(entries[0]?.contentRect.width ?? 0)
+    })
+    observer.observe(scroller)
+    return () => observer.disconnect()
+  }, [])
+
+  const fitScale = natural && containerWidth
+    ? Math.min(1, (containerWidth - 36) / natural.width)
+    : 1
+  const effectiveZoom = zoom === 'fit' ? fitScale : zoom
+
+  useLayoutEffect(() => {
+    const svg = svgRef.current
+    if (!svg || !natural) return
+    svg.style.width = `${natural.width * effectiveZoom}px`
+    svg.style.height = `${natural.height * effectiveZoom}px`
+  }, [natural, effectiveZoom])
+
+  function zoomBy(factor: number) {
+    setZoom((current) => {
+      const base = current === 'fit' ? fitScale : current
+      return Math.min(maxZoom, Math.max(minZoom, base * factor))
+    })
+  }
+
+  function startPan(event: ReactPointerEvent<HTMLDivElement>) {
+    const scroller = scrollRef.current
+    if (!scroller || event.button !== 0) return
+    if ((event.target as HTMLElement).closest('.diagram-zoom')) return
+    const canPan = scroller.scrollWidth > scroller.clientWidth || scroller.scrollHeight > scroller.clientHeight
+    if (!canPan) return
+    panState.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      scrollLeft: scroller.scrollLeft,
+      scrollTop: scroller.scrollTop,
+    }
+    try {
+      scroller.setPointerCapture(event.pointerId)
+    } catch {
+      // synthetic or already-released pointers can't be captured; panning still works
+    }
+    setPanning(true)
+  }
+
+  function movePan(event: ReactPointerEvent<HTMLDivElement>) {
+    const scroller = scrollRef.current
+    const state = panState.current
+    if (!scroller || !state || state.pointerId !== event.pointerId) return
+    scroller.scrollLeft = state.scrollLeft - (event.clientX - state.startX)
+    scroller.scrollTop = state.scrollTop - (event.clientY - state.startY)
+  }
+
+  function endPan(event: ReactPointerEvent<HTMLDivElement>) {
+    const scroller = scrollRef.current
+    if (panState.current?.pointerId === event.pointerId) {
+      panState.current = null
+      scroller?.releasePointerCapture(event.pointerId)
+      setPanning(false)
+    }
+  }
 
   function downloadSvg() {
     const svg = svgRef.current
@@ -134,8 +210,15 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
     }
   }
 
+  useEffect(() => {
+    if (!exportNote) return
+    const timer = window.setTimeout(() => setExportNote(null), 2400)
+    return () => window.clearTimeout(timer)
+  }, [exportNote])
+
   const message = error ?? renderError
   const exportDisabled = Boolean(message) || rendering
+  const showZoom = !message && natural !== null
 
   return (
     <section className="panel diagram-panel" aria-labelledby="diagram-title">
@@ -163,20 +246,48 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
         </div>
       </div>
 
-      <div className="diagram-scroll">
-        {message ? (
-          <div className="diagram-empty">
-            <Graph size={28} />
-            <p>{message}</p>
-            <span>Fix the expression to restore the diagram.</span>
+      <div className="diagram-shell">
+        <div
+          ref={scrollRef}
+          className={`diagram-scroll ${panning ? 'panning' : ''} ${showZoom && effectiveZoom > fitScale ? 'pannable' : ''}`}
+          onPointerDown={startPan}
+          onPointerMove={movePan}
+          onPointerUp={endPan}
+          onPointerCancel={endPan}
+        >
+          {message ? (
+            <div className="diagram-empty">
+              <Graph size={28} />
+              <p>{message}</p>
+              <span>Fix the expression to restore the diagram.</span>
+            </div>
+          ) : (
+            <svg
+              ref={svgRef}
+              className="regex-diagram"
+              role="img"
+              aria-label="Railroad diagram of the regular expression"
+            />
+          )}
+        </div>
+
+        {showZoom && (
+          <div className="diagram-zoom" role="group" aria-label="Diagram zoom">
+            <button type="button" onClick={() => zoomBy(1 / zoomStep)} disabled={effectiveZoom <= minZoom} aria-label="Zoom out">
+              <Minus size={12} weight="bold" />
+            </button>
+            <button type="button" className="zoom-level" onClick={() => setZoom('fit')} title="Reset zoom">
+              {Math.round(effectiveZoom * 100)}%
+            </button>
+            <button type="button" onClick={() => zoomBy(zoomStep)} disabled={effectiveZoom >= maxZoom} aria-label="Zoom in">
+              <Plus size={12} weight="bold" />
+            </button>
+            {zoom !== 'fit' && (
+              <button type="button" onClick={() => setZoom('fit')} title="Fit to width" aria-label="Fit to width">
+                <ArrowsInSimple size={12} weight="bold" />
+              </button>
+            )}
           </div>
-        ) : (
-          <svg
-            ref={svgRef}
-            className="regex-diagram"
-            role="img"
-            aria-label="Railroad diagram of the regular expression"
-          />
         )}
       </div>
     </section>

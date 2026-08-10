@@ -31,6 +31,25 @@ function scopeRendererStyles(target: SVGSVGElement) {
   }
 }
 
+function appendThemeStyles(target: SVGSVGElement) {
+  const scope = `svg.${rendererScopeClass}`
+  const style = document.createElementNS('http://www.w3.org/2000/svg', 'style')
+  style.textContent = `
+    ${scope} { background-color: var(--rrd-canvas, #ffffff); }
+    ${scope} .root text, ${scope} .root tspan { fill: var(--rrd-ink, #000000); }
+    ${scope} .root path { stroke: var(--rrd-rail, #000000); }
+    ${scope} .root circle { fill: var(--rrd-endpoint, #6b6659); stroke: var(--rrd-rail, #000000); }
+    ${scope} .anchor rect, ${scope} .any-character rect { fill: var(--rrd-anchor-box, #6b6659); }
+    ${scope} .anchor text, ${scope} .any-character text { fill: var(--rrd-anchor-ink, #ffffff); }
+    ${scope} .escape rect, ${scope} .charset-escape rect { fill: var(--rrd-escape-box, #bada55); }
+    ${scope} .literal rect { fill: var(--rrd-literal-box, #dae9e5); }
+    ${scope} .charset .charset-box { fill: var(--rrd-charset-box, #cbcbba); }
+    ${scope} .subexp .subexp-box { stroke: var(--rrd-subexp-line, #bfbfbf); }
+    ${scope} .quote { fill: var(--rrd-quote, #8c8c8c); }
+  `
+  target.appendChild(style)
+}
+
 export async function renderRegexDiagram(
   target: SVGSVGElement,
   { pattern, flags = '' }: RegexDiagramOptions,
@@ -38,6 +57,13 @@ export async function renderRegexDiagram(
   target.replaceChildren()
   await render(new RegExp(pattern, flags), target)
   scopeRendererStyles(target)
+  appendThemeStyles(target)
+
+  const width = Number.parseFloat(target.getAttribute('width') ?? '')
+  const height = Number.parseFloat(target.getAttribute('height') ?? '')
+  if (Number.isFinite(width) && Number.isFinite(height) && !target.getAttribute('viewBox')) {
+    target.setAttribute('viewBox', `0 0 ${width} ${height}`)
+  }
 }
 
 export class RegexDiagramElement extends HTMLElement {

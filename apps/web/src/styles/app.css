@@ -316,8 +316,28 @@ button.panel-action:disabled { opacity: .5; cursor: not-allowed; }
 .match-mark { padding: 1px 0; border-radius: 1px; background: rgba(114,213,140,.32); color: transparent; box-shadow: inset 0 -1px var(--terminal-accent); transition: background-color 140ms ease, box-shadow 140ms ease; }
 .diagram-panel { min-height: 280px; }
 .diagram-scroll { min-height: 252px; padding: 18px; display: grid; place-items: center; overflow: auto; background-color: var(--surface-muted); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 20px 20px; }
-.regex-diagram { max-width: none; height: auto; animation: diagram-enter 220ms ease-out both; }
-html[data-theme='dark'] .regex-diagram { filter: invert(.88) hue-rotate(180deg); }
+.regex-diagram { max-width: none; animation: diagram-enter 220ms ease-out both; border-radius: 4px; }
+html[data-theme='dark'] .diagram-scroll {
+  --rrd-canvas: #0c1117;
+  --rrd-ink: #e6edf3;
+  --rrd-rail: #9fb0c0;
+  --rrd-endpoint: #f47b7b;
+  --rrd-anchor-box: #f47b7b;
+  --rrd-anchor-ink: #23110f;
+  --rrd-escape-box: #2e5138;
+  --rrd-literal-box: #21405b;
+  --rrd-charset-box: #4a3c20;
+  --rrd-subexp-line: #45515e;
+  --rrd-quote: #93a0ae;
+}
+.diagram-shell { position: relative; }
+.diagram-zoom { position: absolute; right: 13px; bottom: 13px; z-index: 3; display: inline-flex; gap: 5px; padding: 4px; border: 1px solid var(--line); border-radius: 4px; background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(8px); }
+.diagram-zoom button { min-width: 26px; height: 24px; padding: 0 7px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 3px; background: transparent; color: var(--muted); font: 10px ui-monospace, monospace; cursor: pointer; }
+.diagram-zoom button:hover:not(:disabled) { background: var(--surface-muted); color: var(--ink); }
+.diagram-zoom button:disabled { opacity: .4; cursor: not-allowed; }
+.diagram-zoom .zoom-level { min-width: 44px; }
+.diagram-scroll.panning { cursor: grabbing; }
+.diagram-scroll.pannable { cursor: grab; }
 .diagram-empty { min-height: 210px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--faint); text-align: center; }
 .diagram-empty p { max-width: 650px; margin: 12px 0 3px; color: var(--ink); font: 600 11px/1.5 ui-monospace, monospace; }
 .diagram-empty span { font-size: 10px; }
