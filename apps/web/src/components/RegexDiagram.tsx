@@ -227,7 +227,15 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
     const stage = stageRef.current
     const { tx, ty, scale } = viewRef.current
     if (svg) svg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`
-    if (stage) stage.style.backgroundPosition = `${tx}px ${ty}px`
+    if (stage) {
+      // The dot grid lives in world space: it translates with pan and its
+      // spacing scales with zoom, doubling/halving so density stays readable.
+      let spacing = 18 * scale
+      while (spacing < 12) spacing *= 2
+      while (spacing > 36) spacing /= 2
+      stage.style.backgroundSize = `${spacing}px ${spacing}px`
+      stage.style.backgroundPosition = `${tx}px ${ty}px`
+    }
     setZoomPct(Math.round(scale * 100))
     setFitMode(modeRef.current === 'fit')
   }
