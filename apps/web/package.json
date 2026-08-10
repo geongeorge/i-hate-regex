@@ -13,6 +13,7 @@
     "start": "node --env-file-if-exists=.env.local scripts/migrate.mjs && node .output/server/index.mjs"
   },
   "dependencies": {
+    "@ihateregex/railviz": "workspace:*",
     "@ihateregex/regex-railroad-diagram": "workspace:*",
     "@phosphor-icons/react": "^2.1.10",
     "@tanstack/react-router": "^1.170.18",

@@ -15,6 +15,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@ihateregex/railviz':
+        specifier: workspace:*
+        version: link:../../packages/regex-railviz
       '@ihateregex/regex-railroad-diagram':
         specifier: workspace:*
         version: link:../../packages/regex-railroad-diagram
@@ -82,6 +85,15 @@ importers:
       '@regexper/render':
         specifier: ^1.0.0
         version: 1.0.0(patch_hash=144c6b5bcaff9a9a61d58a254474d0e12b70c8443ebbe4e8d30044613889d924)
+    devDependencies:
+      typescript:
+        specifier: ^6.0.2
+        version: 6.0.3
+      vite:
+        specifier: ^8.0.14
+        version: 8.1.5(@types/node@22.20.1)(jiti@2.7.0)
+
+  packages/regex-railviz:
     devDependencies:
       typescript:
         specifier: ^6.0.2

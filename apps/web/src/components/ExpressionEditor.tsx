@@ -14,9 +14,11 @@ type Props = {
   invalid: boolean
   readOnly?: boolean
   onChange: (pattern: string) => void
+  externalRange?: { start: number; end: number } | null
+  onTokenHover?: (range: { start: number; end: number } | null) => void
 }
 
-export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, onChange }: Props) {
+export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, onChange, externalRange, onTokenHover }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
   const [hover, setHover] = useState<HoverState | null>(null)
@@ -34,6 +36,11 @@ export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, 
     if (!overlay) return
     overlay.scrollTop = event.currentTarget.scrollTop
     overlay.scrollLeft = event.currentTarget.scrollLeft
+  }
+
+  function handleMouseLeave() {
+    setHover(null)
+    onTokenHover?.(null)
   }
 
   function handleMouseMove(event: MouseEvent<HTMLTextAreaElement>) {
@@ -59,11 +66,14 @@ export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, 
               ? current
               : { tokenIndex, left, top },
           )
+          const token = tokens[tokenIndex]
+          if (token) onTokenHover?.({ start: token.start, end: token.end })
           return
         }
       }
     }
     setHover(null)
+    onTokenHover?.(null)
   }
 
   const hoveredToken: RegexToken | null = hover && tokens ? (tokens[hover.tokenIndex] ?? null) : null
@@ -75,7 +85,12 @@ export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, 
           <span
             key={`${token.start}-${tokenIndex}`}
             data-token={tokenIndex}
-            className={`tok-${token.type} ${hover?.tokenIndex === tokenIndex ? 'tok-hover' : ''}`}
+            className={`tok-${token.type} ${
+              hover?.tokenIndex === tokenIndex ||
+              (externalRange && token.start < externalRange.end && token.end > externalRange.start)
+                ? 'tok-hover'
+                : ''
+            }`}
           >
             {token.text}
           </span>
@@ -91,7 +106,7 @@ export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, 
         }}
         onScroll={syncScroll}
         onMouseMove={handleMouseMove}
-        onMouseLeave={() => setHover(null)}
+        onMouseLeave={handleMouseLeave}
         aria-invalid={invalid}
         spellCheck={false}
         rows={2}

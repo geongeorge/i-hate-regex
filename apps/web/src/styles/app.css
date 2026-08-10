@@ -329,7 +329,9 @@ html[data-theme='dark'] .diagram-scroll {
   --rrd-charset-box: #4a3c20;
   --rrd-subexp-line: #45515e;
   --rrd-quote: #93a0ae;
+  --rrd-hot: #f47b7b;
 }
+button.panel-action.panel-action-active { border-color: var(--accent); color: var(--accent); }
 .diagram-shell { position: relative; }
 .diagram-zoom { position: absolute; right: 13px; bottom: 13px; z-index: 3; display: inline-flex; gap: 5px; padding: 4px; border: 1px solid var(--line); border-radius: 4px; background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(8px); }
 .diagram-zoom button { min-width: 26px; height: 24px; padding: 0 7px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: 3px; background: transparent; color: var(--muted); font: 10px ui-monospace, monospace; cursor: pointer; }

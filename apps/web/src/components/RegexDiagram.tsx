@@ -1,12 +1,19 @@
-import { useEffect, useLayoutEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react'
-import { ArrowsInSimple, CircleNotch, Code, DownloadSimple, Graph, Minus, Plus } from '@phosphor-icons/react'
+import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react'
+import { ArrowsInSimple, CircleNotch, Code, DownloadSimple, Graph, Lightning, Minus, Plus } from '@phosphor-icons/react'
+
+export type SourceRange = { start: number; end: number }
 
 type Props = {
   pattern: string
   flags: string
   error: string | null
   embedPath?: string
+  hoverRange?: SourceRange | null
+  onNodeHover?: (range: SourceRange | null) => void
 }
+
+type Engine = 'classic' | 'interactive'
+const engineStorageKey = 'ihateregex:diagram-engine'
 
 const minZoom = 0.25
 const maxZoom = 3
@@ -40,7 +47,7 @@ function triggerDownload(url: string, filename: string) {
   anchor.click()
 }
 
-export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
+export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onNodeHover }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const panState = useRef<{ pointerId: number; startX: number; startY: number; scrollLeft: number; scrollTop: number } | null>(null)
@@ -51,6 +58,16 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
   const [zoom, setZoom] = useState<number | 'fit'>('fit')
   const [containerWidth, setContainerWidth] = useState(0)
   const [panning, setPanning] = useState(false)
+  const [engine, setEngine] = useState<Engine>('classic')
+
+  useEffect(() => {
+    if (window.localStorage.getItem(engineStorageKey) === 'interactive') setEngine('interactive')
+  }, [])
+
+  function switchEngine(next: Engine) {
+    setEngine(next)
+    window.localStorage.setItem(engineStorageKey, next)
+  }
 
   useEffect(() => {
     const svg = svgRef.current
@@ -61,12 +78,19 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
       try {
         setRendering(true)
         setRenderError(null)
+        svg.classList.remove('rrv-root', 'regex-diagram-renderer')
         svg.replaceChildren()
-        const { renderRegexDiagram } = await import(
-          '@ihateregex/regex-railroad-diagram'
-        )
-        if (cancelled) return
-        await renderRegexDiagram(svg, { pattern, flags })
+        if (engine === 'interactive') {
+          const { renderRailviz } = await import('@ihateregex/railviz')
+          if (cancelled) return
+          renderRailviz(svg, { pattern, flags })
+        } else {
+          const { renderRegexDiagram } = await import(
+            '@ihateregex/regex-railroad-diagram'
+          )
+          if (cancelled) return
+          await renderRegexDiagram(svg, { pattern, flags })
+        }
         if (cancelled) return
         const width = Number.parseFloat(svg.getAttribute('width') ?? '')
         const height = Number.parseFloat(svg.getAttribute('height') ?? '')
@@ -87,7 +111,35 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
       cancelled = true
       window.clearTimeout(timer)
     }
-  }, [pattern, flags, error])
+  }, [pattern, flags, error, engine])
+
+  useEffect(() => {
+    const svg = svgRef.current
+    if (!svg || engine !== 'interactive' || rendering) return
+    let cancelled = false
+    import('@ihateregex/railviz').then(({ highlightRange }) => {
+      if (!cancelled && svgRef.current) highlightRange(svgRef.current, hoverRange ?? null)
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [hoverRange, engine, rendering])
+
+  async function handleDiagramHover(event: ReactMouseEvent) {
+    if (engine !== 'interactive') return
+    const { rangeFromElement, highlightRange } = await import('@ihateregex/railviz')
+    const range = rangeFromElement(event.target as Element)
+    if (svgRef.current) highlightRange(svgRef.current, range)
+    onNodeHover?.(range)
+  }
+
+  function handleDiagramLeave() {
+    if (engine !== 'interactive') return
+    import('@ihateregex/railviz').then(({ highlightRange }) => {
+      if (svgRef.current) highlightRange(svgRef.current, null)
+    })
+    onNodeHover?.(null)
+  }
 
   useEffect(() => {
     const scroller = scrollRef.current
@@ -228,6 +280,14 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
           <h2 id="diagram-title">Railroad diagram</h2>
         </div>
         <div className="panel-tools">
+          <button
+            className={`panel-action ${engine === 'interactive' ? 'panel-action-active' : ''}`}
+            type="button"
+            onClick={() => switchEngine(engine === 'interactive' ? 'classic' : 'interactive')}
+            title={engine === 'interactive' ? 'Interactive engine on — hover the diagram or the expression to cross-highlight. Click to switch back.' : 'Try the new interactive engine (beta): hover any diagram node to highlight it in the expression, and vice versa'}
+          >
+            <Lightning size={13} weight={engine === 'interactive' ? 'fill' : 'regular'} /> Interactive
+          </button>
           <button className="panel-action" type="button" onClick={downloadSvg} disabled={exportDisabled} title="Download the diagram as an SVG file">
             <DownloadSimple size={13} /> SVG
           </button>
@@ -267,6 +327,8 @@ export function RegexDiagram({ pattern, flags, error, embedPath }: Props) {
               className="regex-diagram"
               role="img"
               aria-label="Railroad diagram of the regular expression"
+              onMouseOver={handleDiagramHover}
+              onMouseLeave={handleDiagramLeave}
             />
           )}
         </div>

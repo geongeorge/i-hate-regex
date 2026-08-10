@@ -69,6 +69,8 @@ export function RegexWorkbench({
   const [isPublic, setIsPublic] = useState(initiallyPublic)
   const [notice, setNotice] = useState<string | null>(null)
   const [notesMode, setNotesMode] = useState<'write' | 'preview'>('write')
+  const [exprHover, setExprHover] = useState<{ start: number; end: number } | null>(null)
+  const [diagramHover, setDiagramHover] = useState<{ start: number; end: number } | null>(null)
   const readOnly = mode !== 'editable'
 
   useEffect(() => {
@@ -282,6 +284,8 @@ export function RegexWorkbench({
                 invalid={Boolean(regexError)}
                 readOnly={readOnly}
                 onChange={(pattern) => patchDraft({ pattern })}
+                externalRange={diagramHover}
+                onTokenHover={setExprHover}
               />
               <span className="regex-slash">/</span>
               <span className="inline-flags">{draft.flags}</span>
@@ -305,7 +309,7 @@ export function RegexWorkbench({
           </section>
 
           <MatchPreview pattern={draft.pattern} flags={draft.flags} text={draft.testText} onChange={(testText) => patchDraft({ testText })} error={regexError} readOnly={readOnly} />
-          <RegexDiagram pattern={draft.pattern} flags={draft.flags} error={regexError} embedPath={embedPath} />
+          <RegexDiagram pattern={draft.pattern} flags={draft.flags} error={regexError} embedPath={embedPath} hoverRange={exprHover} onNodeHover={setDiagramHover} />
         </div>
 
         <aside className="panel notes-panel">

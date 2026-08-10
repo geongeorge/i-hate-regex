@@ -1,0 +1,28 @@
+{
+  "name": "@ihateregex/railviz",
+  "version": "0.1.0",
+  "description": "Interactive railroad diagram renderer with source-position mapping.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "check": "tsc --noEmit"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^6.0.2",
+    "vite": "^8.0.14"
+  }
+}

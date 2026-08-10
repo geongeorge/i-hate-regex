@@ -6,9 +6,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "pnpm --filter @ihateregex/regex-railroad-diagram build && pnpm --filter @ihateregex/web dev",
-    "build": "pnpm --filter @ihateregex/regex-railroad-diagram build && pnpm --filter @ihateregex/web build",
-    "check": "pnpm --filter @ihateregex/regex-railroad-diagram build && pnpm -r check",
+    "dev": "pnpm --filter @ihateregex/regex-railroad-diagram build && pnpm --filter @ihateregex/railviz build && pnpm --filter @ihateregex/web dev",
+    "build": "pnpm --filter @ihateregex/regex-railroad-diagram build && pnpm --filter @ihateregex/railviz build && pnpm --filter @ihateregex/web build",
+    "check": "pnpm --filter @ihateregex/regex-railroad-diagram build && pnpm --filter @ihateregex/railviz build && pnpm -r check",
     "db:migrate": "pnpm --filter @ihateregex/web db:migrate",
     "diagram:dev": "pnpm --filter @ihateregex/regex-railroad-diagram dev",
     "preview": "pnpm --filter @ihateregex/web preview",
