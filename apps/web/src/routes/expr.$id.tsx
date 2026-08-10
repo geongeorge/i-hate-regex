@@ -24,6 +24,7 @@ export const Route = createFileRoute('/expr/$id')({
           title: `${loaderData.draft.title} regex — iHateRegex`,
           description: loaderData.description,
           image: `${siteUrl}/og/${loaderData.id}.png`,
+          imageAlt: `Railroad diagram for the ${loaderData.title} regex`,
           path: `/expr/${loaderData.id}`,
         })
       : [{ title: 'Regex — iHateRegex' }],

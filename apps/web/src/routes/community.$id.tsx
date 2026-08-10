@@ -1,6 +1,7 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
 import { RegexWorkbench } from '~/components/RegexWorkbench'
 import { getPublicRegexDocument } from '~/server/regexes'
+import { canonicalLink, seo } from '~/utils/seo'
 
 export const Route = createFileRoute('/community/$id')({
   loader: async ({ params }) => {
@@ -9,8 +10,14 @@ export const Route = createFileRoute('/community/$id')({
     return document
   },
   head: ({ loaderData }) => ({
-    meta: [{ title: loaderData ? `${loaderData.title} by ${loaderData.ownerName ?? 'community'} — iHateRegex` : 'Community regex — iHateRegex' }],
-    links: loaderData ? [{ rel: 'canonical', href: `https://ihateregex.io/community/${loaderData.id}` }] : [],
+    meta: loaderData
+      ? seo({
+          title: `${loaderData.title} by ${loaderData.ownerName ?? 'community'} — iHateRegex`,
+          description: `/${loaderData.pattern}/${loaderData.flags} — a community regex with a railroad diagram, live matching, and notes.`,
+          path: `/community/${loaderData.id}`,
+        })
+      : [{ title: 'Community regex — iHateRegex' }],
+    links: loaderData ? [canonicalLink(`/community/${loaderData.id}`)] : [],
   }),
   component: PublicRegex,
 })

@@ -1,12 +1,17 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight, Globe, Sparkle } from '@phosphor-icons/react'
 import { listCommunityRegexDocuments } from '~/server/regexes'
+import { canonicalLink, seo } from '~/utils/seo'
 
 export const Route = createFileRoute('/community/')({
   loader: () => listCommunityRegexDocuments(),
   head: () => ({
-    meta: [{ title: 'Community regexes — iHateRegex' }],
-    links: [{ rel: 'canonical', href: 'https://ihateregex.io/community' }],
+    meta: seo({
+      title: 'Community regexes — iHateRegex',
+      description: 'Regular expressions published by the community, each with a railroad diagram, live matching, and notes.',
+      path: '/community',
+    }),
+    links: [canonicalLink('/community')],
   }),
   component: Community,
 })
