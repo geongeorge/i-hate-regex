@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { createFileRoute, notFound } from '@tanstack/react-router'
 import { getCatalogDraft } from '~/data/catalog'
 import { tokenizeRegex } from '~/lib/regex-explain'
@@ -47,6 +47,7 @@ export const Route = createFileRoute('/embed/$kind/$id')({
 function EmbedPage() {
   const { title, pattern, flags, canonicalPath } = Route.useLoaderData()
   const svgRef = useRef<SVGSVGElement>(null)
+  const [hotRange, setHotRange] = useState<{ start: number; end: number } | null>(null)
   const tokens = useMemo(() => {
     try {
       return tokenizeRegex(pattern, flags)
@@ -54,6 +55,25 @@ function EmbedPage() {
       return null
     }
   }, [pattern, flags])
+
+  function applyDiagramHighlight(range: { start: number; end: number } | null) {
+    import('@ihateregex/railviz').then(({ highlightRange }) => {
+      if (svgRef.current) highlightRange(svgRef.current, range)
+    })
+  }
+
+  function handleTokenHover(range: { start: number; end: number } | null) {
+    setHotRange(range)
+    applyDiagramHighlight(range)
+  }
+
+  function handleDiagramHover(event: React.MouseEvent) {
+    import('@ihateregex/railviz').then(({ rangeFromElement, highlightRange }) => {
+      const range = rangeFromElement(event.target as Element)
+      setHotRange(range)
+      if (svgRef.current) highlightRange(svgRef.current, range)
+    })
+  }
 
   useEffect(() => {
     const svg = svgRef.current
@@ -72,16 +92,30 @@ function EmbedPage() {
 
   return (
     <div className="embed-page">
-      <div className="embed-pattern">
+      <div className="embed-pattern" onMouseLeave={() => handleTokenHover(null)}>
         <span className="demo-slash">/</span>
         {tokens?.map((token, index) => (
-          <span key={index} className={`tok-${token.type}`}>{token.text}</span>
+          <span
+            key={index}
+            className={`tok-${token.type} demo-tok ${
+              hotRange && token.start < hotRange.end && token.end > hotRange.start ? 'tok-hover' : ''
+            }`}
+            onMouseEnter={() => handleTokenHover({ start: token.start, end: token.end })}
+          >
+            {token.text}
+          </span>
         )) ?? pattern}
         <span className="demo-slash">/</span>
         <span className="tok-meta">{flags}</span>
       </div>
       <div className="embed-diagram">
-        <svg ref={svgRef} role="img" aria-label={`Railroad diagram of the ${title} regular expression`} />
+        <svg
+          ref={svgRef}
+          role="img"
+          aria-label={`Railroad diagram of the ${title} regular expression`}
+          onMouseOver={handleDiagramHover}
+          onMouseLeave={() => { setHotRange(null); applyDiagramHighlight(null) }}
+        />
       </div>
       <a className="embed-credit" href={`https://ihateregex.io${canonicalPath}`} target="_blank" rel="noreferrer">
         {title} · made with iHateRegex

@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState, type MouseEvent, type UIEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type MouseEvent, type UIEvent } from 'react'
 import { tokenizeRegex, type RegexToken } from '~/lib/regex-explain'
 
 type HoverState = {
@@ -16,12 +16,21 @@ type Props = {
   onChange: (pattern: string) => void
   externalRange?: { start: number; end: number } | null
   onTokenHover?: (range: { start: number; end: number } | null) => void
+  selectionRequest?: { start: number; end: number; at: number } | null
 }
 
-export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, onChange, externalRange, onTokenHover }: Props) {
+export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, onChange, externalRange, onTokenHover, selectionRequest }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const overlayRef = useRef<HTMLDivElement>(null)
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
   const [hover, setHover] = useState<HoverState | null>(null)
+
+  useEffect(() => {
+    const textarea = textareaRef.current
+    if (!textarea || !selectionRequest) return
+    textarea.focus({ preventScroll: true })
+    textarea.setSelectionRange(selectionRequest.start, selectionRequest.end)
+  }, [selectionRequest])
 
   const tokens = useMemo(() => {
     try {
@@ -98,6 +107,7 @@ export function ExpressionEditor({ id, value, flags, invalid, readOnly = false, 
       </div>
 
       <textarea
+        ref={textareaRef}
         id={id}
         value={value}
         onChange={(event) => {

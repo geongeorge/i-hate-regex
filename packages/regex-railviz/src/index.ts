@@ -6,16 +6,20 @@ export type { AstNode, ClassMember, Span } from './parse'
 export type RailvizOptions = {
   pattern: string
   flags?: string
+  /** Source offsets of group openings to render collapsed. */
+  collapsed?: Iterable<number>
 }
 
 /**
  * Renders an interactive railroad diagram into the given SVG element.
  * Every node carries data-start / data-end attributes mapping it back to
- * the source pattern, enabling two-way highlighting.
+ * the source pattern, enabling two-way highlighting. Group nodes include a
+ * collapse affordance (.rrv-collapse / .rrv-group-collapsed with a
+ * data-group attribute) — re-render with the toggled `collapsed` set.
  */
-export function renderRailviz(target: SVGSVGElement, { pattern, flags = '' }: RailvizOptions) {
+export function renderRailviz(target: SVGSVGElement, { pattern, flags = '', collapsed }: RailvizOptions) {
   const ast = parseRegex(pattern, flags)
-  renderRailroad(target, pattern, flags, ast)
+  renderRailroad(target, pattern, flags, ast, { collapsed: new Set(collapsed ?? []) })
 }
 
 /**

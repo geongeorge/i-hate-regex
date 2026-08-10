@@ -17,6 +17,12 @@ type Laid = {
   ay: number
 }
 
+export type RenderOptions = {
+  collapsed?: ReadonlySet<number>
+}
+
+let currentCollapsed: ReadonlySet<number> = new Set()
+
 function svgEl<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number> = {}) {
   const el = document.createElementNS(SVG_NS, tag)
   for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, String(value))
@@ -239,6 +245,13 @@ const groupTitles: Record<string, (node: Extract<AstNode, { type: 'group' }>) =>
 }
 
 function layoutGroup(node: Extract<AstNode, { type: 'group' }>): Laid {
+  if (node.kind !== 'noncapture' && currentCollapsed.has(node.start)) {
+    const title = groupTitles[node.kind](node)
+    const laid = terminalBox(node, `${title} ⋯`, 'rrv-group rrv-group-collapsed')
+    laid.el.setAttribute('data-group', String(node.start))
+    return laid
+  }
+
   const child = layoutNode(node.body)
   if (node.kind === 'noncapture') {
     // Non-capturing groups are pure syntax; render the body directly but keep the span.
@@ -258,6 +271,18 @@ function layoutGroup(node: Extract<AstNode, { type: 'group' }>): Laid {
   const heading = svgEl('text', { x: 10, y: LABEL_H / 2, class: 'rrv-group-label', 'dominant-baseline': 'central' })
   heading.textContent = title
   g.appendChild(heading)
+
+  const collapser = svgEl('text', {
+    x: 10 + textWidth(title) + 8,
+    y: LABEL_H / 2,
+    class: 'rrv-collapse',
+    'dominant-baseline': 'central',
+    'data-group': node.start,
+    role: 'button',
+    'aria-label': `Collapse ${title}`,
+  })
+  collapser.textContent = '▾'
+  g.appendChild(collapser)
 
   const childX = (width - child.width) / 2
   child.el.setAttribute('transform', `translate(${childX}, ${LABEL_H + pad})`)
@@ -294,6 +319,10 @@ const styles = `
   svg.rrv-root .rrv-class-label, svg.rrv-root .rrv-repeat-label, svg.rrv-root .rrv-group-label { font-size: 10px; fill: var(--rrd-ink, #111111); opacity: .75; }
   svg.rrv-root .rrv-group > .rrv-outline { fill: none; stroke: var(--rrd-subexp-line, #bfbfbf); stroke-width: 2; stroke-dasharray: 6 3; }
   svg.rrv-root .rrv-group-label { paint-order: stroke; stroke: var(--rrd-canvas, #ffffff); stroke-width: 8; }
+  svg.rrv-root .rrv-collapse { cursor: pointer; font-size: 11px; fill: var(--rrd-ink, #111111); opacity: .55; }
+  svg.rrv-root .rrv-collapse:hover { opacity: 1; }
+  svg.rrv-root .rrv-group-collapsed > .rrv-shape { fill: none; stroke: var(--rrd-subexp-line, #bfbfbf); stroke-width: 2; stroke-dasharray: 6 3; }
+  svg.rrv-root .rrv-group-collapsed > text { opacity: .8; }
   svg.rrv-root .rrv-hot > .rrv-shape,
   svg.rrv-root .rrv-hot > .rrv-container,
   svg.rrv-root .rrv-hot > .rrv-outline { stroke: var(--rrd-hot, #e53e3e); stroke-width: 2.5; stroke-dasharray: none; }
@@ -301,7 +330,14 @@ const styles = `
   svg.rrv-root [data-start] { cursor: pointer; }
 `
 
-export function renderRailroad(target: SVGSVGElement, pattern: string, flags: string, ast: AstNode) {
+export function renderRailroad(
+  target: SVGSVGElement,
+  pattern: string,
+  flags: string,
+  ast: AstNode,
+  options: RenderOptions = {},
+) {
+  currentCollapsed = options.collapsed ?? new Set()
   target.replaceChildren()
   target.setAttribute('class', `${target.getAttribute('class') ?? ''} rrv-root`.trim())
 

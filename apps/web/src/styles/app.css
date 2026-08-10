@@ -340,6 +340,7 @@ button.panel-action.panel-action-active { border-color: var(--accent); color: va
 .diagram-zoom .zoom-level { min-width: 44px; }
 .diagram-scroll.panning { cursor: grabbing; }
 .diagram-scroll.pannable { cursor: grab; }
+.diagram-popover { position: absolute; z-index: 5; }
 
 .pattern-extras { max-width: 1560px; margin: 0 auto; padding: 8px 21px 64px; }
 .extras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }

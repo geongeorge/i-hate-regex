@@ -1,5 +1,6 @@
-import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react'
-import { ArrowsInSimple, CircleNotch, Code, DownloadSimple, Graph, Lightning, Minus, Plus } from '@phosphor-icons/react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react'
+import { ArrowsInSimple, CircleNotch, Code, CopySimple, DownloadSimple, Graph, Lightning, Minus, Plus } from '@phosphor-icons/react'
+import { tokenizeRegex, type RegexToken } from '~/lib/regex-explain'
 
 export type SourceRange = { start: number; end: number }
 
@@ -10,16 +11,34 @@ type Props = {
   embedPath?: string
   hoverRange?: SourceRange | null
   onNodeHover?: (range: SourceRange | null) => void
+  onNodeSelect?: (range: SourceRange) => void
 }
 
 type Engine = 'classic' | 'interactive'
 const engineStorageKey = 'ihateregex:diagram-engine'
 
+/** Picks the most descriptive token for a diagram node's source range. */
+function explainRange(tokens: Array<RegexToken>, range: SourceRange, nodeClass: string): RegexToken | null {
+  const inside = tokens.filter((token) => token.start >= range.start && token.end <= range.end)
+  if (!inside.length) return null
+  const exact = inside.find((token) => token.start === range.start && token.end === range.end)
+  if (exact) return exact
+  if (nodeClass.includes('rrv-repeat')) {
+    return inside.find((token) => token.end === range.end && token.type === 'quantifier') ?? inside[0]
+  }
+  return inside.find((token) => token.start === range.start) ?? inside[0]
+}
+
 const minZoom = 0.25
 const maxZoom = 3
 const zoomStep = 1.25
 
-function serializeDiagram(svg: SVGSVGElement) {
+const themeVarNames = [
+  '--rrd-canvas', '--rrd-ink', '--rrd-rail', '--rrd-endpoint', '--rrd-anchor-box', '--rrd-anchor-ink',
+  '--rrd-escape-box', '--rrd-literal-box', '--rrd-charset-box', '--rrd-subexp-line', '--rrd-quote', '--rrd-hot',
+]
+
+function serializeDiagram(svg: SVGSVGElement, transparent = false) {
   const width = Math.max(1, Math.ceil(Number.parseFloat(svg.getAttribute('width') ?? '') || svg.getBoundingClientRect().width))
   const height = Math.max(1, Math.ceil(Number.parseFloat(svg.getAttribute('height') ?? '') || svg.getBoundingClientRect().height))
 
@@ -30,11 +49,28 @@ function serializeDiagram(svg: SVGSVGElement) {
   clone.setAttribute('width', String(width))
   clone.setAttribute('height', String(height))
 
-  const background = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
-  background.setAttribute('width', '100%')
-  background.setAttribute('height', '100%')
-  background.setAttribute('fill', '#ffffff')
-  clone.insertBefore(background, clone.firstChild)
+  // Bake the current theme into the export: the embedded stylesheet reads
+  // var(--rrd-*), so inlining the resolved values on the root carries the
+  // on-screen colors into the standalone file.
+  const computed = getComputedStyle(svg)
+  let canvas = ''
+  for (const name of themeVarNames) {
+    const value = computed.getPropertyValue(name).trim()
+    if (value) {
+      clone.style.setProperty(name, value)
+      if (name === '--rrd-canvas') canvas = value
+    }
+  }
+
+  if (!transparent) {
+    const background = document.createElementNS('http://www.w3.org/2000/svg', 'rect')
+    background.setAttribute('width', '100%')
+    background.setAttribute('height', '100%')
+    background.setAttribute('fill', canvas || '#ffffff')
+    clone.insertBefore(background, clone.firstChild)
+  } else {
+    clone.style.setProperty('background', 'transparent')
+  }
 
   const markup = new XMLSerializer().serializeToString(clone)
   return { markup, width, height }
@@ -47,7 +83,7 @@ function triggerDownload(url: string, filename: string) {
   anchor.click()
 }
 
-export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onNodeHover }: Props) {
+export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onNodeHover, onNodeSelect }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const panState = useRef<{ pointerId: number; startX: number; startY: number; scrollLeft: number; scrollTop: number } | null>(null)
@@ -59,6 +95,30 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
   const [containerWidth, setContainerWidth] = useState(0)
   const [panning, setPanning] = useState(false)
   const [engine, setEngine] = useState<Engine>('interactive')
+  const [collapsed, setCollapsed] = useState<ReadonlySet<number>>(new Set())
+  const [nodePop, setNodePop] = useState<{ left: number; top: number; token: RegexToken } | null>(null)
+
+  const tokens = useMemo(() => {
+    try {
+      return tokenizeRegex(pattern, flags)
+    } catch {
+      return []
+    }
+  }, [pattern, flags])
+
+  useEffect(() => {
+    setCollapsed(new Set())
+    setNodePop(null)
+  }, [pattern])
+
+  useEffect(() => {
+    if (!nodePop) return
+    const close = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setNodePop(null)
+    }
+    window.addEventListener('keydown', close)
+    return () => window.removeEventListener('keydown', close)
+  }, [nodePop])
 
   useEffect(() => {
     if (window.localStorage.getItem(engineStorageKey) === 'classic') setEngine('classic')
@@ -83,7 +143,7 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
         if (engine === 'interactive') {
           const { renderRailviz } = await import('@ihateregex/railviz')
           if (cancelled) return
-          renderRailviz(svg, { pattern, flags })
+          renderRailviz(svg, { pattern, flags, collapsed })
         } else {
           const { renderRegexDiagram } = await import(
             '@ihateregex/regex-railroad-diagram'
@@ -111,7 +171,7 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
       cancelled = true
       window.clearTimeout(timer)
     }
-  }, [pattern, flags, error, engine])
+  }, [pattern, flags, error, engine, collapsed])
 
   useEffect(() => {
     const svg = svgRef.current
@@ -139,6 +199,54 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
       if (svgRef.current) highlightRange(svgRef.current, null)
     })
     onNodeHover?.(null)
+  }
+
+  function toggleCollapsed(groupStart: number) {
+    setNodePop(null)
+    setCollapsed((current) => {
+      const next = new Set(current)
+      if (next.has(groupStart)) next.delete(groupStart)
+      else next.add(groupStart)
+      return next
+    })
+  }
+
+  async function handleDiagramClick(event: ReactMouseEvent) {
+    if (engine !== 'interactive') return
+    const target = event.target as Element
+
+    const collapser = target.closest<SVGElement>('.rrv-collapse')
+    if (collapser?.dataset.group) {
+      toggleCollapsed(Number(collapser.dataset.group))
+      return
+    }
+    const collapsedPill = target.closest<SVGElement>('.rrv-group-collapsed')
+    if (collapsedPill?.dataset.group) {
+      toggleCollapsed(Number(collapsedPill.dataset.group))
+      return
+    }
+
+    const { rangeFromElement } = await import('@ihateregex/railviz')
+    const range = rangeFromElement(target)
+    if (!range) {
+      setNodePop(null)
+      return
+    }
+
+    onNodeSelect?.(range)
+
+    const node = target.closest<SVGGElement>('[data-start]')
+    const shell = scrollRef.current?.parentElement
+    const token = node && explainRange(tokens, range, node.getAttribute('class') ?? '')
+    if (!node || !shell || !token) {
+      setNodePop(null)
+      return
+    }
+    const nodeRect = node.getBoundingClientRect()
+    const shellRect = shell.getBoundingClientRect()
+    const left = Math.max(8, Math.min(nodeRect.left - shellRect.left, shellRect.width - 280))
+    const top = Math.min(nodeRect.bottom - shellRect.top + 8, shellRect.height - 20)
+    setNodePop({ left, top, token })
   }
 
   useEffect(() => {
@@ -208,20 +316,34 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
     }
   }
 
-  function downloadSvg() {
+  function downloadSvg(event?: ReactMouseEvent) {
     const svg = svgRef.current
     if (!svg) return
-    const { markup } = serializeDiagram(svg)
+    const transparent = Boolean(event?.altKey)
+    const { markup } = serializeDiagram(svg, transparent)
     const url = URL.createObjectURL(new Blob([markup], { type: 'image/svg+xml;charset=utf-8' }))
     triggerDownload(url, 'railroad-diagram.svg')
     URL.revokeObjectURL(url)
-    setExportNote('Saved SVG')
+    setExportNote(transparent ? 'Saved SVG (transparent)' : 'Saved SVG')
   }
 
-  async function downloadPng() {
+  async function copySvg() {
     const svg = svgRef.current
     if (!svg) return
-    const { markup, width, height } = serializeDiagram(svg)
+    const { markup } = serializeDiagram(svg)
+    try {
+      await navigator.clipboard.writeText(markup)
+      setExportNote('SVG copied')
+    } catch {
+      setExportNote('Copy blocked — try again')
+    }
+  }
+
+  async function downloadPng(event?: ReactMouseEvent) {
+    const svg = svgRef.current
+    if (!svg) return
+    const transparent = Boolean(event?.altKey)
+    const { markup, width, height } = serializeDiagram(svg, transparent)
     const svgUrl = URL.createObjectURL(new Blob([markup], { type: 'image/svg+xml;charset=utf-8' }))
     try {
       const image = new Image()
@@ -242,7 +364,7 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
       const pngUrl = URL.createObjectURL(blob)
       triggerDownload(pngUrl, 'railroad-diagram.png')
       URL.revokeObjectURL(pngUrl)
-      setExportNote('Saved PNG')
+      setExportNote(transparent ? 'Saved PNG (transparent)' : 'Saved PNG')
     } catch {
       setExportNote('Export failed')
     } finally {
@@ -288,11 +410,14 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
           >
             <Lightning size={13} weight={engine === 'interactive' ? 'fill' : 'regular'} /> {engine === 'interactive' ? 'Interactive' : 'Classic'}
           </button>
-          <button className="panel-action" type="button" onClick={downloadSvg} disabled={exportDisabled} title="Download the diagram as an SVG file">
+          <button className="panel-action" type="button" onClick={downloadSvg} disabled={exportDisabled} title="Download the diagram as an SVG file in the current theme (⌥-click for a transparent background)">
             <DownloadSimple size={13} /> SVG
           </button>
-          <button className="panel-action" type="button" onClick={downloadPng} disabled={exportDisabled} title="Download the diagram as a PNG image">
+          <button className="panel-action" type="button" onClick={downloadPng} disabled={exportDisabled} title="Download the diagram as a PNG image in the current theme (⌥-click for a transparent background)">
             <DownloadSimple size={13} /> PNG
+          </button>
+          <button className="panel-action" type="button" onClick={copySvg} disabled={exportDisabled} title="Copy the diagram SVG markup to the clipboard">
+            <CopySimple size={13} /> Copy
           </button>
           {embedPath && (
             <button className="panel-action" type="button" onClick={copyEmbedCode} disabled={exportDisabled} title="Copy an iframe snippet that embeds this diagram on any site">
@@ -329,9 +454,20 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
               aria-label="Railroad diagram of the regular expression"
               onMouseOver={handleDiagramHover}
               onMouseLeave={handleDiagramLeave}
+              onClick={handleDiagramClick}
             />
           )}
         </div>
+
+        {nodePop && (
+          <div className="token-popover diagram-popover" style={{ left: nodePop.left, top: nodePop.top }} role="tooltip">
+            <div className="token-popover-head">
+              <span className={`token-popover-type tok-${nodePop.token.type}`}>{nodePop.token.title}</span>
+              <code>{nodePop.token.text}</code>
+            </div>
+            <p>{nodePop.token.detail}</p>
+          </div>
+        )}
 
         {showZoom && (
           <div className="diagram-zoom" role="group" aria-label="Diagram zoom">
