@@ -4,6 +4,7 @@ import { Books, BracketsCurly, List, Notebook, SignIn, SignOut, TerminalWindow, 
 import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { ThemeToggle } from '~/components/ThemeToggle'
 import { authClient } from '~/lib/auth-client'
+import { getCanonicalRedirect } from '~/server/host'
 import appCss from '~/styles/app.css?url'
 import { seo } from '~/utils/seo'
 
@@ -15,11 +16,10 @@ const gaInitScript = `window.dataLayer=window.dataLayer||[];function gtag(){data
 export const Route = createRootRoute({
   beforeLoad: async ({ location }) => {
     if (typeof window !== 'undefined') return
-    const { getRequestHeaders } = await import('@tanstack/react-start/server')
-    const host = getRequestHeaders().get?.('host') ?? (getRequestHeaders() as unknown as Record<string, string>).host
-    if (typeof host === 'string' && host.endsWith('.up.railway.app')) {
-      throw redirect({ href: `https://ihateregex.io${location.pathname}${location.searchStr}`, statusCode: 301 })
-    }
+    const target = await getCanonicalRedirect({
+      data: { pathname: location.pathname, searchStr: location.searchStr },
+    })
+    if (target) throw redirect({ href: target, statusCode: 301 })
   },
   head: () => ({
     meta: [
