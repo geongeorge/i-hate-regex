@@ -58,10 +58,10 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
   const [zoom, setZoom] = useState<number | 'fit'>('fit')
   const [containerWidth, setContainerWidth] = useState(0)
   const [panning, setPanning] = useState(false)
-  const [engine, setEngine] = useState<Engine>('classic')
+  const [engine, setEngine] = useState<Engine>('interactive')
 
   useEffect(() => {
-    if (window.localStorage.getItem(engineStorageKey) === 'interactive') setEngine('interactive')
+    if (window.localStorage.getItem(engineStorageKey) === 'classic') setEngine('classic')
   }, [])
 
   function switchEngine(next: Engine) {
@@ -284,9 +284,9 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
             className={`panel-action ${engine === 'interactive' ? 'panel-action-active' : ''}`}
             type="button"
             onClick={() => switchEngine(engine === 'interactive' ? 'classic' : 'interactive')}
-            title={engine === 'interactive' ? 'Interactive engine on — hover the diagram or the expression to cross-highlight. Click to switch back.' : 'Try the new interactive engine (beta): hover any diagram node to highlight it in the expression, and vice versa'}
+            title={engine === 'interactive' ? 'Interactive diagram — hover the diagram or the expression to cross-highlight. Click for the classic renderer.' : 'Classic renderer on — click to return to the interactive diagram'}
           >
-            <Lightning size={13} weight={engine === 'interactive' ? 'fill' : 'regular'} /> Interactive
+            <Lightning size={13} weight={engine === 'interactive' ? 'fill' : 'regular'} /> {engine === 'interactive' ? 'Interactive' : 'Classic'}
           </button>
           <button className="panel-action" type="button" onClick={downloadSvg} disabled={exportDisabled} title="Download the diagram as an SVG file">
             <DownloadSimple size={13} /> SVG

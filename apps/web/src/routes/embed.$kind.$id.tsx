@@ -59,10 +59,10 @@ function EmbedPage() {
     const svg = svgRef.current
     if (!svg) return
     let cancelled = false
-    import('@ihateregex/regex-railroad-diagram')
-      .then(({ renderRegexDiagram }) => {
+    import('@ihateregex/railviz')
+      .then(({ renderRailviz }) => {
         if (cancelled) return
-        return renderRegexDiagram(svg, { pattern, flags })
+        renderRailviz(svg, { pattern, flags })
       })
       .catch(() => {})
     return () => {

@@ -10,11 +10,11 @@ export const Route = createFileRoute('/dev/og')({
 })
 
 async function renderDiagramSvg(pattern: string, flags: string) {
-  const { renderRegexDiagram } = await import('@ihateregex/regex-railroad-diagram')
+  const { renderRailviz } = await import('@ihateregex/railviz')
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
   const host = document.getElementById('og-work')!
   host.appendChild(svg)
-  await renderRegexDiagram(svg, { pattern, flags })
+  renderRailviz(svg, { pattern, flags })
   const rect = svg.getBoundingClientRect()
   const clone = svg.cloneNode(true) as SVGSVGElement
   clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
