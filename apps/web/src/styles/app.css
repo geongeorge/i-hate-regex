@@ -288,7 +288,7 @@ svg:not(.regex-diagram) { background-color: transparent; }
 .tok-quantifier { color: #c9a6ff; }
 .tok-meta { color: #72d58c; }
 .tok-literal { color: var(--terminal-text); }
-.expression-highlights .tok-hover { background: color-mix(in srgb, currentColor 26%, transparent); border-radius: 3px; box-shadow: 0 0 0 2px color-mix(in srgb, currentColor 26%, transparent); }
+.expression-highlights .tok-hover, .embed-pattern .tok-hover { background: color-mix(in srgb, currentColor 26%, transparent); border-radius: 3px; box-shadow: 0 0 0 2px color-mix(in srgb, currentColor 26%, transparent); }
 .token-popover { position: absolute; z-index: 6; width: max-content; max-width: 270px; padding: 9px 11px; display: grid; gap: 4px; border: 1px solid var(--terminal-line); border-radius: 3px; background: var(--terminal-raised); box-shadow: 0 12px 28px rgba(0, 0, 0, .5); pointer-events: none; }
 .token-popover-head { display: flex; align-items: baseline; gap: 9px; }
 .token-popover-type { font: 700 9px ui-monospace, monospace; letter-spacing: .09em; text-transform: uppercase; }
