@@ -1,3 +1,6 @@
 packages:
   - apps/*
   - packages/*
+
+patchedDependencies:
+  '@regexper/render@1.0.0': patches/@regexper__render@1.0.0.patch

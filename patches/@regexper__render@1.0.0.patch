@@ -1,0 +1,24 @@
+diff --git a/es/regexp.js b/es/regexp.js
+index 8ba6c102c02ed1088831f7492026ae4977211df3..23a301b05acd17923e43b7ec2df5b4d76c115626 100644
+--- a/es/regexp.js
++++ b/es/regexp.js
+@@ -68,6 +68,7 @@ export class RegexpNode extends Node {
+                 `M${containerBox.width + 40},${containerBox.cy}q-10,0 -10,${shift}V${edge}`,
+             ];
+         }
++        return [];
+     }
+     /**
+      * Returns an array of SVG path strings to draw the curves from the
+diff --git a/lib/regexp.js b/lib/regexp.js
+index 2d6a182778b259fa3adf2b7581027dc8834cebaf..2b56331a38ae5fb912031867e781ed74b26cdb9f 100644
+--- a/lib/regexp.js
++++ b/lib/regexp.js
+@@ -129,6 +129,7 @@ var RegexpNode = /** @class */ (function (_super) {
+                 "M".concat(containerBox.width + 40, ",").concat(containerBox.cy, "q-10,0 -10,").concat(shift, "V").concat(edge),
+             ];
+         }
++        return [];
+     };
+     /**
+      * Returns an array of SVG path strings to draw the curves from the

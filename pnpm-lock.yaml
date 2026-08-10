@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@regexper/render@1.0.0':
+    hash: 144c6b5bcaff9a9a61d58a254474d0e12b70c8443ebbe4e8d30044613889d924
+    path: patches/@regexper__render@1.0.0.patch
+
 importers:
 
   .: {}
@@ -76,7 +81,7 @@ importers:
     dependencies:
       '@regexper/render':
         specifier: ^1.0.0
-        version: 1.0.0
+        version: 1.0.0(patch_hash=144c6b5bcaff9a9a61d58a254474d0e12b70c8443ebbe4e8d30044613889d924)
     devDependencies:
       typescript:
         specifier: ^6.0.2
@@ -2000,7 +2005,7 @@ snapshots:
 
   '@regexper/parser@1.0.0': {}
 
-  '@regexper/render@1.0.0':
+  '@regexper/render@1.0.0(patch_hash=144c6b5bcaff9a9a61d58a254474d0e12b70c8443ebbe4e8d30044613889d924)':
     dependencies:
       '@regexper/parser': 1.0.0
       '@svgdotjs/svg.js': 3.2.5
