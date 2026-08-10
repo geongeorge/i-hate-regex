@@ -338,6 +338,23 @@ html[data-theme='dark'] .diagram-scroll {
 .diagram-zoom .zoom-level { min-width: 44px; }
 .diagram-scroll.panning { cursor: grabbing; }
 .diagram-scroll.pannable { cursor: grab; }
+
+.pattern-extras { max-width: 1560px; margin: 0 auto; padding: 8px 21px 64px; }
+.extras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.extras-block { padding: 17px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+.extras-block h2, .related-block h2 { margin: 0 0 12px; font-size: 15px; letter-spacing: -.02em; }
+.example-list { margin: 0; padding: 0; display: grid; gap: 7px; list-style: none; }
+.example-list li { display: flex; align-items: center; gap: 8px; color: var(--success); }
+.example-list.failing li { color: var(--danger); }
+.example-list code { color: var(--ink); font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere; }
+.example-empty { color: var(--muted); font-size: 12px; }
+.related-block { margin-top: 9px; padding: 17px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 9px; }
+.related-card { position: relative; padding: 12px 13px; display: grid; gap: 3px; border: 1px solid var(--line); border-radius: 3px; background: var(--surface-raised); transition: border-color 140ms ease, transform 140ms ease; }
+.related-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.related-card svg { position: absolute; top: 12px; right: 11px; color: var(--faint); }
+.related-title { font-size: 14px; font-weight: 700; letter-spacing: -.02em; text-transform: lowercase; }
+.related-tagline { color: var(--muted); font-size: 11.5px; line-height: 1.45; }
 .diagram-empty { min-height: 210px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--faint); text-align: center; }
 .diagram-empty p { max-width: 650px; margin: 12px 0 3px; color: var(--ink); font: 600 11px/1.5 ui-monospace, monospace; }
 .diagram-empty span { font-size: 10px; }
@@ -479,6 +496,8 @@ html[data-theme='dark'] .diagram-scroll {
   .catalog-grid { grid-template-columns: 1fr; }
   .catalog-card { min-height: 270px; }
   .workbench-shell { padding: 16px 9px 42px; }
+  .pattern-extras { padding-inline: 9px; }
+  .extras-grid { grid-template-columns: 1fr; }
   .workbench-header { align-items: stretch; flex-direction: column; }
   .save-cluster { flex-wrap: wrap; }
   .save-state { width: 100%; }

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /me
+Disallow: /r/
+Disallow: /auth
+
+Sitemap: https://ihateregex.io/sitemap.xml

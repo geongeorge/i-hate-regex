@@ -9,7 +9,10 @@ export const Route = createFileRoute('/s/$id')({
     return snapshot
   },
   head: ({ loaderData }) => ({
-    meta: [{ title: loaderData ? `${loaderData.title} — shared regex — iHateRegex` : 'Shared regex — iHateRegex' }],
+    meta: [
+      { title: loaderData ? `${loaderData.title} — shared regex — iHateRegex` : 'Shared regex — iHateRegex' },
+      { name: 'robots', content: 'noindex' },
+    ],
   }),
   component: SharedSnapshot,
 })

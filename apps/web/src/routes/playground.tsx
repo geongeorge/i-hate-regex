@@ -1,7 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { RegexWorkbench } from '~/components/RegexWorkbench'
+import { canonicalLink, seo } from '~/utils/seo'
 
-export const Route = createFileRoute('/playground')({ component: Playground })
+export const Route = createFileRoute('/playground')({
+  head: () => ({
+    meta: seo({
+      title: 'Regex playground — iHateRegex',
+      description: 'Write a regular expression, test it live, watch its railroad diagram, and share one link with your team.',
+      path: '/playground',
+    }),
+    links: [canonicalLink('/playground')],
+  }),
+  component: Playground,
+})
 
 const starter = {
   title: 'Untitled regex',

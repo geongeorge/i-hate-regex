@@ -9,8 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PlaygroundRouteImport } from './routes/playground'
 import { Route as MeRouteImport } from './routes/me'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
+import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as CheatsheetRouteImport } from './routes/cheatsheet'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -25,6 +28,11 @@ import { Route as CommunityIdRouteImport } from './routes/community.$id'
 import { Route as EmbedKindIdRouteImport } from './routes/embed.$kind.$id'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlaygroundRoute = PlaygroundRouteImport.update({
   id: '/playground',
   path: '/playground',
@@ -33,6 +41,16 @@ const PlaygroundRoute = PlaygroundRouteImport.update({
 const MeRoute = MeRouteImport.update({
   id: '/me',
   path: '/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
+  id: '/llms-full.txt',
+  path: '/llms-full.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityRoute = CommunityRouteImport.update({
@@ -106,8 +124,11 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/cheatsheet': typeof CheatsheetRoute
   '/community': typeof CommunityRouteWithChildren
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/community/$id': typeof CommunityIdRoute
   '/dev/og': typeof DevOgRoute
   '/expr/$id': typeof ExprIdRoute
@@ -122,8 +143,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/cheatsheet': typeof CheatsheetRoute
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/community/$id': typeof CommunityIdRoute
   '/dev/og': typeof DevOgRoute
   '/expr/$id': typeof ExprIdRoute
@@ -140,8 +164,11 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/cheatsheet': typeof CheatsheetRoute
   '/community': typeof CommunityRouteWithChildren
+  '/llms-full.txt': typeof LlmsFullDottxtRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/me': typeof MeRoute
   '/playground': typeof PlaygroundRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/community/$id': typeof CommunityIdRoute
   '/dev/og': typeof DevOgRoute
   '/expr/$id': typeof ExprIdRoute
@@ -159,8 +186,11 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cheatsheet'
     | '/community'
+    | '/llms-full.txt'
+    | '/llms.txt'
     | '/me'
     | '/playground'
+    | '/sitemap.xml'
     | '/community/$id'
     | '/dev/og'
     | '/expr/$id'
@@ -175,8 +205,11 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/cheatsheet'
+    | '/llms-full.txt'
+    | '/llms.txt'
     | '/me'
     | '/playground'
+    | '/sitemap.xml'
     | '/community/$id'
     | '/dev/og'
     | '/expr/$id'
@@ -192,8 +225,11 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cheatsheet'
     | '/community'
+    | '/llms-full.txt'
+    | '/llms.txt'
     | '/me'
     | '/playground'
+    | '/sitemap.xml'
     | '/community/$id'
     | '/dev/og'
     | '/expr/$id'
@@ -210,8 +246,11 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CheatsheetRoute: typeof CheatsheetRoute
   CommunityRoute: typeof CommunityRouteWithChildren
+  LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
   MeRoute: typeof MeRoute
   PlaygroundRoute: typeof PlaygroundRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   DevOgRoute: typeof DevOgRoute
   ExprIdRoute: typeof ExprIdRoute
   LibraryIdRoute: typeof LibraryIdRoute
@@ -223,6 +262,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/playground': {
       id: '/playground'
       path: '/playground'
@@ -235,6 +281,20 @@ declare module '@tanstack/react-router' {
       path: '/me'
       fullPath: '/me'
       preLoaderRoute: typeof MeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms-full.txt': {
+      id: '/llms-full.txt'
+      path: '/llms-full.txt'
+      fullPath: '/llms-full.txt'
+      preLoaderRoute: typeof LlmsFullDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community': {
@@ -350,8 +410,11 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CheatsheetRoute: CheatsheetRoute,
   CommunityRoute: CommunityRouteWithChildren,
+  LlmsFullDottxtRoute: LlmsFullDottxtRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
   MeRoute: MeRoute,
   PlaygroundRoute: PlaygroundRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   DevOgRoute: DevOgRoute,
   ExprIdRoute: ExprIdRoute,
   LibraryIdRoute: LibraryIdRoute,

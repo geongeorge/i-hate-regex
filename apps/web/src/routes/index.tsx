@@ -1,14 +1,34 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowRight, BookOpen, GitBranch, MagnifyingGlass, ShareNetwork, Sparkle } from '@phosphor-icons/react'
 import { useMemo, useState } from 'react'
+import { z } from 'zod'
 import { catalog } from '~/data/catalog'
+import { canonicalLink, jsonLd, siteUrl } from '~/utils/seo'
 
 export const Route = createFileRoute('/')({
+  validateSearch: z.object({ q: z.string().optional() }).parse,
+  head: () => ({
+    links: [canonicalLink('/')],
+    scripts: [
+      jsonLd({
+        '@type': 'WebSite',
+        name: 'iHateRegex',
+        url: siteUrl,
+        description: 'Understand, test, and share regular expressions with railroad diagrams and plain-English explanations.',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: { '@type': 'EntryPoint', urlTemplate: `${siteUrl}/?q={search_term_string}` },
+          'query-input': 'required name=search_term_string',
+        },
+      }),
+    ],
+  }),
   component: Home,
 })
 
 function Home() {
-  const [query, setQuery] = useState('')
+  const { q } = Route.useSearch()
+  const [query, setQuery] = useState(q ?? '')
   const results = useMemo(() => {
     const normalized = query.toLowerCase().trim()
     if (!normalized) return catalog

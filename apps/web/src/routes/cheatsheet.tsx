@@ -1,7 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
 import cheatsheet from '~/content/cheatsheet.json'
+import { canonicalLink, seo } from '~/utils/seo'
 
-export const Route = createFileRoute('/cheatsheet')({ component: Cheatsheet })
+export const Route = createFileRoute('/cheatsheet')({
+  head: () => ({
+    meta: seo({
+      title: 'Regex cheatsheet — iHateRegex',
+      description: 'The tiny regex cheat sheet: anchors, character classes, quantifiers, groups, and lookarounds at a glance.',
+      path: '/cheatsheet',
+    }),
+    links: [canonicalLink('/cheatsheet')],
+  }),
+  component: Cheatsheet,
+})
 
 function Cheatsheet() {
   return (

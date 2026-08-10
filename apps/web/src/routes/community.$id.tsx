@@ -8,7 +8,10 @@ export const Route = createFileRoute('/community/$id')({
     if (!document) throw notFound()
     return document
   },
-  head: ({ loaderData }) => ({ meta: [{ title: loaderData ? `${loaderData.title} by ${loaderData.ownerName ?? 'community'} — iHateRegex` : 'Community regex — iHateRegex' }] }),
+  head: ({ loaderData }) => ({
+    meta: [{ title: loaderData ? `${loaderData.title} by ${loaderData.ownerName ?? 'community'} — iHateRegex` : 'Community regex — iHateRegex' }],
+    links: loaderData ? [{ rel: 'canonical', href: `https://ihateregex.io/community/${loaderData.id}` }] : [],
+  }),
   component: PublicRegex,
 })
 

@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import { HeadContent, Link, Scripts, createRootRoute, useRouterState } from '@tanstack/react-router'
+import { HeadContent, Link, Scripts, createRootRoute, redirect, useRouterState } from '@tanstack/react-router'
 import { Books, BracketsCurly, List, Notebook, SignIn, SignOut, TerminalWindow, UsersThree, X } from '@phosphor-icons/react'
 import { type ReactNode, useEffect, useRef, useState } from 'react'
 import { ThemeToggle } from '~/components/ThemeToggle'
@@ -13,6 +13,14 @@ const gaId = 'G-FNM708P0PE'
 const gaInitScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${gaId}');`
 
 export const Route = createRootRoute({
+  beforeLoad: async ({ location }) => {
+    if (typeof window !== 'undefined') return
+    const { getRequestHeaders } = await import('@tanstack/react-start/server')
+    const host = getRequestHeaders().get?.('host') ?? (getRequestHeaders() as unknown as Record<string, string>).host
+    if (typeof host === 'string' && host.endsWith('.up.railway.app')) {
+      throw redirect({ href: `https://ihateregex.io${location.pathname}${location.searchStr}`, statusCode: 301 })
+    }
+  },
   head: () => ({
     meta: [
       { charSet: 'utf-8' },

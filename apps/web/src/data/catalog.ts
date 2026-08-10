@@ -13,6 +13,25 @@ export function getCatalogEntry(id: string) {
   return catalog.find((entry) => entry.id === id)
 }
 
+export function getCatalogNotes(id: string) {
+  return markdownModules[`../content/regex/${id}.md`]
+}
+
+export function getRelatedEntries(id: string, limit = 4) {
+  const entry = getCatalogEntry(id)
+  if (!entry) return []
+  return catalog
+    .filter((candidate) => candidate.id !== id)
+    .map((candidate) => ({
+      entry: candidate,
+      overlap: candidate.tags.filter((tag) => entry.tags.includes(tag)).length,
+    }))
+    .filter(({ overlap }) => overlap > 0)
+    .sort((a, b) => b.overlap - a.overlap)
+    .slice(0, limit)
+    .map(({ entry: related }) => related)
+}
+
 export function getCatalogDraft(id: string): RegexDraft | undefined {
   const entry = getCatalogEntry(id)
   if (!entry) return undefined

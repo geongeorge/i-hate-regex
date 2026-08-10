@@ -4,7 +4,10 @@ import { listCommunityRegexDocuments } from '~/server/regexes'
 
 export const Route = createFileRoute('/community/')({
   loader: () => listCommunityRegexDocuments(),
-  head: () => ({ meta: [{ title: 'Community regexes — iHateRegex' }] }),
+  head: () => ({
+    meta: [{ title: 'Community regexes — iHateRegex' }],
+    links: [{ rel: 'canonical', href: 'https://ihateregex.io/community' }],
+  }),
   component: Community,
 })
 
