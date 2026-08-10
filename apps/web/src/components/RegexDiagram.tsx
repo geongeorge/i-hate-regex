@@ -90,6 +90,9 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
   const modeRef = useRef<'fit' | 'manual'>('fit')
   const pointersRef = useRef(new Map<number, { x: number; y: number }>())
   const dragDistanceRef = useRef(0)
+  const spaceRef = useRef(false)
+  const stageHoverRef = useRef(false)
+  const [spaceDown, setSpaceDown] = useState(false)
   const [renderError, setRenderError] = useState<string | null>(null)
   const [rendering, setRendering] = useState(false)
   const [exportNote, setExportNote] = useState<string | null>(null)
@@ -128,6 +131,30 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
 
   useEffect(() => {
     if (window.localStorage.getItem(engineStorageKey) === 'classic') setEngine('classic')
+  }, [])
+
+  useEffect(() => {
+    const down = (event: KeyboardEvent) => {
+      if (event.code !== 'Space') return
+      const target = event.target as HTMLElement | null
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) return
+      if (stageHoverRef.current) event.preventDefault()
+      if (!spaceRef.current) {
+        spaceRef.current = true
+        setSpaceDown(true)
+      }
+    }
+    const up = (event: KeyboardEvent) => {
+      if (event.code !== 'Space') return
+      spaceRef.current = false
+      setSpaceDown(false)
+    }
+    window.addEventListener('keydown', down)
+    window.addEventListener('keyup', up)
+    return () => {
+      window.removeEventListener('keydown', down)
+      window.removeEventListener('keyup', up)
+    }
   }, [])
 
   function switchEngine(next: Engine) {
@@ -283,8 +310,15 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
 
   function startPan(event: ReactPointerEvent<HTMLDivElement>) {
     const stage = stageRef.current
-    if (!stage || (event.pointerType === 'mouse' && event.button !== 0)) return
+    if (!stage) return
     if ((event.target as HTMLElement).closest('.diagram-zoom, .diagram-popover')) return
+    // Figma rules: touch always pans/pinches; mouse pans with space+drag or
+    // the middle button. A plain left-drag leaves clicks and hovers alone.
+    const isTouch = event.pointerType === 'touch'
+    const middleButton = event.pointerType === 'mouse' && event.button === 1
+    const spacePan = event.button === 0 && spaceRef.current
+    if (!isTouch && !middleButton && !spacePan) return
+    event.preventDefault()
     pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
     dragDistanceRef.current = 0
     try {
@@ -513,12 +547,14 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
       <div className="diagram-shell">
         <div
           ref={stageRef}
-          className={`diagram-scroll diagram-stage ${panning ? 'panning' : ''} ${message ? 'is-empty' : ''}`}
+          className={`diagram-scroll diagram-stage ${panning ? 'panning' : ''} ${spaceDown && !panning ? 'space-pan' : ''} ${message ? 'is-empty' : ''}`}
           style={{ height: stageHeight }}
           onPointerDown={startPan}
           onPointerMove={movePan}
           onPointerUp={endPan}
           onPointerCancel={endPan}
+          onMouseEnter={() => { stageHoverRef.current = true }}
+          onMouseLeave={() => { stageHoverRef.current = false }}
         >
           {message ? (
             <div className="diagram-empty">

@@ -244,12 +244,30 @@ const groupTitles: Record<string, (node: Extract<AstNode, { type: 'group' }>) =>
   'neg-lookbehind': () => 'not preceded by',
 }
 
+function collapseChip(x: number, y: number, symbol: '+' | '−', groupStart: number, label: string) {
+  const chip = svgEl('g', { class: 'rrv-collapse', 'data-group': groupStart, role: 'button' }) as SVGGElement
+  const title = svgEl('title')
+  title.textContent = label
+  chip.appendChild(title)
+  chip.appendChild(svgEl('rect', { x, y, width: 16, height: 16, rx: 4 }))
+  chip.appendChild(makeText(symbol, x + 8, y + 8.5))
+  return chip
+}
+
 function layoutGroup(node: Extract<AstNode, { type: 'group' }>): Laid {
   if (node.kind !== 'noncapture' && currentCollapsed.has(node.start)) {
     const title = groupTitles[node.kind](node)
-    const laid = terminalBox(node, `${title} ⋯`, 'rrv-group rrv-group-collapsed')
-    laid.el.setAttribute('data-group', String(node.start))
-    return laid
+    const g = group(node, 'rrv-group rrv-group-collapsed')
+    g.setAttribute('data-group', String(node.start))
+    const labelWidth = textWidth(title)
+    const width = labelWidth + PAD_X * 2 + 24
+    const tip = svgEl('title')
+    tip.textContent = 'Expand this group'
+    g.appendChild(tip)
+    g.appendChild(svgEl('rect', { class: 'rrv-shape', x: 0, y: 0, width, height: BOX_H, rx: 5 }))
+    g.appendChild(makeText(title, PAD_X + labelWidth / 2, BOX_H / 2))
+    g.appendChild(collapseChip(width - PAD_X - 14, BOX_H / 2 - 8, '+', node.start, 'Expand this group'))
+    return { el: g, width, height: BOX_H, ay: BOX_H / 2 }
   }
 
   const child = layoutNode(node.body)
@@ -272,17 +290,7 @@ function layoutGroup(node: Extract<AstNode, { type: 'group' }>): Laid {
   heading.textContent = title
   g.appendChild(heading)
 
-  const collapser = svgEl('text', {
-    x: 10 + textWidth(title) + 8,
-    y: LABEL_H / 2,
-    class: 'rrv-collapse',
-    'dominant-baseline': 'central',
-    'data-group': node.start,
-    role: 'button',
-    'aria-label': `Collapse ${title}`,
-  })
-  collapser.textContent = '▾'
-  g.appendChild(collapser)
+  g.appendChild(collapseChip(width - 24, LABEL_H / 2 - 8, '−', node.start, 'Collapse this group'))
 
   const childX = (width - child.width) / 2
   child.el.setAttribute('transform', `translate(${childX}, ${LABEL_H + pad})`)
@@ -319,10 +327,15 @@ const styles = `
   svg.rrv-root .rrv-class-label, svg.rrv-root .rrv-repeat-label, svg.rrv-root .rrv-group-label { font-size: 10px; fill: var(--rrd-ink, #111111); opacity: .75; }
   svg.rrv-root .rrv-group > .rrv-outline { fill: none; stroke: var(--rrd-subexp-line, #bfbfbf); stroke-width: 2; stroke-dasharray: 6 3; }
   svg.rrv-root .rrv-group-label { paint-order: stroke; stroke: var(--rrd-canvas, #ffffff); stroke-width: 8; }
-  svg.rrv-root .rrv-collapse { cursor: pointer; font-size: 11px; fill: var(--rrd-ink, #111111); opacity: .55; }
-  svg.rrv-root .rrv-collapse:hover { opacity: 1; }
+  svg.rrv-root .rrv-collapse { cursor: pointer; }
+  svg.rrv-root .rrv-collapse rect { fill: var(--rrd-canvas, #ffffff); stroke: var(--rrd-subexp-line, #bfbfbf); stroke-width: 1.5; }
+  svg.rrv-root .rrv-collapse text { font-size: 12px; font-weight: 700; opacity: .75; }
+  svg.rrv-root .rrv-collapse:hover rect { stroke: var(--rrd-hot, #e53e3e); }
+  svg.rrv-root .rrv-collapse:hover text { fill: var(--rrd-hot, #e53e3e); opacity: 1; }
+  svg.rrv-root .rrv-group-collapsed { cursor: pointer; }
   svg.rrv-root .rrv-group-collapsed > .rrv-shape { fill: none; stroke: var(--rrd-subexp-line, #bfbfbf); stroke-width: 2; stroke-dasharray: 6 3; }
-  svg.rrv-root .rrv-group-collapsed > text { opacity: .8; }
+  svg.rrv-root .rrv-group-collapsed:hover > .rrv-shape { stroke: var(--rrd-hot, #e53e3e); }
+  svg.rrv-root .rrv-group-collapsed > text { opacity: .85; }
   svg.rrv-root .rrv-hot > .rrv-shape,
   svg.rrv-root .rrv-hot > .rrv-container,
   svg.rrv-root .rrv-hot > .rrv-outline { stroke: var(--rrd-hot, #e53e3e); stroke-width: 2.5; stroke-dasharray: none; }
