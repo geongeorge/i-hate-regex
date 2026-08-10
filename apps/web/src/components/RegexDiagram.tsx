@@ -29,8 +29,8 @@ function explainRange(tokens: Array<RegexToken>, range: SourceRange, nodeClass: 
   return inside.find((token) => token.start === range.start) ?? inside[0]
 }
 
-const minZoom = 0.25
-const maxZoom = 3
+const minZoom = 0.15
+const maxZoom = 4
 const zoomStep = 1.25
 
 const themeVarNames = [
@@ -85,13 +85,17 @@ function triggerDownload(url: string, filename: string) {
 
 export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onNodeHover, onNodeSelect }: Props) {
   const svgRef = useRef<SVGSVGElement>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const panState = useRef<{ pointerId: number; startX: number; startY: number; scrollLeft: number; scrollTop: number } | null>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
+  const viewRef = useRef({ tx: 0, ty: 0, scale: 1 })
+  const modeRef = useRef<'fit' | 'manual'>('fit')
+  const pointersRef = useRef(new Map<number, { x: number; y: number }>())
+  const dragDistanceRef = useRef(0)
   const [renderError, setRenderError] = useState<string | null>(null)
   const [rendering, setRendering] = useState(false)
   const [exportNote, setExportNote] = useState<string | null>(null)
   const [natural, setNatural] = useState<{ width: number; height: number } | null>(null)
-  const [zoom, setZoom] = useState<number | 'fit'>('fit')
+  const [zoomPct, setZoomPct] = useState(100)
+  const [fitMode, setFitMode] = useState(true)
   const [containerWidth, setContainerWidth] = useState(0)
   const [panning, setPanning] = useState(false)
   const [engine, setEngine] = useState<Engine>('interactive')
@@ -109,6 +113,8 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
   useEffect(() => {
     setCollapsed(new Set())
     setNodePop(null)
+    modeRef.current = 'fit'
+    setFitMode(true)
   }, [pattern])
 
   useEffect(() => {
@@ -127,6 +133,8 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
   function switchEngine(next: Engine) {
     setEngine(next)
     window.localStorage.setItem(engineStorageKey, next)
+    modeRef.current = 'fit'
+    setFitMode(true)
   }
 
   useEffect(() => {
@@ -185,6 +193,153 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
     }
   }, [hoverRange, engine, rendering])
 
+  // ----- Figma-style camera -----
+
+  function applyView() {
+    const svg = svgRef.current
+    const stage = stageRef.current
+    const { tx, ty, scale } = viewRef.current
+    if (svg) svg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`
+    if (stage) stage.style.backgroundPosition = `${tx}px ${ty}px`
+    setZoomPct(Math.round(scale * 100))
+    setFitMode(modeRef.current === 'fit')
+  }
+
+  function fitView() {
+    const stage = stageRef.current
+    if (!stage || !natural) return
+    const rect = stage.getBoundingClientRect()
+    const scale = Math.min(1, (rect.width - 48) / natural.width, (rect.height - 40) / natural.height)
+    const safeScale = Math.max(minZoom, Number.isFinite(scale) && scale > 0 ? scale : 1)
+    viewRef.current = {
+      scale: safeScale,
+      tx: (rect.width - natural.width * safeScale) / 2,
+      ty: Math.max(16, (rect.height - natural.height * safeScale) / 2),
+    }
+    modeRef.current = 'fit'
+    applyView()
+  }
+
+  function zoomAtPoint(stageX: number, stageY: number, factor: number) {
+    const { tx, ty, scale } = viewRef.current
+    const next = Math.min(maxZoom, Math.max(minZoom, scale * factor))
+    if (next === scale) return
+    viewRef.current = {
+      scale: next,
+      tx: stageX - ((stageX - tx) / scale) * next,
+      ty: stageY - ((stageY - ty) / scale) * next,
+    }
+    modeRef.current = 'manual'
+    applyView()
+  }
+
+  function panBy(dx: number, dy: number) {
+    viewRef.current = { ...viewRef.current, tx: viewRef.current.tx + dx, ty: viewRef.current.ty + dy }
+    modeRef.current = 'manual'
+    applyView()
+  }
+
+  const stageHeight = useMemo(() => {
+    if (!natural || !containerWidth) return 320
+    const widthScale = Math.min(1, (containerWidth - 48) / natural.width)
+    return Math.round(Math.min(640, Math.max(300, natural.height * widthScale + 56)))
+  }, [natural, containerWidth])
+
+  useLayoutEffect(() => {
+    if (modeRef.current === 'fit') fitView()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [natural, containerWidth, stageHeight])
+
+  useEffect(() => {
+    const stage = stageRef.current
+    if (!stage) return
+
+    const measure = () => setContainerWidth(stage.clientWidth)
+    measure()
+
+    const observer = new ResizeObserver(measure)
+    observer.observe(stage)
+    window.addEventListener('resize', measure)
+
+    const onWheel = (event: WheelEvent) => {
+      event.preventDefault()
+      const rect = stage.getBoundingClientRect()
+      if (event.ctrlKey || event.metaKey) {
+        const factor = Math.exp(-event.deltaY * (event.deltaMode === 1 ? 0.05 : 0.008))
+        zoomAtPoint(event.clientX - rect.left, event.clientY - rect.top, factor)
+      } else {
+        panBy(-event.deltaX, -event.deltaY)
+      }
+    }
+    stage.addEventListener('wheel', onWheel, { passive: false })
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', measure)
+      stage.removeEventListener('wheel', onWheel)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function startPan(event: ReactPointerEvent<HTMLDivElement>) {
+    const stage = stageRef.current
+    if (!stage || (event.pointerType === 'mouse' && event.button !== 0)) return
+    if ((event.target as HTMLElement).closest('.diagram-zoom, .diagram-popover')) return
+    pointersRef.current.set(event.pointerId, { x: event.clientX, y: event.clientY })
+    dragDistanceRef.current = 0
+    try {
+      stage.setPointerCapture(event.pointerId)
+    } catch {
+      // synthetic or already-released pointers can't be captured; panning still works
+    }
+    if (pointersRef.current.size === 1) setPanning(true)
+  }
+
+  function movePan(event: ReactPointerEvent<HTMLDivElement>) {
+    const pointers = pointersRef.current
+    const previous = pointers.get(event.pointerId)
+    if (!previous) return
+
+    if (pointers.size === 2) {
+      const other = [...pointers.entries()].find(([id]) => id !== event.pointerId)
+      if (other) {
+        const [, otherPos] = other
+        const prevDist = Math.hypot(previous.x - otherPos.x, previous.y - otherPos.y)
+        const nextDist = Math.hypot(event.clientX - otherPos.x, event.clientY - otherPos.y)
+        const stage = stageRef.current
+        if (stage && prevDist > 0) {
+          const rect = stage.getBoundingClientRect()
+          const midX = (event.clientX + otherPos.x) / 2 - rect.left
+          const midY = (event.clientY + otherPos.y) / 2 - rect.top
+          zoomAtPoint(midX, midY, nextDist / prevDist)
+        }
+      }
+    } else if (pointers.size === 1) {
+      const dx = event.clientX - previous.x
+      const dy = event.clientY - previous.y
+      dragDistanceRef.current += Math.abs(dx) + Math.abs(dy)
+      panBy(dx, dy)
+    }
+
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY })
+  }
+
+  function endPan(event: ReactPointerEvent<HTMLDivElement>) {
+    pointersRef.current.delete(event.pointerId)
+    stageRef.current?.releasePointerCapture?.(event.pointerId)
+    if (pointersRef.current.size === 0) setPanning(false)
+  }
+
+  function toggleCollapsed(groupStart: number) {
+    setNodePop(null)
+    setCollapsed((current) => {
+      const next = new Set(current)
+      if (next.has(groupStart)) next.delete(groupStart)
+      else next.add(groupStart)
+      return next
+    })
+  }
+
   async function handleDiagramHover(event: ReactMouseEvent) {
     if (engine !== 'interactive') return
     const { rangeFromElement, highlightRange } = await import('@ihateregex/railviz')
@@ -201,18 +356,9 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
     onNodeHover?.(null)
   }
 
-  function toggleCollapsed(groupStart: number) {
-    setNodePop(null)
-    setCollapsed((current) => {
-      const next = new Set(current)
-      if (next.has(groupStart)) next.delete(groupStart)
-      else next.add(groupStart)
-      return next
-    })
-  }
-
   async function handleDiagramClick(event: ReactMouseEvent) {
     if (engine !== 'interactive') return
+    if (dragDistanceRef.current > 5) return
     const target = event.target as Element
 
     const collapser = target.closest<SVGElement>('.rrv-collapse')
@@ -236,7 +382,7 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
     onNodeSelect?.(range)
 
     const node = target.closest<SVGGElement>('[data-start]')
-    const shell = scrollRef.current?.parentElement
+    const shell = stageRef.current?.parentElement
     const token = node && explainRange(tokens, range, node.getAttribute('class') ?? '')
     if (!node || !shell || !token) {
       setNodePop(null)
@@ -247,73 +393,6 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
     const left = Math.max(8, Math.min(nodeRect.left - shellRect.left, shellRect.width - 280))
     const top = Math.min(nodeRect.bottom - shellRect.top + 8, shellRect.height - 20)
     setNodePop({ left, top, token })
-  }
-
-  useEffect(() => {
-    const scroller = scrollRef.current
-    if (!scroller) return
-    const observer = new ResizeObserver((entries) => {
-      setContainerWidth(entries[0]?.contentRect.width ?? 0)
-    })
-    observer.observe(scroller)
-    return () => observer.disconnect()
-  }, [])
-
-  const fitScale = natural && containerWidth
-    ? Math.min(1, (containerWidth - 36) / natural.width)
-    : 1
-  const effectiveZoom = zoom === 'fit' ? fitScale : zoom
-
-  useLayoutEffect(() => {
-    const svg = svgRef.current
-    if (!svg || !natural) return
-    svg.style.width = `${natural.width * effectiveZoom}px`
-    svg.style.height = `${natural.height * effectiveZoom}px`
-  }, [natural, effectiveZoom])
-
-  function zoomBy(factor: number) {
-    setZoom((current) => {
-      const base = current === 'fit' ? fitScale : current
-      return Math.min(maxZoom, Math.max(minZoom, base * factor))
-    })
-  }
-
-  function startPan(event: ReactPointerEvent<HTMLDivElement>) {
-    const scroller = scrollRef.current
-    if (!scroller || event.button !== 0) return
-    if ((event.target as HTMLElement).closest('.diagram-zoom')) return
-    const canPan = scroller.scrollWidth > scroller.clientWidth || scroller.scrollHeight > scroller.clientHeight
-    if (!canPan) return
-    panState.current = {
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startY: event.clientY,
-      scrollLeft: scroller.scrollLeft,
-      scrollTop: scroller.scrollTop,
-    }
-    try {
-      scroller.setPointerCapture(event.pointerId)
-    } catch {
-      // synthetic or already-released pointers can't be captured; panning still works
-    }
-    setPanning(true)
-  }
-
-  function movePan(event: ReactPointerEvent<HTMLDivElement>) {
-    const scroller = scrollRef.current
-    const state = panState.current
-    if (!scroller || !state || state.pointerId !== event.pointerId) return
-    scroller.scrollLeft = state.scrollLeft - (event.clientX - state.startX)
-    scroller.scrollTop = state.scrollTop - (event.clientY - state.startY)
-  }
-
-  function endPan(event: ReactPointerEvent<HTMLDivElement>) {
-    const scroller = scrollRef.current
-    if (panState.current?.pointerId === event.pointerId) {
-      panState.current = null
-      scroller?.releasePointerCapture(event.pointerId)
-      setPanning(false)
-    }
   }
 
   function downloadSvg(event?: ReactMouseEvent) {
@@ -433,8 +512,9 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
 
       <div className="diagram-shell">
         <div
-          ref={scrollRef}
-          className={`diagram-scroll ${panning ? 'panning' : ''} ${showZoom && effectiveZoom > fitScale ? 'pannable' : ''}`}
+          ref={stageRef}
+          className={`diagram-scroll diagram-stage ${panning ? 'panning' : ''} ${message ? 'is-empty' : ''}`}
+          style={{ height: stageHeight }}
           onPointerDown={startPan}
           onPointerMove={movePan}
           onPointerUp={endPan}
@@ -470,18 +550,34 @@ export function RegexDiagram({ pattern, flags, error, embedPath, hoverRange, onN
         )}
 
         {showZoom && (
-          <div className="diagram-zoom" role="group" aria-label="Diagram zoom">
-            <button type="button" onClick={() => zoomBy(1 / zoomStep)} disabled={effectiveZoom <= minZoom} aria-label="Zoom out">
+          <div className="diagram-zoom" role="group" aria-label="Diagram zoom and pan">
+            <button
+              type="button"
+              onClick={() => {
+                const stage = stageRef.current
+                if (stage) zoomAtPoint(stage.clientWidth / 2, stage.clientHeight / 2, 1 / zoomStep)
+              }}
+              disabled={zoomPct <= minZoom * 100}
+              aria-label="Zoom out"
+            >
               <Minus size={12} weight="bold" />
             </button>
-            <button type="button" className="zoom-level" onClick={() => setZoom('fit')} title="Reset zoom">
-              {Math.round(effectiveZoom * 100)}%
+            <button type="button" className="zoom-level" onClick={fitView} title="Fit diagram">
+              {zoomPct}%
             </button>
-            <button type="button" onClick={() => zoomBy(zoomStep)} disabled={effectiveZoom >= maxZoom} aria-label="Zoom in">
+            <button
+              type="button"
+              onClick={() => {
+                const stage = stageRef.current
+                if (stage) zoomAtPoint(stage.clientWidth / 2, stage.clientHeight / 2, zoomStep)
+              }}
+              disabled={zoomPct >= maxZoom * 100}
+              aria-label="Zoom in"
+            >
               <Plus size={12} weight="bold" />
             </button>
-            {zoom !== 'fit' && (
-              <button type="button" onClick={() => setZoom('fit')} title="Fit to width" aria-label="Fit to width">
+            {!fitMode && (
+              <button type="button" onClick={fitView} title="Fit diagram" aria-label="Fit diagram">
                 <ArrowsInSimple size={12} weight="bold" />
               </button>
             )}

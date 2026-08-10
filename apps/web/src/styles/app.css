@@ -338,8 +338,10 @@ button.panel-action.panel-action-active { border-color: var(--accent); color: va
 .diagram-zoom button:hover:not(:disabled) { background: var(--surface-muted); color: var(--ink); }
 .diagram-zoom button:disabled { opacity: .4; cursor: not-allowed; }
 .diagram-zoom .zoom-level { min-width: 44px; }
-.diagram-scroll.panning { cursor: grabbing; }
-.diagram-scroll.pannable { cursor: grab; }
+.diagram-stage { position: relative; display: block; overflow: hidden; padding: 0; place-items: initial; cursor: grab; touch-action: none; overscroll-behavior: contain; user-select: none; }
+.diagram-stage .regex-diagram { position: absolute; top: 0; left: 0; transform-origin: 0 0; animation: none; will-change: transform; }
+.diagram-stage.panning { cursor: grabbing; }
+.diagram-stage.is-empty { display: grid; place-items: center; cursor: default; }
 .diagram-popover { position: absolute; z-index: 5; }
 
 .pattern-extras { max-width: 1560px; margin: 0 auto; padding: 8px 21px 64px; }
