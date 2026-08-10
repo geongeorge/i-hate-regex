@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
 import {
-  Check,
   Cloud,
   CloudArrowUp,
   Code,
@@ -68,11 +67,14 @@ export function RegexWorkbench({
   const [publishing, setPublishing] = useState(false)
   const [isPublic, setIsPublic] = useState(initiallyPublic)
   const [notice, setNotice] = useState<string | null>(null)
-  const [notesMode, setNotesMode] = useState<'write' | 'preview'>('write')
+  const [notesMode, setNotesMode] = useState<'write' | 'preview'>(mode === 'editable' ? 'write' : 'preview')
   const [exprHover, setExprHover] = useState<{ start: number; end: number } | null>(null)
   const [diagramHover, setDiagramHover] = useState<{ start: number; end: number } | null>(null)
   const [selectionRequest, setSelectionRequest] = useState<{ start: number; end: number; at: number } | null>(null)
-  const readOnly = mode !== 'editable'
+  const [remixing, setRemixing] = useState(false)
+  const readOnly = mode !== 'editable' && !remixing
+  // A remix is a fresh document: never write to the original's id.
+  const ownDocumentId = mode === 'editable' ? documentId : undefined
 
   useEffect(() => {
     if (readOnly || documentId) return
@@ -101,9 +103,13 @@ export function RegexWorkbench({
   const isDirty = JSON.stringify(draft) !== JSON.stringify(savedDraft)
 
   function patchDraft(patch: Partial<RegexDraft>) {
-    if (readOnly) return
+    if (mode !== 'editable' && !remixing) {
+      setRemixing(true)
+      setNotice('Now remixing — the original stays untouched')
+    } else {
+      setNotice(null)
+    }
     setDraft((current) => ({ ...current, ...patch }))
-    setNotice(null)
   }
 
   function toggleFlag(flag: string) {
@@ -126,8 +132,8 @@ export function RegexWorkbench({
     setNotice(null)
 
     try {
-      if (documentId) {
-        const saved = await saveRegexDocument({ data: { id: documentId, draft } })
+      if (ownDocumentId) {
+        const saved = await saveRegexDocument({ data: { id: ownDocumentId, draft } })
         if (!saved) throw new Error('This regex is unavailable or belongs to another account')
         setSavedDraft(draft)
         setNotice('Saved privately')
@@ -147,7 +153,7 @@ export function RegexWorkbench({
   }
 
   async function togglePublished() {
-    if (!documentId || publishing) return
+    if (!ownDocumentId || publishing) return
     setPublishing(true)
     setNotice(null)
     try {
@@ -155,7 +161,7 @@ export function RegexWorkbench({
         const saved = await save()
         if (!saved) return
       }
-      const updated = await publishRegexDocument({ data: { id: documentId, published: !isPublic } })
+      const updated = await publishRegexDocument({ data: { id: ownDocumentId, published: !isPublic } })
       if (!updated) throw new Error('This regex is unavailable or belongs to another account')
       setIsPublic(updated.isPublic)
       setNotice(updated.isPublic ? 'Published to the community' : 'Made private')
@@ -204,19 +210,21 @@ export function RegexWorkbench({
     }
   }
 
-  const accessLabel = mode === 'library'
-    ? 'Curated library · read only'
-    : mode === 'public'
-      ? `${ownerName ? `Shared by ${ownerName}` : 'Community pattern'} · read only`
-      : documentId
-        ? isPublic ? 'Community published' : 'Private workspace'
-        : 'New private workspace'
+  const accessLabel = remixing
+    ? 'Remix · the original is untouched'
+    : mode === 'library'
+      ? 'Curated library · edit to remix'
+      : mode === 'public'
+        ? `${ownerName ? `Shared by ${ownerName}` : 'Community pattern'} · edit to remix`
+        : ownDocumentId
+          ? isPublic ? 'Community published' : 'Private workspace'
+          : 'New private workspace'
 
   return (
     <main className={`workbench-shell ${readOnly ? 'readonly-workbench' : ''}`}>
       <header className="workbench-header">
         <div className="title-field-wrap">
-          <span className="eyebrow">{sourceLabel ?? accessLabel}</span>
+          <span className="eyebrow">{remixing ? accessLabel : sourceLabel ?? accessLabel}</span>
           <label htmlFor="regex-title" className="sr-only">Regex title</label>
           <input
             id="regex-title"
@@ -224,14 +232,13 @@ export function RegexWorkbench({
             value={draft.title}
             onChange={(event) => patchDraft({ title: event.target.value })}
             placeholder="Untitled regex"
-            readOnly={readOnly}
           />
         </div>
 
         <div className="save-cluster">
           {readOnly ? (
             <>
-              <span className="save-state"><LockKey size={14} /> View-only original</span>
+              <span className="save-state"><PencilLine size={14} /> Edit anything to remix</span>
               {mode === 'public' && <button className="button ghost-button" type="button" onClick={copyPublicLink}><Copy size={16} /> Copy link</button>}
               <button className="button primary-button" type="button" onClick={remix}><MagicWand size={16} /> Remix in playground</button>
             </>
@@ -239,15 +246,15 @@ export function RegexWorkbench({
             <>
               <span className={`save-state ${isDirty ? 'dirty' : ''}`} role="status" aria-live="polite">
                 {isDirty ? <PencilLine size={14} /> : <Cloud size={14} />}
-                {notice ?? (isDirty ? 'Unsaved changes' : documentId ? 'Saved' : sessionPending ? 'Checking session' : session?.user ? 'Private draft' : 'Sign in to save')}
+                {notice ?? (isDirty ? 'Unsaved changes' : ownDocumentId ? 'Saved' : sessionPending ? 'Checking session' : session?.user ? 'Private draft' : 'Sign in to save')}
               </span>
               <button className="button ghost-button" type="button" onClick={shareSnapshot} disabled={Boolean(regexError) || sharing} title="Copy a read-only link to this regex — no account needed">
                 <Copy size={16} /> {sharing ? 'Creating link…' : 'Share link'}
               </button>
-              {documentId && isPublic && (
-                <Link className="button ghost-button" to="/community/$id" params={{ id: documentId }}><Globe size={16} /> Public page</Link>
+              {ownDocumentId && isPublic && (
+                <Link className="button ghost-button" to="/community/$id" params={{ id: ownDocumentId }}><Globe size={16} /> Public page</Link>
               )}
-              {documentId && (
+              {ownDocumentId && (
                 <button className="button ghost-button" type="button" onClick={togglePublished} disabled={publishing}>
                   {isPublic ? <LockKey size={16} /> : <Globe size={16} />}
                   {publishing ? 'Updating…' : isPublic ? 'Unpublish' : 'Publish'}
@@ -257,10 +264,10 @@ export function RegexWorkbench({
                 className="button primary-button"
                 type="button"
                 onClick={save}
-                disabled={Boolean(regexError) || saving || (!isDirty && Boolean(documentId))}
+                disabled={Boolean(regexError) || saving || (!isDirty && Boolean(ownDocumentId))}
               >
-                {saving ? <CloudArrowUp className="spin" size={16} /> : documentId ? <FloppyDisk size={16} /> : <Sparkle size={16} />}
-                {saving ? 'Saving…' : documentId ? 'Save' : session?.user ? 'Save privately' : 'Sign in to save'}
+                {saving ? <CloudArrowUp className="spin" size={16} /> : ownDocumentId ? <FloppyDisk size={16} /> : <Sparkle size={16} />}
+                {saving ? 'Saving…' : ownDocumentId ? 'Save' : session?.user ? 'Save privately' : 'Sign in to save'}
               </button>
             </>
           )}
@@ -283,7 +290,6 @@ export function RegexWorkbench({
                 value={draft.pattern}
                 flags={draft.flags}
                 invalid={Boolean(regexError)}
-                readOnly={readOnly}
                 onChange={(pattern) => patchDraft({ pattern })}
                 externalRange={diagramHover}
                 onTokenHover={setExprHover}
@@ -296,21 +302,26 @@ export function RegexWorkbench({
             <div className="flag-row" aria-label="Regular expression flags">
               {flagOptions.map((flag) => {
                 const selected = draft.flags.includes(flag.value)
-                return readOnly ? (
-                  <span key={flag.value} className={`flag-chip ${selected ? 'selected' : ''} ${!selected ? 'muted-flag' : ''}`}>
-                    {selected && <Check size={12} />}{flag.value}<span>{flag.label}</span>
-                  </span>
-                ) : (
-                  <button key={flag.value} className={`flag-chip ${selected ? 'selected' : ''}`} type="button" onClick={() => toggleFlag(flag.value)} aria-pressed={selected} title={flag.label}>
-                    {selected && <Check size={12} />}{flag.value}<span>{flag.label}</span>
+                return (
+                  <button
+                    key={flag.value}
+                    className={`flag-chip ${selected ? 'selected' : ''}`}
+                    type="button"
+                    onClick={() => toggleFlag(flag.value)}
+                    aria-pressed={selected}
+                    aria-label={`${flag.label} flag`}
+                    title={flag.label}
+                  >
+                    {flag.value}
                   </button>
                 )
               })}
+              <span className="flag-hint" aria-hidden="true">flags</span>
             </div>
             {regexError && <p className="field-error">{regexError}</p>}
           </section>
 
-          <MatchPreview pattern={draft.pattern} flags={draft.flags} text={draft.testText} onChange={(testText) => patchDraft({ testText })} error={regexError} readOnly={readOnly} />
+          <MatchPreview pattern={draft.pattern} flags={draft.flags} text={draft.testText} onChange={(testText) => patchDraft({ testText })} error={regexError} />
           <RegexDiagram
             pattern={draft.pattern}
             flags={draft.flags}
@@ -325,15 +336,13 @@ export function RegexWorkbench({
         <aside className="panel notes-panel">
           <div className="panel-heading notes-heading">
             <div><span className="eyebrow">Context</span><h2>Notes</h2></div>
-            {!readOnly && (
-              <div className="segmented-control" role="tablist" aria-label="Notes mode">
-                <button type="button" className={notesMode === 'write' ? 'active' : ''} onClick={() => setNotesMode('write')} role="tab" aria-selected={notesMode === 'write'}><FileText size={14} /> Write</button>
-                <button type="button" className={notesMode === 'preview' ? 'active' : ''} onClick={() => setNotesMode('preview')} role="tab" aria-selected={notesMode === 'preview'}><Sparkle size={14} /> Preview</button>
-              </div>
-            )}
+            <div className="segmented-control" role="tablist" aria-label="Notes mode">
+              <button type="button" className={notesMode === 'write' ? 'active' : ''} onClick={() => setNotesMode('write')} role="tab" aria-selected={notesMode === 'write'}><FileText size={14} /> Write</button>
+              <button type="button" className={notesMode === 'preview' ? 'active' : ''} onClick={() => setNotesMode('preview')} role="tab" aria-selected={notesMode === 'preview'}><Sparkle size={14} /> Preview</button>
+            </div>
           </div>
 
-          {!readOnly && notesMode === 'write' ? (
+          {notesMode === 'write' ? (
             <textarea className="notes-editor" aria-label="Notes" value={draft.notes} onChange={(event) => patchDraft({ notes: event.target.value })} placeholder={'## What it matches\n\nExplain the expression, edge cases, and examples…'} spellCheck />
           ) : (
             <article className="markdown-preview">
@@ -341,7 +350,7 @@ export function RegexWorkbench({
             </article>
           )}
 
-          <div className="notes-footer"><span>{draft.notes.length.toLocaleString()} characters</span><span>{readOnly ? 'Rendered notes' : 'Markdown supported'}</span></div>
+          <div className="notes-footer"><span>{draft.notes.length.toLocaleString()} characters</span><span>Markdown supported</span></div>
         </aside>
       </div>
     </main>

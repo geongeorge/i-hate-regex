@@ -118,6 +118,16 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body>
         {!isEmbed && <SiteHeader />}
         {children}
+        {!isEmbed && (
+          <footer className="site-footer">
+            <p>i<span className="brand-hate">Hate</span>Regex — don’t just use it; understand it.</p>
+            <nav aria-label="Footer">
+              <a href="https://github.com/geongeorge/i-hate-regex" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://x.com/ihateregex" target="_blank" rel="noreferrer">X</a>
+              <a href="https://geongeorge.com/" target="_blank" rel="noreferrer">geongeorge.com</a>
+            </nav>
+          </footer>
+        )}
         <Scripts />
       </body>
     </html>
