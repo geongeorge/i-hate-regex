@@ -27,11 +27,6 @@ function Feedback() {
       </header>
 
       <RelayEmbed slot="feature-requests" />
-
-      <p className="relay-credit">
-        Feedback board by{' '}
-        <a href="https://superrelay.ai/?ref=ihateregex.io" target="_blank" rel="noopener">SuperRelay</a>.
-      </p>
     </main>
   )
 }

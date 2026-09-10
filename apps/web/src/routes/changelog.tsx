@@ -24,11 +24,6 @@ function Changelog() {
       </header>
 
       <RelayEmbed slot="changelog" />
-
-      <p className="relay-credit">
-        Changelog by{' '}
-        <a href="https://superrelay.ai/?ref=ihateregex.io" target="_blank" rel="noopener">SuperRelay</a>.
-      </p>
     </main>
   )
 }
