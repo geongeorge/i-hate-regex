@@ -14,8 +14,10 @@ import { Route as PlaygroundRouteImport } from './routes/playground'
 import { Route as MeRouteImport } from './routes/me'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
+import { Route as FeedbackRouteImport } from './routes/feedback'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as CheatsheetRouteImport } from './routes/cheatsheet'
+import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunityIndexRouteImport } from './routes/community.index'
@@ -53,6 +55,11 @@ const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
   path: '/llms-full.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeedbackRoute = FeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommunityRoute = CommunityRouteImport.update({
   id: '/community',
   path: '/community',
@@ -61,6 +68,11 @@ const CommunityRoute = CommunityRouteImport.update({
 const CheatsheetRoute = CheatsheetRouteImport.update({
   id: '/cheatsheet',
   path: '/cheatsheet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogRoute = ChangelogRouteImport.update({
+  id: '/changelog',
+  path: '/changelog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -122,8 +134,10 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/changelog': typeof ChangelogRoute
   '/cheatsheet': typeof CheatsheetRoute
   '/community': typeof CommunityRouteWithChildren
+  '/feedback': typeof FeedbackRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/me': typeof MeRoute
@@ -142,7 +156,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/changelog': typeof ChangelogRoute
   '/cheatsheet': typeof CheatsheetRoute
+  '/feedback': typeof FeedbackRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/me': typeof MeRoute
@@ -162,8 +178,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/changelog': typeof ChangelogRoute
   '/cheatsheet': typeof CheatsheetRoute
   '/community': typeof CommunityRouteWithChildren
+  '/feedback': typeof FeedbackRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/me': typeof MeRoute
@@ -184,8 +202,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/changelog'
     | '/cheatsheet'
     | '/community'
+    | '/feedback'
     | '/llms-full.txt'
     | '/llms.txt'
     | '/me'
@@ -204,7 +224,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/changelog'
     | '/cheatsheet'
+    | '/feedback'
     | '/llms-full.txt'
     | '/llms.txt'
     | '/me'
@@ -223,8 +245,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/auth'
+    | '/changelog'
     | '/cheatsheet'
     | '/community'
+    | '/feedback'
     | '/llms-full.txt'
     | '/llms.txt'
     | '/me'
@@ -244,8 +268,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  ChangelogRoute: typeof ChangelogRoute
   CheatsheetRoute: typeof CheatsheetRoute
   CommunityRoute: typeof CommunityRouteWithChildren
+  FeedbackRoute: typeof FeedbackRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   MeRoute: typeof MeRoute
@@ -297,6 +323,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LlmsFullDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feedback': {
+      id: '/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof FeedbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/community': {
       id: '/community'
       path: '/community'
@@ -309,6 +342,13 @@ declare module '@tanstack/react-router' {
       path: '/cheatsheet'
       fullPath: '/cheatsheet'
       preLoaderRoute: typeof CheatsheetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog': {
+      id: '/changelog'
+      path: '/changelog'
+      fullPath: '/changelog'
+      preLoaderRoute: typeof ChangelogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -408,8 +448,10 @@ const CommunityRouteWithChildren = CommunityRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  ChangelogRoute: ChangelogRoute,
   CheatsheetRoute: CheatsheetRoute,
   CommunityRoute: CommunityRouteWithChildren,
+  FeedbackRoute: FeedbackRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   MeRoute: MeRoute,

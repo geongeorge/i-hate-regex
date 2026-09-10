@@ -122,9 +122,12 @@ function RootDocument({ children }: { children: ReactNode }) {
           <footer className="site-footer">
             <p>i<span className="brand-hate">Hate</span>Regex — don’t just use it; understand it.</p>
             <nav aria-label="Footer">
+              <Link to="/changelog">Changelog</Link>
+              <Link to="/feedback">Feature requests</Link>
               <a href="https://github.com/geongeorge/i-hate-regex" target="_blank" rel="noreferrer">GitHub</a>
               <a href="https://x.com/ihateregex" target="_blank" rel="noreferrer">X</a>
               <a href="https://geongeorge.com/" target="_blank" rel="noreferrer">geongeorge.com</a>
+              <a href="https://superrelay.ai/?ref=ihateregex.io" target="_blank" rel="noopener">SuperRelay</a>
             </nav>
           </footer>
         )}

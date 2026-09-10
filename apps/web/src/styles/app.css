@@ -454,6 +454,10 @@ button.panel-action.panel-action-active { border-color: var(--accent); color: va
 .cheatsheet-page { max-width: 1140px; margin: 0 auto; padding: 62px 24px 92px; }
 .page-intro { max-width: 700px; margin-bottom: 32px; }
 .page-intro p { color: var(--muted); font-size: 14px; }
+.relay-embed { min-height: 320px; }
+.relay-credit { margin: 26px 0 0; color: var(--faint); font-size: 12px; }
+.relay-credit a { color: var(--muted); border-bottom: 1px solid var(--line); }
+.relay-credit a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .cheat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .cheat-card { min-height: 104px; padding: 12px; display: grid; grid-template-columns: minmax(150px, .48fr) 1fr; gap: 16px; align-items: center; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); transition: border-color 140ms ease, transform 140ms ease; }
 .cheat-command code { padding: 8px; color: var(--terminal-accent); }

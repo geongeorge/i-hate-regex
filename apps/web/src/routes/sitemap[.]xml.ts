@@ -6,7 +6,7 @@ export const Route = createFileRoute('/sitemap.xml')({
   server: {
     handlers: {
       GET: () => {
-        const staticPaths = ['/', '/playground', '/cheatsheet', '/community']
+        const staticPaths = ['/', '/playground', '/cheatsheet', '/community', '/changelog', '/feedback']
         const paths = [...staticPaths, ...catalog.map((entry) => `/expr/${entry.id}`)]
         const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
